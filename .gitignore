@@ -1,0 +1,10 @@
+*.[oa]
+*.so
+*.~
+*.log
+*.nav
+*.snm
+*.toc
+*.ps
+*.dvi
+*.aux
