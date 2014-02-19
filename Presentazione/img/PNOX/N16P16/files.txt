@@ -1,0 +1,6 @@
+Pot_Y_Z00
+Pot_Y_Z02
+Pot_Z
+PotentialCoeffOX
+PotentialCoeffSI
+PotentialSdevice

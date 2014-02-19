@@ -1,0 +1,53 @@
+%\ProvidesPackageRCS $Header: /Users/joseph/Documents/LaTeX/beamer/base/themes/outer/beamerouterthemeinfolines.sty,v cbdb60c45607 2012/05/30 21:08:49 joseph $
+\mode<presentation>
+
+% Set block bassi
+\setbeamercolor*{logo in head/foot}{parent=palette quinto}
+\setbeamercolor*{title in head/foot}{parent=palette quaternary}
+\setbeamercolor*{date in head/foot}{parent=palette quaternary}
+
+\setbeamercolor*{section in head/foot}{parent=palette quaternary}
+\setbeamercolor*{subsection in head/foot}{parent=palette secondary}
+
+% Setting titolo
+\setbeamerfont{block title}{size=1cm}
+\setbeamercolor{titlelike}{parent=palette secondary}
+
+% Setting barra inferiore -------------------
+\defbeamertemplate*{footline}{MY-infolines theme}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.23\paperwidth,ht=3.25ex,right]{logo in head/foot}%
+  \includegraphics[height=3.25ex,wd=0.1\paperwidth]{/loghi/politecnicoLOGO}
+  \quad
+  \includegraphics[height=3.25ex,wd=0.13\paperwidth]{/loghi/LogoMicron}  
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.32\paperwidth,dp=1ex, ht=3.25ex,center]{title in head/foot}%
+ \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=0.45\paperwidth,dp=1ex,ht=3.25ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+% Setting barra superiore -----------------------------
+%\defbeamertemplate*{headline}{infolines theme}
+%{
+  %\leavevmode%
+  %\hbox{%
+ % \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{section in head/foot}%
+%    \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+%  \end{beamercolorbox}%
+  %\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left]{subsection in head/foot}%
+    %\usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
+ % \end{beamercolorbox}}%
+  %\vskip0pt%
+%}
+
+\setbeamersize{text margin left=1em,text margin right=1em}
+
+\mode
+<all>

@@ -1,0 +1,21 @@
+\select@language {italian}
+\contentsline {chapter}{\numberline {1}Introduction}{2}
+\contentsline {section}{\numberline {1.1}General Introduction}{2}
+\contentsline {section}{\numberline {1.2}Case tests presentation}{2}
+\contentsline {chapter}{\numberline {2}Semiconductor model}{3}
+\contentsline {section}{\numberline {2.1}DD Model}{3}
+\contentsline {section}{\numberline {2.2}Resolution of the system}{6}
+\contentsline {subsection}{\numberline {2.2.1}Drawbacks of the Box Methods}{6}
+\contentsline {section}{\numberline {2.3}Nonlinear Poisson Equation}{8}
+\contentsline {subsection}{\numberline {2.3.1}Weak formulation}{8}
+\contentsline {subsection}{\numberline {2.3.2}Numerical approximation}{9}
+\contentsline {subsection}{\numberline {2.3.3}Damping}{9}
+\contentsline {section}{\numberline {2.4}Continuity Equation}{9}
+\contentsline {subsection}{\numberline {2.4.1}Weak formulation}{9}
+\contentsline {subsection}{\numberline {2.4.2}Numerical approximation}{10}
+\contentsline {section}{\numberline {2.5}Maximum discrete principle}{10}
+\contentsline {section}{\numberline {2.6}The current calculation problem}{10}
+\contentsline {subsection}{\numberline {2.6.1}Scharfetter Gummel}{10}
+\contentsline {subsection}{\numberline {2.6.2}Residue Method}{11}
+\contentsline {section}{\numberline {2.7}First results}{13}
+\contentsline {chapter}{\numberline {3}Dual mixed method (or thermo electric system?)}{14}

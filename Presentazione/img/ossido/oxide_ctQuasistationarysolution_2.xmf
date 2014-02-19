@@ -1,0 +1,205 @@
+<?xml version="1.0" ?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
+
+<Xdmf>
+	<Domain>
+		<Grid Name="Mesh" GridType="Tree">
+		 <Grid Name="Oxide" GridType="Collection" >
+			<Grid Name="ossido(Oxide)">
+				<Topology Type="Tetrahedron" NumberOfElements="12288" >
+					<DataItem Format="HDF" DataType="Int" Dimensions="12288 4">
+						./oxide_ctQuasistationarysolution_2.h5:/topologies/bulks/region0
+					</DataItem>
+				</Topology>
+				<Geometry Type="XYZ">
+					<DataItem ItemType="Uniform" Format="HDF" DataType="Float" Precision="8" Dimensions="1 5049 3">
+						./oxide_ctQuasistationarysolution_2.h5:/vertices
+					</DataItem>
+				</Geometry>
+				<Attribute Name="CondBand [eV]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/CondBand [eV]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Electrostatic Potential [V]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Electrostatic Potential [V]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Ex [Vcm-1]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Ex [Vcm-1]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Ey [Vcm-1]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Ey [Vcm-1]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Ez [Vcm-1]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Ez [Vcm-1]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="TOT charge [cm-3]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/TOT charge [cm-3]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="ValBand [eV]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/ValBand [eV]
+					</DataItem>
+				</Attribute>
+			</Grid>
+
+			<Grid Name="ossido2(Oxide)">
+				<Topology Type="Tetrahedron" NumberOfElements="13056" >
+					<DataItem Format="HDF" DataType="Int" Dimensions="13056 4">
+						./oxide_ctQuasistationarysolution_2.h5:/topologies/bulks/region1
+					</DataItem>
+				</Topology>
+				<Geometry Type="XYZ">
+					<DataItem ItemType="Uniform" Format="HDF" DataType="Float" Precision="8" Dimensions="1 5049 3">
+						./oxide_ctQuasistationarysolution_2.h5:/vertices
+					</DataItem>
+				</Geometry>
+				<Attribute Name="CondBand [eV]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/CondBand [eV]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Electrostatic Potential [V]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Electrostatic Potential [V]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Ex [Vcm-1]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Ex [Vcm-1]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Ey [Vcm-1]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Ey [Vcm-1]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Ez [Vcm-1]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Ez [Vcm-1]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="TOT charge [cm-3]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/TOT charge [cm-3]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="ValBand [eV]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/ValBand [eV]
+					</DataItem>
+				</Attribute>
+			</Grid>
+
+		 </Grid>
+		 <Grid Name="Contacts" Type="Collection" >
+			<Grid Name="Katode(Contact)">
+				<Topology Type="Triangle" NumberOfElements="128" >
+					<DataItem Format="HDF" DataType="Int" Dimensions="128 3">
+						./oxide_ctQuasistationarysolution_2.h5:/topologies/contacts/Katode
+					</DataItem>
+				</Topology>
+				<Geometry Type="XYZ">
+					<DataItem ItemType="Uniform" Format="HDF" DataType="Float" Precision="8" Dimensions="1 5049 3">
+						./oxide_ctQuasistationarysolution_2.h5:/vertices
+					</DataItem>
+				</Geometry>
+				<Attribute Name="CondBand [eV]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/CondBand [eV]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Electrostatic Potential [V]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Electrostatic Potential [V]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Ex [Vcm-1]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Ex [Vcm-1]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Ey [Vcm-1]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Ey [Vcm-1]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Ez [Vcm-1]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Ez [Vcm-1]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="TOT charge [cm-3]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/TOT charge [cm-3]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="ValBand [eV]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/ValBand [eV]
+					</DataItem>
+				</Attribute>
+			</Grid>
+
+			<Grid Name="Anode(Contact)">
+				<Topology Type="Triangle" NumberOfElements="128" >
+					<DataItem Format="HDF" DataType="Int" Dimensions="128 3">
+						./oxide_ctQuasistationarysolution_2.h5:/topologies/contacts/Anode
+					</DataItem>
+				</Topology>
+				<Geometry Type="XYZ">
+					<DataItem ItemType="Uniform" Format="HDF" DataType="Float" Precision="8" Dimensions="1 5049 3">
+						./oxide_ctQuasistationarysolution_2.h5:/vertices
+					</DataItem>
+				</Geometry>
+				<Attribute Name="CondBand [eV]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/CondBand [eV]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Electrostatic Potential [V]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Electrostatic Potential [V]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Ex [Vcm-1]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Ex [Vcm-1]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Ey [Vcm-1]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Ey [Vcm-1]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="Ez [Vcm-1]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/Ez [Vcm-1]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="TOT charge [cm-3]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/TOT charge [cm-3]
+					</DataItem>
+				</Attribute>
+				<Attribute Name="ValBand [eV]" Type="Scalar" Center="Node">
+					<DataItem Format="HDF" DataType="Float" Precision="8" Dimensions="5049" >
+						./oxide_ctQuasistationarysolution_2.h5:/datasets/scalars/vertex_centered/ValBand [eV]
+					</DataItem>
+				</Attribute>
+			</Grid>
+
+		 </Grid>
+		</Grid>
+	</Domain>
+</Xdmf>

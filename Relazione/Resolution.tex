@@ -1,0 +1,319 @@
+\section{Resolution of the system}
+
+\subsection{Drawbacks of the Box Methods}
+While the box method has become the standard technique for the discretization of the continuity equations, it suffers from several drawbacks arising from geometrical considerations. Satisfactory results can be obtained only for acute triangulations. Even one obtuse triangle can lead to a large spike in the solution of the equation.
+
+In this form we can approach to the resolution of the problem only with a completely coupled Newton method. It's well known that there are several issues adopting this way of resolution:
+\begin{itemize}
+\item the jacobian matrix is often quite ill-conditioned and needs appropriate scaling and balancing in order to avoid problems associated with round-off error;
+\item to ensure convergence of the Newton iterative process, it is particularly important to ensure a very good initial guess for the unknown variables;
+\item dimension of the linearized problem is of the order of $N_{dofs}^3$ ($N_{dofs}$ is the number of degree of freedom used for the numerical approximation).
+\end{itemize}
+
+These considerations urges us to pursue an alternative approach: the decoupled Gummel Map.
+First of all we have to introduce the Maxwell-Boltzamann approximation for the carriers:
+\begin{equation}
+\begin{array}{rcl}
+n&=&n_iexp\left(\dfrac{\varphi-\varphi_n}{V_{th}}\right) \\
+p&=&n_iexp\left(\dfrac{\varphi_p-\varphi}{V_{th}} \right)\\
+\end{array}
+\end{equation} 
+Thanks to these expressions we are able to shift the nonlinearity on the poisson equation. Finally we obtain the following system:
+\begin{equation}
+\label{eq: gummel map system}
+\left\{
+\begin{array}{rcl}
+\nabla \cdot (-\epsilon \nabla \varphi) + n_i\left( exp\left(\dfrac{\varphi-\varphi_n}{V_{th}}\right) - exp\left(\dfrac{\varphi_p-\varphi}{V_{th}}\right) \right) & = & q(N_D^+-N_A^-) \\ \\
+-q\dfrac{\partial n}{\partial t} + \nabla \cdot ( - q\mu_n n \nabla \varphi + qD_n \nabla n )& = & qR\\ \\
+q\dfrac{\partial p}{\partial t} + \nabla \cdot (- q\mu_p p \nabla \varphi - qD_p \nabla p )& = & -qR
+\end{array}
+\right.
+\end{equation}
+
+Referring on system \referenzaeq{eq: gummel map system} it's trivial introduce the Gummel Map algorithm:
+\mybox{
+Given $\varphi_n^{(0)}$ and $\varphi_p^{(0)}$, $\forall k$ until convergence:
+\\
+\begin{itemize}
+\item Solve the Nonlinear Poisson Equation (NLP):
+\begin{equation*}
+\nabla \cdot (-\epsilon \nabla \varphi) + n_i\left( exp\left(\dfrac{\varphi-\varphi_n^{(k)}}{V_{th}}\right) - exp\left(\dfrac{\varphi_p^{(k)}-\varphi}{V_{th}}\right) \right)  =  q(N_D^+-N_A^-)
+\end{equation*}
+Set $\varphi^{(k)}=\varphi$.
+\\
+\item Solve the Linear Electron Contintuity Equation (LEC):
+\begin{equation*}
+-q\dfrac{\partial n}{\partial t} + \nabla \cdot ( - q\mu_n n \nabla \varphi^{(k)} + qD_n \nabla n ) = qR
+\end{equation*}
+Set $n^{(k)}=n$.
+\\
+\item Solve the Linear Hole Contintuity Equation (LHC):
+\begin{equation*}
+q\dfrac{\partial p}{\partial t} + \nabla \cdot (- q\mu_p p \nabla \varphi^{(k)} - qD_p \nabla p ) =  -qR
+\end{equation*}
+Set $p^{(k)}=p$.
+\end{itemize}
+
+}{Gummel Map}
+
+Actually there are several methods to set up this algorithm and basically they depends on how we represent the conduction current density. Take for example this well-known change of variables proposed by the physicist Jan Slotboom:
+\begin{equation}
+\label{eq: slotboom formulas}
+\begin{array}{rcl}
+u_n & := & n_i exp\left(-\dfrac{\varphi_n}{V_{th}} \right)\\
+u_p & := & n_i exp\left(\dfrac{\varphi_p}{V_{th}} \right) \\
+\end{array}
+\end{equation}
+As a consequence we can reformulate \referenzaeq{eq: full problem} taking into account this interesting series of equivalences:
+\begin{multline*}
+\footnotesize
+\vect{J_n}=
+q\mu_n \left( - n \nabla \varphi + V_{th} \nabla \left( u_n exp\left(\dfrac{\varphi}{V_{th}} \right) \right) \right) \\ = 
+q \mu_n \left(  -n \nabla \varphi + V_{th}\nabla u_n exp\left(\dfrac{\varphi}{V_{th}} \right) + n \nabla \varphi \right) \\ =
+q D_n exp\left(\dfrac{\varphi}{V_{th}} \right) \nabla u_n 
+\end{multline*}
+
+The new Gummel Map algorithm read as follows:
+
+\mybox{
+Given $u_n^{(0)}$ and $u_p^{(0)}$, $\forall k$ until convergence:
+\\
+\begin{itemize}
+\item Solve the Nonlinear Poisson Equation (NLP):
+\begin{equation*}
+\nabla \cdot (-\epsilon \nabla \varphi) + u_n^{(k)}exp\left(\dfrac{\varphi}{V_{th}}\right) - u_p^{(k)}exp\left(\dfrac{-\varphi}{V_{th}}\right) =  q(N_D^+-N_A^-)
+\end{equation*}
+Set $\varphi^{(k)}=\varphi$.
+\\
+\item Solve the Linear Electron Contintuity Equation (LEC):
+\begin{equation*}
+-q\dfrac{\partial u_nexp\left(\dfrac{\varphi^{(k)}}{V_{th}}\right)}{\partial t} + \nabla \cdot ( q D_n exp\left(\dfrac{\varphi^{(k)}}{V_{th}} \right) \nabla u_n ) = qR
+\end{equation*}
+Set $u_n^{(k)}=u_n$.
+\\
+\item Solve the Linear Hole Contintuity Equation (LHC):
+\begin{equation*}
+q\dfrac{\partial u_pexp\left(\dfrac{-\varphi^{(k)}}{V_{th}}\right)}{\partial t} + \nabla \cdot (q D_n exp\left(\dfrac{-\varphi}{V_{th}} \right) \nabla u_p ) =  -qR
+\end{equation*}
+Set $u_p^{(k)}=u_p$.
+\end{itemize}
+
+}{Gummel Map}
+
+
+
+\section{Nonlinear Poisson Equation}
+In this section we'll show how the NLP is resolved in the code. Many decisions have been taken on the management of the interface. Note that the electrostatic problem must be resolved on the whole domain and the right hand side changes from region to region.
+
+\textcolor{blue}{Qui dipende da come vogliamo introdurre FEMOS...sarebbe carino far capire la scelta che è stata fatta di porre nei nodi di frontiera del silicio il valore della forzante e della reazione del silicio.Ma ovviamente questo discorso necessita una introduzione sui casi test.}
+
+\subsection{Weak formulation}
+Let us consider the linearized problem \textcolor{blue}{(qua ci vuole la referenza a quella linearizzata)} in a more generalized form which reads as follows:
+\begin{equation}
+\left\{
+\begin{array}{rcll}
+\nabla \cdot (-\epsilon \nabla \varphi) + \sigma^{(k)}(\vect{x}) \varphi & = &  f^{(k)}(\vect{x}) & \psp{15} in \psp{2} \Omega \\
+\varphi & = & \varphi_D & \psp{15} on \psp{2} \Gamma_D \\
+\nabla \varphi \cdot \vect{n} & = & 0 & \psp{15} on \psp{2} \Gamma_N
+\end{array}
+\right.
+\end{equation}
+
+For the sake of simplicity we summerize the reaction and force term in $\sigma$ and $f$, but we kept visible the iteration dependence.
+The well-posedness of such problem is ensured by several (and reasonable) hypotesis:
+\begin{itemize}
+\item $\epsilon \in L^{\infty}(\Omega)$ and $\exists m$ s.t. $0 < m \leq \epsilon$ (a.e.) in $\Omega$;
+\item  $\sigma \in L^{\infty}(\Omega)$ and $\exists m$ s.t. $0 < m \leq \sigma$ (a.e.) in $\Omega$.
+\end{itemize}
+
+We proceed with the classical displacement weak formulation.
+Given $\varphi_D \in H^{1/2}(\Gamma_D)$ and $f \in L^2(\Omega)$ find $\varphi \in H^1(\Omega)$ such that 
+
+\begin{equation}
+\int_{\Omega} \epsilon \nabla \varphi \nabla v \, d\Omega + \int_{\Omega} \sigma^{(k)}\varphi v \, d\Omega = \int_{\Omega} f^{(k)}v \, d\Omega \psp{15} \forall v \in H^1_{\Gamma_D}(\Omega)
+\end{equation}
+
+\subsection{Numerical approximation}
+
+\subsection{Damping}
+\textcolor{blue}{Interessante fare vedere qualche grafico con qualche controllo della convergenza...}
+
+
+
+\section{Continuity Equation}
+
+
+\subsection{Weak formulation}
+Without loss of generality we consider only the electron continuity equation (similar reasoning could be make for the hole continuity equation). Problem \textcolor{blue}{referenza al problema} is a classical diffusion-advection-reaction (DAR) problem written in conservative form. We will treat this PDE's equation likewise Poisson equation with the standard displacement weak formulation.
+
+Be carefull about the right hand side: in the operation of many devices this term generates mass; this implies that a new reaction term is usually added in the left side of the equation:
+\begin{equation}
+R_n = \sigma n - f
+\end{equation}
+
+\begin{equation}
+\left\{
+\begin{array}{rcll}
+\dfrac{\partial n}{\partial t} + \nabla \cdot ( - D_n \nabla n ) + \nabla \cdot ( \mu_n \nabla \varphi^{(k)} n )  + \sigma n & = & f  & \psp{15} in \psp{2} \Omega \\
+n & = &  n_D & \psp{15} on \psp{2} \Gamma_D \\
+\nabla n \cdot \vect{n} & = & 0 & \psp{15} on \psp{2} \Gamma_N
+\end{array}
+\right.
+\end{equation}
+
+Given $n_D \in H^{1/2}(\Gamma_D)$ and $f \in L^2(\Omega)$ find $n \in H^1(\Omega)$ such that:
+
+\begin{equation}
+\left\{
+\begin{array}{rcll}
+\dfrac{\partial n}{\partial t} + \nabla \cdot ( - D_n \nabla n ) + \mu_n \nabla \varphi^{(k)} \nabla n  + (\mu_n \Delta \varphi^{(k)} + \sigma) n & = & f  & \psp{15} in \psp{2} \Omega \\
+n & = &  n_D & \psp{15} on \psp{2} \Gamma_D \\
+\nabla n \cdot \vect{n} & = & 0 & \psp{15} on \psp{2} \Gamma_N
+\end{array}
+\right.
+\end{equation}
+
+with $\Gamma_D\cap\Gamma_N=\varnothing$, $\Gamma_D\cup\Gamma_N=\partial \Omega$ and where $\vect{n}$ is the outward normal vector on $\Omega$.
+We respect the standard hypotesti for the wellposdness of the problem:
+\begin{itemize}
+\item $D_n \in L^{\infty}(\Omega)$ and $\exists \, m$ s.t. $0<m\leq D_n$ a.e. in $\Omega$;
+\item $\sigma \in L^{\infty}(\Omega)$ and $\exists \, m$ s.t. $0<m\leq \sigma$ a.e. in $\Omega$;
+\item $\mu_n \nabla \varphi \in (W^{1,\infty}(\Omega))^d$.
+\end{itemize}
+
+\textcolor{blue}{formulazione con tempo?}
+
+
+\subsection{Numerical approximation}
+
+\textcolor{blue}{Partiamo con una semidiscretizzazione spaziale e poi trattiamo anche quella temporale?}
+
+\textcolor{blue}{Descrizione dettagliata (o meno?) del metodo implementato FVSG}
+
+\section{Maximum discrete principle}
+\textcolor{blue}{Scriviamo qualcosa in merito?Quanto approfondito?}
+
+
+\section{The current calculation problem}
+
+\textcolor{blue}{Qua dobbiamo trovare un'introduzione che mette in luce i problemi di conto che escono fuori nel postprocessing del calcolo della corrente. Se davvero il problema fosse la non ottimale risoluzione del potenziale si potrebbero fare delle prove con il modulo mechanical (di fondo lo sforzo \`e assimiliabile alla densit\`a di corre potrebbero fare delle probe con float (occorre generalizzare il codice al tipo voluto lavoro lungo ma si pu\o fare))}
+
+\subsection{Scharfetter Gummel}
+
+We remark the well known \textit{Scharfetter Gummel} equation for the carriers current density over the $k^{th}$ 1D element. It was proposed in 1969 by D. Scharfetter and H.K. Gummel (two scientists of Bell Labs). We point out some specific notation for the 1D case:
+
+\begin{tikzpicture}
+[scale=1.5]
+\footnotesize
+\def\SC{0.8}
+\def\hx{8}
+\def\hy{3}
+
+%Solid line
+\def\ax{0.5}
+\def\ay{0}
+\def\bx{3}
+\def\by{0}
+
+%Dash line
+\def\cx{0}
+\def\cy{0}
+\def\dx{3.5}
+\def\dy{0}
+
+\def\Np{4}
+\def\step{\bx/\Np-\ax/\Np}
+%\tikzstyle{Normal}=[rectangle,draw=white];
+\useasboundingbox (0,-1) rectangle (\hx,\hy);
+
+\draw [dashed] (\cx,\cy)--(\ax,\ay);
+\draw [dashed] (\bx,\by)--(\dx,\dy);
+\draw (\ax,\ay)--(\bx,\by);
+\draw [black,draw, fill=black] (\ax+0.15,\ay) circle [radius=0.05];
+\draw [black,draw, fill=black] (\ax+0.15+1*\step,\ay) circle [radius=0.05];
+\draw [black,draw, fill=black] (\ax+0.15+2*\step,\ay) circle [radius=0.05];
+\draw [black,draw, fill=black] (\ax+0.15+3*\step,\ay) circle [radius=0.05];
+
+\draw [thick] (\ax+0.15+1*\step+0.35,\ay+0.05) node[above]{\large $k$};
+\draw [thick] (\ax+0.15+1*\step,\ay-0.1) node[below]{\large $n_{i}$};
+\draw [thick] (\ax+0.15+2*\step,\ay-0.1) node[below]{\large $n_{i+1}$};
+
+\node [right,text width=5cm] (texteig) at (\ax+0.15+1*\step,\ay+1.2){\large $\vect{E}$};
+
+%Corpo
+\draw (\ax+0.15+1*\step,\ay+1)--(\ax+2*\step-0.1,\ay+1);
+\draw (\ax+0.15+1*\step,\ay+0.8)--(\ax+2*\step-0.1,\ay+0.8);
+\draw (\ax+0.15+1*\step,\ay+1)--(\ax+0.15+1*\step,\ay+0.8);
+%Punta
+\draw (\ax+2*\step-0.1,\ay+1.05)--(\ax+0.15+2*\step,\ay+0.9);
+\draw (\ax+2*\step-0.1,\ay+0.75)--(\ax+0.15+2*\step,\ay+0.9);
+
+\draw (\ax+2*\step-0.1,\ay+1.)--(\ax+2*\step-0.1,\ay+1.05);
+\draw(\ax+2*\step-0.1,\ay+0.8)--(\ax+2*\step-0.1,\ay+0.75);
+
+\node [right,text width=5cm] (texteig) at (\dx+1,0.5){\large $\Delta\varphi^k = \varphi_{i+1} -\varphi_i$};
+
+\end{tikzpicture}
+
+\begin{equation}
+\label{eq: scharfetter gummel 1D electron}
+J_n^k=-q\frac{D_n}{h}
+\left[ n_{i+1}\mathcal{B}\left(\frac{\Delta \varphi^k}{V_{th}}\right)- n_i\mathcal{B}\left(-\frac{\Delta \varphi^k}{V_{th}}\right)\right] 
+\end{equation}
+
+\begin{equation}
+\label{eq: scharfetter gummel 1D hole}
+J_p^k=-q\frac{D_p}{h}
+\left[ p_{i+1}\mathcal{B}\left(-\frac{\Delta \varphi^k}{V_{th}}\right)- p_i\mathcal{B}\left(\frac{\Delta \varphi^k}{V_{th}}\right)\right] 
+\end{equation} 
+
+
+The extension of this formula for the 3D case is not trivial.
+
+\begin{equation}
+\vect{J_n}^k=-\frac{q}{2}\mu_n
+\left[ n_{min}^k\mathcal{B}(-\frac{\Delta \Phi_{max}}{V_{th}})+ n_{max}^k\mathcal{B}(\frac{\Delta \Phi_{max}}{V_{th}})\right]\nabla \varphi_n^h
+\end{equation}
+
+
+\begin{equation*}
+\begin{array}{lll}
+\mathcal{M}(n^h)=\frac{\int_kn^h}{|k|} &
+\mathcal{H}(n^h)=\left(\frac{\int_k(n^h)^{-1}}{|k|} \right) ^{-1} \\ \\
+\Phi^h=\varphi_i^h-\varphi_n^h &
+\Phi_M^k =  max_{i\in K} (\Phi^h/V_{th}) & \Phi_m^k = min_{i\in K}(\Phi^h/V_{th}) \\ \\ 
+n_{min}^k=n_iexp(\Phi_m^k/V_{th}) & 
+n_{max}^k=n_iexp(\Phi_M^k/V_{th}) & \Delta \Phi_{max}^k = \Phi_M^k - \Phi_m^k
+\end{array}
+\end{equation*}
+
+\subsection{Residue Method}
+
+\begin{itemize}
+\item[-] $\eta$ are all verteces, $\eta^e$ are the verteces of the element $e$
+\item[-] $V^h=span\{\psi_i\}_{i\in \eta-\eta_g}\oplus span\{\psi_i\}_{i\in \eta_g}$  ($\eta_g$ are the verteces on Dirichlet boundary)
+\item[-] $H^h(\Omega^e)$ is the \textbf{auxiliary flux} denoted as $H(\Omega^e):\gamma^e\rightarrow\mathbb{R} \psp{15}(\gamma^e=\partial \Omega^e)$
+\end{itemize}
+
+\begin{equation*}
+(W^h,H^h(\Omega^e))_{\gamma^e}=B_\Omega^e(W^h,u^h)-L_\Omega^e(W^h)-(W^h,H^h(\Omega))_{\Gamma_g\cap\Gamma_e} \psp{5} \forall W^h\in V^h
+\end{equation*}
+\begin{equation*}
+\sum_{j\in \eta^e} (\psi_i,\psi_j)_{\gamma^e}H^h_j(\Omega^e)=\sum_{j\in \eta^e}B(\psi_i,\psi_j)_{\Omega^e}u_j-L(\psi_i)_{\Omega^e}-\sum_{j\in \eta^e}(\psi_i,\psi_j)_{\Gamma_g\cap\Gamma_e}H_j^h(\Omega) \psp{5} \forall i \in \eta^e
+\end{equation*}
+
+The residue method reads as follows:
+$$\vect{J} \, in  \, \Omega \psp{10}
+\vect{H_e} = K_{FSGV}^e \vect{u_e} - \vect{F_e} 
+\psp{10}
+\vect{J_e}(\vec{x}) = \sum_{j\in \eta^e}[\vect{H_e}]_j\vec{\tau}_j^e(\vec{x})
+\psp{10}
+\vec{\tau}_j^e(\vec{x})=\dfrac{\vec{x}-\vec{x}_j}{|e|}$$
+
+$$\Phi \, on  \, \Gamma_g 
+\psp{10}
+\vect{H} = K_{FSGV} \vect{u} - \vect{F} 
+\psp{10}
+\Phi_g = \vect{H} \cdot \vect{\Upsilon}_{\eta_g}
+\psp{10}
+[\vect{\Upsilon}_{\eta_g}]_i=(i\in \eta_g) $$

@@ -1,0 +1,35 @@
+\begin{thebibliography}{PEV10}
+
+\bibitem[EPV08]{perotto:2008}
+A.~Ern, S.~Perotto, and A.~Veneziani.
+\newblock Hierarchical model reduction for advection-diffusion-reaction
+  problems.
+\newblock In Karl Kunisch, Günther Of, and Olaf Steinbach, editors, {\em
+  Numerical Mathematics and Advanced Applications}, pages 703--710. Springer
+  Berlin Heidelberg, 2008.
+
+\bibitem[PEV10]{perotto:2009}
+Simona Perotto, Alexandre Ern, and Alessandro Veneziani.
+\newblock Hierarchical local model reduction for elliptic problems: a domain
+  decomposition approach.
+\newblock {\em Multiscale Model. Simul.}, 8(4):1102--1127, 2010.
+
+\bibitem[PZ13]{perotto:2012}
+S.~Perotto and A.~Zilio.
+\newblock Hierarchical model reduction: Three different approaches.
+\newblock In Andrea Cangiani, Ruslan~L. Davidchack, Emmanuil Georgoulis,
+  Alexander~N. Gorban, Jeremy Levesley, and Michael~V. Tretyakov, editors, {\em
+  Numerical Mathematics and Advanced Applications 2011}, pages 851--859.
+  Springer Berlin Heidelberg, 2013.
+
+\bibitem[Sal04]{salsa2004equazioni}
+S.~Salsa.
+\newblock {\em Equazioni a Derivate Parziali: Metodi, Modelli E Applicazioni}.
+\newblock Unitext / La Matematica Per Il 3+2. Springer, 2004.
+
+\bibitem[Zil10]{zilio:himod}
+Alessandro Zilio.
+\newblock {\em Modelli anisotropi: analisi ed approssimazione numerica}.
+\newblock Laurea magistrale, A.A. 2009/2010.
+
+\end{thebibliography}

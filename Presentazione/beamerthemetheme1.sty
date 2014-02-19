@@ -1,0 +1,96 @@
+\ProvidesPackageRCS $Header: /cvsroot/latex-beamer/latex-beamer/themes/theme/myTheme.sty,v 1.0 2/03/2013 15:01:48 G.FALLOURD-M.LEBRETON Exp $
+\mode<presentation>
+
+\definecolor{sectionColor}{RGB}{153,204,255}
+\definecolor{subsectionColor}{RGB}{0,0,150}
+\definecolor{sectionTextColor}{RGB}{0,0,0}
+\definecolor{subsectionTextColor}{RGB}{255,255,255}
+
+\definecolor{authorColor}{RGB}{0,0,0}
+
+\definecolor{footlineTitleColor}{RGB}{0,0,0}
+\definecolor{leftFootlineColor}{RGB}{0,102,255}
+\definecolor{middleFootlineColor}{RGB}{51,153,255}
+\definecolor{rightFootlineColor}{RGB}{102,204,255}
+
+\definecolor{instituteColor}{RGB}{0,0,0}
+
+\definecolor{dateColor}{RGB}{0,0,0}
+
+\definecolor{pageColor}{RGB}{0,0,0}
+
+
+
+
+
+
+
+\definecolor{normalBlockColor}{RGB}{255,255,255}
+\definecolor{normalTitleBlockColor}{RGB}{255,255,255}
+\definecolor{normalBlockTextColor}{RGB}{0,0,0}
+\definecolor{normalBlockTitleTextColor}{RGB}{0,0,153}
+
+
+
+
+
+
+
+\setbeamercolor{section in head/foot}{bg=sectionColor, fg=sectionTextColor}
+\setbeamercolor{subsection in head/foot}{bg=subsectionColor, fg=subsectionTextColor}
+\setbeamercolor*{block title}{fg=normalBlockTitleTextColor,bg=normalTitleBlockColor}
+\setbeamercolor*{block body}{fg=normalBlockTextColor,bg=normalBlockColor}
+\setbeamercolor*{block title alerted}{fg=alertBlockTitleTextColor,bg=alertTitleBlockColor}
+\setbeamercolor*{block body alerted}{fg=alertBlockTextColor,bg=alertBlockColor}
+\setbeamercolor*{block title example}{fg=exampleBlockTitleTextColor,bg=exampleTitleBlockColor}
+\setbeamercolor*{block body example}{fg=exampleBlockTextColor,bg=exampleBlockColor}
+\setbeamerfont{block title}{size={}}
+
+% Setting del titolo
+\definecolor{titleColor}{RGB}{102,153,255}
+\definecolor{titleTextColor}{RGB}{0,0,0}
+\setbeamercolor{titlelike}{fg=titleTextColor,bg=titleColor}
+
+%Setting del testo normale
+\definecolor{normalTextColor}{RGB}{0,0,0}
+\definecolor{bodyColor}{RGB}{255,255,255}
+\setbeamercolor*{normal text}{fg=normalTextColor,bg=bodyColor}
+
+%Setting degli examble block
+\definecolor{exampleBlockColor}{RGB}{190,230,190}
+\definecolor{exampleTitleBlockColor}{RGB}{30,210,30}
+\definecolor{exampleBlockTextColor}{RGB}{0,0,0}
+\definecolor{exampleBlockTitleTextColor}{RGB}{0,0,0}
+\definecolor{exampleTextColor}{RGB}{0,0,0}
+\setbeamercolor*{example text}{fg=exampleTextColor}
+
+%Setting degli alert blocks
+\definecolor{alertBlockColor}{RGB}{250,190,190}
+\definecolor{alertTitleBlockColor}{RGB}{250,30,30}
+\definecolor{alertBlockTextColor}{RGB}{0,0,0}
+\definecolor{alertBlockTitleTextColor}{RGB}{0,0,0}
+\definecolor{alertTextColor}{RGB}{0,0,0}
+\setbeamercolor*{alerted text}{fg=alertTextColor}
+
+
+\useinnertheme{rounded}
+
+
+\definecolor{chipColor}{RGB}{0,0,102}
+\definecolor{chipTextColor}{RGB}{255,255,255}
+\setbeamercolor{item projected}{bg=chipColor,fg=chipTextColor}
+
+%Set della barra
+\defbeamertemplate*{headline}{infolines theme}{
+\leavevmode%
+\hbox{%
+\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
+\usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left]{subsection in head/foot}%
+\usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
+\end{beamercolorbox}}%
+\vskip0pt%
+}
+\mode
+<all>

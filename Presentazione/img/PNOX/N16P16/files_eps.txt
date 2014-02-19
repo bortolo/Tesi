@@ -1,0 +1,6 @@
+Pot_Y_Z00.eps
+Pot_Y_Z02.eps
+Pot_Z.eps
+PotentialCoeffOX.eps
+PotentialCoeffSI.eps
+PotentialSdevice.eps

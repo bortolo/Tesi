@@ -1,0 +1,74 @@
+% Copyright 2004 by Madhusudan Singh <madhusudan.singh@gmail.com>
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+\ProvidesPackageRCS $Header: /Users/joseph/Documents/LaTeX/beamer/base/themes/color/beamercolorthemebeaver.sty,v d02a7cf4d8ae 2010/06/17 09:11:41 rivanvx $
+
+\mode<presentation>
+
+\definecolor{darkred}{RGB}{0,127,255}
+
+\setbeamercolor*{section in toc}{fg=black,bg=darkred}
+\setbeamercolor*{alerted text}{fg=black}
+\setbeamercolor*{palette primary}{fg=black,bg=darkred}
+\setbeamercolor*{palette secondary}{fg=black,bg=darkred!20!white}
+\setbeamercolor*{palette tertiary}{fg=black,bg=darkred}
+\setbeamercolor*{palette quaternary}{fg=black,bg=darkred!50!white}
+\setbeamercolor*{palette quinto}{fg=black,bg=white}
+\setbeamercolor*{palette sesto}{fg=black,bg=darkred!10!white}
+
+\setbeamercolor*{sidebar}{fg=black,bg=darkred!30!white}
+
+\setbeamercolor*{palette sidebar primary}{fg=black}
+\setbeamercolor*{palette sidebar secondary}{fg=black}
+\setbeamercolor*{palette sidebar tertiary}{fg=black}
+\setbeamercolor*{palette sidebar quaternary}{fg=black}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+\setbeamercolor*{titlelike}{parent=palette tertiary,fg=black}
+\setbeamercolor*{frametitle}{parent=palette sesto}
+\setbeamercolor*{frametitle right}{bg=palette sesto}
+
+%-------------------- BLOCCHI
+%Setting dei block
+\definecolor{normalBlockColor}{RGB}{255,255,255}
+\definecolor{normalTitleBlockColor}{RGB}{255,255,255}
+\definecolor{normalBlockTextColor}{RGB}{0,0,0}
+\definecolor{normalBlockTitleTextColor}{RGB}{0,0,153}
+\setbeamercolor*{block title}{fg=normalBlockTitleTextColor,bg=normalTitleBlockColor}
+\setbeamercolor*{block body}{fg=normalBlockTextColor,bg=normalBlockColor}
+
+%Setting degli examble block
+\definecolor{exampleBlockColor}{RGB}{190,230,190}
+\definecolor{exampleTitleBlockColor}{RGB}{30,210,30}
+\definecolor{exampleBlockTextColor}{RGB}{0,0,0}
+\definecolor{exampleBlockTitleTextColor}{RGB}{0,0,0}
+\definecolor{exampleTextColor}{RGB}{0,0,0}
+\setbeamercolor*{example text}{fg=exampleTextColor}
+\setbeamercolor*{block title example}{fg=exampleBlockTitleTextColor,bg=exampleTitleBlockColor}
+\setbeamercolor*{block body example}{fg=exampleBlockTextColor,bg=exampleBlockColor}
+
+%Setting degli alert blocks
+\definecolor{alertBlockColor}{RGB}{250,190,190}
+\definecolor{alertTitleBlockColor}{RGB}{250,30,30}
+\definecolor{alertBlockTextColor}{RGB}{0,0,0}
+\definecolor{alertBlockTitleTextColor}{RGB}{0,0,0}
+\definecolor{alertTextColor}{RGB}{0,0,0}
+\setbeamercolor*{alerted text}{fg=alertTextColor}
+\setbeamercolor*{block title alerted}{fg=alertBlockTitleTextColor,bg=alertTitleBlockColor}
+\setbeamercolor*{block body alerted}{fg=alertBlockTextColor,bg=alertBlockColor}
+
+%\setbeamerfont{block title}{size={}}
+
+
+%------------------
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+\mode
+<all>

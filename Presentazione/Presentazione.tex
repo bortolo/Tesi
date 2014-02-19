@@ -1,0 +1,76 @@
+\documentclass{beamer}
+
+\usepackage[italian]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{amsthm}
+\usepackage{amstext}
+\usepackage{array}
+\usepackage{graphicx,color,psfrag,pgfplots}
+\usepackage[bf,footnotesize,center]{caption}
+\captionsetup{labelformat=empty,labelsep=none}
+\usepackage[tight]{subfigure}
+\usepackage{bbm}
+\usepackage{tikz}
+\usetikzlibrary{patterns,shapes,positioning,arrows,calc,shadows}
+
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\figref}[1]{( Fig.\ref{#1} )}
+
+\theoremstyle{plain}
+\newtheorem{teorema}{Teorema}
+
+\graphicspath{{img/}}
+
+%Comando per togliere le etichette dal subfigure
+\renewcommand{\thesubfigure}{}
+\makeatletter
+\renewcommand{\p@subfigure}{}
+\renewcommand{\@thesubfigure}{\thesubfigure\hskip\subfiglabelskip}
+\makeatother
+%--------------
+
+% Tema
+\usetheme{MY-CambridgeUS}
+
+\author[Bortolossi]{Andrea Bortolossi}
+\title[WIP]{Work in progress}
+\institute[Polimi\&Micron]{Politecnico di Milano - Micron Technology}
+\DeclareGraphicsExtensions{.eps}
+\titlegraphic{
+\begin{center}
+\begin{columns}
+\begin{column}{0.5 \paperwidth}
+\begin{center}
+\includegraphics[scale=0.3]{/loghi/logo-polimi}
+\end{center}
+\end{column}
+\begin{column}{0.5 \paperwidth}
+\begin{center}
+{\includegraphics[scale=0.3]{/loghi/LogoMicron}}
+\end{center}
+\end{column}
+\end{columns}
+\end{center}
+}
+\date{27 settembre 2013}
+
+%-------- INIZIO DOCUMENTO -------
+
+\begin{document}
+\begin{frame}
+\maketitle
+\end{frame}
+\begin{frame}
+\tableofcontents
+\end{frame}
+\input{Silicon}
+
+\input{Damping}
+
+\input{Oxide}
+
+\input{SiliconOxide}
+
+\input{Newresults}
+
+\end{document}
