@@ -268,7 +268,51 @@ J_p^k=-q\frac{D_p}{h}
 \end{equation} 
 
 
-The extension of this formula for the 3D case is not trivial.
+The extension of this formula for the 3D case is not trivial. We show the method for the computation of the current density of electrons (the extension for the current density of holes is quite similar).
+We remark the quasi fermi formula for current density:
+\begin{equation}
+\label{eq: current density fermi}
+\vect{J}_n=-q \mu_n n \nabla \varphi_n
+\end{equation}
+where $\varphi_n$ is the quasi fermi potential level. Let us write \referenzaeq{eq: current density fermi} in function of potential and in a canonic form:
+\begin{equation}
+\label{eq: current density canonic form}
+\vect{J}_n\dfrac{ exp\left(\dfrac{\varphi_n-\varphi}{V_{th}}\right)}{q \mu_n n_i} + \nabla \varphi_n = 0
+\end{equation}
+
+Now consider a generic discretization for $\vect{J}_n$ and $\varphi_n$, for example finite element with $\mathbb{P}_1$ functions as bases (\textcolor{red}{vero che si pu´o scegliere qualsiasi discretizzazione con una qualsiasi base?}), we'll call these spaces $\left[ V_h \right]^d$ and $V_h$ (with $h$ we intend the step of discretization and $d$ is the dimension of simulation). We are able to test \referenzaeq{eq: current density canonic form} against $\vect{q}^h \in \left[ V_h \right]^d$, we choose three  different $\vect{q}^h$:
+
+\begin{equation}
+\label{eq: form of qh}
+\vect{q}^h_{1,2,3} = \left\{ \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}  \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}  \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}  \right\}
+\end{equation}
+We show the variational form for a generic element $K$ of the discretization:
+\begin{equation}
+\label{eq: variation form of current density}
+\int_K \dfrac{ exp \left( \dfrac{\varphi_n-\varphi}{V_{th}} \right) }{q \mu_n n_i} \vect{J}_n^h \cdot \vect{q}^h_i \, dK
+ + \int_K \nabla \varphi_n^h \cdot \vect{q}^h_i \, dK = 0 \psp{10} \forall i=1,2,3
+\end{equation}
+
+\textcolor{red}{La questione \`e: $\nabla \varphi_n^h \in \left[ V_h \right]^d$ ??. Possiamo dirlo sapendo che $\varphi_n^h \in V_h$ ??}
+
+We know that $\nabla \varphi_n \in \mathbb{P}_0$ and without any approximation (except for the discretization) we obtain the sequent formula for the current density components:
+\begin{equation}
+\label{eq: first formula for J}
+[\vect{J_n}]_i = - \mathbb{H}_K \left( q \mu_n n_i exp \left( \dfrac{\varphi-\varphi_n}{V_{th}} \right)  \right) \dfrac{\partial \varphi_n^h}{\partial x_i} \psp{5} i = 1...d \psp{5} \forall K \in \tau_h
+\end{equation}
+where $\mathbb{H}_K(f)$ is the armonic average on the elment $K$ of the function $f$.
+
+Although resolve the armonic average with a comlete 3D integration may be expensive in calculation time and propably not necessary. One approximation of this integral would be pass from a 3D integration to 1D integration along one edge of the element $K$.
+\begin{equation}
+\label{eq: approzimation from 3D to edge}
+\left(\dfrac{\int_K f^{-1} \, dK}{|K|} \right)^{-1} \simeq \left(\dfrac{\int_{e*} f^{-1} \, de}{|e^*|} \right)^{-1}
+\end{equation}
+  The approximation \referenzaeq{eq: approzimation from 3D to edge} is valid if we consider the correct edge.
+
+This approach is the natrual extension of \referenzaeq{eq: scharfetter gummel 1D electron}, indeed if we consider $d=1$ and resolve the integrals we obatin \textcolor{red}{aggiungere i passaggi per dimostrare l'equivalenza con il caso 1D}.
+
+
+
 
 \begin{equation}
 \vect{J_n}^k=-\frac{q}{2}\mu_n
