@@ -1,0 +1,3 @@
+Questo è il documento originale
+formato nel master vediamo come si modifica
+nel corso dei branch
