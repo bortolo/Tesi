@@ -196,9 +196,25 @@ We respect the standard hypotesti for the wellposdness of the problem:
 
 \section{The current calculation problem}
 
+In many physical and engineering problems the real interesting variable of the conservation law is the flux in the domain or on specific surfaces and boundaries. The study of micro and nano electronics devices doesn't except this observation, in fact most of all models are oriented to obtain a satisfactory description of the current density.
+ We know that the primal and not mixed formulation for  the continuity equation doesn't resolved  the flux density. The conseguence of this fact is a binding post-processing of the quantities computed in order to reconstruct the current density of electrons and holes.
+It's evident which this part covers a lead role in the device simulation: 
+as we are satisfied of the impressive results of the finite element scheme, it will be reather regrettable to lost the accuracy of our simulation during the computation of the current density.
+About this question many academics propose different solutions and  the relative literature is boundless.
+ 
+Tuttavia il problema ha vari livelli di complicazione:
+3D problem
+costi computazionali
+conservazione flussi ortogonali
+
+Quindi avere un metodo che soddisfi tutti i criteri non e banale
+
+Cominciamo a descirvere la pietra miliare di tale argomento. 
+ 
+ 
 \textcolor{blue}{Qua dobbiamo trovare un'introduzione che mette in luce i problemi di conto che escono fuori nel postprocessing del calcolo della corrente. Se davvero il problema fosse la non ottimale risoluzione del potenziale si potrebbero fare delle prove con il modulo mechanical (di fondo lo sforzo \`e assimiliabile alla densit\`a di corre potrebbero fare delle probe con float (occorre generalizzare il codice al tipo voluto lavoro lungo ma si pu\o fare))}
 
-\subsection{Scharfetter Gummel}
+\subsection{Scharfetter Gummel method}
 
 We remark the well known \textit{Scharfetter Gummel} equation for the carriers current density over the $k^{th}$ 1D element. It was proposed in 1969 by D. Scharfetter and H.K. Gummel (two scientists of Bell Labs). We point out some specific notation for the 1D case:
 
@@ -309,27 +325,54 @@ Although resolve the armonic average with a comlete 3D integration may be expens
 \end{equation}
   The approximation \referenzaeq{eq: approzimation from 3D to edge} is valid if we consider the correct edge.
 
-This approach is the natrual extension of \referenzaeq{eq: scharfetter gummel 1D electron}, indeed if we consider $d=1$ and resolve the integrals we obatin \textcolor{red}{aggiungere i passaggi per dimostrare l'equivalenza con il caso 1D}.
 
-
-
+Consider a quantity defined on the verteces:
+\begin{equation}
+\label{eq: differenza tra pot e qf}
+\Phi := \varphi - 	\varphi_n
+\end{equation}
+which is the difference between the electrostatic potential and the quasi fermi potential level. Now for every element consider two vertices: $\vect{x}_m$ s.t. $\Phi(\vect{x}_m)=\Phi_m := min_K(\Phi)$ and $\vect{x}_M$ s.t. $\Phi(\vect{x}_M)=\Phi_M:=max_K(\Phi)$. Obviously it exists only one edge which connects these two points and on this one we perform the 1D integration \referenzaeq{eq: approzimation from 3D to edge}. First of all as we reduce the dimension is feasible to represent $\sigma(\vect{x})$ in a easier mode as follows:
 
 \begin{equation}
-\vect{J_n}^k=-\frac{q}{2}\mu_n
-\left[ n_{min}^k\mathcal{B}(-\frac{\Delta \Phi_{max}}{V_{th}})+ n_{max}^k\mathcal{B}(\frac{\Delta \Phi_{max}}{V_{th}})\right]\nabla \varphi_n^h
+\sigma_n(s) = q \mu_n n_i exp\left( \Phi_m + (\Phi_M-\Phi_m)\dfrac{s-s_m}{|e^*|} \right)
 \end{equation}
 
-
+where $s \in [s_m,s_M]$ is the parameter refered to the edge $e^*$ s.t. $\sigma_n(s_m)=\sigma_n(\vect{x}_m)$ and $\sigma_n(s_M)=\sigma_n(\vect{x}_M)$. We can easily resolve \referenzaeq{eq: approzimation from 3D to edge} with the substitution of variable:
 \begin{equation*}
-\begin{array}{lll}
-\mathcal{M}(n^h)=\frac{\int_kn^h}{|k|} &
-\mathcal{H}(n^h)=\left(\frac{\int_k(n^h)^{-1}}{|k|} \right) ^{-1} \\ \\
-\Phi^h=\varphi_i^h-\varphi_n^h &
-\Phi_M^k =  max_{i\in K} (\Phi^h/V_{th}) & \Phi_m^k = min_{i\in K}(\Phi^h/V_{th}) \\ \\ 
-n_{min}^k=n_iexp(\Phi_m^k/V_{th}) & 
-n_{max}^k=n_iexp(\Phi_M^k/V_{th}) & \Delta \Phi_{max}^k = \Phi_M^k - \Phi_m^k
-\end{array}
+\eta := \dfrac{s-s_m}{|e^*|}
 \end{equation*}
+
+this lead us to the sequent steps of integration:
+
+\begin{multline*}
+\int_{e^*} \sigma_n^{-1} \, de = |e^*| \int_0^1 \dfrac{exp \left(-\Phi_m - (\Phi_M-\Phi_m)\eta \right)}{q\mu_n n_i} 
+ \, d\eta \\
+ = |e^*|\dfrac{exp (-\Phi_m)}{q\mu_n n_i} \dfrac{exp ( \Phi_m-\Phi_M)-1}{\Phi_m-\Phi_M} \\
+ =  |e^*|\dfrac{exp (-\Phi_m)}{q\mu_n n_i} \dfrac{1}{\mathbf{B}(\Phi_m-\Phi_M)}
+\end{multline*}
+
+finally we obtain:
+\begin{equation}
+\label{eq: finally approzimation 3D to 1D}
+\int_{K} \sigma_n^{-1} \, dK \simeq  q \mu_n n_i exp(\Phi_m) \mathbf{B}(\Phi_m-\Phi_M)
+\end{equation}
+
+Similar results may be obtained repeating the integration and considering $s_M$ as start point:
+
+\begin{equation}
+\int_{K} \sigma_n^{-1} \, dK \simeq  q \mu_n n_i exp(\Phi_M) \mathbf{B}(\Phi_M-\Phi_m)
+\end{equation}
+
+Numerical results (\textcolor{red}{qua sarebbe carino fare un po' di test con una parte o l'altra della formula per mettere in crisi}) shows that the best choice is e linea combination of these approzimations as follows:
+
+\begin{equation}
+\label{eq: first formula for J}
+\vect{J_n}^K = -  q \mu_n  \left[ \dfrac{ n_{min} \mathbf{B}(-\Delta \Phi_{max})  + n_{max}\mathbf{B}(\Delta \Phi_{max})}{2} \right]\nabla \varphi_n^h
+\end{equation}
+This approach is the natrual extension of \referenzaeq{eq: scharfetter gummel 1D electron}.
+
+
+
 
 \subsection{Residue Method}
 

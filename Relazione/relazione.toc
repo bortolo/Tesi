@@ -15,7 +15,7 @@
 \contentsline {subsection}{\numberline {2.4.2}Numerical approximation}{10}
 \contentsline {section}{\numberline {2.5}Maximum discrete principle}{10}
 \contentsline {section}{\numberline {2.6}The current calculation problem}{10}
-\contentsline {subsection}{\numberline {2.6.1}Scharfetter Gummel}{10}
-\contentsline {subsection}{\numberline {2.6.2}Residue Method}{12}
-\contentsline {section}{\numberline {2.7}First results}{14}
-\contentsline {chapter}{\numberline {3}Dual mixed method (or thermo electric system?)}{15}
+\contentsline {subsection}{\numberline {2.6.1}Scharfetter Gummel method}{11}
+\contentsline {subsection}{\numberline {2.6.2}Residue Method}{13}
+\contentsline {section}{\numberline {2.7}First results}{15}
+\contentsline {chapter}{\numberline {3}Dual mixed method (or thermo electric system?)}{16}
