@@ -201,89 +201,158 @@ In many physical and engineering problems the real interesting variable of the c
 It's evident which this part covers a lead role in the device simulation: 
 as we are satisfied of the impressive results of the finite element scheme, it will be reather regrettable to lost the accuracy of our simulation during the computation of the current density.
 About this question many academics propose different solutions and  the relative literature is boundless.
+ Nevertheless the problem shows various aspects to take into account, among these there are some which every good method should be respect:	
+ \begin{itemize}
+ \item reduced computational cost;
+ \item easy extension to 3D simulation;
+ \item detains some useful properties like orthogonal conservation across a generic surface of the domain;
+ \item preserve consistency with the numerical scheme adopted.
+ \end{itemize}
+ It's not trivial ensure everyone of these points, thus move on toward a unique choice of a method is a delicate matter. Luckily there's some \textit{main stone} which offers ever a good start point whence achieve new results. Probably the most known and recognized by the inherent literature is the \textit{Sharfetter-Gummel formula}.
+
+\subsection{Scharfetter-Gummel formula}
+
+Consider the resolution of the continuity equation along a monodimensional domain. For the sake of simiplicity we contemplate a uniform partition (this hypotesis is not necessary for a more generic analysis). Moreover on every nodes is defined the electrostatic potential $\varphi$, and on every elements the relative electrostatic field $\vect{E}$. In order to avoid redundant considerations and calculuses, we proceed with our analysis considering only the current density of electrons ($\vect{J}_n$).
+
+ In 1969 D. Scharfetter and H.K. Gummel (two scientists of Bell Labs), introduced a formula to compute the current density in this case, given $\varphi$ and the density solution ($n$) on every nodes. This innovative approach led for the twenty years to follow every simulation which contemplates electric-devices. Morover many mathematics discover important properties about this method \textcolor{red}{questa parte la vorrei fare meglio}. 
  
-Tuttavia il problema ha vari livelli di complicazione:
-3D problem
-costi computazionali
-conservazione flussi ortogonali
-
-Quindi avere un metodo che soddisfi tutti i criteri non e banale
-
-Cominciamo a descirvere la pietra miliare di tale argomento. 
+ La potenza di questo metodo riesiede nella possibilit\`a di gestire le varie situazioni di upwinding. Considerando la figura la formula recita:
  
- 
-\textcolor{blue}{Qua dobbiamo trovare un'introduzione che mette in luce i problemi di conto che escono fuori nel postprocessing del calcolo della corrente. Se davvero il problema fosse la non ottimale risoluzione del potenziale si potrebbero fare delle prove con il modulo mechanical (di fondo lo sforzo \`e assimiliabile alla densit\`a di corre potrebbero fare delle probe con float (occorre generalizzare il codice al tipo voluto lavoro lungo ma si pu\o fare))}
-
-\subsection{Scharfetter Gummel method}
-
-We remark the well known \textit{Scharfetter Gummel} equation for the carriers current density over the $k^{th}$ 1D element. It was proposed in 1969 by D. Scharfetter and H.K. Gummel (two scientists of Bell Labs). We point out some specific notation for the 1D case:
+\begin{center}
 
 \begin{tikzpicture}
-[scale=1.5]
-\footnotesize
-\def\SC{0.8}
-\def\hx{8}
-\def\hy{3}
-
+[scale=1.0]
 %Solid line
 \def\ax{0.5}
 \def\ay{0}
-\def\bx{3}
+\def\bx{4.5}
 \def\by{0}
+
+\def\delta{0.3}
 
 %Dash line
 \def\cx{0}
 \def\cy{0}
-\def\dx{3.5}
+\def\dx{5}
 \def\dy{0}
 
-\def\Np{4}
-\def\step{\bx/\Np-\ax/\Np}
-%\tikzstyle{Normal}=[rectangle,draw=white];
-\useasboundingbox (0,-1) rectangle (\hx,\hy);
+\def\Np{3}
+\def\step{\bx/\Np-\ax/\Np-2*\delta/\Np}
+\def\halfstep{0.5*\bx/\Np-0.5*\ax/\Np-\delta/\Np}
 
-\draw [dashed] (\cx,\cy)--(\ax,\ay);
-\draw [dashed] (\bx,\by)--(\dx,\dy);
-\draw (\ax,\ay)--(\bx,\by);
-\draw [black,draw, fill=black] (\ax+0.15,\ay) circle [radius=0.05];
-\draw [black,draw, fill=black] (\ax+0.15+1*\step,\ay) circle [radius=0.05];
-\draw [black,draw, fill=black] (\ax+0.15+2*\step,\ay) circle [radius=0.05];
-\draw [black,draw, fill=black] (\ax+0.15+3*\step,\ay) circle [radius=0.05];
+\draw [dashed] (\cx,\cy)--(\dx,\dy);
+\draw [thick](\ax,\ay)--(\bx,\by);
 
-\draw [thick] (\ax+0.15+1*\step+0.35,\ay+0.05) node[above]{\large $k$};
-\draw [thick] (\ax+0.15+1*\step,\ay-0.1) node[below]{\large $n_{i}$};
-\draw [thick] (\ax+0.15+2*\step,\ay-0.1) node[below]{\large $n_{i+1}$};
+\draw [black,draw, fill=black] (\ax+\delta,\ay) circle [radius=0.05];
+\draw [black,draw, fill=black] (\ax+\delta+\step,\ay) circle [radius=0.05];
+\draw [black,draw, fill=black] (\ax+\delta+\step+\step,\ay) circle [radius=0.05];
+\draw [black,draw, fill=black] (\ax+\delta+\step+\step+\step,\ay) circle [radius=0.05];
 
-\node [right,text width=5cm] (texteig) at (\ax+0.15+1*\step,\ay+1.2){\large $\vect{E}$};
+\draw [thick] (\ax+\delta +\step+\halfstep,\ay+0.05) node[above]{\large $k$};
+\draw [thick] (\ax+\delta+\step,\ay-0.1) node[below]{\large $n_{i}$};
+\draw [thick] (\ax+\delta+\step + \step,\ay-0.1) node[below]{\large $n_{i+1}$};
 
-%Corpo
-\draw (\ax+0.15+1*\step,\ay+1)--(\ax+2*\step-0.1,\ay+1);
-\draw (\ax+0.15+1*\step,\ay+0.8)--(\ax+2*\step-0.1,\ay+0.8);
-\draw (\ax+0.15+1*\step,\ay+1)--(\ax+0.15+1*\step,\ay+0.8);
-%Punta
-\draw (\ax+2*\step-0.1,\ay+1.05)--(\ax+0.15+2*\step,\ay+0.9);
-\draw (\ax+2*\step-0.1,\ay+0.75)--(\ax+0.15+2*\step,\ay+0.9);
 
-\draw (\ax+2*\step-0.1,\ay+1.)--(\ax+2*\step-0.1,\ay+1.05);
-\draw(\ax+2*\step-0.1,\ay+0.8)--(\ax+2*\step-0.1,\ay+0.75);
+\draw [black,draw] (\ax+\delta+\halfstep,\ay+1.15) circle [radius=0.15];
+\draw [black,draw] (\ax+\delta+\step + \step + \halfstep,\ay+1.15) circle [radius=0.15];
+\node at (\ax+\delta + \halfstep,\ay+1.15){\large $+$};
+\node at (\ax+\delta +\step + \step + \halfstep,\ay+1.15){\large $-$};
 
-\node [right,text width=5cm] (texteig) at (\dx+1,0.5){\large $\Delta\varphi^k = \varphi_{i+1} -\varphi_i$};
+\node at (\ax+\delta +\step + \halfstep,\ay+1.8){\large $\vect{E}$};
+\node at (\ax+\delta +\step + \halfstep,\ay-2.0){\large $\vect{J}_n=q\mu_n n_{i+1}\vect{E}$};
+
+%Freccia
+\draw (\ax+ \delta + \step,\ay+1)--(\ax+\delta+\step+\halfstep,\ay+1);
+\draw (\ax+\delta + \step,\ay+1.3)--(\ax+\delta+\step+\halfstep,\ay+1.3);
+\draw (\ax+\delta+ \step,\ay+1)--(\ax+\delta+\step,\ay+1.3);
+\draw (\ax+\delta + \step +\halfstep,\ay+1.3)--(\ax+\delta+\step+\halfstep,\ay+1.5);
+\draw (\ax+\delta + \step +\halfstep,\ay+1)--(\ax+\delta+\step+\halfstep,\ay+0.8);
+\draw (\ax+\delta + \step +\halfstep,\ay+1.5)--(\ax+\delta+\step+\step,\ay+1.15);
+\draw (\ax+\delta + \step +\halfstep,\ay+0.8)--(\ax+\delta+\step+\step,\ay+1.15);
+
+%Freccia
+\draw (\ax+ \delta + \step +\halfstep,\ay-1)--(\ax+\delta+\step +\step,\ay-1);
+\draw (\ax+\delta + \step + \halfstep,\ay-1.3)--(\ax+\delta+\step + \step,\ay-1.3);
+\draw (\ax+\delta+ \step + \step,\ay-1)--(\ax+\delta+\step+\step,\ay-1.3);
+
+\draw (\ax+\delta + \step +\halfstep,\ay-1.3)--(\ax+\delta+\step+\halfstep,\ay-1.5);
+\draw (\ax+\delta + \step +\halfstep,\ay-1)--(\ax+\delta+\step+\halfstep,\ay-0.8);
+\draw (\ax+\delta + \step +\halfstep,\ay-1.5)--(\ax+\delta+\step,\ay-1.15);
+\draw (\ax+\delta + \step +\halfstep,\ay-0.8)--(\ax+\delta+\step,\ay-1.15);
+
+
+%Solid line
+\def\ax{6.5}
+\def\ay{0}
+\def\bx{10.5}
+\def\by{0}
+
+\def\delta{0.3}
+
+%Dash line
+\def\cx{6}
+\def\cy{0}
+\def\dx{11}
+\def\dy{0}
+
+\def\Np{3}
+\def\step{\bx/\Np-\ax/\Np-2*\delta/\Np}
+\def\halfstep{0.5*\bx/\Np-0.5*\ax/\Np-\delta/\Np}
+
+\draw [dashed] (\cx,\cy)--(\dx,\dy);
+\draw [thick](\ax,\ay)--(\bx,\by);
+
+\draw [black,draw, fill=black] (\ax+\delta,\ay) circle [radius=0.05];
+\draw [black,draw, fill=black] (\ax+\delta+\step,\ay) circle [radius=0.05];
+\draw [black,draw, fill=black] (\ax+\delta+\step+\step,\ay) circle [radius=0.05];
+\draw [black,draw, fill=black] (\ax+\delta+\step+\step+\step,\ay) circle [radius=0.05];
+
+\draw [thick] (\ax+\delta +\step+\halfstep,\ay+0.05) node[above]{\large $k$};
+\draw [thick] (\ax+\delta+\step,\ay-0.1) node[below]{\large $n_{i}$};
+\draw [thick] (\ax+\delta+\step + \step,\ay-0.1) node[below]{\large $n_{i+1}$};
+
+\draw [black,draw] (\ax+\delta+\halfstep,\ay+1.15) circle [radius=0.15];
+\draw [black,draw] (\ax+\delta+\step + \step + \halfstep,\ay+1.15) circle [radius=0.15];
+\node at (\ax+\delta + \halfstep,\ay+1.15){\large $-$};
+\node at (\ax+\delta +\step + \step + \halfstep,\ay+1.15){\large $+$};
+
+\node at (\ax+\delta +\step + \halfstep,\ay+1.8){\large $\vect{E}$};
+\node at (\ax+\delta +\step + \halfstep,\ay-2.0){\large $\vect{J}_n=q\mu_n n_{i}\vect{E}$};
+
+%Freccia
+\draw (\ax+ \delta + \step +\halfstep,\ay+1)--(\ax+\delta+\step +\step,\ay+1);
+\draw (\ax+\delta + \step + \halfstep,\ay+1.3)--(\ax+\delta+\step + \step,\ay+1.3);
+\draw (\ax+\delta+ \step + \step,\ay+1)--(\ax+\delta+\step+\step,\ay+1.3);
+\draw (\ax+\delta + \step +\halfstep,\ay+1.3)--(\ax+\delta+\step+\halfstep,\ay+1.5);
+\draw (\ax+\delta + \step +\halfstep,\ay+1)--(\ax+\delta+\step+\halfstep,\ay+0.8);
+\draw (\ax+\delta + \step +\halfstep,\ay+1.5)--(\ax+\delta+\step,\ay+1.15);
+\draw (\ax+\delta + \step +\halfstep,\ay+0.8)--(\ax+\delta+\step,\ay+1.15);
+
+%Freccia
+\draw (\ax+ \delta + \step,\ay-1)--(\ax+\delta+\step+\halfstep,\ay-1);
+\draw (\ax+\delta + \step,\ay-1.3)--(\ax+\delta+\step+\halfstep,\ay-1.3);
+\draw (\ax+\delta+ \step,\ay-1)--(\ax+\delta+\step,\ay-1.3);
+\draw (\ax+\delta + \step +\halfstep,\ay-1.3)--(\ax+\delta+\step+\halfstep,\ay-1.5);
+\draw (\ax+\delta + \step +\halfstep,\ay-1)--(\ax+\delta+\step+\halfstep,\ay-0.8);
+\draw (\ax+\delta + \step +\halfstep,\ay-1.5)--(\ax+\delta+\step+\step,\ay-1.15);
+\draw (\ax+\delta + \step +\halfstep,\ay-0.8)--(\ax+\delta+\step+\step,\ay-1.15);
 
 \end{tikzpicture}
 
-\begin{equation}
+
+\end{center}
+
+ \begin{equation}
 \label{eq: scharfetter gummel 1D electron}
 J_n^k=-q\frac{D_n}{h}
-\left[ n_{i+1}\mathcal{B}\left(\frac{\Delta \varphi^k}{V_{th}}\right)- n_i\mathcal{B}\left(-\frac{\Delta \varphi^k}{V_{th}}\right)\right] 
+\left[ n_{i+1}\mathcal{B}\left(\frac{\Delta \varphi^k}{V_{th}}\right)- n_i\mathcal{B}\left(-\frac{\Delta \varphi^k}{V_{th}}\right)\right]  \psp{10} \forall k = 1 \, ... \, N_{elements}
 \end{equation}
 
-\begin{equation}
-\label{eq: scharfetter gummel 1D hole}
-J_p^k=-q\frac{D_p}{h}
-\left[ p_{i+1}\mathcal{B}\left(-\frac{\Delta \varphi^k}{V_{th}}\right)- p_i\mathcal{B}\left(\frac{\Delta \varphi^k}{V_{th}}\right)\right] 
-\end{equation} 
+where $\Delta \varphi^k = \varphi_{i+1}-\varphi_i$
 
 
+\subsection{Extension for the 3D case}
+ 
 The extension of this formula for the 3D case is not trivial. We show the method for the computation of the current density of electrons (the extension for the current density of holes is quite similar).
 We remark the quasi fermi formula for current density:
 \begin{equation}
