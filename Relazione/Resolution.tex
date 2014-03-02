@@ -444,32 +444,94 @@ This approach is the natrual extension of \referenzaeq{eq: scharfetter gummel 1D
 
 
 \subsection{Residue Method}
+\subsubsection{Contact method}
+Parlare del problema del calcolo della corrente ai contatti. Infatti adoperare l'integrazione sulle superfici dei contatti risulta essere poco accurato (spiegato abbastanza bene nell'articolo Residue Method ai contatti). 
 
+\subsubsection{Bulk method}
+Now the question is: it's possible extend the residue technique at the calculation of current inside the domain? The answer at this question is not trivial. A good start point is the work of J.R. Hughes and Larson in the article "The Continuous Galerikin Method Is Locally Conservative".The aim of their work is well exposed in the title and the conclusion is that this important property (locally conservation) is ensured less than the existence of an \textbf{auxiliary flux} denoted as $H(\omega)$ (with $\omega \subseteq\Omega$). 
+To extract the statement of global and local conservation from the variational formulation, thay need to be able to set the weighting function to one. Obviously this is possible if $\Gamma_g=\varnothing$. In order to include every case an extended weak formulation is presented: consider $\eta$ the set of all verteces of the discrete domain and $\eta_g$ the subset of verteces on Dirichlet boundaries.
+Now we are able to define the discrete space $\mathcal{V}^h:=span\{\psi_i\}_{i\in \eta - \eta_g} $ and  $V^h:=\mathcal{V}^h \oplus span\{\psi_i\}_{i\in \eta_g}$, where $\psi_i$ is the basis function assiociated with the node $i$.
+The last space is the completion of the usual finite element space ($\mathcal{V}^h$). Note that the constant function having value 1 is contained in $V^h$. The modified form of Galerkin's method is given by:
+
+Find $u^h\in \mathcal{S}^h$ and $H^h(\Omega)\in V^h - \mathcal{V}^h$ such that
+
+\begin{equation}
+\label{eq: extended weak formulation}
+(W^h,H^h(\Omega))_{\Gamma_g}=B(W^h,u^h)-L(W^h) \psp{10} \forall W^h\in V^h
+\end{equation}
+
+Note that \referenzaeq{eq: extended weak formulation} splits into two subproblems:
+
+\begin{equation}
+\label{eq: usally problem}
+0=B(w^h,u^h)-L(w^h) \psp{10} \forall w^h\in \mathcal{V}^h
+\end{equation}
+\begin{equation}
+\label{eq: problem auxiliary flux}
+(W^h,H^h(\Omega))_{\Gamma_g}=B(W^h,u^h)-L(W^h) \psp{10} \forall W^h\in V^h-\mathcal{V}^h
+\end{equation}
+
+Equation \referenzaeq{eq: problem auxiliary flux} is a problem which determines $H^h(\Omega)$. In it we assume $u^h$ is already determined by \referenzaeq{eq: usally problem}.
+The coefficient matrix for \referenzaeq{eq: problem auxiliary flux} is the mass matrix associated with $\Gamma_g$
+
+\begin{equation}
+\sum_{j\in \eta_g} (\psi_i,\psi_j)H^h_j(\Omega) = B(\psi_i,u^h)-L(\psi_i) \psp{10} \forall i \in \eta_g
+\end{equation}
+
+\textcolor{red}{Il prodotto sul bordo genera la medesima matrice di massa?E cosa succede nei punti che non sono di Dirichlet?Non può essere formulato in questo modo il problema?}
+
+In ogni caso noi abbiamo provato ad estendere il secondo problema ad ogni elemento interno che intersechi o meno i bordi di Dirichlet.
+Questo a cosa corrsiponde?
+
+Abbiamo interpretato la costruzione per elemento come se in ogni elemento il problema avesse delle condizioni di dirichlet che si affacciano con gli altri elementi adiacenti.
+Se assumiamo che questa procedura sia corretta allora penso che i successivi ragionamenti stiano in piedi.
+
+Sempre nell'articolo viene testata la formulazione estesa contro la funzione test costante e si ottiene la seguente equivalenza:
+
+\begin{equation}
+\int_{\Gamma_g}H^h(\Omega) \, d\Gamma = \int_{\Gamma^+_h}(a_nu^h-h^+) \, d\Gamma - \int_{\Gamma_h^-}h^- \, d\Gamma - \int_\Omega f \, d\Omega
+\end{equation}
+
+avendo assunto ogni nodo come Dirichlet allora valgono le seguenti affermazioni:
 \begin{itemize}
-\item[-] $\eta$ are all verteces, $\eta^e$ are the verteces of the element $e$
-\item[-] $V^h=span\{\psi_i\}_{i\in \eta-\eta_g}\oplus span\{\psi_i\}_{i\in \eta_g}$  ($\eta_g$ are the verteces on Dirichlet boundary)
-\item[-] $H^h(\Omega^e)$ is the \textbf{auxiliary flux} denoted as $H(\Omega^e):\gamma^e\rightarrow\mathbb{R} \psp{15}(\gamma^e=\partial \Omega^e)$
+\item $\Gamma_g = \partial \Omega$
+\item $\Gamma_h = \varnothing$
 \end{itemize}
 
-\begin{equation*}
-(W^h,H^h(\Omega^e))_{\gamma^e}=B_\Omega^e(W^h,u^h)-L_\Omega^e(W^h)-(W^h,H^h(\Omega))_{\Gamma_g\cap\Gamma_e} \psp{5} \forall W^h\in V^h
-\end{equation*}
-\begin{equation*}
-\sum_{j\in \eta^e} (\psi_i,\psi_j)_{\gamma^e}H^h_j(\Omega^e)=\sum_{j\in \eta^e}B(\psi_i,\psi_j)_{\Omega^e}u_j-L(\psi_i)_{\Omega^e}-\sum_{j\in \eta^e}(\psi_i,\psi_j)_{\Gamma_g\cap\Gamma_e}H_j^h(\Omega) \psp{5} \forall i \in \eta^e
-\end{equation*}
+quindi possiamo affermare che per ogni elemento vale:
 
-The residue method reads as follows:
-$$\vect{J} \, in  \, \Omega \psp{10}
-\vect{H_e} = K_{FSGV}^e \vect{u_e} - \vect{F_e} 
-\psp{10}
-\vect{J_e}(\vec{x}) = \sum_{j\in \eta^e}[\vect{H_e}]_j\vec{\tau}_j^e(\vec{x})
-\psp{10}
-\vec{\tau}_j^e(\vec{x})=\dfrac{\vec{x}-\vec{x}_j}{|e|}$$
+\begin{equation}
+\int_{\partial\Omega}H^h(\Omega) \, d\Gamma =  - \int_\Omega f \, d\Omega
+\end{equation}
 
-$$\Phi \, on  \, \Gamma_g 
-\psp{10}
-\vect{H} = K_{FSGV} \vect{u} - \vect{F} 
-\psp{10}
-\Phi_g = \vect{H} \cdot \vect{\Upsilon}_{\eta_g}
-\psp{10}
-[\vect{\Upsilon}_{\eta_g}]_i=(i\in \eta_g) $$
+Ora vorrei ripartire dal problema di partenza:
+
+\begin{equation}
+\begin{array}{rcl}
+-\nabla \cdot \vect{J} & = & f \\
+\\
+\int_\Omega -\nabla \cdot \vect{J} \Psi_k \, d\Omega & = & 
+\int_\Omega f \Psi_k \, d\Omega  \psp{10}  \forall k = 1 ... N_{elements}\\
+\\
+\int_K -\nabla \cdot \vect{J} \, d\Omega & = & \int_K f \, d\Omega  \psp{10}  \forall k = 1 ... N_{elements}\\
+\\
+\int_{\partial K} -\vect{J} \cdot \vect{n} \, d\Omega & = & \int_K f \, d\Omega  \psp{10}  \forall k = 1 ... N_{elements}\\
+
+\end{array}
+\end{equation}
+
+La domanda quindi \`e possiamo in qualche modo dire che:
+\begin{equation}
+H^h(K) = \vect{J}\cdot \vect{n} 
+\end{equation}
+
+Entrambe le quantit\`a sono definite sul bordo dell'elemento, inoltre la ricostruzione dalle componenti normali al vettore densit\`a di corrente non \`e impossibile.
+Tuttavia occorre passare prima a definire la grandezza sulle facce del tetraedro:
+\begin{itemize}
+\item Calcolo delle quantit\`a nodali $H^h_j(\Omega)$
+\item Redistribuzione dei valori sulle facce (metodo percentuale proporzionalmente alle aree) $\bar{H}^h_j(\Omega)$
+\item Ortogonalizzazione dei contributi normali alle facce $\bar{H}^h_j(\Omega) \vect{n}_j$ tramite procedura alla Grand-Shmidt $H^*_j \vect{n}_j^*$
+\item Calcolo del vettore densit\`a di corrente nell'elemento $\vect{J}=\sum_{i=1}^4 H^*_j\vect{n}_j^*$
+\end{itemize}
+
+

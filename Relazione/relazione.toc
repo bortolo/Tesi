@@ -18,5 +18,7 @@
 \contentsline {subsection}{\numberline {2.6.1}Scharfetter-Gummel formula}{11}
 \contentsline {subsection}{\numberline {2.6.2}Extension for the 3D case}{12}
 \contentsline {subsection}{\numberline {2.6.3}Residue Method}{14}
-\contentsline {section}{\numberline {2.7}First results}{15}
-\contentsline {chapter}{\numberline {3}Dual mixed method (or thermo electric system?)}{16}
+\contentsline {subsubsection}{Contact method}{14}
+\contentsline {subsubsection}{Bulk method}{14}
+\contentsline {section}{\numberline {2.7}First results}{17}
+\contentsline {chapter}{\numberline {3}Dual mixed method (or thermo electric system?)}{18}
