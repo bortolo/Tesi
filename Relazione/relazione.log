@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  2 MAR 2014 17:21
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=latex 2012.6.30)  7 MAR 2014 18:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -151,18 +151,10 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 (/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 91.
+Package graphics Info: Driver file: dvips.def on input line 91.
 
-(/usr/local/texlive/2012/texmf-dist/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count101
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 ))
 \Gin@req@height=\dimen115
 \Gin@req@width=\dimen116
@@ -173,12 +165,15 @@ Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 (/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
-Package color Info: Driver file: pdftex.def on input line 130.
-)
+Package color Info: Driver file: dvips.def on input line 130.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
 (/usr/local/texlive/2012/texmf-dist/tex/latex/psfrag/psfrag.sty
 Package: psfrag 1998/04/11 v3.04 PSfrag (MCG)
-\pfg@pcount=\count102
-\pfg@scount=\count103
+\pfg@pcount=\count101
+\pfg@scount=\count102
 \pfg@temp=\write3
 )
 (/usr/local/texlive/2012/texmf-dist/tex/latex/pgfplots/pgfplots.sty
@@ -222,23 +217,24 @@ ode.tex
 \pgf@yc=\dimen124
 \w@pgf@writea=\write4
 \r@pgf@reada=\read1
-\c@pgf@counta=\count104
-\c@pgf@countb=\count105
-\c@pgf@countc=\count106
-\c@pgf@countd=\count107
+\c@pgf@counta=\count103
+\c@pgf@countb=\count104
+\c@pgf@countc=\count105
+\c@pgf@countd=\count106
 
 (/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
-Package pgfsys Info: Driver file for pgf: pgfsys-pdftex.def on input line 900.
+Package pgfsys Info: Driver file for pgf: pgfsys-dvips.def on input line 900.
 
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
-ef
-File: pgfsys-pdftex.def 2009/05/22  (rcs-revision 1.26)
+(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvips.de
+f
+File: pgfsys-dvips.def 2008/04/03  (rcs-revision 1.20)
 
 (/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
-df.def
-File: pgfsys-common-pdf.def 2008/05/19  (rcs-revision 1.10)
+ostscript.def
+File: pgfsys-common-postscript.def 2008/10/01  (rcs-revision 1.22)
+\pgf@objectcount=\count107
 )))
 (/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
 code.tex
@@ -255,10 +251,9 @@ Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 (/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
-Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Driver file: dvips.def on input line 225.
 LaTeX Info: Redefining \color on input line 702.
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
 Package xcolor Info: Model `RGB' extended on input line 1353.
 Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
 Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
@@ -525,7 +520,7 @@ s.surfshading.code.tex
 \c@pgfplotslibrarysurf@no=\count129
 
 (/usr/local/texlive/2012/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots
-.surfshading.pgfsys-pdftex.def)))
+.surfshading.pgfsys-dvips.def)))
 (/usr/local/texlive/2012/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.
 code.tex)
 (/usr/local/texlive/2012/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.c
@@ -732,8 +727,12 @@ File: tikzlibraryfadings.code.tex 2009/11/15 v2.10 (rcs-revision 1.2)
 (/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings
 .code.tex
 File: pgflibraryfadings.code.tex 2008/02/07 v2.10 (rcs-revision 1.3)
-)))
-(/usr/local/texlive/2012/texmf-dist/tex/latex/listings/listings.sty
+
+
+Package pgf Warning: Your graphic driver pgfsys-dvips.def does not support fadi
+ngs. This warning is given only once on input line 31.
+
+))) (/usr/local/texlive/2012/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count139
 \lst@gtempboxa=\box59
 \lst@token=\toks44
@@ -952,85 +951,18 @@ File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 127.
 
-(/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count157
-\scratchdimen=\dimen213
-\scratchbox=\box62
-\nofMPsegments=\count158
-\nofMParguments=\count159
-\everyMPshowfont=\toks46
-\MPscratchCnt=\count160
-\MPscratchDim=\dimen214
-\MPnumerator=\count161
-\makeMPintoPDFobject=\count162
-\everyMPtoPDFconversion=\toks47
-) (/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
-
-(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
-
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-))
-(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
-Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 452.
-
-(/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-))
 ABD: EveryShipout initializing macros
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count163
+\c@lstlisting=\count157
  (./fronte.tex
-<img/Varie/logo-polimi.png, id=20, 173.64874pt x 175.65625pt>
-File: img/Varie/logo-polimi.png Graphic file (type png)
+File: img/Varie/logo-polimi.eps Graphic file (type eps)
 
-<use img/Varie/logo-polimi.png>
-Package pdftex.def Info: img/Varie/logo-polimi.png used on input line 16.
-(pdftex.def)             Requested size: 90.0pt x 91.04425pt.
- [1
-Non-PDF special ignored!
+<img/Varie/logo-polimi.eps> [1
 
-{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./img/V
-arie/logo-polimi.png>]) (./relazione.toc
+]) (./relazione.toc
 LaTeX Font Info:    Try loading font information for U+msa on input line 3.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1050,30 +982,15 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 
 ]
 Capitolo 1.
-<img/Casitest/DominioNP.png, id=34, 277.035pt x 545.03625pt>
-File: img/Casitest/DominioNP.png Graphic file (type png)
+File: img/Casitest/DominioNP.eps Graphic file (type eps)
+<img/Casitest/DominioNP.eps>
+File: img/Casitest/DominioNPOX.eps Graphic file (type eps)
+ <img/Casitest/DominioNPOX.eps>
+File: img/Casitest/DominioMOS.eps Graphic file (type eps)
 
-<use img/Casitest/DominioNP.png>
-Package pdftex.def Info: img/Casitest/DominioNP.png used on input line 9.
-(pdftex.def)             Requested size: 85.35577pt x 156.48463pt.
+<img/Casitest/DominioMOS.eps>) [2
 
-<img/Casitest/DominioNPOX.png, id=35, 397.485pt x 577.15625pt>
-File: img/Casitest/DominioNPOX.png Graphic file (type png)
-
-<use img/Casitest/DominioNPOX.png>
-Package pdftex.def Info: img/Casitest/DominioNPOX.png used on input line 12.
-(pdftex.def)             Requested size: 85.35449pt x 156.48596pt.
-
-<img/Casitest/DominioMOS.png, id=36, 477.785pt x 513.92pt>
-File: img/Casitest/DominioMOS.png Graphic file (type png)
-
-<use img/Casitest/DominioMOS.png>
-Package pdftex.def Info: img/Casitest/DominioMOS.png used on input line 15.
-(pdftex.def)             Requested size: 113.81047pt x 156.49051pt.
-) [2
-
- <./img/Casitest/DominioNP.png> <./img/Casitest/DominioNPOX.png> <./img/Casites
-t/DominioMOS.png>] (./PartePrima.tex
+] (./PartePrima.tex
 Capitolo 2.
 (./ModelDD.tex [3
 
@@ -1147,18 +1064,30 @@ Overfull \hbox (23.01814pt too wide) detected at line 174
 []
  []
 
-[9] [10] [11]
+[9]) [10] (./CurrentComputation.tex [11
+
+]
 Missing character: There is no Â in font cmr10!
 Missing character: There is no ´ in font cmr10!
  [12] [13] [14]
+File: img/CaratteristicheIV/MOS_Nchannel_191719_DIFFERENTMODELS.eps Graphic fil
+e (type eps)
+
+<img/CaratteristicheIV/MOS_Nchannel_191719_DIFFERENTMODELS.eps>
+Overfull \hbox (1.34999pt too wide) in paragraph at lines 305--306
+[][] 
+ []
+
+[15] [16]
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ² in font cmr10!
- [15]) [16] (./PrimiRisultati.tex)) [17
+ [17
 
-]
-(./ParteSeconda.tex
+]) [18] (./PrimiRisultati.tex)) [19
+
+] (./ParteSeconda.tex
 Capitolo 3.
-) [18
+) [20
 
 
 ] (./relazione.aux)
@@ -1167,42 +1096,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 24180 strings out of 493488
- 541664 string characters out of 3141326
- 667562 words of memory out of 3000000
- 26919 multiletter control sequences out of 15000+200000
+ 23353 strings out of 493489
+ 528390 string characters out of 3141349
+ 652879 words of memory out of 3000000
+ 26129 multiletter control sequences out of 15000+200000
  17719 words of font info for 65 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 63i,13n,74p,660b,783s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-}</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
-/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></u
-sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></u
-sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
-r/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb><
-/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></u
-sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr
-/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/l
-ocal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/loc
-al/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local
-/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/t
-exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texl
-ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive
-/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/20
-12/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/201
-2/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2012/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2012/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/texmf
--dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2012/t
-exmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2012/tex
-mf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on relazione.pdf (19 pages, 373980 bytes).
-PDF statistics:
- 187 PDF objects out of 1000 (max. 8388607)
- 120 compressed objects within 2 object streams
- 0 named destinations out of 1000 (max. 500000)
- 129 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 63i,13n,74p,660b,781s stack positions out of 5000i,500n,10000p,200000b,50000s
 
+Output written on relazione.dvi (21 pages, 78388 bytes).

@@ -14,11 +14,12 @@
 \contentsline {subsection}{\numberline {2.4.1}Weak formulation}{9}
 \contentsline {subsection}{\numberline {2.4.2}Numerical approximation}{10}
 \contentsline {section}{\numberline {2.5}Maximum discrete principle}{10}
-\contentsline {section}{\numberline {2.6}The current calculation problem}{10}
+\contentsline {section}{\numberline {2.6}The current calculation problem}{11}
 \contentsline {subsection}{\numberline {2.6.1}Scharfetter-Gummel formula}{11}
 \contentsline {subsection}{\numberline {2.6.2}Extension for the 3D case}{12}
 \contentsline {subsection}{\numberline {2.6.3}Residue Method}{14}
 \contentsline {subsubsection}{Contact method}{14}
-\contentsline {subsubsection}{Bulk method}{14}
-\contentsline {section}{\numberline {2.7}First results}{17}
-\contentsline {chapter}{\numberline {3}Dual mixed method (or thermo electric system?)}{18}
+\contentsline {subsubsection}{Results}{16}
+\contentsline {subsubsection}{Bulk method}{17}
+\contentsline {section}{\numberline {2.7}First results}{19}
+\contentsline {chapter}{\numberline {3}Dual mixed method (or thermo electric system?)}{20}
