@@ -18,9 +18,15 @@ About this question many academics propose different solutions and  the relative
 
 Consider the resolution of the continuity equation along a monodimensional domain. For the sake of simiplicity we contemplate a uniform partition (this hypotesis is not necessary for a more generic analysis). Moreover on every nodes is defined the electrostatic potential $\varphi$, and on every elements the relative electrostatic field $\vect{E}$. In order to avoid redundant considerations and calculuses, we proceed with our analysis considering only the current density of electrons ($\vect{J}_n$).
 
- In 1969 D. Scharfetter and H.K. Gummel (two scientists of Bell Labs), introduced a formula to compute the current density in this case, given $\varphi$ and the density solution ($n$) on every nodes. This innovative approach led for the twenty years to follow every simulation which contemplates electric-devices. Morover many mathematics discover important properties about this method \textcolor{red}{questa parte la vorrei fare meglio}. 
+ In 1969 D. Scharfetter and H.K. Gummel (two scientists of Bell Labs), introduced a formula to compute the current density in this case, given $\varphi$ and the density solution ($n$) on every nodes. This innovative approach led for the twenty years to follow every simulation which contemplates electric-devices. 
  
- La potenza di questo metodo riesiede nella possibilit\`a di gestire le varie situazioni di upwinding. Considerando la figura la formula recita:
+We know that the constituve law is composed by a drift component, which depends on the electric field, and a diffusion component, which depends on the variation of the carrier density. Consider a generic element $K$, we define the drop in voltage $\Delta \varphi^k=\varphi_{i+1}-\varphi_{i}$. There are three possible situations which are well explain in the picture:
+\begin{itemize}
+\item $\Delta \varphi \gg0$, mainly drift component from right to left 
+\item $\Delta \varphi \ll0$, mainly drift component from left to right
+\item $\Delta \varphi \simeq 0$, mainly diffusion component
+\end{itemize} 
+ 
  
 \begin{center}
 
@@ -63,7 +69,7 @@ Consider the resolution of the continuity equation along a monodimensional domai
 \node at (\ax+\delta +\step + \step + \halfstep,\ay+1.15){\large $-$};
 
 \node at (\ax+\delta +\step + \halfstep,\ay+1.8){\large $\vect{E}$};
-\node at (\ax+\delta +\step + \halfstep,\ay-2.0){\large $\vect{J}_n=q\mu_n n_{i+1}\vect{E}$};
+\node at (\ax+\delta +\step + \halfstep,\ay-2.0){\large $\vect{J}_n=q\mu_n n_{i}\vect{E}$};
 
 %Freccia
 \draw (\ax+ \delta + \step,\ay+1)--(\ax+\delta+\step+\halfstep,\ay+1);
@@ -121,7 +127,7 @@ Consider the resolution of the continuity equation along a monodimensional domai
 \node at (\ax+\delta +\step + \step + \halfstep,\ay+1.15){\large $+$};
 
 \node at (\ax+\delta +\step + \halfstep,\ay+1.8){\large $\vect{E}$};
-\node at (\ax+\delta +\step + \halfstep,\ay-2.0){\large $\vect{J}_n=q\mu_n n_{i}\vect{E}$};
+\node at (\ax+\delta +\step + \halfstep,\ay-2.0){\large $\vect{J}_n=q\mu_n n_{i+1}\vect{E}$};
 
 %Freccia
 \draw (\ax+ \delta + \step +\halfstep,\ay+1)--(\ax+\delta+\step +\step,\ay+1);
@@ -146,14 +152,25 @@ Consider the resolution of the continuity equation along a monodimensional domai
 
 \end{center}
 
+
+With the $Sharfetter-Gummel$ formula it's possibile taking into account every of these situations and solve boundary layer problems which occurs often in presence of strong drift component contribute.
+
  \begin{equation}
 \label{eq: scharfetter gummel 1D electron}
-J_n^k=-q\frac{D_n}{h}
-\left[ n_{i+1}\mathcal{B}\left(\frac{\Delta \varphi^k}{V_{th}}\right)- n_i\mathcal{B}\left(-\frac{\Delta \varphi^k}{V_{th}}\right)\right]  \psp{10} \forall k = 1 \, ... \, N_{elements}
+J_n^k=q\frac{D_n}{h}
+\left[ n_{i+1}\mathcal{B}\left(\frac{\Delta \varphi^k}{V_{th}}\right)- n_i\mathcal{B}\left(-\frac{\Delta \varphi^k}{V_{th}}\right)\right]  
 \end{equation}
 
-where $\Delta \varphi^k = \varphi_{i+1}-\varphi_i$
+In the latter case $\Delta \varphi=0$) the formula became:
 
+\begin{equation}
+J_n^k=qD_n\frac{n_{i+1}-n_{i}}{h}
+\end{equation}
+
+which is the correct approximation of the current density using $\mathbb{P}_1$ basis. 
+
+Morover many mathematics discover important properties about this method \textcolor{red}{questa parte la vorrei fare meglio}. 
+These changes in the direction of the electric field lead to boundary layer problems. It's not possibile afford these situations with a simply upwinding sheme ...
 
 \subsection{Extension for the 3D case}
  
@@ -169,26 +186,44 @@ where $\varphi_n$ is the quasi fermi potential level. Let us write \referenzaeq{
 \vect{J}_n\dfrac{ exp\left(\dfrac{\varphi_n-\varphi}{V_{th}}\right)}{q \mu_n n_i} + \nabla \varphi_n = 0
 \end{equation}
 
-Now consider a generic discretization for $\vect{J}_n$ and $\varphi_n$, for example finite element with $\mathbb{P}_1$ functions as bases (\textcolor{red}{vero che si pu´o scegliere qualsiasi discretizzazione con una qualsiasi base?}), we'll call these spaces $\left[ V_h \right]^d$ and $V_h$ (with $h$ we intend the step of discretization and $d$ is the dimension of simulation). We are able to test \referenzaeq{eq: current density canonic form} against $\vect{q}^h \in \left[ V_h \right]^d$, we choose three  different $\vect{q}^h$:
+We consider $\vect{J}_n\in[L^2(\Omega)]^3$ and $\varphi_n,\varphi \in H^1(\Omega)$. We are able to multiply \referenzaeq{eq: current density canonic form} with a generic function $\vect{q}\in[L^2(\Omega)]^3$ and then intagrate over the domain $\Omega$:
+
+\begin{equation}
+\label{eq: variation form of current density continuos}
+\int_\Omega \dfrac{ exp \left( \dfrac{\varphi_n-\varphi}{V_{th}} \right) }{q \mu_n n_i} \vect{J}_n \cdot \vect{q} \, d\Omega
+ + \int_\Omega \nabla \varphi_n \cdot \vect{q} \, d\Omega = 0 
+\end{equation}
+
+
+We proceed taking the usual discrete space of the constant elemenwise functions:
+
+\begin{equation}
+\label{eq: spaces elementwise constant}
+V_h=\left\{ w \in L^2(\Omega) : w|_{K}\in \mathbb{P}_0 \forall K \in \tau_h\right\}
+\end{equation}
+
+Now the discrete quantitaties are $\vect{J}_n^h\in[V_h]^3$ and $\nabla \varphi_n^h \in V_h$. We desire produce a system of equation on every elements for the three componente of $\vect{J}_n$, this is possible with a smart choice of the test function $\vect{q}_h \in [V_h]^3$:
 
 \begin{equation}
 \label{eq: form of qh}
 \vect{q}^h_{1,2,3} = \left\{ \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}  \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}  \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}  \right\}
 \end{equation}
-We show the variational form for a generic element $K$ of the discretization:
+
+From \referenzaeq{eq: variation form of current density continuos} we obtain the sequent system of equations defined for every element of the mesh:
+
 \begin{equation}
 \label{eq: variation form of current density}
 \int_K \dfrac{ exp \left( \dfrac{\varphi_n-\varphi}{V_{th}} \right) }{q \mu_n n_i} \vect{J}_n^h \cdot \vect{q}^h_i \, dK
  + \int_K \nabla \varphi_n^h \cdot \vect{q}^h_i \, dK = 0 \psp{10} \forall i=1,2,3
 \end{equation}
 
-\textcolor{red}{La questione \`e: $\nabla \varphi_n^h \in \left[ V_h \right]^d$ ??. Possiamo dirlo sapendo che $\varphi_n^h \in V_h$ ??}
+Operating the intagration we obtain the sequent formula for the current density components:
 
-We know that $\nabla \varphi_n \in \mathbb{P}_0$ and without any approximation (except for the discretization) we obtain the sequent formula for the current density components:
 \begin{equation}
 \label{eq: first formula for J}
 [\vect{J_n}]_i = - \mathbb{H}_K \left( q \mu_n n_i exp \left( \dfrac{\varphi-\varphi_n}{V_{th}} \right)  \right) \dfrac{\partial \varphi_n^h}{\partial x_i} \psp{5} i = 1...d \psp{5} \forall K \in \tau_h
 \end{equation}
+
 where $\mathbb{H}_K(f)$ is the armonic average on the elment $K$ of the function $f$.
 
 Although resolve the armonic average with a comlete 3D integration may be expensive in calculation time and propably not necessary. One approximation of this integral would be pass from a 3D integration to 1D integration along one edge of the element $K$.
@@ -242,7 +277,7 @@ Numerical results (\textcolor{red}{qua sarebbe carino fare un po' di test con un
 \label{eq: first formula for J}
 \vect{J_n}^K = -  q \mu_n  \left[ \dfrac{ n_{min} \mathbf{B}(-\Delta \Phi_{max})  + n_{max}\mathbf{B}(\Delta \Phi_{max})}{2} \right]\nabla \varphi_n^h
 \end{equation}
-This approach is the natrual extension of \referenzaeq{eq: scharfetter gummel 1D electron}.
+This approach is the natrual extension of the $Sharfetter-Gummel$ formula for the 1D case, indeed it's possible demonstrate the equivalence assuming a monodimensionale domain.
 
 
 
@@ -260,14 +295,14 @@ It's well known that the evaluation of boundary integrals is a difficult task oc
 where as usual $\vect{n}$ is the unit outward normal of the domain boundary. Difficulties in the numerical evalutaion of \referenzaeq{eq: current flux} arise from singularities in spatial derivatives of the approximate solution $n^h$ or $p^h$ near the contact edges, due to a change in the boundary condition type (from Dirichlet to Neumann) at the contact ends.
 In this work we extend the residue method on the 3D case and we confirm the optimal results obtained previously, matching them with SDEVICE (\textcolor{red}{come bisogna scirvere il software che politica usare?}). Moreover we remark that the method can be succesfully applied to a wide spread of applications, including contact charges, carrier quantum probability fluxes and heat fluxes.
 
-Before go further with the presentation of the results, it's useful look up the anlysis made in \textcolor{red}{Citazione} and adapt it to our case. Before applying boudnary conditions, the discretized form of \textcolor{red}{referenza equazione} reads:
+Before go further with the presentation of the results, it's useful look up the anlysis made in \textcolor{red}{Citazione} and adapt it to our case. Before applying boundary conditions, the discretized form of \textcolor{red}{referenza equazione} reads:
 
 \begin{equation}
 \label{eq: discretization before bc}
 \sum_{j\in\eta} A_{ij} \nu_j\psi_j(x_j) = b_i \psp{10} \forall i \in \eta
 \end{equation}
 
-$A_{ij}$ is the $K_{FVSG}$ global matrix but it's possibile use every discretization scheme. We can split the set of total nodes in contact node $\eta_g$ and the complementary part $\eta_n$.
+in FEMOS simulations $A_{ij}$ is the $K_{FVSG}$ global matrix but it's possibile use every discretization scheme. We can split the set of total nodes in contact node $\eta_g$ and the complementary part $\eta_n$.
 The values of $\nu_j$ are known on the contacts and \referenzaeq{eq: discretization before bc} can be rewritten as follows:
 
 \begin{equation}
@@ -393,3 +428,11 @@ Tuttavia occorre passare prima a definire la grandezza sulle facce del tetraedro
 \item Ortogonalizzazione dei contributi normali alle facce $\bar{H}^h_j(\Omega) \vect{n}_j$ tramite procedura alla Grand-Shmidt $H^*_j \vect{n}_j^*$
 \item Calcolo del vettore densit\`a di corrente nell'elemento $\vect{J}=\sum_{i=1}^4 H^*_j\vect{n}_j^*$
 \end{itemize}
+
+
+
+
+
+
+
+\input{ResidueMethod}

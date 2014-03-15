@@ -1,0 +1,109 @@
+%\section{The Residue Method}
+%
+%Riepilogo equazioni:
+%
+%\begin{array}{cc}
+%\begin{cases} 
+%-\nabla \cdot ( \vect{J}_n(n) ) = -qR & in \psp{3} \Omega \\ 
+%-\nabla \cdot (\vect{J}_p (p)) = qR & in \psp{3} \Omega \\
+%n = n_g & on \psp{3} \Gamma_g \\
+%p = p_g & on \psp{3} \Gamma_g \\
+%\nabla n \cdot \vect{n} = 0 & on \psp{3} \Gamma_n \\
+%\nabla p \cdot \vect{n} = 0 & on \psp{3} \Gamma_n
+%\end{cases}
+%&
+%\begin{equation*}
+%\begin{array}{ccl}
+%\vect{J}_n & = &- q\mu_n n \nabla \varphi + qD_n \nabla n \\
+%\\
+%\vect{J}_p & = & - q\mu_p p \nabla \varphi - qD_p \nabla p \\
+%\\
+%R(n,p) & = & (pn-n_i^2)(F_{SRH}(n,p)+F_{AU}(n,p)) \\
+%&  &- (\alpha_n |\vect{v}_n|n + \alpha_p |\vect{v}_p|p)
+%\end{array}
+%\end{equation*}
+%\end{array}
+%
+%\begin{equation}
+%\begin{array}{l}
+%\sigma_n(n,p) = qp(F_{SRH}(n,p)+F_{AU}(n,p)) \\
+%\sigma_p(n,p) = qn(F_{SRH}(n,p)+F_{AU}(n,p)) \\
+%f(n,p) = qn_i^2(F_{SRH}(n,p)+F_{AU}(n,p)) + q(\alpha_n |\vect{v}_n|n + \alpha_p |\vect{v}_p|p) 
+%\end{array}
+%\end{equation}
+%
+%
+%\begin{equation}
+%\begin{cases} 
+%-\nabla \cdot ( \vect{J}_n(n) ) + \sigma_nn = f & in \psp{3} \Omega \\ 
+%-\nabla \cdot (\vect{J}_p (p)) - \sigma_pp = -f & in \psp{3} \Omega \\
+%n = n_g & on \psp{3} \Gamma_g \\
+%p = p_g & on \psp{3} \Gamma_g \\
+%\nabla n \cdot \vect{n} = 0 & on \psp{3} \Gamma_n \\
+%\nabla p \cdot \vect{n} = 0 & on \psp{3} \Gamma_n
+%\end{cases}
+%\end{equation}
+%
+%Forme variazionali:
+%\begin{equation}
+%\begin{array}{c}
+%B(v,n) = (\nabla v , \vect{J}_n(n))_{\Omega} + (\sigma_n n, v)_\Omega \\
+%L(v) = (v,f)_\Omega
+%\end{array}
+%\end{equation}
+%
+%Spazi discreti:
+%\begin{equation*}
+%\mathcal{V}_h := span{\psi_i}_{i\in \eta_n} \psp{10} 
+%V_h := span{\psi_i}_{i\in \eta_g} \psp{10}
+%\mathbb{V}_h := V_h \oplus \mathcal{V}_h
+%\end{equation*}
+%
+%Problema completo:
+%\begin{equation}
+%\label{eq: extended weak formulation}
+%(W_h,H_h(\Omega))_{\Gamma_g}=B(W_h,n_h)-L(W_h) \psp{10} \forall W_h\in \mathbb{V}_h
+%\end{equation}
+%
+%Problema diviso:
+%\begin{equation}
+%\label{eq: usally problem}
+%0=B(w_h,n_h)-L(w_h) \psp{10} \forall w_h\in \mathcal{V}_h
+%\end{equation}
+%\begin{equation}
+%\label{eq: problem auxiliary flux}
+%(W_h,H_h(\Omega))_{\Gamma_g}=B(W_h,n_h)-L(W_h) \psp{10} \forall W_h\in V_h
+%\end{equation}
+
+\subsection{Idea}
+
+Nel calcolo della corrente ai contatti si calcola sostanzialmente il residuo del problema DD globale, utilizzando per\`o la matrice di sistema non ancora modificata per le condizioni al bordo di Dirichlet. Infine dato un contatto (e quindi un insieme di vertici), si sommano le componenti del residuo relative ai vertici che risiedono su quel contatto. In questo modo otteniamo la corrente di elettroni $\mathcal{I}_n^k$ (k-esimo contatto). Possiamo affermare ovviamente che:
+\begin{equation}
+\mathcal{I}_n^k = \int_{\Gamma_k} \vect{J}_n \cdot \vect{n} \, d\Gamma_k
+\end{equation}
+
+Poniamo di aver risolto il problema e di conoscere le densit\`a su ogni vertice della triangolazione.\textbf{L'idea principale \`e di pensare ad ogni singolo elemento come un nuovo problema con condizioni di Dirichlet sui quattro vertici.} Applico nuovamente l'idea del calcolo della corrente ai contatti utilizzata per l'intero dominio di simulazione, ma questa volta ogni faccia del tetraedro costituisce un contatto. Quindi calcolo la matrice locale e la forzante locale del problema ed infine computo il residuo con la soluzione che gi\`a possiedo. Ora non mi resta che per ogni faccia (contatto) calcolare la corrente.
+
+Assumendo $\vect{J}_n$ nel discreto essa \`e una quantit\`a definita sugli elementi, dunque sar\`a costante nel dominio che stiamo considerando in questo momento, possiamo affermare che data una faccia $k$ dell'elemento:
+
+\begin{equation}
+\mathcal{I}_n^k = \vect{J}_n \cdot \vect{n}_k |\Gamma_k|
+\end{equation}
+
+Cos\`i facendo \`e possibile recuperare quattro contributi alla corrente dell'elemento che tramite un'ortogonalizzazione alla Grand-Schmidt ci permettono di ricostruire il vettore densit\`a di corrente.
+
+\begin{equation*}
+\begin{array}{rcl}
+\vect{J}_n  & = & \mathcal{I}_n^1 \vect{n}_1 
++ (\mathcal{I}_n^2 \vect{n}_2 - \mathcal{I}_n^2 (\vect{n}_2 \cdot \vect{n}_1) \vect{n}_1) \\
+& & + (\mathcal{I}_n^3 \vect{n}_3 - \mathcal{I}_n^3 (\vect{n}_3 \cdot \vect{v}_2) \vect{v}_2 )
++ (\mathcal{I}_n^3 \vect{n}_3 - \mathcal{I}_n^3 (\vect{n}_3 \cdot \vect{n}_1) \vect{n}_1) \\
+& & + (\mathcal{I}_n^4 \vect{n}_4 - \mathcal{I}_n^4 (\vect{n}_4 \cdot \vect{v}_3) \vect{v}_3 )
++ (\mathcal{I}_n^4 \vect{n}_4 - \mathcal{I}_n^4 (\vect{n}_4 \cdot \vect{v}_2) \vect{v}_2 )
++ (\mathcal{I}_n^4 \vect{n}_4 - \mathcal{I}_n^4 (\vect{n}_4 \cdot \vect{n}_1) \vect{n}_1)
+\end{array}
+\end{equation*}
+
+Mi sembra una possibile estensione del metodo dei residui all'interno del dispositivo anche se probabilmente potrei avere commesso degli errori nello sviluppo dell'idea. Tuttavia anche nel caso di una corretta base teorica, per come ho presentato il metodo mi sembra che si rischi di incorrere in problemi numerici date le numerosi differenze che occorrerebbe fare.
+
+Probabilmente aiutandoci con gli articoli di Hughes possiamo tirar fuori un'idea simile, sfruttando in qualche modo i flussi ausiliari che sono senza dubbio legati ai residui dei problemi locali.
