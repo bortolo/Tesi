@@ -1,27 +1,41 @@
 \select@language {italian}
-\contentsline {chapter}{\numberline {1}Introduction}{2}
-\contentsline {section}{\numberline {1.1}General Introduction}{2}
-\contentsline {section}{\numberline {1.2}Case tests presentation}{2}
-\contentsline {chapter}{\numberline {2}Semiconductor model}{3}
-\contentsline {section}{\numberline {2.1}DD Model}{3}
-\contentsline {section}{\numberline {2.2}Resolution of the system}{6}
-\contentsline {subsection}{\numberline {2.2.1}Drawbacks of the Box Methods}{6}
-\contentsline {section}{\numberline {2.3}Nonlinear Poisson Equation}{8}
-\contentsline {subsection}{\numberline {2.3.1}Weak formulation}{8}
-\contentsline {subsection}{\numberline {2.3.2}Numerical approximation}{9}
-\contentsline {subsection}{\numberline {2.3.3}Damping}{9}
-\contentsline {section}{\numberline {2.4}Continuity Equation}{9}
-\contentsline {subsection}{\numberline {2.4.1}Weak formulation}{9}
-\contentsline {subsection}{\numberline {2.4.2}Numerical approximation}{10}
-\contentsline {section}{\numberline {2.5}Maximum discrete principle}{10}
-\contentsline {section}{\numberline {2.6}The current calculation problem}{11}
-\contentsline {subsection}{\numberline {2.6.1}Scharfetter-Gummel formula}{11}
-\contentsline {subsection}{\numberline {2.6.2}Extension for the 3D case}{12}
-\contentsline {subsection}{\numberline {2.6.3}Residue Method}{15}
-\contentsline {subsubsection}{Contact method}{15}
-\contentsline {subsubsection}{Results}{16}
-\contentsline {subsubsection}{Bulk method}{18}
-\contentsline {subsection}{\numberline {2.6.4}Idea}{20}
-\contentsline {subsection}{\numberline {2.6.5}Idea}{20}
-\contentsline {section}{\numberline {2.7}First results}{22}
-\contentsline {chapter}{\numberline {3}Dual mixed method (or thermo electric system?)}{23}
+\contentsline {chapter}{\numberline {1}Introduction}{3}
+\contentsline {section}{\numberline {1.1}Brief history of VLSI devices}{3}
+\contentsline {section}{\numberline {1.2}Why FEMOS}{3}
+\contentsline {section}{\numberline {1.3}Aims of this work}{5}
+\contentsline {chapter}{\numberline {2}Semiconductor model}{6}
+\contentsline {section}{\numberline {2.1}Basic Device Physics}{6}
+\contentsline {subsection}{\numberline {2.1.1}Intrinsic semiconductor}{6}
+\contentsline {subsection}{\numberline {2.1.2}Extrinsic semiconductor}{8}
+\contentsline {subsection}{\numberline {2.1.3}Densities at nonequilibrium}{10}
+\contentsline {subsection}{\numberline {2.1.4}Carrier transport in semiconductor}{11}
+\contentsline {subsubsection}{Drif current - Ohm's law}{11}
+\contentsline {subsubsection}{Diffusion current - Fick's law}{12}
+\contentsline {subsubsection}{Drift-Diffusion transport equations}{13}
+\contentsline {section}{\numberline {2.2}Drift Diffusion Model for semiconductor}{14}
+\contentsline {subsection}{\numberline {2.2.1}Drift Diffusion formulation}{14}
+\contentsline {subsection}{\numberline {2.2.2}Generation and Recombination phenomenon}{16}
+\contentsline {subsubsection}{Shockley-Read-Hall recombination}{17}
+\contentsline {subsubsection}{Auger recombination}{17}
+\contentsline {subsubsection}{Impact ionization}{17}
+\contentsline {section}{\numberline {2.3}Resolution of the system}{18}
+\contentsline {subsection}{\numberline {2.3.1}Drawbacks of the Box Methods}{18}
+\contentsline {section}{\numberline {2.4}Nonlinear Poisson Equation}{21}
+\contentsline {subsection}{\numberline {2.4.1}Weak formulation}{21}
+\contentsline {subsection}{\numberline {2.4.2}Numerical approximation}{21}
+\contentsline {subsection}{\numberline {2.4.3}Damping}{21}
+\contentsline {section}{\numberline {2.5}Continuity Equation}{22}
+\contentsline {subsection}{\numberline {2.5.1}Weak formulation}{22}
+\contentsline {subsection}{\numberline {2.5.2}Numerical approximation}{22}
+\contentsline {section}{\numberline {2.6}Maximum discrete principle}{23}
+\contentsline {chapter}{\numberline {3}The current calculation problem}{24}
+\contentsline {section}{\numberline {3.1}Scharfetter-Gummel formula}{25}
+\contentsline {section}{\numberline {3.2}Extension for the 3D case}{26}
+\contentsline {section}{\numberline {3.3}Residue Method}{29}
+\contentsline {subsubsection}{Contact method}{29}
+\contentsline {subsubsection}{Results}{30}
+\contentsline {subsubsection}{Bulk method}{32}
+\contentsline {section}{\numberline {3.4}The Residue Method}{34}
+\contentsline {subsection}{\numberline {3.4.1}Idea}{34}
+\contentsline {chapter}{\numberline {4}Simulation results}{36}
+\contentsline {section}{\numberline {4.1}Case tests presentation}{36}

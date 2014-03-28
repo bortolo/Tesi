@@ -1,4 +1,4 @@
-\section{The current calculation problem}
+\chapter{The current calculation problem}
 
 In many physical and engineering problems the real interesting variable of the conservation law is the flux in the domain or on specific surfaces and boundaries. The study of micro and nano electronics devices doesn't except this observation, in fact most of all models are oriented to obtain a satisfactory description of the current density.
  We know that the primal and not mixed formulation for  the continuity equation doesn't resolved  the flux density. The conseguence of this fact is a binding post-processing of the quantities computed in order to reconstruct the current density of electrons and holes.
@@ -14,7 +14,7 @@ About this question many academics propose different solutions and  the relative
  \end{itemize}
  It's not trivial ensure everyone of these points, thus move on toward a unique choice of a method is a delicate matter. Luckily there's some \textit{main stone} which offers ever a good start point whence achieve new results. Probably the most known and recognized by the inherent literature is the \textit{Sharfetter-Gummel formula}.
 
-\subsection{Scharfetter-Gummel formula}
+\section{Scharfetter-Gummel formula}
 
 Consider the resolution of the continuity equation along a monodimensional domain. For the sake of simiplicity we contemplate a uniform partition (this hypotesis is not necessary for a more generic analysis). Moreover on every nodes is defined the electrostatic potential $\varphi$, and on every elements the relative electrostatic field $\vect{E}$. In order to avoid redundant considerations and calculuses, we proceed with our analysis considering only the current density of electrons ($\vect{J}_n$).
 
@@ -172,7 +172,7 @@ which is the correct approximation of the current density using $\mathbb{P}_1$ b
 Morover many mathematics discover important properties about this method \textcolor{red}{questa parte la vorrei fare meglio}. 
 These changes in the direction of the electric field lead to boundary layer problems. It's not possibile afford these situations with a simply upwinding sheme ...
 
-\subsection{Extension for the 3D case}
+\section{Extension for the 3D case}
  
 The extension of this formula for the 3D case is not trivial. We show the method for the computation of the current density of electrons (the extension for the current density of holes is quite similar).
 We remark the quasi fermi formula for current density:
@@ -282,7 +282,7 @@ This approach is the natrual extension of the $Sharfetter-Gummel$ formula for th
 
 
 
-\subsection{Residue Method}
+\section{Residue Method}
 \subsubsection{Contact method}
 In the following we present an accurate method for the evaluation of boundary integrals in semiconductor device based on the work .
 It's well known that the evaluation of boundary integrals is a difficult task occuring routinely in electron device simulations. In general, given a contact $\Gamma_i$, fluxes of current density to be calculated assume the following form:
@@ -429,10 +429,3 @@ Tuttavia occorre passare prima a definire la grandezza sulle facce del tetraedro
 \item Calcolo del vettore densit\`a di corrente nell'elemento $\vect{J}=\sum_{i=1}^4 H^*_j\vect{n}_j^*$
 \end{itemize}
 
-
-
-
-
-
-
-\input{ResidueMethod}

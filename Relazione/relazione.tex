@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt,notitlepage]{report}
+\documentclass[a4paper,12pt,notitlepage]{report}
 %fleqn
 
 \usepackage[italian]{babel}
@@ -19,16 +19,16 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes,positioning,arrows,calc,shadows}
 \tikzstyle{abstractbox} = [draw=black, fill=white, rectangle, 
-  inner sep=11pt, style=rounded corners]%, drop shadow={fill=black,
-  %opacity=1}]
+  inner sep=11pt, style=rounded corners, drop shadow={fill=black,opacity=0.8}]
   \tikzstyle{abstracttitle}=[fill=white]
+  
   \newcommand{\mybox}[3][fill=white]{
     \begin{center}
       \begin{tikzpicture}
         \node [abstractbox, #1] (box)
         {\begin{minipage}{0.95\linewidth}
 %           \setlength{\parindent}{2mm}
-           \footnotesize #2
+           \normalsize #2
           \end{minipage}};
         \node[abstracttitle, right=11pt] at (box.north west) {#3};
       \end{tikzpicture}
@@ -108,7 +108,18 @@
 \usepackage{enumitem}
 \usetikzlibrary{patterns}
 \theoremstyle{plain}
+
+
+
 \newtheorem{teorema}{Teorema}
+
+
+\theoremstyle{definition}
+\newtheorem{Definizione}{Definition}[chapter]
+
+\theoremstyle{remark}
+\newtheorem{Osservazione}{Observation}[chapter]
+
 \graphicspath{{img/}}
 \usepackage{textcomp}
 \usetikzlibrary{calc,decorations.markings,positioning}
@@ -126,38 +137,20 @@
 
 \begin{document}
 
-%\input{fronte}
-%\clearpage
-%\tableofcontents
-%\input{Introduction}
-%\clearpage
-%\chapter{Semiconductor model}
-%
-%\textcolor{blue}{O forse prima parte...dipende da quello che riusciamo a fare...nel caso la divisione fra il primo ed il secondo capitolo sarebbe approccio formulazione agli spostamenti e duale mista}
-%
-%\input{ModelDD}
-%
-%\clearpage
-%
-%\input{Resolution}
-%
-%\clearpage
-%
-%\input{CurrentComputation}
-%
-
+\input{fronte}
+\clearpage
+\tableofcontents
+\input{Introduction}
+\clearpage
+\input{SemiconductorModel}
+\clearpage
+\input{Resolution}
+\clearpage
+\input{CurrentComputation}
 \input{ResidueMethod}
-%
-%\clearpage
-%
-%\input{PrimiRisultati}
-%
-%
-%\clearpage
-%
-%
-%\input{ParteSeconda}
-
+\clearpage
+\input{Results}
+\clearpage
 %\input{bib}
 
 \end{document}

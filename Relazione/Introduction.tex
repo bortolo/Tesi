@@ -1,16 +1,50 @@
 \chapter{Introduction}
-\section{General Introduction}
-\textcolor{blue}{In questa sezione una breve panoramica su FEMOS su cosa \`e gi\`a stato implementato su cosa si vuole fare...}
-\section{Case tests presentation}
-\textcolor{blue}{In questa invece andiamo pi\`u nello specifico di questo lavoro presentando i casi test che verranno studiati...non penso sia il caso di trattare le equazioni qui dato che c'\`e tutto un capitolo sul modello e le equazioni usate}
+\section{Brief history of VLSI devices}
 
-\begin{figure}[!h]
-\subfigure[]
-{\includegraphics[height = 5.5cm,width = 3cm]{Casitest/DominioNP}}
-\psp{10}
-\subfigure[]
-{\includegraphics[height = 5.5cm,width = 3cm]{Casitest/DominioNPOX}}
-\psp{10}
-\subfigure[]
-{\includegraphics[height = 5.5cm,width = 4cm]{Casitest/DominioMOS}}
-\end{figure}
+
+In 1947 John Bardeen, William Shockley and Walter Brattain (three scientists of Bell Telephone Labs) invented the bipolar transistor and since that crucial point there has been a growth  of the semiconductor industry never known before, with serious impact on the way people work and live today. 
+
+Before reach the functionality and the miniaturization of modern devices, some fundamental steps has been made.
+In 1958 was produced the first intagrated circuits (IC)  followed by the introduction of the first MOSFET(1960) and CMOS(1963). Into these inventions the first micro-processor(1971) sank his roots  and since that time until present, an ever-increasing progress has continued, according to the indication of \textit{Moore's Law} (formulated by Gordton Moore in 1965).
+
+These events led microelectronic industry at the doors of the VLSI era (Very-Large-Scale-Integration). Indeed in the last thirty years the benefits of miniaturization have been the key in the evolutionary progress leading to today's computers, wireless units, and comunication systems that offer superior performance, dramatically reduced cost per function, and much reduced physical size.
+
+The large worldwide investment in VLSI technology constitutes a formidable driving force that guarantee the continued progress in IC integration density and speed, for as long as physical principles will allow.
+
+\section{Why FEMOS}
+
+From this point we want start and remark that the aim of simulation
+is the full comprehension of the physical phenomenon which lies behind the function of modern device. As already underlying this situation became rapidly more important since in the last years devices became more complex and in many cases compact models are insufficent to fully describe the behavoiur of devices.
+
+Even if there's exist many commercial software which are able to resolve different physic situations, it's really difficult satisfy the necessities of industries. A simulator should be more desireable if it  could couple any kind of equations but this is a far ahievement. Modern software are often specialized on precise physic branch. Obviously this strategic choice guarantees more efficiency but it implies a lost in generality. The conseguence is that the work of the model analyst became harder when he have to afford problems located in the middle of different phenomenon. 
+
+Consider for a moment to analyse the funcionality of a new device, which its electric behaviour is strong influeced by its mechanic response. Basically you are interested to the resolution of Maxwell's law  (which is well performed by SDEVICE simulator) and the Navier-Lam\`e equations (which is well performed by COMSOL simulator). Now the question is: how to put in comunication the different outputs?
+Take into account that it's not possbile known precisely how the above programs resolves the equations, which implies a relevant risk when you decide to combine the solutions. 
+In other words the development of an own code is at least desirable and possibly helpful. The main advantage is the total control on simulation procedure and the possibility of fully customize. Although the major drawback is that the improvement of a personal code needs time and human resources, which in many cases are not avaible.   
+
+This is the framework where FEMOS code (Finite Element Method Oriented Solver) operates. 
+
+
+
+
+	
+\vspace{2cm}
+
+
+
+\textcolor{red}{
+Si introduce l'importanza e l'efficacia della gummel map. Ho bisogno di qualche fonte in pi\`u.}
+
+Una volta elencati i pregi e i difetti orientiamo l'introduzione ai reali obiettivi della tesi. Dunque chiarito il background in cui ci stiamo muovendo si \`e deciso di introdurre anche una libreria dedicata alla simulazione di materiali semiconduttori (i quali differiscono ampiamente rispetto agli altri materiali e questo va aggiunto nello stato dell'arte). Non solo differiscono nelle propriet\`a ma anche nell'impostazione del tipo 
+
+\section{Aims of this work}
+
+The work of thesis is about the achievement of the sequent targets:
+\begin{itemize}
+\item development of a finite element based simulator for semiconductor devices which deals with multiple generation/recombination and mobility models;
+\item check solutions obtained with commercial software;
+\item definition and implementation of a new way to compute the current density inside the device;
+\item extension of the residual method presented in \textcolor{red}{referenza} for the 3D case;
+\item evaluation of the possibility to extend the residual method at the computation of the current density inside the device.
+\end{itemize}
+
