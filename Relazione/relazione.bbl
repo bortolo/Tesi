@@ -1,3 +1,13 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{Qua08}
+
+\bibitem[Qua08]{quarteroni:modnum}
+Alfio Quarteroni.
+\newblock {\em Modellistica Numerica per Problemi Differenziali}.
+\newblock Springer Italia, Milan, 2008.
+
+\bibitem[YT09]{ModernVLSIdevices}
+Taur Yuan and H.~Ning Tak.
+\newblock {\em Fundamentals of Modern VLSI Devices}.
+\newblock Cambridge University Press, 2009.
 
 \end{thebibliography}

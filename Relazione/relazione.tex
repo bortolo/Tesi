@@ -19,7 +19,7 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes,positioning,arrows,calc,shadows}
 \tikzstyle{abstractbox} = [draw=black, fill=white, rectangle, 
-  inner sep=11pt, style=rounded corners, drop shadow={fill=black,opacity=0.8}]
+  inner sep=11pt, style=rounded corners, drop shadow={fill=gray,opacity=0.8}]
   \tikzstyle{abstracttitle}=[fill=white]
   
   \newcommand{\mybox}[3][fill=white]{
@@ -110,9 +110,8 @@
 \theoremstyle{plain}
 
 
-
-\newtheorem{teorema}{Teorema}
-
+\theoremstyle{plain}
+\newtheorem{Teorema}{Theorem}[chapter]
 
 \theoremstyle{definition}
 \newtheorem{Definizione}{Definition}[chapter]
@@ -131,26 +130,26 @@
 \newcommand{\classe}[1]{\emph{#1}}
 \newcommand{\referenza}[1]{[\ref{#1}]}
 \newcommand{\referenzaeq}[1]{(\ref{#1})}
-\newcommand{\figref}[1]{( Fig.\ref{#1} )}
+\newcommand{\figref}[1]{Fig.\ref{#1}}
 \newcommand{\nsp}[1]{\foreach \n in {1,...,#1}{\!}}
 \newcommand{\psp}[1]{\foreach \n in {1,...,#1}{\,}}	
 
 \begin{document}
 
-\input{fronte}
+\input{contents/fronte}
 \clearpage
 \tableofcontents
-\input{Introduction}
+\input{contents/Introduction}
 \clearpage
-\input{SemiconductorModel}
+\input{contents/SemiconductorModel}
 \clearpage
-\input{Resolution}
+\input{contents/Resolution}
 \clearpage
-\input{CurrentComputation}
-\input{ResidueMethod}
+\input{contents/CurrentComputation}
+\input{contents/ResidueMethod}
 \clearpage
-\input{Results}
+\input{contents/Results}
 \clearpage
-%\input{bib}
+\input{bib}
 
 \end{document}

@@ -44,6 +44,7 @@
 \newlabel{eq: ohm drift hole}{{2.25}{12}}
 \@writefile{toc}{\contentsline {subsubsection}{Diffusion current - Fick's law}{12}}
 \@writefile{toc}{\contentsline {subsubsection}{Drift-Diffusion transport equations}{13}}
+\newlabel{subsub:driftdiffusion transport}{{2.1.4}{13}}
 \newlabel{eq: drift diff electron}{{2.29}{13}}
 \newlabel{eq: drift diff hole}{{2.30}{13}}
 \newlabel{eq: un slotboom}{{2.34}{14}}
@@ -58,51 +59,73 @@
 \@writefile{toc}{\contentsline {subsubsection}{Shockley-Read-Hall recombination}{17}}
 \@writefile{toc}{\contentsline {subsubsection}{Auger recombination}{17}}
 \@writefile{toc}{\contentsline {subsubsection}{Impact ionization}{17}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.3}Resolution of the system}{18}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Drawbacks of the Box Methods}{18}}
-\newlabel{eq: gummel map system}{{2.45}{18}}
-\newlabel{eq: slotboom formulas}{{2.46}{19}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.4}Nonlinear Poisson Equation}{21}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Weak formulation}{21}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Numerical approximation}{21}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Damping}{21}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.5}Continuity Equation}{22}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Weak formulation}{22}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Numerical approximation}{22}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.6}Maximum discrete principle}{23}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}The current calculation problem}{24}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Resolution of the system}{18}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Scharfetter-Gummel formula}{25}}
-\newlabel{eq: scharfetter gummel 1D electron}{{3.1}{26}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Extension for the 3D case}{26}}
-\newlabel{eq: current density fermi}{{3.3}{26}}
-\newlabel{eq: current density canonic form}{{3.4}{26}}
-\newlabel{eq: variation form of current density continuos}{{3.5}{26}}
-\newlabel{eq: spaces elementwise constant}{{3.6}{26}}
-\newlabel{eq: form of qh}{{3.7}{27}}
-\newlabel{eq: variation form of current density}{{3.8}{27}}
-\newlabel{eq: first formula for J}{{3.9}{27}}
-\newlabel{eq: approzimation from 3D to edge}{{3.10}{27}}
-\newlabel{eq: differenza tra pot e qf}{{3.11}{27}}
-\newlabel{eq: finally approzimation 3D to 1D}{{3.13}{28}}
-\newlabel{eq: first formula for J}{{3.15}{28}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Residue Method}{29}}
-\@writefile{toc}{\contentsline {subsubsection}{Contact method}{29}}
-\newlabel{eq: current flux}{{3.16}{29}}
-\newlabel{eq: discretization before bc}{{3.17}{29}}
-\newlabel{eq: discretization before bc 2}{{3.18}{29}}
-\@writefile{toc}{\contentsline {subsubsection}{Results}{30}}
-\@writefile{toc}{\contentsline {subsubsection}{Bulk method}{32}}
-\newlabel{eq: extended weak formulation}{{3.21}{32}}
-\newlabel{eq: usally problem}{{3.22}{32}}
-\newlabel{eq: problem auxiliary flux}{{3.23}{32}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}The Residue Method}{34}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Idea}{34}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Simulation results}{36}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Iteration algorithms}{18}}
+\newlabel{eq: abstract problem fully}{{3.1}{18}}
+\newlabel{eq: abstract newton's method}{{3.3}{19}}
+\newlabel{theorem: newton convergence}{{3.1}{19}}
+\newlabel{eq: convergece newton}{{3.5}{19}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Gummel map algorithm}{20}}
+\@writefile{toc}{\contentsline {subsubsection}{FEMOS Gummel map}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Gummel map algorithm\relax }}{21}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig: gummel map}{{3.1}{21}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Finite element discretization}{22}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Nonlinear Poisson Equation}{23}}
+\newlabel{eq: newton step NLP}{{3.6}{23}}
+\citation{quarteroni:modnum}
+\@writefile{toc}{\contentsline {subsubsection}{Numerical approximation}{24}}
+\@writefile{toc}{\contentsline {subsubsection}{Damping}{24}}
+\newlabel{eq: NLP mod used}{{3.9}{24}}
+\newlabel{eq: NLP mod not used}{{3.10}{24}}
+\newlabel{eq: extended criterion}{{3.11}{24}}
+\newlabel{eq: easy criterion}{{3.12}{25}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Continuity Equation}{25}}
+\@writefile{toc}{\contentsline {subsubsection}{Weak formulation}{25}}
+\citation{quarteroni:modnum}
+\@writefile{toc}{\contentsline {subsubsection}{Numerical approximation}{26}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Maximum discrete principle}{26}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}The current calculation problem}{27}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Case tests presentation}{36}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{36}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{36}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{36}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Scharfetter-Gummel formula}{28}}
+\newlabel{eq: scharfetter gummel 1D electron}{{4.1}{29}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Extension for the 3D case}{29}}
+\newlabel{eq: current density fermi}{{4.3}{29}}
+\newlabel{eq: current density canonic form}{{4.4}{29}}
+\newlabel{eq: variation form of current density continuos}{{4.5}{29}}
+\newlabel{eq: spaces elementwise constant}{{4.6}{29}}
+\newlabel{eq: form of qh}{{4.7}{30}}
+\newlabel{eq: variation form of current density}{{4.8}{30}}
+\newlabel{eq: first formula for J}{{4.9}{30}}
+\newlabel{eq: approzimation from 3D to edge}{{4.10}{30}}
+\newlabel{eq: differenza tra pot e qf}{{4.11}{30}}
+\newlabel{eq: finally approzimation 3D to 1D}{{4.13}{31}}
+\newlabel{eq: first formula for J}{{4.15}{31}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Residue Method}{32}}
+\@writefile{toc}{\contentsline {subsubsection}{Contact method}{32}}
+\newlabel{eq: current flux}{{4.16}{32}}
+\newlabel{eq: discretization before bc}{{4.17}{32}}
+\newlabel{eq: discretization before bc 2}{{4.18}{32}}
+\@writefile{toc}{\contentsline {subsubsection}{Results}{33}}
+\@writefile{toc}{\contentsline {subsubsection}{Bulk method}{35}}
+\newlabel{eq: extended weak formulation}{{4.21}{35}}
+\newlabel{eq: usally problem}{{4.22}{35}}
+\newlabel{eq: problem auxiliary flux}{{4.23}{35}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}The Residue Method}{37}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Idea}{37}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Simulation results}{39}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Case tests presentation}{39}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{39}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{39}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{39}}
+\bibstyle{alpha}
+\bibdata{contents/Bibliografia}
+\bibcite{quarteroni:modnum}{{Qua08}{}{{}}{{}}}
+\bibcite{ModernVLSIdevices}{{YT09}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\@writefile{toc}{\contentsline {chapter}{Bibliografia}{41}}

@@ -1,0 +1,96 @@
+\subsection{Nonlinear Poisson Equation}
+
+Using the definition of the Frech\`et derivative one can calculated the Jacobian matrix, which in this case has $1\times 1$ dimensions. Therfore given $\varphi^0$, the Newton step for the linearized non linear Poisson equation looks as follows (carrier densities are computed with the Maxwell-Boltzmann approximation):
+
+\begin{equation}
+\label{eq: newton step NLP}
+\begin{cases}
+
+\nabla \cdot (-\epsilon \nabla \delta\varphi^{i}) 
++   \dfrac{1}{V_{th}} \sigma_s\delta\varphi^{i} 
+ =  f_s & in \psp{3} \Omega_s
+  \\
+\nabla \cdot (-\epsilon \nabla \delta\varphi^i) =  f_o & in \psp{3} \Omega / \Omega_s 
+\\
+\varphi^{i+1}=\varphi^i+\delta \varphi^i
+\end{cases} 
+\end{equation}
+
+having set,
+
+\begin{align*}
+\sigma_s(\varphi^{i},\varphi_n^{k},\varphi_p^{k}) & =q(p(\varphi^{i},\varphi_p^{k})-n(\varphi^{i},\varphi_n^{k}))
+\\
+f_s(\varphi^{i},\varphi_n^{k},\varphi_p^{k}) & = \nabla \cdot (-\epsilon \nabla \varphi^{i}) + q\left[ p(\varphi^{i},\varphi_p^{k})-n(\varphi^{i},\varphi_n^{k})) + N_D^+-N_A^- \right]
+\\
+f_o(\varphi^{i},\varphi_n^{k},\varphi_p^{k}) & = \nabla \cdot (-\epsilon \nabla \varphi^{i}) 
+\end{align*}
+
+
+The first two equations of problem \referenzaeq{eq: newton step NLP} form a classical DR (Diffusion-Reaction) problem, respect the variable $\delta \varphi^i$ in $\Omega$, considering a unique piecewise force term and reaction  defined as follows:
+\begin{align*}
+f & = f_s \mathcal{I}_{\Omega_s} + f_o \mathcal{I}_{\Omega / \Omega_s} \\
+\sigma & = \sigma_s \mathcal{I}_{\Omega_s}
+\end{align*}
+
+The more generalized form of \referenzaeq{eq: newton step NLP} reads as follows:
+\begin{equation}
+\left\{
+\begin{array}{rcll}
+\nabla \cdot (-\epsilon \nabla \varphi) + \sigma^{(k)}(\vect{x}) \varphi & = &  f^{(k)}(\vect{x}) & \psp{15} in \psp{2} \Omega \\
+\varphi & = & \varphi_D & \psp{15} on \psp{2} \Gamma_D \\
+\nabla \varphi \cdot \vect{n} & = & 0 & \psp{15} on \psp{2} \Gamma_N
+\end{array}
+\right.
+\end{equation}
+
+For the sake of simplicity we summerize the reaction and force term in $\sigma$ and $f$, but we kept visible the iteration dependence.
+The well-posedness of such problem is ensured by several (and reasonable) hypotesis:
+\begin{itemize}
+\item $\epsilon \in L^{\infty}(\Omega)$ and $\exists m$ s.t. $0 < m \leq \epsilon$ (a.e.) in $\Omega$;
+\item  $\sigma \in L^{\infty}(\Omega)$ and $\exists m$ s.t. $0 < m \leq \sigma$ (a.e.) in $\Omega$.
+\end{itemize}
+
+We proceed with the classical displacement weak formulation.
+Given $\varphi_D \in H^{1/2}(\Gamma_D)$ and $f \in L^2(\Omega)$ find $\varphi \in H^1(\Omega)$ such that 
+
+\begin{equation}
+\int_{\Omega} \epsilon \nabla \varphi \nabla v \, d\Omega + \int_{\Omega} \sigma^{(k)}\varphi v \, d\Omega = \int_{\Omega} f^{(k)}v \, d\Omega \psp{15} \forall v \in H^1_{\Gamma_D}(\Omega)
+\end{equation}
+
+\subsubsection{Numerical approximation}
+In view of the finite element discretization of problem, we let $\bar{\Omega} = \bigcup \bar{K}$ be a partition $\mathcal{T}_h$ of the domain into tetaedral elements $K$ of volume $|K|$.
+ We suppose that $\mathcal{T}_h$ satisfied the \textit{classical regularity condition} \citep{quarteroni:modnum},
+  
+\subsubsection{Damping}
+The main problem associated with the classical Newton method is the tendency to overestimate the length of the actual correction step for the iterate. This phenomenon is frequently termed overshoot. In the case of the semiconductor equations this overshoot problem has often been treated by simply limiting the size of the correction vector ($\delta \varphi$) determined by Newton's method. The usual established modifications to avoid overshoot are given by the seguent formulations:
+
+
+\begin{align}
+A(\varphi_k)&=\dfrac{1}{t_k}F'(\varphi_k) \label{eq: NLP mod used} \\
+A(\varphi_k)&=s_kI+F'(\varphi_k) \label{eq: NLP mod not used}
+\end{align}
+
+$t_k$ and $s_k$ are properly chosen positive parameters. During the implementation of the code we chose \referenzaeq{eq: NLP mod used} method. Note that for $t_k=1$, $s_k=0$ these modified Newton methods reduce to the classical Newton method. We have now to deal with the question how to choose $t_k$ or $s_k$ that the modified Newton methods exhibit superior convergence properties compared to the classical Newton method.
+For the case \referenzaeq{eq: NLP mod used} there's a simple criterion suggested by Deuflhard \textcolor{red}{referenza}: $t_k$ is taken from the interval $(0,1]$ in such a manner that for any norm,
+\begin{equation}
+\label{eq: extended criterion}
+||F'(\varphi_k)^{-1}F(\varphi_k-t_kF'(\varphi_k)^{-1}F(\varphi_k))||<||F'(\varphi_k)F(\varphi_k)||
+\end{equation}
+
+Condition \referenzaeq{eq: extended criterion} guarantees that the correction of the k-th iterate is an improved approximation to the final solution, in other words the residual norm can only descents.
+This condition can be easily evaluated only if the Jacobian matrix is factored into triangular matrices because the evaluation of the argument of the norm on the left hand side of \referenzaeq{eq: extended criterion} is then reduced to a forward and backward substitution and the evaluation of $F(\varphi)$. Although we use an iterative methods (BCG solver) which implies serious diffuclties to the application of the criterion. Another valid possibility is to use the main diagonal of $F'(\varphi_k)$, denoted as $D(\varphi_k)$:
+\begin{equation}
+\label{eq: easy criterion}
+||D(\varphi_k)^{-1}F(\varphi_k-t_kD(\varphi_k)^{-1}F(\varphi_k))||<||F'(\varphi_k)F(\varphi_k)||
+\end{equation}
+
+This is the criterion developed in our code. However the value to use for $t_k$ is a question of trial and error. Frequently one chooses the following sequences:
+
+\begin{align}
+t_k & = \dfrac{1}{2^i} \\
+t_k & = \dfrac{1}{2^{\dfrac{i(i+1)}{2}}}  
+\end{align}
+
+obiuvsly $i$ is the subiterations of damping reached when satisfied \referenzaeq{eq: easy criterion}. Sufficiently close to the solution \referenzaeq{eq: extended criterion} (and so \referenzaeq{eq: easy criterion}) will be satisfied with $t_k=1$ so that the convergence properties of the classical Newton method are recovered.
+ 

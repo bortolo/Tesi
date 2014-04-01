@@ -1,7 +1,5 @@
-\section{Resolution of the system}
+\chapter{Resolution of the system}
 
-\subsection{Drawbacks of the Box Methods}
-While the box method has become the standard technique for the discretization of the continuity equations, it suffers from several drawbacks arising from geometrical considerations. Satisfactory results can be obtained only for acute triangulations. Even one obtuse triangle can lead to a large spike in the solution of the equation.
 
 In this form we can approach to the resolution of the problem only with a completely coupled Newton method. It's well known that there are several issues adopting this way of resolution:
 \begin{itemize}
@@ -9,6 +7,13 @@ In this form we can approach to the resolution of the problem only with a comple
 \item to ensure convergence of the Newton iterative process, it is particularly important to ensure a very good initial guess for the unknown variables;
 \item dimension of the linearized problem is of the order of $N_{dofs}^3$ ($N_{dofs}$ is the number of degree of freedom used for the numerical approximation).
 \end{itemize}
+
+
+
+
+
+\subsection{Drawbacks of the Box Methods}
+While the box method has become the standard technique for the discretization of the continuity equations, it suffers from several drawbacks arising from geometrical considerations. Satisfactory results can be obtained only for acute triangulations. Even one obtuse triangle can lead to a large spike in the solution of the equation.
 
 These considerations urges us to pursue an alternative approach: the decoupled Gummel Map.
 First of all we have to introduce the Maxwell-Boltzamann approximation for the carriers:
