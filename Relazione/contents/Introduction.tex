@@ -13,8 +13,7 @@ The large worldwide investment in VLSI technology constitutes a formidable drivi
 
 \section{Why FEMOS}
 
-From this point we want start and remark that the aim of simulation
-is the full comprehension of the physical phenomenon which lies behind the function of modern device. As already underlying this situation became rapidly more important since in the last years devices became more complex and in many cases compact models are insufficent to fully describe the behavoiur of devices.
+From this point we want start and remark that the aim of numerical simulations is the full comprehension of the physical phenomenon which lies behind the function of modern device. As already underlying this situation became rapidly more important since in the last years devices became more complex and in many cases compact models are insufficent to fully describe the behavoiur of devices.
 
 Even if there's exist many commercial software which are able to resolve different physic situations, it's really difficult satisfy the necessities of industries. A simulator should be more desireable if it  could couple any kind of equations but this is a far ahievement. Modern software are often specialized on precise physic branch. Obviously this strategic choice guarantees more efficiency but it implies a lost in generality. The conseguence is that the work of the model analyst became harder when he have to afford problems located in the middle of different phenomenon. 
 
@@ -22,27 +21,12 @@ Consider for a moment to analyse the funcionality of a new device, which its ele
 Take into account that it's not possbile known precisely how the above programs resolves the equations, which implies a relevant risk when you decide to combine the solutions. 
 In other words the development of an own code is at least desirable and possibly helpful. The main advantage is the total control on simulation procedure and the possibility of fully customize. Although the major drawback is that the improvement of a personal code needs time and human resources, which in many cases are not avaible.   
 
-This is the framework where FEMOS code (Finite Element Method Oriented Solver) operates. 
-
-
-
-
-	
-\vspace{2cm}
-
-
-
-\textcolor{red}{
-Si introduce l'importanza e l'efficacia della gummel map. Ho bisogno di qualche fonte in pi\`u.}
-
-Una volta elencati i pregi e i difetti orientiamo l'introduzione ai reali obiettivi della tesi. Dunque chiarito il background in cui ci stiamo muovendo si \`e deciso di introdurre anche una libreria dedicata alla simulazione di materiali semiconduttori (i quali differiscono ampiamente rispetto agli altri materiali e questo va aggiunto nello stato dell'arte). Non solo differiscono nelle propriet\`a ma anche nell'impostazione del tipo 
-
-\section{Aims of this work}
-
-The work of thesis is about the achievement of the sequent targets:
+The FEMOS project (\textit{Finite Element Method Oriented Solver}) sinks its motivations in the above framework. The main intention is to solve different physics aspects and give a more precise description of devices with a single output. The complexity of this achievement guarantees a continuum source of physic, numerical and programming challenges. 
+Between them, even if modern devices present innovative and unexpected behaviour, we can't avoid the treatment of the classical semiconductor devices from the simulation possibilties of FEMOS.
+This thesis found its origin in the development of this achievement, but as subject covered a spread wide area in terms of models and kind of devices, we decide to focus on precise points which we present here:
 \begin{itemize}
 \item development of a finite element based simulator for semiconductor devices which deals with multiple generation/recombination and mobility models;
-\item check solutions obtained with commercial software;
+\item check solutions obtained against commercial software (SDEVICE);
 \item definition and implementation of a new way to compute the current density inside the device;
 \item extension of the residual method presented in \textcolor{red}{referenza} for the 3D case;
 \item evaluation of the possibility to extend the residual method at the computation of the current density inside the device.

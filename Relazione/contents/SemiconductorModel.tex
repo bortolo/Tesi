@@ -1,6 +1,7 @@
 \chapter{Semiconductor model}
 
 \section{Basic Device Physics}
+In these section we present a summary about basic physics properties of semiconductor material accordingly with the quantum mechanics theory \textcolor{red}{referenza per stato solido?}. Moreover a short reconstruction of the Drift-Diffusion model is presented.
 
 \subsection{Intrinsic semiconductor}
 In a silicon crystal each atom has four valence electrons to share with its four nearest neighboring atoms. The valence electrons are shared in a paired configuration called a covalent bond. The most important result of the application of quantum mechanics to the description of electrons in a solid is that the allowed energy levels of electrons are grouped into bands. The bands are separated by regions of energy that the electrons in the solid cannot possess: forbidden gaps. The highest energy band that is completely filled by electron at 0[K] is called the \textit{valence band}. The next higher energy band, separated by a frobidden gap from the valence band, is called the \textit{conduction band}.
@@ -14,7 +15,7 @@ In every cases the energy distribution of electrons in a solid is governed by th
 \label{eq: fermi dirac distribution}
 f_D(E) = \dfrac{1}{1+exp\left(\dfrac{E-E_f}{KT}\right)} 
 \end{equation}
-here $K=1.38\times10^{-23}[J/K]$ is Boltzmann's constant,$T$ is the absolute temperature and $E_f$ is a parameter called the \textit{Fermi level}.
+here $K=1.38\times10^{-23}[J/K]$ is Boltzmann's constant, $T$ is the absolute temperature and $E_f$ is a parameter called the \textit{Fermi level}.
 
 \begin{Definizione}
 The Fermi level ($E_f$) is the energy at which the probability of occupation of an energy state by an electron is exactly one-half.
@@ -51,29 +52,41 @@ p & = N_v exp\left(-\dfrac{E_f-E_v}{KT}\right)  \label{eq: p density fd}
 \end{align}
 
 where $N_c$ and $N_v$ are the \textit{effective density of states}.
-If we consider an intrisic semiconductor we can say that $n=p$ and the above equations can be rewritten in terms of the intrinsic carrier density ($n_i$) and the midgap energy level ($E_i$) :
-
-\begin{align}
-n & = n_i exp\left(\dfrac{E_f-E_i}{KT}\right) \label{eq: n density mb}\\
-p & = n_i exp\left(\dfrac{E_i-E_f}{KT}\right)  \label{eq: p density mb}
-\end{align}
-
-\textcolor{red}{Introdurre il discorso del midgap e dell'equilibrio np=ni2}
-
-\begin{equation}
-\label{eq: legge di azione di massa}
-np=n_i^2
-\end{equation}
+If we consider an intrisic semiconductor we can say that $n=p$ and obtained the \textit{intrinsic Fermi level} $E_i$ using equations \referenzaeq{eq: n density fd} and \referenzaeq{eq: p density fd}:
 
 \begin{equation}
 \label{eq: midgap equilibrium}
 E_i=E_f=\dfrac{E_c+E_v}{2} - \dfrac{KT}{2}ln\left(\dfrac{N_c}{N_v}\right)
 \end{equation}
 
+Back sostitution of \referenzaeq{eq: midgap equilibrium} in \referenzaeq{eq: n density fd} give us the expression of the intrinsic carrier concentration $n_i=n=p$:
+
+
 \begin{equation}
 \label{eq: ni equilibrium NcNv}
 n_i = \sqrt{N_cN_v}exp\left(-\dfrac{E_g}{2KT}\right)
 \end{equation}
+
+\begin{Osservazione}
+Since the thermal energy, $KT$ is muc smaller than the usual semiconductor bandgap $E_g$, the intrinsic Fermi levelo is very close to the midpoint between the conduction band and the valence band.
+\end{Osservazione}
+
+Equations \referenzaeq{eq: n density fd} and \referenzaeq{eq: p density fd} can be rewritten in terms of the intrinsic carrier density ($n_i$) and the midgap energy level ($E_i$) :
+
+\begin{align}
+n & = n_i exp\left(\dfrac{E_f-E_i}{KT}\right) \label{eq: n density mb}\\
+p & = n_i exp\left(\dfrac{E_i-E_f}{KT}\right)  \label{eq: p density mb}
+\end{align}
+
+Finally we remark a fundamental and useful relation, since any change in $E_f$ causes reciprocal changes in $n$ and $p$ the product
+
+\begin{equation}
+\label{eq: legge di azione di massa}
+np=n_i^2
+\end{equation}
+
+in equilibrium is a costant, independent of the Fermi level position.
+
 
 \subsection{Extrinsic semiconductor}
 Intrinsic semiconductor at room temperature has an extremely low free-carrier concentration, therefore, its resistivity is very high. In order to make semiconductor a better conductor it's usual add impurities which introduce additional energy levels in the forbidden gap and can be easily ionized to add either electrons to the conduction band or holes to the valence band. In other words the electrical conductivity of silicon is then dominated by the type and concentration of the impurity atoms, or dopants.
@@ -358,10 +371,80 @@ We consider also the stationary form for our purpose.
 
 \subsection{Generation and Recombination phenomenon}
 
-The modelling of $R(\vect{x},t)$ is one of the most important feature which one could take into account. In this work we have implemented three distincted contribute based on the classical theory.
+The modelling of $R(\vect{x},t)$ is one of the most important feature which one could take into account, in fact it plays an important role in detemrining the current-voltage characteristic of every device.
+ 
+It's important to keep in mind that electrons and holes are in continuos fluctuation due to their thermal energy, but the macroscopic result of such a process at equilibrium is that the net recombination rate is identically zero at each point and at each time level. Therefore our interest is to analyze the deviations from this condition. In every moment the system try to mantain the equilibrium, so it's important underlying that the response with a recombination event happens in order to neutralize an excess of charge, while generation event are usually due to thermal agitation or an external input source.
+The phenomenological model for the net recombination rate $R$ is often given by the sequent formulation:
+\begin{equation}
+\label{eq: generic RG}
+R(n,p) = (pn-n_i^2)F(n,p)
+\end{equation}
+where $F$ is a function modelling the specific recombination/generation (R/G) event.
+In the following we present the classical theory about three kind of contribute. 
 
 \subsubsection{Shockley-Read-Hall recombination}
 
+Electron and hole generation and recombination can take place directly between the valence band and the conduction band, or inderactly via trap centers in the energy gap. The latter category includes Shockley-Read-Hall phenomena (SRH), more precisely SRH rate is a two-particle process which matematically expresses the probality that:
+\begin{itemize}
+\item[$R_{SRH}$] an electron in the conduction band neutralizes a hole at the valence band through the mediation of an unoccupied trapping level located in the energy gap,
+\item[$G_{SRH}$] an electron is emitted from the valence band to the conduction band, through he mediation of an unoccupied trapping level located in the energy gap.
+\end{itemize}
+
+The following expression is usually employed for the modulating function $F$:
+
+\begin{equation}
+F_{SRH}(n,p) = \dfrac{1}{\tau_n(p+n_i)+\tau_p(n+n_i)}
+\end{equation}
+
+the quantiaties $\tau_n$ and $\tau_p$ are called \textit{carrier lifetimes} and are phisically defined as the reciprocals of the capture rates per single carrier associated with the energy trap distribution within the semiconductor energy gap. Their typical order of magnitude lies in the range $10^{-3}\mu s\div 1 \mu s$.
+
+
 \subsubsection{Auger recombination}
 
+Auger R/G is a three-particle process and take place directly between the valence band and the conduction band. We distinguish four cases which depend to the kind of carriers involved in the phenomena:
+\begin{itemize}
+\item[$R_{AU}^{2n,1p}$] a high-energy electron in the conduction band moves to the valence band where it neutralizes a hole, transmitting the excess energy to another electron in the conduction band;
+\item[$G_{AU}^{2n,1p}$] an electron in the valence band moves to the conduction band by taking the energy from a high energy electron in the conduction band and leaves a hole in the valence band;
+\item[$R_{AU}^{2p,1n}$] an electron in the conduction band moves to the valence band where it neutralizes a hole, tranmitting the excess energy to another hole in the valence band;
+\item[$G_{AU}^{2p,1n}$] an electron in the valence band moves to the conduction band by taking the energy from a high energy hole in the valence band and leaves a hole in the valence band.
+\end{itemize}
+
+The following expression is usually employed for the modulating function $F$:
+
+\begin{equation}
+F_{AU}(n,p) = C_nn+C_pp
+\end{equation}
+
+where the quantitaties $C_n$ and $C_p$ are the so called  Auger capture coefficients tipically of the order of magnitude of $10^{-25}[cm^6s^{-1}]$.
+Note that Auger R/G is relevant only when both carrier densities attain high values.
+
+
 \subsubsection{Impact ionization}
+
+The impac ionization mechanism is a generation three-particle process and it is dissimilar from the previously phenomenon because we can't express its contribute with a relation like \referenzaeq{eq: generic RG}. The high energy carrier generation is triggered by the presence of very high electric fields. Due to these fields an electron could gains enough energy to excite an electron-hole pair out of a silicon lattice bond. Then the process can be repeated until an avalanche of generated carriers is produced within the region.
+There are several different models for the II generation, inside our code we implemented the van Overstraeten - de Man \textcolor{red}{referenza manuale sdevice} model based on the Chynoweth law \textcolor{red}{referenza dentro sdevice}:
+\begin{equation}
+G_{II}(n,p)= \alpha_n n |\vect{v}_n| + \alpha_p p |\vect{v}_p|
+\end{equation}
+
+where:
+
+\begin{equation}
+\alpha(E_{ava}) = \gamma exp\left(-\dfrac{\gamma b}{E_{ava}} \right)
+\end{equation} 
+\begin{equation}
+\gamma = \dfrac{tanh\left(\dfrac{\hbar \omega_{op}}{2KT_0} \right) }{tanh\left(\dfrac{\hbar \omega_{op}}{2KT} \right)}
+\end{equation}
+
+The factor $\gamma$ with the optical phono energy $\hbar \omega_{op}$ expresses the temperature dependence of the phonon gas against which carriers are accelerated.
+$E_{ava}$ is the driving force which takes into account how the electrif field influence the generation event. There are two possibilties to compute this quantity:
+\begin{itemize}
+\item compute the component of the elctrostatic field in the direction of the current
+\begin{equation}
+E_{ava}^{n,p} = \dfrac{\vect{E}\cdot\vect{J}_{n,p}}{||\vect{J}_{n,p}||}
+\end{equation}
+\item consider the module of the quasi fermi gradient
+\begin{equation}
+E_{ava}^{n,p} = |\nabla \varphi_{n,p}|
+\end{equation}
+\end{itemize}
