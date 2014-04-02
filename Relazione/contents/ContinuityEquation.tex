@@ -1,0 +1,39 @@
+\subsubsection{Continuity Equation}
+
+Without loss of generality we can consider only the electron continuity equation. Problem \referenzaeq{eq: LEC system} is a classical diffusion-advection-reaction (DAR) problem written in conservative form. We will treat this PDE's equation likewise Poisson equation with the standard displacement weak formulation.
+
+As we descirbed in section \referenza{subsection: RG} recombination/generation phenomenon could produce an additional reaction term so in order to include these cases into our weak formulation we denote the general recombination/generation term as follows:
+
+\begin{equation}
+R_n = \sigma n - f
+\end{equation}
+
+Furthermore the demonstration of the well-posedness became easier if we rewrite system \referenzaeq{eq: LEC system} with Slotboom variables:
+\begin{equation}
+\small
+\left\{
+\begin{array}{rcll}
+ \nabla \cdot \left( - q D_n exp(\varphi/V_{th}) u_n \right) + \sigma exp(\varphi/V_{th}) u_n& = & f  & \psp{15} in \psp{2} \Omega \\
+u_n & = &  n_D exp(-\varphi/V_{th}) & \psp{15} on \psp{2} \Gamma_D \\
+\nabla u_n \cdot \vect{n} & = & 0 & \psp{15} on \psp{2} \Gamma_N
+\end{array}
+\right.
+\end{equation}
+
+In order to simplify the notation we summerize the coefficients of the above system:
+\begin{align*}
+\bar{D_n} & = q D_n exp(\varphi/V_{th}) \\
+\bar{\sigma}  & = \sigma exp(\varphi/V_{th})
+\end{align*}
+The existence and uniqueness of the unkown variable $u_n$ enures the same properties on $n$, thanks to the univocal relation between $u_n$ and $n$.
+What we obtained with this smart sostitution is a system totally similar to the linearized Poisson problem and consequently we should make similar hypotesis onthe coefficients:
+\begin{itemize}
+\item $\bar{D_n} \in L^{\infty}(\Omega)$ and $\exists m$ s.t. $0 < m \leq \bar{D_n}$ (a.e.) in $\Omega$;
+\item  $\bar{\sigma} \in L^{\infty}(\Omega)$ and $\exists m$ s.t. $0 < m \leq \bar{\sigma}$ (a.e.) in $\Omega_s$.
+\end{itemize}
+Finally we can write the weak formulation: given $u_{n_D} \in H^{1/2}(\Gamma_D)$ and $f \in L^2(\Omega)$ find $u_n \in H^1(\Omega)$ such that:
+
+\begin{equation}
+\label{eq: LEC weakformulation}
+\int_{\Omega} \bar{D_n} \nabla u_n \nabla v \, d\Omega + \int_{\Omega} \bar{\sigma} u_n v \, d\Omega = \int_{\Omega} f v \, d\Omega \psp{15} \forall v \in H^1_{\Gamma_D}(\Omega)
+\end{equation}

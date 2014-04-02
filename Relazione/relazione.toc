@@ -17,27 +17,29 @@
 \contentsline {subsubsection}{Shockley-Read-Hall recombination}{17}
 \contentsline {subsubsection}{Auger recombination}{18}
 \contentsline {subsubsection}{Impact ionization}{19}
+\contentsline {subsection}{\numberline {2.2.3}Mobility models}{19}
 \contentsline {chapter}{\numberline {3}Resolution of the system}{20}
 \contentsline {section}{\numberline {3.1}Iteration algorithms}{20}
 \contentsline {subsection}{\numberline {3.1.1}Gummel map algorithm}{22}
 \contentsline {subsubsection}{FEMOS Gummel map}{22}
-\contentsline {section}{\numberline {3.2}Finite element discretization}{24}
-\contentsline {subsection}{\numberline {3.2.1}Nonlinear Poisson Equation}{25}
-\contentsline {subsubsection}{Numerical approximation}{26}
-\contentsline {subsubsection}{Damping}{26}
-\contentsline {subsection}{\numberline {3.2.2}Continuity Equation}{27}
-\contentsline {subsubsection}{Weak formulation}{27}
-\contentsline {subsubsection}{Numerical approximation}{28}
-\contentsline {subsection}{\numberline {3.2.3}Maximum discrete principle}{28}
-\contentsline {chapter}{\numberline {4}The current calculation problem}{29}
-\contentsline {section}{\numberline {4.1}Scharfetter-Gummel formula}{30}
-\contentsline {section}{\numberline {4.2}Extension for the 3D case}{31}
-\contentsline {section}{\numberline {4.3}Residue Method}{34}
-\contentsline {subsubsection}{Contact method}{34}
-\contentsline {subsubsection}{Results}{35}
-\contentsline {subsubsection}{Bulk method}{37}
-\contentsline {section}{\numberline {4.4}The Residue Method}{39}
-\contentsline {subsection}{\numberline {4.4.1}Idea}{39}
-\contentsline {chapter}{\numberline {5}Simulation results}{41}
-\contentsline {section}{\numberline {5.1}Case tests presentation}{41}
-\contentsline {chapter}{Bibliografia}{43}
+\contentsline {section}{\numberline {3.2}Finite element discretization}{25}
+\contentsline {subsection}{\numberline {3.2.1}Weak Formulation}{25}
+\contentsline {subsubsection}{Nonlinear Poisson Equation}{25}
+\contentsline {subsubsection}{Continuity Equation}{28}
+\contentsline {subsection}{\numberline {3.2.2}Geometrical discretization}{29}
+\contentsline {subsection}{\numberline {3.2.3}Numerical approximation}{29}
+\contentsline {subsubsection}{Damping}{29}
+\contentsline {subsubsection}{Numerical approximation}{30}
+\contentsline {subsection}{\numberline {3.2.4}Maximum discrete principle}{31}
+\contentsline {chapter}{\numberline {4}The current calculation problem}{32}
+\contentsline {section}{\numberline {4.1}Scharfetter-Gummel formula}{33}
+\contentsline {section}{\numberline {4.2}Extension for the 3D case}{34}
+\contentsline {section}{\numberline {4.3}Residue Method}{37}
+\contentsline {subsubsection}{Contact method}{37}
+\contentsline {subsubsection}{Results}{38}
+\contentsline {subsubsection}{Bulk method}{40}
+\contentsline {section}{\numberline {4.4}The Residue Method}{42}
+\contentsline {subsection}{\numberline {4.4.1}Idea}{42}
+\contentsline {chapter}{\numberline {5}Simulation results}{44}
+\contentsline {section}{\numberline {5.1}Case tests presentation}{44}
+\contentsline {chapter}{Bibliografia}{47}

@@ -1,96 +1,120 @@
-\subsection{Nonlinear Poisson Equation}
+\subsubsection{Nonlinear Poisson Equation}
 
-Using the definition of the Frech\`et derivative one can calculated the Jacobian matrix, which in this case has $1\times 1$ dimensions. Therfore given $\varphi^0$, the Newton step for the linearized non linear Poisson equation looks as follows (carrier densities are computed with the Maxwell-Boltzmann approximation):
+Using the definition of the Frech\`et derivative one can calculated the Jacobian matrix of problem \referenzaeq{eq: NLP system}, which in this case has $1\times 1$ dimensions. In contrast with the Fully Coupled Newton Method \referenzaeq{eq: abstract newton's method}, the functional iteration has a unique variable which is $\varphi$:
+
+\begin{equation}
+[\varphi] \rightarrow F([\varphi])
+\end{equation}
+
+Therfore given $\varphi^0$, the Newton step for the linearized non linear Poisson equation looks as follows (remember that carrier densities are computed with the Maxwell-Boltzmann approximation):
 
 \begin{equation}
 \label{eq: newton step NLP}
 \begin{cases}
 
-\nabla \cdot (-\epsilon \nabla \delta\varphi^{i}) 
-+   \dfrac{1}{V_{th}} \sigma_s\delta\varphi^{i} 
- =  f_s & in \psp{3} \Omega_s
+\nabla \cdot (-\epsilon_s \nabla \delta\varphi^k) 
++   \dfrac{1}{V_{th}} \sigma_s^k\delta\varphi^k 
+ =  f_s^k & in \psp{3} \Omega_s
   \\
-\nabla \cdot (-\epsilon \nabla \delta\varphi^i) =  f_o & in \psp{3} \Omega / \Omega_s 
+\nabla \cdot (-\epsilon_{ox} \nabla \delta\varphi^k) =  f_{ox}^k & in \psp{3} \Omega / \Omega_s 
 \\
-\varphi^{i+1}=\varphi^i+\delta \varphi^i
+\delta \varphi^k = 0 & on \psp{3} \Gamma_D 
+\\
+\nabla \delta \varphi^k \cdot \vect{n} = 0 & on \psp{3} \Gamma_N
+\\
+\varphi^{k+1}=\varphi^k+\delta \varphi^k
 \end{cases} 
 \end{equation}
 
 having set,
 
 \begin{align*}
-\sigma_s(\varphi^{i},\varphi_n^{k},\varphi_p^{k}) & =q(p(\varphi^{i},\varphi_p^{k})-n(\varphi^{i},\varphi_n^{k}))
+\sigma_s^k(\varphi^{k},\varphi_n^{i},\varphi_p^{i}) & =q(p(\varphi^k,\varphi_p^i)-n(\varphi^k,\varphi_n^i))
 \\
-f_s(\varphi^{i},\varphi_n^{k},\varphi_p^{k}) & = \nabla \cdot (-\epsilon \nabla \varphi^{i}) + q\left[ p(\varphi^{i},\varphi_p^{k})-n(\varphi^{i},\varphi_n^{k})) + N_D^+-N_A^- \right]
+f_s^k(\varphi^k,\varphi_n^i,\varphi_p^i) & = \nabla \cdot (-\epsilon \nabla \varphi^k) + q\left[ p(\varphi^k,\varphi_p^i)-n(\varphi^k,\varphi_n^i)) + N_D^+-N_A^- \right]
 \\
-f_o(\varphi^{i},\varphi_n^{k},\varphi_p^{k}) & = \nabla \cdot (-\epsilon \nabla \varphi^{i}) 
+f_{ox}(\varphi^k) & = \nabla \cdot (-\epsilon \nabla \varphi^k) 
 \end{align*}
 
-
-The first two equations of problem \referenzaeq{eq: newton step NLP} form a classical DR (Diffusion-Reaction) problem, respect the variable $\delta \varphi^i$ in $\Omega$, considering a unique piecewise force term and reaction  defined as follows:
+We remark the importance to give an appropriate $\varphi^0$ which respects Dirichlet boundary condition $\varphi_D$, although the problem can't satisfied in strong manner such condition. Moreover with suitable intial guess we intend also a function which hopefully is near as possible at the attractive region of the problem \referenza{theorem: newton convergence}.
+The first two equations of system \referenzaeq{eq: newton step NLP} constitute a classical DR (Diffusion-Reaction) problem in $\Omega$, respect the variable $\delta \varphi^i$. We are able to consider a unique piecewise electric permettivity, force term and reaction defined as follows:
 \begin{align*}
-f & = f_s \mathcal{I}_{\Omega_s} + f_o \mathcal{I}_{\Omega / \Omega_s} \\
+\epsilon & = \epsilon_s \mathcal{I}_{\Omega_s} + \epsilon_{ox} \mathcal{I}_{\Omega / \Omega_s} \\
+f & = f_s \mathcal{I}_{\Omega_s} + f_{ox} \mathcal{I}_{\Omega / \Omega_s} \\
 \sigma & = \sigma_s \mathcal{I}_{\Omega_s}
 \end{align*}
 
 The more generalized form of \referenzaeq{eq: newton step NLP} reads as follows:
 \begin{equation}
+\label{sys: NLP general problem linearized}
 \left\{
 \begin{array}{rcll}
-\nabla \cdot (-\epsilon \nabla \varphi) + \sigma^{(k)}(\vect{x}) \varphi & = &  f^{(k)}(\vect{x}) & \psp{15} in \psp{2} \Omega \\
-\varphi & = & \varphi_D & \psp{15} on \psp{2} \Gamma_D \\
-\nabla \varphi \cdot \vect{n} & = & 0 & \psp{15} on \psp{2} \Gamma_N
+\nabla \cdot (-\epsilon \nabla \delta \varphi^k) + \sigma^k \delta \varphi^k & = &  f^k & \psp{15} in \psp{2} \Omega \\
+\delta \varphi^k & = & 0 & \psp{15} on \psp{2} \Gamma_D \\
+\nabla \delta \varphi ^k\cdot \vect{n} & = & 0 & \psp{15} on \psp{2} \Gamma_N
+\\
+\varphi^{k+1} & = & \varphi^k + \delta \varphi^k
 \end{array}
 \right.
 \end{equation}
 
-For the sake of simplicity we summerize the reaction and force term in $\sigma$ and $f$, but we kept visible the iteration dependence.
-The well-posedness of such problem is ensured by several (and reasonable) hypotesis:
+The well-posedness of such problem is ensured by several (and physical) hypotesis:
 \begin{itemize}
 \item $\epsilon \in L^{\infty}(\Omega)$ and $\exists m$ s.t. $0 < m \leq \epsilon$ (a.e.) in $\Omega$;
-\item  $\sigma \in L^{\infty}(\Omega)$ and $\exists m$ s.t. $0 < m \leq \sigma$ (a.e.) in $\Omega$.
+\item  $\sigma \in L^{\infty}(\Omega)$ and $\exists m$ s.t. $0 < m \leq \sigma$ (a.e.) in $\Omega_s$.
 \end{itemize}
 
-We proceed with the classical displacement weak formulation.
-Given $\varphi_D \in H^{1/2}(\Gamma_D)$ and $f \in L^2(\Omega)$ find $\varphi \in H^1(\Omega)$ such that 
+The relative weak formulation reads as follows: given $f \in L^2(\Omega)$ find $\delta\varphi \in H^1_{\Gamma_D}(\Omega)$ such that 
 
 \begin{equation}
-\int_{\Omega} \epsilon \nabla \varphi \nabla v \, d\Omega + \int_{\Omega} \sigma^{(k)}\varphi v \, d\Omega = \int_{\Omega} f^{(k)}v \, d\Omega \psp{15} \forall v \in H^1_{\Gamma_D}(\Omega)
+\label{eq: NLP weakformulation}
+\int_{\Omega} \epsilon \nabla \delta\varphi \nabla v \, d\Omega + \int_{\Omega} \sigma^{(k)}\delta \varphi v \, d\Omega = \int_{\Omega} f^{(k)}v \, d\Omega \psp{15} \forall v \in H^1_{\Gamma_D}(\Omega)
 \end{equation}
 
-\subsubsection{Numerical approximation}
-In view of the finite element discretization of problem, we let $\bar{\Omega} = \bigcup \bar{K}$ be a partition $\mathcal{T}_h$ of the domain into tetaedral elements $K$ of volume $|K|$.
- We suppose that $\mathcal{T}_h$ satisfied the \textit{classical regularity condition} \citep{quarteroni:modnum},
-  
-\subsubsection{Damping}
-The main problem associated with the classical Newton method is the tendency to overestimate the length of the actual correction step for the iterate. This phenomenon is frequently termed overshoot. In the case of the semiconductor equations this overshoot problem has often been treated by simply limiting the size of the correction vector ($\delta \varphi$) determined by Newton's method. The usual established modifications to avoid overshoot are given by the seguent formulations:
+For the well-posedness of \referenzaeq{eq: NLP weakformulation} is useful define the sequent quntities:
+\begin{equation*}
+\begin{array}{ll}
+\epsilon_M = max_{\Omega} \epsilon & \epsilon_m = min_{\Omega} \epsilon \\
+\sigma_M = max_{\Omega} \sigma & \sigma_m = max_{\Omega} \sigma = 0 \\
+\end{array}
+\end{equation*}
+Take into account the above hypotesis one can demonstrate:
+\begin{itemize}
+\item \textbf{Continuity},
+\begin{equation*}
+\begin{array}{ll}
+\forall u,v \in H^1_{\Gamma_D} &\\ \\
+|\int_{\Omega} \epsilon \nabla u \nabla v + \int_{\Omega} \sigma^{(k)}u v| 
+& \leq \epsilon_{M} ||\nabla u ||_{L^2} || \nabla v ||_{L^2} +  \sigma_{M} ||u ||_{L^2} ||v ||_{L^2} 
+\\
+& \leq max\{\epsilon_{M}, \sigma_{M} \}  
+\left( ||\nabla u ||_{L^2} || \nabla v ||_{L^2} +   ||u ||_{L^2} ||v ||_{L^2} \right)
+\\
+& \leq max\{\epsilon_{M}, \sigma_{M} \}  
+||u ||_{H^1_{\Gamma_D}} || v ||_{H^1_{\Gamma_D}}
+\end{array}
+\end{equation*}
 
+\item \textbf{Coercivity,}
+\begin{equation*}
+\begin{array}{ll}
+\forall u \in H^1_{\Gamma_D} &\\ \\
+|\int_{\Omega} \epsilon \nabla u \nabla u + \int_{\Omega} \sigma^{(k)}u^2| 
+& \geq \epsilon_{m} ||\nabla u ||_{L^2}^2  +  \sigma_{m} ||u ||_{L^2}^2 
+\\
+& =  \epsilon_{m} ||\nabla u ||_{L^2}^2 
+\\
+& = \epsilon_{m} |\nabla u |_{H^1_{\Gamma_D}}^2 
+\end{array}
+\end{equation*}
 
-\begin{align}
-A(\varphi_k)&=\dfrac{1}{t_k}F'(\varphi_k) \label{eq: NLP mod used} \\
-A(\varphi_k)&=s_kI+F'(\varphi_k) \label{eq: NLP mod not used}
-\end{align}
+\item \textbf{Continuity of the functional,}
+\begin{equation*}
+\begin{array}{ll}
+|\int_{\Omega} f^{(k)} v |
+& \leq ||f^{(k)} ||_{L^2}||v ||_{L^2} \psp{15} \forall v \in H^1_{\Gamma_D}
+\end{array}
+\end{equation*}
+\end{itemize}
 
-$t_k$ and $s_k$ are properly chosen positive parameters. During the implementation of the code we chose \referenzaeq{eq: NLP mod used} method. Note that for $t_k=1$, $s_k=0$ these modified Newton methods reduce to the classical Newton method. We have now to deal with the question how to choose $t_k$ or $s_k$ that the modified Newton methods exhibit superior convergence properties compared to the classical Newton method.
-For the case \referenzaeq{eq: NLP mod used} there's a simple criterion suggested by Deuflhard \textcolor{red}{referenza}: $t_k$ is taken from the interval $(0,1]$ in such a manner that for any norm,
-\begin{equation}
-\label{eq: extended criterion}
-||F'(\varphi_k)^{-1}F(\varphi_k-t_kF'(\varphi_k)^{-1}F(\varphi_k))||<||F'(\varphi_k)F(\varphi_k)||
-\end{equation}
-
-Condition \referenzaeq{eq: extended criterion} guarantees that the correction of the k-th iterate is an improved approximation to the final solution, in other words the residual norm can only descents.
-This condition can be easily evaluated only if the Jacobian matrix is factored into triangular matrices because the evaluation of the argument of the norm on the left hand side of \referenzaeq{eq: extended criterion} is then reduced to a forward and backward substitution and the evaluation of $F(\varphi)$. Although we use an iterative methods (BCG solver) which implies serious diffuclties to the application of the criterion. Another valid possibility is to use the main diagonal of $F'(\varphi_k)$, denoted as $D(\varphi_k)$:
-\begin{equation}
-\label{eq: easy criterion}
-||D(\varphi_k)^{-1}F(\varphi_k-t_kD(\varphi_k)^{-1}F(\varphi_k))||<||F'(\varphi_k)F(\varphi_k)||
-\end{equation}
-
-This is the criterion developed in our code. However the value to use for $t_k$ is a question of trial and error. Frequently one chooses the following sequences:
-
-\begin{align}
-t_k & = \dfrac{1}{2^i} \\
-t_k & = \dfrac{1}{2^{\dfrac{i(i+1)}{2}}}  
-\end{align}
-
-obiuvsly $i$ is the subiterations of damping reached when satisfied \referenzaeq{eq: easy criterion}. Sufficiently close to the solution \referenzaeq{eq: extended criterion} (and so \referenzaeq{eq: easy criterion}) will be satisfied with $t_k=1$ so that the convergence properties of the classical Newton method are recovered.
- 
+Then we can state that there exists a unique solution of the lineariezed Poisson equation.

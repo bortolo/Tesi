@@ -55,10 +55,12 @@
 \newlabel{eq: full problem}{{2.42}{16}}
 \newlabel{eq: stationary problem}{{2.43}{17}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Generation and Recombination phenomenon}{17}}
+\newlabel{subsection: RG}{{2.2.2}{17}}
 \newlabel{eq: generic RG}{{2.44}{17}}
 \@writefile{toc}{\contentsline {subsubsection}{Shockley-Read-Hall recombination}{17}}
 \@writefile{toc}{\contentsline {subsubsection}{Auger recombination}{18}}
 \@writefile{toc}{\contentsline {subsubsection}{Impact ionization}{19}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.3}Mobility models}{19}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {3}Resolution of the system}{20}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -72,59 +74,71 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Gummel map algorithm\relax }}{23}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig: gummel map}{{3.1}{23}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Finite element discretization}{24}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Nonlinear Poisson Equation}{25}}
-\newlabel{eq: newton step NLP}{{3.6}{25}}
+\newlabel{eq: NLP system}{{3.6}{24}}
+\newlabel{eq: LEC system}{{3.7}{24}}
+\newlabel{eq: LHC system}{{3.8}{24}}
+\citation{salsa:EDP}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Finite element discretization}{25}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Weak Formulation}{25}}
+\@writefile{toc}{\contentsline {subsubsection}{Nonlinear Poisson Equation}{25}}
+\newlabel{eq: newton step NLP}{{3.12}{26}}
+\newlabel{sys: NLP general problem linearized}{{3.13}{26}}
+\newlabel{eq: NLP weakformulation}{{3.14}{27}}
+\@writefile{toc}{\contentsline {subsubsection}{Continuity Equation}{28}}
+\newlabel{eq: LEC weakformulation}{{3.17}{28}}
 \citation{quarteroni:modnum}
-\@writefile{toc}{\contentsline {subsubsection}{Numerical approximation}{26}}
-\@writefile{toc}{\contentsline {subsubsection}{Damping}{26}}
-\newlabel{eq: NLP mod used}{{3.9}{26}}
-\newlabel{eq: NLP mod not used}{{3.10}{26}}
-\newlabel{eq: extended criterion}{{3.11}{26}}
-\newlabel{eq: easy criterion}{{3.12}{27}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Continuity Equation}{27}}
-\@writefile{toc}{\contentsline {subsubsection}{Weak formulation}{27}}
-\@writefile{toc}{\contentsline {subsubsection}{Numerical approximation}{28}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Maximum discrete principle}{28}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}The current calculation problem}{29}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Geometrical discretization}{29}}
+\newlabel{eq: mesh regular condition}{{3.18}{29}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Numerical approximation}{29}}
+\@writefile{toc}{\contentsline {subsubsection}{Damping}{29}}
+\newlabel{eq: NLP mod used}{{3.20}{29}}
+\newlabel{eq: NLP mod not used}{{3.21}{29}}
+\newlabel{eq: extended criterion}{{3.22}{30}}
+\newlabel{eq: easy criterion}{{3.23}{30}}
+\@writefile{toc}{\contentsline {subsubsection}{Numerical approximation}{30}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}Maximum discrete principle}{31}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}The current calculation problem}{32}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Scharfetter-Gummel formula}{30}}
-\newlabel{eq: scharfetter gummel 1D electron}{{4.1}{31}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Extension for the 3D case}{31}}
-\newlabel{eq: current density fermi}{{4.3}{31}}
-\newlabel{eq: current density canonic form}{{4.4}{31}}
-\newlabel{eq: variation form of current density continuos}{{4.5}{31}}
-\newlabel{eq: spaces elementwise constant}{{4.6}{31}}
-\newlabel{eq: form of qh}{{4.7}{32}}
-\newlabel{eq: variation form of current density}{{4.8}{32}}
-\newlabel{eq: first formula for J}{{4.9}{32}}
-\newlabel{eq: approzimation from 3D to edge}{{4.10}{32}}
-\newlabel{eq: differenza tra pot e qf}{{4.11}{32}}
-\newlabel{eq: finally approzimation 3D to 1D}{{4.13}{33}}
-\newlabel{eq: first formula for J}{{4.15}{33}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Residue Method}{34}}
-\@writefile{toc}{\contentsline {subsubsection}{Contact method}{34}}
-\newlabel{eq: current flux}{{4.16}{34}}
-\newlabel{eq: discretization before bc}{{4.17}{34}}
-\newlabel{eq: discretization before bc 2}{{4.18}{34}}
-\@writefile{toc}{\contentsline {subsubsection}{Results}{35}}
-\@writefile{toc}{\contentsline {subsubsection}{Bulk method}{37}}
-\newlabel{eq: extended weak formulation}{{4.21}{37}}
-\newlabel{eq: usally problem}{{4.22}{37}}
-\newlabel{eq: problem auxiliary flux}{{4.23}{37}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}The Residue Method}{39}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Idea}{39}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Simulation results}{41}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Scharfetter-Gummel formula}{33}}
+\newlabel{eq: scharfetter gummel 1D electron}{{4.1}{34}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Extension for the 3D case}{34}}
+\newlabel{eq: current density fermi}{{4.3}{34}}
+\newlabel{eq: current density canonic form}{{4.4}{34}}
+\newlabel{eq: variation form of current density continuos}{{4.5}{34}}
+\newlabel{eq: spaces elementwise constant}{{4.6}{34}}
+\newlabel{eq: form of qh}{{4.7}{35}}
+\newlabel{eq: variation form of current density}{{4.8}{35}}
+\newlabel{eq: first formula for J}{{4.9}{35}}
+\newlabel{eq: approzimation from 3D to edge}{{4.10}{35}}
+\newlabel{eq: differenza tra pot e qf}{{4.11}{35}}
+\newlabel{eq: finally approzimation 3D to 1D}{{4.13}{36}}
+\newlabel{eq: first formula for J}{{4.15}{36}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Residue Method}{37}}
+\@writefile{toc}{\contentsline {subsubsection}{Contact method}{37}}
+\newlabel{eq: current flux}{{4.16}{37}}
+\newlabel{eq: discretization before bc}{{4.17}{37}}
+\newlabel{eq: discretization before bc 2}{{4.18}{37}}
+\@writefile{toc}{\contentsline {subsubsection}{Results}{38}}
+\@writefile{toc}{\contentsline {subsubsection}{Bulk method}{40}}
+\newlabel{eq: extended weak formulation}{{4.21}{40}}
+\newlabel{eq: usally problem}{{4.22}{40}}
+\newlabel{eq: problem auxiliary flux}{{4.23}{40}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}The Residue Method}{42}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Idea}{42}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Simulation results}{44}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Case tests presentation}{41}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{41}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{41}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{41}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Case tests presentation}{44}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{44}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{44}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {}}}{44}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Geometry of case test Diode.\relax }}{46}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Geometry of case test MOS n-channel.\relax }}{46}}
 \bibstyle{alpha}
 \bibdata{contents/Bibliografia}
 \bibcite{quarteroni:modnum}{{Qua08}{}{{}}{{}}}
+\bibcite{salsa:EDP}{{Sal10}{}{{}}{{}}}
 \bibcite{ModernVLSIdevices}{{YT09}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\@writefile{toc}{\contentsline {chapter}{Bibliografia}{43}}
+\@writefile{toc}{\contentsline {chapter}{Bibliografia}{47}}
