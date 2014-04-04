@@ -1,0 +1,117 @@
+\subsection{Nonlinear Poisson Equation}
+
+
+As regards the linearized Poisson equation we have:
+\begin{equation}
+a(\psi_j,\psi_i)  = \int_{\Omega} \epsilon \nabla \psi_j \nabla \psi_i \, d\Omega + \int_{\Omega} \sigma^{(k)}\psi_j \psi_i \, d\Omega 
+\end{equation}
+and the relative restriction on the element is
+\begin{equation}
+\label{eq: bilinear local discrete}
+a_K(\psi_j,\psi_i)  = \int_{K} \epsilon \nabla \psi_j \nabla \psi_i \, dK + \int_{K} \sigma^{(k)}\psi_j \psi_i \, dK
+\end{equation}
+
+Equation \referenzaeq{eq: bilinear local discrete} it's formed by two distinct contributions, the former indentifies the diffusive contribution and generates the so called \textit{stifness matrix}, while the latter refers to the reaction and generates the \textit{mass matrix}.
+
+
+It's possible adopt some simplifications which makes easier the treatment of these integrals. First of all consider that the diffusive coefficient $\epsilon$ can be a rapidly varying function and one could choose to integrate it with a consequently grow up of the computational cost, or it's possible use a suitable average on each elment of this quantity. In view of further discussions of this issue, for each set $S \subset \Omega$ having measure $|S|$, we introduce the following averages of a given function $g$ that is integrable on $S$:
+
+\begin{equation*}
+\mathcal{M}_S(g) = \dfrac{\int_S g \, dS}{|S|} \psp{15} \mathcal{H}_S = (\mathcal{M}_S(g^{-1}))^{-1} 
+\end{equation*}
+
+Notice that $\mathcal{M}_S$ is the usual average, while $\mathcal{H}_S$ is the \textit{harmonic average}. It is well-known that the use of tha harmonic average provides a superior approximation performance than the usual average \textcolor{red}{referenza}.
+
+Takling about the reaction contribution, thus we decide to use $X^1_{h,\Gamma_D}$,  we can't expect a better priori estimation error on the solution, than the first order respect the discretization step $h$ \textcolor{red}{referenza}. This implies which is not necessary and useful use an high order quadrature, for example the trapezi rule is enough accurate in this case. 
+The main conseguence of using trapezoidal quadrature rule is that extra-diagonal element of the mass-matrix disappear.
+This technique is well known as lumping procedure applied on the mass-matrix \textcolor{red}{referenza}.
+Finally we obtain the contributions of the local system matrix $A_K^{(k)}$:
+
+\begin{equation}
+[A_K]_{ij}^{(k)}  = \mathcal{H}_K(\epsilon)\left[
+L_{ij}
+\right]
++
+\dfrac{|K|}{4}diag(\sigma^{(k)}_i)
+\end{equation}
+
+having set
+
+\begin{equation}
+L_{ij} = \int_K \nabla \psi_i  \nabla \psi_j \, d\Omega
+\end{equation}
+
+Here follows the construction of the right hand side, based on the local contribution approximated with trapezi rule:
+
+\begin{equation}
+[F_K]_i^{(k)} = \int_K f^{(k)} \psi_i \, dK \simeq f^{(k)}_i |K| / 4 
+\end{equation}
+
+We can assemble the local contributions for each element $K$ in the global matrix $A$: let $I$ be the global index of a generic vertex belonging to the partition $\mathcal{T}_h$, we denote by $\mathcal{J}_K: \mathcal{V}_{\mathcal{T}_h} \rightarrow \mathcal{V}_{K}$ the map which connects $I$ to its corresponding local index $i=1, \, . \, . \, . \, , 4$ in the element $K$. Then we have 
+
+\begin{equation}
+A_{IJ}^{(k)} = \sum_{\substack{\forall K \in \mathcal{T}_h s.t. \\ \mathcal{J}_K(I),\mathcal{J}_K(J) \subset \mathcal{V}_K}}
+ [A_K]_{ij}^{(k)}
+\end{equation}
+
+analogously for the force term $\vect{b}^{(k)}$:
+
+\begin{equation}
+b_{I}^{(k)} = \sum_{\substack{\forall K \in \mathcal{T}_h s.t. \\ \mathcal{J}_K(I) \subset \mathcal{V}_K}}
+ [F_K]_{i}^{(k)}
+\end{equation}
+
+Once we have built the global matrix $A^{(k)}$ and the global vector $\vect{b}^{(k)}$ we need to take into account the essential boundary conditions. In fact the displacement formulation is a primal formulation which forces Dirichlet boundary condition in a strong way. Therefore we have to modify the algebraic system and to do that there are several ways. We choose the \textit{diagonalization} techinique which does not alter the matrix pattern nor introduce ill-conditioning for the system.  Let $i_D$ be the generic index of a Dirichlet node, we denote by $[\delta \varphi_{D}]_i$ (which in this case is equal to zero) the known value of the solution $\delta \varphi $ at the node. We consider the Dirichlet condition as an equation of the form $a [\delta \varphi]_i = a [\delta \varphi_{D}]_i$, where $a\neq 0$ is a suitable coefficient. In order to avoid degrading of the global matrix condition number, we take $a$ equal to the diagonal element of the matrix at the row  $i_D$.
+
+Finally we have completed the discretization of (Step 1), which reads as follows:
+
+\begin{equation}
+\label{eq: NLP discretizated}
+\left\{
+\begin{array}{rcl}
+A^{(k)}\vect{\delta \varphi}^k & = & \vect{b}^{(k)} \\
+\vect{\varphi}^{k+1} & = & \vect{\varphi}^k +  \vect{\delta \varphi}^k 
+\end{array}
+\right.
+\end{equation}
+
+As every iteration procedure, problem \referenzaeq{eq: NLP discretizated} needs a suitable convergence break criterion. A good method is based on cheking the satisfaction of the fixed point equation \referenzaeq{eq: abstract problem fully} by the $k$-th solution, then the inner loop of the Gummel Map reads as: given a tollerance $toll>0$ solve problem \referenzaeq{eq: NLP discretizated} untill:
+\begin{equation}
+||\vect{b}(\varphi_k)||_2 > toll
+\end{equation}
+
+where with $||\cdot ||_2$ we indicate the usual Euclideian norm for a vector.
+\subsubsection{Damping}
+
+Even if we have important results of convergence about the Newton's method, the system \referenzaeq{eq: NLP discretizated} may be affected by diffulties on the convergence velocity.
+The main problem associated with the classical Newton method is the tendency to overestimate the length of the actual correction step for the iterate. This phenomenon is frequently termed overshoot. In the case of the semiconductor equations this overshoot problem has often been treated by simply limiting the size of the correction vector ($\delta \varphi$) determined by Newton's method. The usual established modifications to avoid overshoot are given by the seguent formulations:
+
+
+\begin{align}
+\tilde{A}(\varphi_k)&=\dfrac{1}{t_k}A(\varphi_k) \label{eq: NLP mod used} \\
+\tilde{A}(\varphi_k)&=s_kI+A(\varphi_k) \label{eq: NLP mod not used}
+\end{align}
+
+$t_k$ and $s_k$ are properly chosen positive parameters. During the implementation of the code we chose \referenzaeq{eq: NLP mod used} method. Note that for $t_k=1$, $s_k=0$ these modified Newton methods reduce to the classical Newton method. We have now to deal with the question how to choose $t_k$ or $s_k$ such that the modified Newton methods exhibit superior convergence properties compared to the classical Newton method.
+For the case \referenzaeq{eq: NLP mod used} there's a simple criterion suggested by Deuflhard \cite{selberherr:SimSem} $t_k$ is taken from the interval $(0,1]$ in such a manner that for any norm,
+\begin{equation}
+\label{eq: extended criterion}
+||A(\varphi_k)^{-1}\vect{b}(\varphi_k-t_kA(\varphi_k)^{-1}\vect{b}(\varphi_k))||<||A(\varphi_k)^{-1}\vect{b}(\varphi_k)||
+\end{equation}
+
+Condition \referenzaeq{eq: extended criterion} guarantees that the correction of the k-th iterate is an improved approximation to the final solution, in other words the residual norm can only descents.
+This condition can be easily evaluated only if the Jacobian matrix is factored into triangular matrices because the evaluation of the argument of the norm on the left hand side of \referenzaeq{eq: extended criterion} is then reduced to a forward and backward substitution and the evaluation of $\vect{b}(\varphi)$. Although we use an iterative methods (BCG solver) which implies serious diffuclties to the application of the above criterion. Another valid possibility is to use the main diagonal of $A(\varphi_k)$, denoted as $D(\varphi_k)$:
+\begin{equation}
+\label{eq: easy criterion}
+||D(\varphi_k)^{-1}\vect{b}(\varphi_k-t_kD(\varphi_k)^{-1}\vect{b}(\varphi_k))||<||D(\varphi_k)^{-1}\vect{b}(\varphi_k)||
+\end{equation}
+
+This is the criterion developed in our code. However the value to use for $t_k$ is a question of trial and error. Frequently one chooses the following sequences:
+
+\begin{align}
+t_k & = \dfrac{1}{2^i} \\
+t_k & = \dfrac{1}{2^{\dfrac{i(i+1)}{2}}}  
+\end{align}
+
+obiuvsly $i$ is the subiterations of damping reached when satisfied \referenzaeq{eq: easy criterion}. Sufficiently close to the solution \referenzaeq{eq: extended criterion} (and so \referenzaeq{eq: easy criterion}) will be satisfied with $t_k=1$ so that the convergence properties of the classical Newton method are recovered.
+ 
