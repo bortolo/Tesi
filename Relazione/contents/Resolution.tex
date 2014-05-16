@@ -1,8 +1,126 @@
 \chapter{Resolution of the system}
 
+The aim of this chapter is to introduce notation and to present the physical model exposed in the previous chapter, in a more precisely and mathematical form. A briefely overview on the avaible and used iteration algorithms is then treated.
+
+\section{Geometry and boundary conditions}
+
+Consider the stationary form of problem \referenzaeq{eq: full problem}, in order to proceed we have to close the \textit{Poisson equation} and the \textit{Drift Diffusion equation} for electrons and holes with suitable boundary conditions over the domain.
+
+Let us consider the device domain as the union of two open disjoint subsets, $\Omega_{Si}$ (doped silicon part), and $\Omega_{ox}$ (oxide part), such that their intersection $\partial \Omega_{Si} \cap \partial \Omega_{ox} = \Gamma_{int}$ is the interface. The oxide region $\Omega_{ox}$ is assumed to be a perfect insulator so that:
+
+\begin{equation}
+\label{eq: hypotesis oxide}
+\begin{array}{c}
+n = p = 0 \\
+\vect{J}_n = \vect{J}_p = \vect{0}
+
+\end{array}
+\end{equation}
+
+The device boundary $\partial \Omega$ is divided into two disjoint subsets: $\partial \Omega_{c}$ and $\partial \Omega_{a}$.
+The subset $\partial \Omega_{c}$ includes the so called \textit{ohmic contacts}. With ohmic contacts we define every electrical terminal of the device on which the external input voltages are applied. Moreover ohmic contacts are assumed to be \textit{ideal}, they are equipotential surfaces and no voltage drop occurs at the interface between the contact and the neighbouring material. This event is well performed by suitable Dirichlet boundary conditions, therefore in the follow we indicate $\partial \Omega_{c} = \Gamma_D$.
+
+\begin{equation}
+\label{eq: dirichlet boundary condition}
+\begin{array}{cc}
+\varphi = \varphi_D & \\
+n = n_D & \psp{10} on \, \Gamma_D .\\
+p = p_D & 
+\end{array}
+\end{equation}
+
+In the case where the neighbouring material is a perfect insulator, hypotesis \referenzaeq{eq: hypotesis oxide} takes in place and therefore no Drift-Diffusion equations are solved, this implies that \referenzaeq{eq: dirichlet boundary condition} reduces to the sole condition on the potential.
+
+\begin{figure}[!b]
+\centering
+\subfloat[][\label{fig: dop}]
+{\includegraphics[scale=0.35]{Resolution/MosContacts}}
+\psp{30}
+\subfloat[][]
+{\includegraphics[scale=0.35]{Resolution/MosOnlyContacts}}
+\caption{(a) Mos device with net dopant concentration distributed accordingly to a gaussian profile and $\Gamma_D$ colored in black. The oxide layer is colored in light blue. (b) Outline of the Mos device with $\Gamma_{int}$ in light gray. }
+\end{figure}
+
+Artificial boundaries ($\partial \Omega_a$) are needed in order to obtain a self-contained simulaiton domain.  On these boundaries no electric and current flux is exchanged with the surrounding enviroment, this fact is well performed by homogeneous Neumann boundary condition ($\partial \Omega_a = \Gamma_N$)
+
+\begin{equation}
+\label{eq: neumann boundar condition}
+\begin{array}{cc}
+\vect{D}\cdot \vect{n} = 0 & \\
+\vect{J}_n \cdot \vect{n} = 0 & \psp{10} on \, \Gamma_N \\
+\vect{J}_p \cdot \vect{n} = 0 & 
+\end{array}
+\end{equation}
+
+where $\vect{n}$ is the outward unit normal vector defined over $\partial \Omega$. 
+As we noted before on $\partial \Omega_{ox} \cap \Gamma_N$ condition \referenzaeq{eq: neumann boundar condition} reduces to the sole one related with the Poisson equation.
+
+Finally when we solve a Drift-Diffusion equation, if $\Omega_{ox} \neq \varnothing$ boundary shape could be change. Although the treatment of boundaries doesn't change if you consider the suitable restrictions and extensions
+\begin{equation}
+\begin{array}{c}
+\Gamma_{D,Si} = \Gamma_D \cap \partial \Omega_{Si} \\
+\Gamma_{N,Si} = \Gamma_N \cap \partial \Omega_{Si} \cup \Gamma_{int}.
+\end{array}
+\end{equation}
+
+In silicon material the ideal condition on contacts is accomplished if both thermodynamical equilibrium and charge neutrality are reached. These two conditions correspond to the following algebraic system for $n_D$ and $p_D$
+
+\begin{equation}
+\label{eq: systemo for dirichlet condition}
+\left\{
+\begin{array}{lcl}
+p_Dn_D & = &n_i^2 \\
+p_D -n_D +N_D-N_A & = & 0 
+\end{array}
+\right. .
+\end{equation}
+
+Solving \referenzaeq{eq: systemo for dirichlet condition} on $\Gamma_{D,Si}$ we obtain:
+
+\begin{equation}
+n_D = \dfrac{D + \sqrt{D^2+4n_i^2}}{2}
+\end{equation}
+\begin{equation}
+p_D = \dfrac{-D + \sqrt{D^2+4n_i^2}}{2}
+\end{equation}
+
+where $D := N_D-N_A$ is the net doping concentration. Furthermore  we can approximate that quasif fermi potential level of silicon at contact is aligend with the external applyed voltage. As a conseguence we can easily calculate potential condition on $\Gamma_{D,Si}$ using \referenzaeq{eq: n density mb} and \referenzaeq{eq: p density mb}
+
+\begin{equation}
+\varphi_D = \varphi_f + V_{th}ln\left( \dfrac{n_D}{n_i} \right) = \varphi_f - V_{th}ln\left( \dfrac{p_D}{n_i} \right)
+\end{equation}
+
+where $\varphi_f = - E_f / q$ is the unique quasi fermi potential level defined on contacts. When $\Omega_{ox} \neq \varnothing$ we set $\varphi_D$ equal to the external applyed voltage on $\Gamma_D / \Gamma_{D,Si}$.
+
+
+As we conveyed the boundary conditions, we are able to write in the closed way the stationary form of problem \referenzaeq{eq: full problem} as follows:
+ 
+
+\begin{equation}
+\label{eq: system closed}
+\begin{array}{rcll}
+- \Delta \epsilon \varphi - qn_i(e^{((\varphi_p-\varphi)/V_{th})}-e^{((\varphi-\varphi_n)/V_{th})}) & =  & qD & in \, \Omega = \Omega_{ox} \cup \Omega_{Si}\\
+\varphi & = & \varphi_D & on \, \Gamma_D \\
+\nabla \varphi \cdot \vect{n} & = & 0 & on \, \Gamma_N 
+\\
+\\
+\nabla \cdot ( q\mu_n n \nabla \varphi - qD_n \nabla n ) & = & - qR & in \, \Omega_{Si}\\
+n & = & n_D & on \, \Gamma_{D,Si} \\
+\nabla n \cdot \vect{n} & = & 0 & on \, \Gamma_{N,Si}
+\\
+\\
+\nabla \cdot (- q\mu_p p \nabla \varphi - qD_p \nabla p )& = & -qR& in \, \Omega_{Si}\\
+p & = & p_D & on \, \Gamma_{D,Si} \\
+\nabla p \cdot \vect{n} & = & 0 & on \, \Gamma_{N,Si}
+\end{array}
+\end{equation}
+
+The high coupled nonlinear nature of system	\referenzaeq{eq: system closed} makes an analytical treatment very difficult, if not even impossible. For this reason, numerical schemes must be used to compute an approximate solution. 
+
+
 \section{Iteration algorithms}
 
-The high nonlinear nature of the problem 	makes an analytical treatment very difficult, if not even impossible. For this reason, numerical schemes must be used to compute an approximate solution of the system \referenzaeq{eq: stationary problem}. Indisputably, the most used algorithms are \textit{the fully coupled Newton's method} and \textit{the decoupled Gummel map}. We spent only few words on the former as we implemented the latter, but first of all let us introduce a suitable linearization of the stationary DD equations. We can consider \referenzaeq{eq: stationary problem} in a more compact form:
+ The most used algorithms are \textit{the fully coupled Newton's method} and \textit{the decoupled Gummel map}. First of all we introduce a more compact form of \referenzaeq{eq: system closed}:
 
 \begin{equation}
 \label{eq: abstract problem fully}
@@ -23,21 +141,79 @@ F_3(\vect{U})
 and having set:
 
 \begin{align*}
-F_1(\vect{U}) & = \nabla \cdot (-\epsilon \nabla \varphi) - q(p-n+N_D^+-N_A^-) \\
-F_2(\vect{U}) & = \nabla \cdot ( - q\mu_n n \nabla \varphi + qD_n \nabla n )-qR \\
+F_1(\vect{U}) & = \nabla \cdot (-\epsilon \nabla \varphi) - q(n_i(e^{((\varphi_p-\varphi)/V_{th})}-e^{((\varphi-\varphi_n)/V_{th})})+D) \\
+F_2(\vect{U}) & = \nabla \cdot ( q\mu_n n \nabla \varphi - qD_n \nabla n )+qR \\
 F_3(\vect{U}) & = \nabla \cdot (- q\mu_p p \nabla \varphi - qD_p \nabla p )+qR
 \end{align*}
 
-\vspace{0.1cm}
+The non linear problem \referenzaeq{eq: abstract problem fully} is the abstract generalization of the search of a zero for a real function $f:\mathbb{R}\rightarrow\mathbb{R}$. The vector function $\vect{F}$ is a nonlinear differential operator and the associated problem which we intend to resolve is: given a functional space $V$ and the operator $\vect{F}:V\rightarrow V$, find $\vect{U}\in V$ such that \referenzaeq{eq: abstract problem fully} is satisfied.
 
-\subsection{Fully Coupled Newton's Method}
+In our application, the function space $V$ is tipycally a subset of the Sobolev space  $[H^1(\Omega)]^d$ (in this case with $d$ we intend the number of component of $\vect{F}$). Sobolev spaces are based on the space of square integrable functions on $\Omega$ which reads as follows
 
-Basically the fully coupled Newton's method is an extension to differential operators of the well known Newton's method for the search of a zero for real functions ($f:\mathbb{R}\rightarrow \mathbb{R}$). In fact the vector function $\vect{F}$ is a nonlinear differential operator and the associated problem which we intend to resolve is: given a functional space $V$ and the operator $\vect{F}:V\rightarrow V$, find $\vect{U}\in V$ such that \referenzaeq{eq: abstract problem fully} is satisfied.
-Just for the moment we don't care about the identity of $V$, which we will treat in details in the next section; now we are able to define  the abstract Newton's Method for the iterative solution of problem \referenzaeq{eq: stationary problem}:
+\begin{equation}
+\label{space: L2}
+L^2(\Omega) := \left\{ v : \int_{\Omega} |v|^2 d\,\Omega =||v||^2_{L^2(\Omega)}<+\infty \right\}.
+\end{equation}
+
+The general form of a Sobolev space for an integer $m\geq 0$ is
+
+\begin{equation}
+\label{space: Hm}
+H^m(\Omega) := \left\{ v : D^{\alpha}v\in L^2(\Omega),\forall |\alpha|\leq m \right\}.
+\end{equation}
+
+On this space, we shall use the semi-norm
+
+\begin{equation}
+\label{eq: semiorm sobolev}
+|v|_{m,\Omega}^2 = \sum_{|\alpha|=m} ||D^{\alpha}v||^2_{L^2(\Omega)}
+\end{equation}
+
+and the norm
+
+\begin{equation}
+\label{eq: norm sobolev}
+||v||_{m,\Omega}^2 = \sum_{k\leq m} |D^{\alpha}v|^2_{k,\Omega}
+\end{equation}
+
+We shall also need to consider functions that vanish on either the entire or a part of the boundary
+
+\begin{align}
+& H^1_0 :=  \left\{   v : v \in H^1(\Omega), v|_{\partial \Omega} = 0\right\} \label{space: h1 zero} \\
+& H^1_{0,\Gamma_D} :=  \left\{   v : v \in H^1(\Omega), v|_{\Gamma_D} = 0\right\} \label{space: h1 zero gamma}
+\end{align} 
+
+For $v \in H^1_0(\Omega)$ we have the \textit{Poincar\'e inequality}
+
+\begin{equation}
+\label{eq: poincarre inequality}
+|v|_{0,\Omega} \leq C(\Omega) |v|_{1,\Omega}
+\end{equation}
+
+and the seminorm $|\cdot |_{\,\Omega}$ is therefore a norm in $H^1(\Omega)$, equivalent to $||\cdot ||_{1,\Omega}$.
+
+The above setting of function spaces are used widely in the proceeding of this work. 
+
+
+\subsection{Abstract Newton's method}
+
+Before introducing the abstract Newton's method we have to define some useful concept.
+
+\begin{Definizione}[Frech\`et derivative]
+
+\end{Definizione}
+
+
+\begin{Definizione}[Jacobian matrix]
+Given a vector function $\vect{F}$ the Jacobian matrix $\vect{F}'$ 
+\end{Definizione}
+
+Accordingly with the above definitions the abstract Newton's method reads as follows:
+
+%\vspace{0.3cm}
 
 \mybox{
-\vspace{0.1cm}
-Given $\vect{U}^0\in V$, for all $k\geq 0$ until convergence, solve the following linearized problem: 
+Let be $\vect{F}$ a function operator, given $\vect{U}^0\in V$, for all $k\geq 0$ until convergence, solve the following linearized problem: 
 
 \begin{equation}
 \label{eq: abstract newton's method}
@@ -46,12 +222,25 @@ Given $\vect{U}^0\in V$, for all $k\geq 0$ until convergence, solve the followin
 \vect{U}^{k+1} = \vect{U}^k + \delta \vect{U}^k
 \end{array}
 \end{equation}
-where $\vect{F'}$ is the Jacobian matrix of $\vect{F}$, whose $(i,j)$-th entry represents the Frech\`et derivative of the $i$-th row with respect to the $j$-th variable.
-}{\textbf{Fully Coupled Newton's Method}}
 
-\vspace{0.1cm}
+}{\textbf{Newton's method}}
+\vspace{0.3cm}
+The application of Newton's method has transformed the original problem \referenzaeq{eq: abstract problem fully} into the \textit{fixed-point problem} of finding $\vect{U} \in V$ such that
 
-The main advantage of this approach is without doubt the existence of the sequent theorem:
+\begin{equation}
+\label{eq: fixed point U}
+\vect{U} = T_{\vect{F}}(\vect{U})
+\end{equation}
+
+where 
+
+\begin{equation}
+\label{eq: iteration function}
+T_{\vect{F}}(\vect{U}) = \vect{F}'(\vect{U})^{-1}(\vect{F}'(\vect{U})\vect{U}-F(\vect{U}))
+\end{equation}
+
+is the \textit{iteration function} associated with the Newton method.
+Here we present the main result about the convergence of this method.
 
 \begin{Teorema}
 \label{theorem: newton convergence}
@@ -66,33 +255,206 @@ Then there exists in correspondence $\delta '>0$, with $\delta '\leq\delta$, suc
 \end{equation}
 \end{Teorema}
 
-Even the presence of this impressive result there are are several issues which must be evaluated before move toward this way of resolution:
-\begin{itemize}
-\item the jacobian matrix $\vect{F'}$ is often quite ill-conditioned and needs appropriate scaling and balancing in order to avoid problems associated with round-off error;
-\item to ensure convergence of the Newton iterative process \referenzaeq{eq: abstract newton's method}, it is particularly important to ensure a very good initial guess for the unknown variables $\vect{U}$;
-\item if a direct solver is adopted (for example based on the LU factorization method), the number of loating point operations is of the order of  $N_{dofs}^3$, where $N_{dofs}$ is the number of degree of freedom used for the numerical approximation.
-\end{itemize}
 
-The fully coupled method is not the only possible approach, and many of the above points will be fixed adopting different methods, however theorem \referenzaeq{theorem: newton convergence} guarantees the best error convergence estimation.
+\subsection{Fully coupled Newthon's method}
+
+
+If we consider the linearization of the entire system \referenzaeq{eq: system closed} the relative Jacobian matrix is a 3x3 matrix of the form
+
+\begin{equation}
+\left[
+\begin{array}{ccc}
+F_{1,\varphi} & F_{1,n} & F_{1,p} \\
+F_{2,\varphi} & F_{2,n} & F_{2,p} \\
+F_{3,\varphi} & F_{3,n} & F_{3,p} \\
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+\delta \varphi  \\
+\delta n  \\
+\delta p 
+\end{array}
+\right]
+=
+\left[
+\begin{array}{c}
+-F_1(\varphi,n,p) \\
+-F_2(\varphi,n,p)\\
+-F_3(\varphi,n,p)
+\end{array}
+\right].
+\end{equation}
+
+
+ Every entry of the above matrix is a PDE's equation which we can discretize with suitable numerical proceedings (i.e. finite element method). If we spent for example $N_{dof}$ degrees of freedom to represent $\delta \varphi$, $\delta n$ and $\delta p$ we note that the structure of the relative discretizated matrix is a 3x3 block matrix system where every block is a $N_{dof} \times N_{dof}$ matrix:
+
+
+\begin{equation}
+\left[
+\begin{array}{ccc}
+\vect{K}_{1,\varphi} & \vect{K}_{1,n} & \vect{K}_{1,p} \\
+\vect{K}_{2,\varphi} & \vect{K}_{2,n} & \vect{K}_{2,p} \\
+\vect{K}_{3,\varphi} & \vect{K}_{3,n} & \vect{K}_{3,p} \\
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+\delta \varphi  \\
+\delta n  \\
+\delta p 
+\end{array}
+\right]
+=
+\left[
+\begin{array}{c}
+-\vect{F}_1(\varphi,n,p) \\
+-\vect{F}_2(\varphi,n,p)\\
+-\vect{F}_3(\varphi,n,p)
+\end{array}
+\right].
+\end{equation}
+
+This implies that at every iteration step we have to solve a linear problem of $3 \times N_{dof}$ dimension ...
+
+Moreover to ensure convergence of the Newton iterative process, it is particularly important to provide a very good initial guess vector $[\varphi_0,n_0,p_0]$, therefore we have to know for every equation a possibly shape of the solution.
+
+Finally variable in play have different order of magnitude and the jacobian matrix is often quite ill-conditioned and needs appropriate scaling and balancing in order to avoid problems associated with round-off error. 
+
+This method is widely used in commercial software especially for the strong result ...
+
 
 \subsection{Gummel map algorithm}
 
-In 1964 H. K. Gummel proposed an orginal iterative algorithm in order to solve the system \referenzaeq{eq: stationary problem} in a semiconductor device in one spatial dimension. Today the Gummel decoupled iterative algorithm has become a milestone in contemporary device simulation in industrial software for the design and analysis of semiconductor devices.
+In 1964 H. K. Gummel proposed an orginal and alternative iterative algorithm in order to solve the system \referenzaeq{eq: system closed} in a semiconductor device in one spatial dimension.
 
 The main idea of the algorithm is to move the nonlinearity to the Poisson equation only and once obtained the electric potential profile, both continuity equations are linearized.  More precisely give an initial guess for $\varphi$, $n$ and $p$, the functional iteration consists in the succesive solution of the nonlinear Poisson's equation (NLP) in a inner loop (Newton's method is applyed for this equation) and of the two linearized continuity equations (DD electrons and DD holes). 
 A concisely scheme is presented in \figref{fig: gummel map}.
 
 Unfortunately there isn't any convergence result for this method like \referenzaeq{theorem: newton convergence}, although there are several advantages which make Gummel map algorithm preferable to the Fully Coupled Newton's Method.
-In fact simulations experience shows that the Gummel process is much more insesitive to the choice of the initial guess than Newton's method. This is particularly important in multidimensional problems where it is far from trivial to design a good starting point for initializing in a favorable manner.
+In fact simulations experience shows that the Gummel process is much more insesitive to the choice of the initial guess than Newton's method. This is particularly important in multidimensional problems where it is far from trivial to design a good starting point for initializing.
 
-Another attractive feature is the reduced computational and memory stage cost: at each iteration step, the Newton algorithm requires assembling a Jacobian matrix of size $3N_{dof}\times 3N_{dof}$, while the Gummel algorithm requires the successive solution of three problems, each one of size equal to $N_{dof}\times N_{dof}$.
-
-\subsubsection{FEMOS Gummel map}
-After this short presentation of the qualities and the drawbacks of the Gummel decoupled algorithm, we propose our functional iteration. For the sake of simplicity let us consider some useful hypotesis:
+Another attractive feature is the reduced computational and memory stage cost: at each iteration step the Gummel algorithm requires the successive solution of three problems, each one of size equal to $N_{dof}\times N_{dof}$.
 
 
 
 
+
+
+\begin{itemize}
+
+
+\item[(Step 0)] Give a suitable initial condition for $\varphi^0_i$ $n^0$ and $p^0$.
+
+\item[(Step 1)] Fixed a positive parameter $toll>0$, solve the linearized Non Linear Poisson equation (NLP) in $\Omega$ using the Newton's method untill $||F_1(\varphi^{k+1}_i)||>toll$:
+
+
+\begin{equation}
+\label{eq: newton step NLP linear}
+\begin{cases}
+
+\nabla \cdot (-\epsilon_{Si} \nabla \delta\varphi^k) 
++   \dfrac{1}{V_{th}} \sigma_{Si}^k\delta\varphi^k 
+ =  f_{Si}^k & in \psp{3} \Omega_{Si}
+  \\
+\nabla \cdot (-\epsilon_{ox} \nabla \delta\varphi^k) =  f_{ox}^k & in \psp{3} \Omega_{ox} 
+\\
+\delta \varphi^k = 0 & on \psp{3} \Gamma_D 
+\\
+\nabla \delta \varphi^k \cdot \vect{n} = 0 & on \psp{3} \Gamma_N
+\\
+\varphi^{k+1}=\varphi^k+\delta \varphi^k
+\end{cases} 
+\end{equation}
+
+having set,
+
+\begin{align*}
+\sigma_{Si}^k(\varphi^{k},\varphi_n^{i},\varphi_p^{i}) & = qn_i \left[ e^{((\varphi_p^i-\varphi^k)/V_{th})}-e^{((\varphi^k-\varphi_n^i)/V_{th})} \right]
+\\
+f_{Si}^k(\varphi^k,\varphi_n^i,\varphi_p^i) & = \nabla \cdot (-\epsilon \nabla \varphi^k) + qn_i \left[ e^{((\varphi_p^i-\varphi^k)/V_{th})}-e^{((\varphi^k-\varphi_n^i)/V_{th})}  + D \right]
+\\
+f_{ox}^k(\varphi^k) & = \nabla \cdot (-\epsilon \nabla \varphi^k) 
+\end{align*}
+
+
+
+\item[(Step 2)] Solve the Linear Electron Contintuity Equation (LEC):
+
+\begin{equation}
+\label{eq: LEC system}
+\begin{cases}
+ \nabla \cdot ( q\mu_n n \nabla \varphi^i - qD_n \nabla n ) = -qR(n^{i-1},p^{i-1}) & in \psp{3} \Omega_{Si}
+ \\
+ n = n_D & on \psp{3} \Gamma_{D,Si}
+ \\
+ \nabla n \cdot \vect{n} = 0 & on \psp{3} \Gamma_{N,Si}
+\end{cases}
+\end{equation}
+
+\item[(Step 3)] Solve the Linear Hole Contintuity Equation (LHC):
+
+\begin{equation}
+\label{eq: LHC system}
+\begin{cases}
+\nabla \cdot (- q\mu_p p \nabla \varphi^i - qD_p \nabla p ) =  -qR(n^{i-1},p^{i-1}) & in \psp{3} \Omega_{Si}
+\\
+ p = p_D & on \psp{3} \Gamma_{D,Si}
+ \\
+ \nabla p \cdot \vect{n} = 0 & on \psp{3} \Gamma_{N,Si}
+\end{cases}
+\end{equation}
+
+\item[(Step 4)] If $max\{||\varphi^i-\varphi^{i-1}||_{L^{\infty}},||p^i-p^{i-1}||_{L^{\infty}},||n^i-n^{i-1}||_{L^{\infty}}\}>toll$ restart from step 1.
+
+
+\end{itemize}
+
+We spent some considerations over step 2 and step 3. The general recombination/generation phenomenon is described by \referenzaeq{eq: generic RG}, this implies that we can separate the reaction term from the force term (except for the II which is only a force term contribution). In fact we can denote the general recombination/generation term as follows:
+
+\begin{equation}
+\label{eq: real Rn and Rp}
+\begin{array}{rcl}
+R_n^{i-1}(n) & = \sigma_n^{i-1} n - f^{i-1} \\
+R_p^{i-1}(p) & = \sigma_p^{i-1} p - f^{i-1} \\
+\end{array}
+\end{equation}
+
+where
+
+
+\begin{equation}
+\begin{array}{c}
+\sigma_n  = \dfrac{p^{i-1}}{F(p^{i-1},n^{i-1})} \psp{15} \sigma_p   = \dfrac{n^{i-1}}{F(p^{i-1},n^{i-1})} \\
+f  = \dfrac{n_i^2}{F(p^{i-1},n^{i-1})}.
+\end{array}
+\end{equation}
+
+We can rewrite systems \referenzaeq{eq: LEC system} and \referenzaeq{eq: LHC system}
+
+\begin{equation}
+\label{eq: LEC system new}
+\begin{cases}
+ \nabla \cdot ( q\mu_n n \nabla \varphi^i - qD_n \nabla n ) +q\sigma_n^{i-1} n = qf^{i-1} & in \psp{3} \Omega_{Si}
+ \\
+ n = n_D & on \psp{3} \Gamma_{D,Si}
+ \\
+ \nabla n \cdot \vect{n} = 0 & on \psp{3} \Gamma_{N,Si}
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\label{eq: LHC system new}
+\begin{cases}
+\nabla \cdot (- q\mu_p p \nabla \varphi^i - qD_p \nabla p ) + q\sigma_p^{i-1} p =  qf^{i-1}& in \psp{3} \Omega_{Si}
+\\
+ p = p_D & on \psp{3} \Gamma_{D,Si}
+ \\
+ \nabla p \cdot \vect{n} = 0 & on \psp{3} \Gamma_{N,Si}
+\end{cases}
+\end{equation}
+
+We just introduced a special treatment of the continuity equations in the Gummel Decoupled Algorithm. This splitting of R/G term is called \textit{lagging approach} and corresponds to extending to the non-linear case the classical \textit{Jacobi} method for the iterative  solution of linear algbraic systems. Thus equations are sequentially solved, it's possible take advantage of the knowing a solution. Indeed an alternative approach would be use the solution of the first solved equation to compute the R/G contribute in the second equation. In such case the lagging method corresponds to extending to the nonlinear case tha classical \textit{Gauss-Seidel} method for the iterative solution in linear algebraic systems.
 
 
 \begin{figure}[!h]
@@ -135,181 +497,6 @@ After this short presentation of the qualities and the drawbacks of the Gummel d
 \label{fig: gummel map}
 \end{center}
 \end{figure}
-
-
-\begin{itemize}
-\item we consider a polygonal simulation domain  in $\mathbb{R}^3$, denoted with $\Omega$; we indicate also with $\Omega_s$ the subset of $\Omega$ characterized by semiconductor material;
-\item the domain is formed only by semiconductor and/or oxide material (typically we consider silicon and $SiO_2$);
-\item contacts are assumed to be ideal, i.e. they are equipotential surfaces and no voltage drop occurs at the interface between the contact and the neighbouring material.
-\end{itemize}
-Take into account these considerations the appropriate Gummel map in our cases is the sequent:
-
-
-
-
-\mybox{
-Given $n^0$ and $p^0$, $\forall i$ until convergence:
-
-\vspace{0.5cm}
-
-(Step 0) Compute $\varphi_n^i$ and $\varphi_p^i$ with \referenzaeq{eq: n density mb} and \referenzaeq{eq: p density mb} and give a suitable initial guess for $\varphi^0_i$.
-
-\vspace{0.5cm}
-
-(Step 1) Solve the nonlinear Poisson equation over all the domain (NLP):
-
-{
-\footnotesize
-\begin{equation}
-\label{eq: NLP system}
-\begin{cases}
-\nabla \cdot (-\epsilon \nabla \varphi) + n_i\left( exp\left(\dfrac{\varphi-\varphi_n^i}{V_{th}}\right) - exp\left(\dfrac{\varphi_p^i-\varphi}{V_{th}}\right) \right)  =  q(N_D^+-N_A^-) & in \psp{3} \Omega_s \\
-\nabla \cdot (-\epsilon \nabla \varphi)  =  0 & in \psp{3} \Omega / \Omega_s
-\\
-\varphi = \varphi_D & on \psp{3} \Gamma_D
-\\
-\nabla \varphi \cdot \vect{n} = 0 & on \psp{3} \Gamma_N 
-\end{cases}
-\end{equation}
-}
-
-Set $\varphi^i=\varphi$.
-
-\vspace{0.5cm}
-
-(Step 2) Solve the Linear Electron Contintuity Equation (LEC):
-{
-\small
-\begin{equation}
-\label{eq: LEC system}
-\begin{cases}
- \nabla \cdot ( - q\mu_n n \nabla \varphi^i + qD_n \nabla n ) = qR(n^{i-1},p^{i-1}) & in \psp{3} \Omega_s
- \\
- n = n_D & on \psp{3} \Gamma_D
- \\
- \nabla n \cdot \vect{n} = 0 & on \psp{3} \Gamma_N
-\end{cases}
-\end{equation}
-}
-Set $n^i=n$.
-
-\vspace{0.5cm}
-
-(Step 3) Solve the Linear Hole Contintuity Equation (LHC):
-{
-\small
-\begin{equation}
-\label{eq: LHC system}
-\begin{cases}
-\nabla \cdot (- q\mu_p p \nabla \varphi^i - qD_p \nabla p ) =  -qR(n^{i-1},p^{i-1}) & in \psp{3} \Omega_s
-\\
- p = p_D & on \psp{3} \Gamma_D
- \\
- \nabla p \cdot \vect{n} = 0 & on \psp{3} \Gamma_N
-\end{cases}
-\end{equation}
-}
-Set $p^i=p$.
-
-\vspace{0.5cm}
-
-(Step 4) If the convergence criterion is satisfied break, otherwise restart from step 0.
-
-}{\textbf{FEMOS Gummel Map}}
-
-\textcolor{red}{commenti a queste ipotesi magari si possiamo lavorarci sopra}
-The second hypotesis excludes from our simulations only metal materials but there isn't any problem if some subset of the domain is formed by metal, it's possbile implement a more general formulation of the Poisson equation which it's presented in \textcolor{red}{referenza silvia}.
-We fixed the third hypostesis because Robin conditions are not performed yet for this part of the code, but a suitable extension it's a n exercise.
- 
-\textcolor{red}{Dobbiamo parlare delle slotboom variables e della possibilità di usare i quasi fermi?????}
-It's interesting note that carrier densities are not the only useful variables. As we introduced in section \referenzaeq{subsub:driftdiffusion transport}, current density may be represented in many different ways.  We underlie this because for example one can solve system \referenzaeq{eq: stationary problem} with Slotboom variables, without any change in the structure of the Gummel map.
-
-
-\chapter{Finite element discretization}
-
-In this section we describe the finite element discretization of the differential subproblems involved in the Gummel map previously introduced. Moreover for each kind of PDE problem we give a briefly presentation of the well-posedness analysis. 
-
-
-\section{Weak Formulation}
-
-In this section we'll introduce the weak formulation used for the above equations accordingly to the classical displacement approach. The generic weak formulation is find $u\in V$:
-\begin{equation}
-\label{eq: generic weak formulation}
-a(u,v) = F(v) \psp{10} \forall v \in V
-\end{equation}
-
-We work with the sequent family of Sobolev functional spaces:
-
-\begin{align}
-H^m(\Omega) & := \left\{  v \in L^m(\Omega) : D^\alpha \in L^m(\Omega) \, \forall \alpha, |\alpha|\leq m\right\}
-\\
-H^m_{\Gamma}(\Omega) & := \left\{  v \in H^m(\Omega) : v|_{\Gamma} = 0 \right\}
-\end{align} 
-
-provided with the usual norm and seminorm $|| v ||_{m,\Omega}$ and $|v|_{m,\Omega}$.
-In order to prove the existence and uniqueness of the solutions of the variational problems which will be introduced in the next sections, we apply the Lax-Milgram theorem \cite{salsa:EDP} to the weak formulations.
-
-\input{contents/NonLinearPoisson}
-
-\input{contents/ContinuityEquation}
-
-\section{Geometrical discretization}
-
-In view of the Galerkin finite element discretization of probems \referenzaeq{eq: NLP system}, \referenzaeq{eq: LEC system} and \referenzaeq{eq: LHC system}, we introduce some useful notations.
-
-We let $\bar{\Omega} =  \bigcup \bar{K}$ be a partition $\mathcal{T}_h$ of the domain $\Omega$ into tetrahedral elements $K$ of volume $|K|$, i.e. we suppose that there exists a constant $\delta>0$ such that:
-\begin{equation}
-\label{eq: mesh regular condition}
-\dfrac{h_K}{\rho_K} \leq \delta \psp{15} \forall K \in \mathcal{T}_h
-\end{equation}
-
-where $h_k=diam(K)=max_{x,y\in K}|x-y|$ and $\rho_K$ is the diameter of the sphere inscribed in the tetrahedral $K$. Condition \referenzaeq{eq: mesh regular condition} is the so called \textit{mesh regularity condition} \cite{quarteroni:modnum} and it ensures an istropic partition.
-We denote with $\mathcal{E}_h$, $\mathcal{V}_h$ and $\mathcal{F}_h$ the set of all the edges, verteces and faces  
-of $\mathcal{T}_h$ respectively, and for each $K\in \mathcal{T}_h$ we denote by $\partial K$ and $\vect{n}_{\partial K}$ the boundary of the element and its outward unit normal.
-  
-\section{Numerical approximation}
-
-Let us explain briefly the Galerkin method for a general weak formulation like \referenzaeq{eq: generic weak formulation}. The general form of the approximate Galerkin problem reads as find $u_h\in V_h$:
-\begin{equation}
-\label{eq: general galerkin problem}
-a(u_h,v_h) = F(v_h) \psp{10} \forall v \in V_h
-\end{equation}
-
-
-where $V_h$ is a suitable finite space such that $V_h \subset V$ and approximation preperties are satisfied \textcolor{red}{referenza}.
-For our purposes let us introduce the general finite element spaces of the polynomial element-wise defined functions used to approximate $H^1(\Omega)$ and $H^1_{\Gamma_d}(\Omega)$:
-
-\begin{align}
-X^r_h &:= \{v_h \in C^0(\bar{\Omega}): v_h|_K\in \mathbb{P}_r,\forall K \in \mathcal{T}_h \} \\
-X^r_{h,\Gamma_D} & := \{ v_h \in X^r_h: v_h|_{\Gamma_D} = 0 \} 
-\end{align}
-
-More precisely during implementation we decide to set $V_h = X^1_{h,\Gamma_D}$. 
-We denote by $\{ \psi_j \}_{j=1}^{N_h} $ the Lagrangian basis of the space $X^1_{h,\Gamma_D}$ and $N_h$ being the finite dimension of the space. Naturally  as $u_h \in X^1_{h,\Gamma_D}$ we have:
-\begin{equation}
-u_h = \sum_{j=1}^{N_h} u_j \psi_j
-\end{equation}
-
-Furthermore now it is sufficient verified Gakerkin problem \referenzaeq{eq: general galerkin problem} only for each basis functions $\psi_j$. The result of the complete discretization is find $u_j$, with $j = 1, \, . \, . \, . \, , \, N_h$ such that:
-
-\begin{equation}
-\sum_{j=1}^{N_h}u_ja(\psi_j,\psi_i) = F(\psi_i) \psp{10} \forall i = 1, \, . \, . \, . \, , \, N_h
-\end{equation}
-
-In order to implement this routine it's useful make explicit the subdivsion of the bilinear form on the element of the partition $\mathcal{T}_h$:
-
-\begin{equation}
-\sum_{j=1}^{N_h}u_j\sum_{K\in \mathcal{T}_h}a_K(\psi_j,\psi_i) = \sum_{K\in \mathcal{T}_h}F_K(\psi_i) \psp{10} \forall i = 1, \, . \, . \, . \, , \, N_h
-\end{equation}
-
-\input{contents/NLPdiscrete}
-\input{contents/CONTdiscrete}
-
-
-
-\section{Maximum discrete principle}
-\textcolor{blue}{Scriviamo qualcosa in merito?Quanto approfondito?}
-
 
 
 

@@ -13,7 +13,7 @@ Furthermore the demonstration of the well-posedness became easier if we rewrite 
 \small
 \left\{
 \begin{array}{rcll}
- \nabla \cdot \left( - q D_n exp(\varphi/V_{th}) u_n \right) + \sigma exp(\varphi/V_{th}) u_n& = & f  & \psp{15} in \psp{2} \Omega \\
+ \nabla \cdot \left( - q D_n exp(\varphi/V_{th})\nabla u_n \right) + \sigma exp(\varphi/V_{th}) u_n& = & f  & \psp{15} in \psp{2} \Omega \\
 u_n & = &  n_D exp(-\varphi/V_{th}) & \psp{15} on \psp{2} \Gamma_D \\
 \nabla u_n \cdot \vect{n} & = & 0 & \psp{15} on \psp{2} \Gamma_N
 \end{array}
@@ -26,7 +26,7 @@ In order to simplify the notation we summerize the coefficients of the above sys
 \bar{\sigma}  & = \sigma exp(\varphi/V_{th})
 \end{align*}
 The existence and uniqueness of the unkown variable $u_n$ enures the same properties on $n$, thanks to the univocal relation between $u_n$ and $n$.
-What we obtained with this smart sostitution is a system totally similar to the linearized Poisson problem and consequently we should make similar hypotesis onthe coefficients:
+What we obtained with this smart sostitution is a system totally similar to the linearized Poisson problem and consequently we should make similar hypotesis on the coefficients:
 \begin{itemize}
 \item $\bar{D_n} \in L^{\infty}(\Omega)$ and $\exists m$ s.t. $0 < m \leq \bar{D_n}$ (a.e.) in $\Omega$;
 \item  $\bar{\sigma} \in L^{\infty}(\Omega)$ and $\exists m$ s.t. $0 < m \leq \bar{\sigma}$ (a.e.) in $\Omega_s$.

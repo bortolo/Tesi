@@ -1,1 +1,150 @@
 \subsection{Continuity Equation}
+
+Let us write the discretized electron continuity equation in a suitable generic form on the $K$-th element:
+\begin{equation}
+\label{eq: LEC discretized general}
+\left\{
+\begin{array}{rcl}
+a_h^K(n_h,v_h) & = & \int_{K} J_h^K(n_h) \nabla v_h \, dK + \int_{K} \sigma n_h v_h \, dK 
+\\
+\\
+F(v_h)^K & = & \int_K f v_h \, dK
+\\
+\\
+J_h^K & = & D_K(\bar{D}_n) \nabla  (e^{(-\varphi / V_{th})}n_h)
+\end{array}
+\right.
+\end{equation}
+
+Notice that we came back on carrier density variable, because 
+\textcolor{red}{finire spiegazione sulla difficolta numerica variabili di slotboom}
+
+We want to extend now the discussion about the treatment of the diffusive coefficient. The matrix $D_K(\bar{D}_n) \in \mathbb{R}^3$ can be characerized in three different ways:
+
+\begin{equation}
+D_K(\bar{D}_n) = \left\{ 
+\begin{array}{l}
+\mathcal{M}_K(\bar{D}_n) \, \mathcal{I}
+\\
+\\
+\mathcal{H}_K(\bar{D}_n) \, \mathcal{I}
+\\
+\\
+ \dfrac{1}{|K|}\sum_{i=1}^6 \mathcal{H}_{e_i}(\bar{D}_n) |e_i| s_i \vect{t}_i \vect{t}_i^T
+\end{array}
+\right.
+\end{equation} 
+
+These different approaches in the computation of the average of the diffusion coefficient are responsible for the quite different numerical perfomance of the relative methods.
+We already presented the standard average and the armonic average and we discussed briefly the advantages of them. 
+Now we are interested in the latter method which  is an exponentially fitted treatment of $\bar{D}_n$ over the entire subdomain $K$. 
+From \referenzaeq{eq: LEC discretized general} we immeditaly obtain:
+
+\begin{equation}
+\label{eq: exp fitted flux}
+\vect{J}_h^K = \dfrac{1}{|K|}\sum_{i=1}^6 |e_i| s_i j_{e_i} \vect{t}_i 
+\end{equation}
+
+Having defined the flux vector over $K$ in the form \referenzaeq{eq: exp fitted flux}, it is clearly possible to construct a fimily of Galerkin finite element approximations for the continuity equations by a proper choice of the quantities $j_{e_i}$. 
+
+\subsubsection{Edge flux density computation}
+
+We introduce an approximate flux density computation along the edges of $\partial K$ based on the classical one dimensional \textit{Sharfetter-Gummel} method \textcolor{red}{referenza o anticipazione?}. For each edge $e_i$, the tangential component of $J_h^K(n_h)$ is defined as:
+
+\begin{equation}
+j_{e_i}  \simeq \mathcal{H}_{e_i}(\bar{D}_n) \dfrac{\mathcal{B}(\delta_i(\varphi / V_{th}))n_{h,k} -  \mathcal{B}(-\delta_i(\varphi / V_{th}))n_{h,j}}{|e_i|}
+\end{equation}
+
+where 
+
+\begin{equation}
+\delta_i(\varphi / V_{th}) = \dfrac{\varphi_k - \varphi_j}{V_{th}} = 2 \dfrac{(\vect{b}_K\cdot \vect{t}_{e_i}) |e_i|}{2\mathcal{H}_{e_i}(\bar{D}_n) } = 2 \gamma_i
+\end{equation}
+
+\begin{equation}
+\mathcal{B}(z) = \left\{ \begin{array}{cl}
+\dfrac{z}{e^z-1} & z \neq 0
+\\
+1 & z = 0
+\end{array}
+\right.
+\end{equation}
+
+being $\vect{b}_K$ the relative drift component of the problem on $K$ and $|\gamma_i|$ the P\`eclet number associated with the edge $e_i$.  
+
+\subsubsection{The discretization scheme}
+
+The local contributions to the assembling of the global stiffness matrix and load vector associated with the linear algebraic system read as follows:
+
+\begin{equation}
+\Phi_K  = 
+{
+\tiny 
+\left[
+\begin{array}{cccc}
+- \left( \begin{array}{c}
+a_{e12}\mathcal{B}_{12}L^K_{21} + \\
+a_{e13}\mathcal{B}_{13}L^K_{31} + \\
+a_{e14}\mathcal{B}_{14}L^K_{41}
+\end{array} \right)
+
+& a_{e12}\mathcal{B}_{12}L^K_{21} 
+& a_{e13}\mathcal{B}_{13}L^K_{31}
+& a_{e14}\mathcal{B}_{14}L^K_{41}
+\\
+
+%-----------------------------
+a_{e21}\mathcal{B}_{21}L^K_{12}
+&
+- \left( \begin{array}{c}
+a_{e21}\mathcal{B}_{21}L^K_{12} + \\
+a_{e23}\mathcal{B}_{23}L^K_{32} + \\
+a_{e24}\mathcal{B}_{24}L^K_{42}
+\end{array} \right)
+& a_{e23}\mathcal{B}_{12}L^K_{32}
+& a_{e24}\mathcal{B}_{12}L^K_{42}
+\\
+
+%-----------------------------
+a_{e31}\mathcal{B}_{31}L^K_{31}
+& a_{e31}\mathcal{B}_{32}L^K_{32}
+&
+- \left( \begin{array}{c}
+a_{e31}\mathcal{B}_{31}L^K_{31} + \\
+a_{e32}\mathcal{B}_{32}L^K_{32} + \\
+a_{e34}\mathcal{B}_{34}L^K_{34}
+\end{array} \right)
+
+&a_{e34}\mathcal{B}_{34}L^K_{34}
+\\
+
+%-----------------------------
+a_{e41}\mathcal{B}_{41}L^K_{41}
+& a_{e42}\mathcal{B}_{42}L^K_{42}
+&a_{e43}\mathcal{B}_{43}L^K_{43}
+&
+- \left( \begin{array}{c}
+a_{e41}\mathcal{B}_{41}L^K_{41} + \\
+a_{e42}\mathcal{B}_{42}L^K_{42} + \\
+a_{e43}\mathcal{B}_{43}L^K_{43}
+\end{array} \right)
+
+\end{array}
+\right]
+}
+\end{equation}
+
+\begin{equation}
+A_K = \Phi_K + \dfrac{|K|}{4} diag (\sigma_n)
+\end{equation}
+
+\begin{equation}
+\vect{F}_K = \dfrac{|K|}{4} (f_1,f_2,f_3,f_4)^T
+\end{equation}
+
+
+\textcolor{red}{Vale la seguente uguaglianza?}
+
+\begin{equation}
+L_{ij} = s_{ij} \vect{t}_{ij} \cdot \nabla \psi_i
+\end{equation}

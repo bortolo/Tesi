@@ -22,9 +22,9 @@ It's possible adopt some simplifications which makes easier the treatment of the
 
 Notice that $\mathcal{M}_S$ is the usual average, while $\mathcal{H}_S$ is the \textit{harmonic average}. It is well-known that the use of tha harmonic average provides a superior approximation performance than the usual average \textcolor{red}{referenza}.
 
-Takling about the reaction contribution, thus we decide to use $X^1_{h,\Gamma_D}$,  we can't expect a better priori estimation error on the solution, than the first order respect the discretization step $h$ \textcolor{red}{referenza}. This implies which is not necessary and useful use an high order quadrature, for example the trapezi rule is enough accurate in this case. 
-The main conseguence of using trapezoidal quadrature rule is that extra-diagonal element of the mass-matrix disappear.
-This technique is well known as lumping procedure applied on the mass-matrix \textcolor{red}{referenza}.
+Takling about the reaction contribution, thus we decide to use $X^1_{h,\Gamma_D}$,  we can't expect a better priori estimation error on the solution, than the first order respect the discretization step $h$ \textcolor{red}{referenza}. This implies which is not necessary and useful use an high order quadrature, for example the trapezoidal rule is enough accurate in this case. 
+The main conseguence of using trapezoidal quadrature rule is that extra-diagonal elements of the mass-matrix disappear.
+This technique is well known as \textit{lumping procedure} applied on the mass-matrix \textcolor{red}{referenza}.
 Finally we obtain the contributions of the local system matrix $A_K^{(k)}$:
 
 \begin{equation}
@@ -41,7 +41,7 @@ having set
 L_{ij} = \int_K \nabla \psi_i  \nabla \psi_j \, d\Omega
 \end{equation}
 
-Here follows the construction of the right hand side, based on the local contribution approximated with trapezi rule:
+Here follows the construction of the right hand side, based on the local contribution approximated with trapezoidal rule:
 
 \begin{equation}
 [F_K]_i^{(k)} = \int_K f^{(k)} \psi_i \, dK \simeq f^{(k)}_i |K| / 4 

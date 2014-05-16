@@ -1,0 +1,96 @@
+
+\begin{frame}
+\frametitle{Il problema delle floating regions}
+Con il termine \textbf{floating region} indichiamo quelle zone del semiconduttore caratterizzate da un preciso tipo di drogaggio, le quali non risultano direttamente contattate (ad esempio la zona N nel dispositivo PNP).
+
+\vspace{0.5cm}
+
+La risoluzione delle equazioni di DD nei dispositivi che presentano tali regioni ha prodotto una serie di \textbf{problematiche} che sono ancora oggeto di analisi.
+
+\vspace{0.5cm}
+
+\begin{itemize}
+\item Esiste una procedura standard per affrontare questi dispositivi?
+\item \`E necessaria una trattazione particolare delle condizioni di bordo della floating region?
+\end{itemize}
+
+\vspace{0.5cm}
+
+Di seguito presentiamo i risultati pi\`u significativi.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{PNP senza contatto di BASE}
+\begin{center}
+\begin{figure}
+\subfigure[Potential (V)]
+{\includegraphics[scale=0.3]{Floating/LegendPNP_nogate18}}
+\vspace{-0.5cm}
+\end{figure}
+\begin{figure}
+\subfigure[Sdevice]
+{\includegraphics[scale=0.33]{Floating/PNP_nogate_sdevice_18}}
+\psp{40}
+\subfigure[FEMOS]
+{\includegraphics[scale=0.33]{Floating/PNP_nogate_tool_18}}
+\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{PNP senza contatto di base}
+\begin{center}
+\begin{columns}
+\begin{column}{0.5 \paperwidth}
+\begin{figure}
+\subfigure[Portatori]
+{\includegraphics[height=7cm,width=6cm]{Floating/PNP1e18_portatori}}
+\end{figure}
+\end{column}
+\begin{column}{0.4 \paperwidth}
+\begin{center}
+\vspace{-2cm}
+
+\begin{tikzpicture}
+\useasboundingbox (-2.5,0) rectangle (1.5,2);
+\draw [pattern=north west lines,pattern color = blue!40](-2,0.0) rectangle (-1,1);
+\draw [pattern=north west lines,pattern color = red!40] (-1,0.0) rectangle (0,1);
+\draw [pattern=north west lines,pattern color = blue!40] (0,0.0) rectangle (1,1);
+\draw [dashed,ultra thick](-2.5,0.5)--(1.5,0.5);
+
+\draw [fill=black] (-2.1,0.0) rectangle (-2,1);
+\draw [fill=black] (1,0.0) rectangle (1.1,1);
+
+\end{tikzpicture}
+
+
+\footnotesize
+
+\begin{alertblock}{ \footnotesize ATTENZIONE:}
+Nella regione floating non sussiste la conservazione di carica!!
+\end{alertblock}
+
+\begin{itemize}
+\item Il codice non va a convergenza, in particolare si avvicina alla soluzione per poi divergere.
+\item  Abbiamo notato che nella zona di floating  \textit{non entrano} abbastanza portatori.
+\end{itemize}
+
+\end{center}
+\end{column}
+\end{columns}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conclusioni}
+Abbiamo indagato su pi\`u fronti l'origine del problema, ma ancora non \`e stata individuata la causa:
+\begin{itemize}
+\item Non escludiamo la presenza di un possibile bug nel codice, tuttavia tale ipotesi \`e stata affrontata pi\`u volte negli utlimi giorni senza portare ad alcun esito.
+\item Next step: abbiamo deciso di confrontare i risultati con il codice \texttt{COMPEL1D} usato a lezione, speriamo che questo confronto possa illuminarci.
+\end{itemize}
+
+Ancora non \`e chiara la natura di tale problema: \textbf{come fare ad isolarlo?} 
+
+\end{frame}
+\input{Floating}
