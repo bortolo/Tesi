@@ -280,152 +280,106 @@ Numerical results (\textcolor{red}{qua sarebbe carino fare un po' di test con un
 This approach is the natrual extension of the $Sharfetter-Gummel$ formula for the 1D case, indeed it's possible demonstrate the equivalence assuming a monodimensionale domain.
 
 
-
-
-\section{Residue Method}
-\subsubsection{Contact method}
-In the following we present an accurate method for the evaluation of boundary integrals in semiconductor device based on the work .
-It's well known that the evaluation of boundary integrals is a difficult task occuring routinely in electron device simulations. In general, given a contact $\Gamma_i$, fluxes of current density to be calculated assume the following form:
-
-\begin{equation}
-\label{eq: current flux}
-\mathcal{I}_i^\nu = \int_{\Gamma_i}\vect{J}_\nu(\nu) \cdot \vect{n} \, d{\Gamma_i} \psp{10} \nu = \{n,p\}
-\end{equation}
-
-where as usual $\vect{n}$ is the unit outward normal of the domain boundary. Difficulties in the numerical evalutaion of \referenzaeq{eq: current flux} arise from singularities in spatial derivatives of the approximate solution $n^h$ or $p^h$ near the contact edges, due to a change in the boundary condition type (from Dirichlet to Neumann) at the contact ends.
-In this work we extend the residue method on the 3D case and we confirm the optimal results obtained previously, matching them with SDEVICE (\textcolor{red}{come bisogna scirvere il software che politica usare?}). Moreover we remark that the method can be succesfully applied to a wide spread of applications, including contact charges, carrier quantum probability fluxes and heat fluxes.
-
-Before go further with the presentation of the results, it's useful look up the anlysis made in \textcolor{red}{Citazione} and adapt it to our case. Before applying boundary conditions, the discretized form of \textcolor{red}{referenza equazione} reads:
-
-\begin{equation}
-\label{eq: discretization before bc}
-\sum_{j\in\eta} A_{ij} \nu_j\psi_j(x_j) = b_i \psp{10} \forall i \in \eta
-\end{equation}
-
-in FEMOS simulations $A_{ij}$ is the $K_{FVSG}$ global matrix but it's possibile use every discretization scheme. We can split the set of total nodes in contact node $\eta_g$ and the complementary part $\eta_n$.
-The values of $\nu_j$ are known on the contacts and \referenzaeq{eq: discretization before bc} can be rewritten as follows:
-
-\begin{equation}
-\label{eq: discretization before bc 2}
-\begin{cases}
-
-\sum_{j\in\eta_n} A_{ij} \nu_j\psi_j(x_j) = b_i - \sum_{j\in\eta_g} A_{ij} \nu_j\psi_j(x_j) & \forall i \in \eta_n \\
-\\
-\sum_{j\in\eta_n} A_{ij} \nu_j\psi_j(x_j) = b_i - \sum_{j\in\eta_g} A_{ij} \nu_j\psi_j(x_j) & \forall i \in \eta_g \\
-
-\end{cases}
-\end{equation}
-
-The first set of equations is then solved for the problem unknowns $\nu_j$ (carrier density) while the second can be used for boundary flux estimation as described in the folowing. Consider  a different test function $v^h_i$ defined as:
-\begin{equation}
-v^h_i=\sum_{j\in\eta_{gi} }\psi_j
-\end{equation}
-
-where $\eta_{gi}$ is the set of nedes lying on contact $\Gamma_i$. We can rewrite \referenzaeq{eq: current flux} as follows:
-
-\begin{multline}
-\mathcal{I}_i^\nu 
-= \int_{\Gamma_i}\vect{J}_\nu(\nu) \cdot \vect{n} \, d{\Gamma_i}
-= \sum_{j=1}^{n_d}\int_{\Gamma_j}\vect{J}_\nu(\nu) \cdot \vect{n} \,v_i^h \, d{\Gamma_j} \\
-=\sum_{i\in\eta_{gi}}\sum_{j=1}^{n_d}\int_{\Gamma_j}\vect{J}_\nu(\nu) \cdot \vect{n} \, \psi_i \, d{\Gamma_j} 
-= \sum_{i\in \eta_{gi}}\int_{\partial \Omega}\vect{J}_\nu(\nu) \cdot \vect{n} \, \psi_i \, d{\partial \Omega} \\
-= \sum_{i\in \eta_{gi}} \left[ \int_{\Omega}\nabla \cdot \vect{J}_\nu(\nu) \psi_i \, d{\Omega} + \int_{\Omega}\vect{J}_\nu(\nu) \cdot \nabla\psi_i \, d{\Omega} \right] \\
-= \sum_{m\in \eta_{gi}} \left[ \sum_{j\in\eta} A_{ij} \nu_j\psi_i - b_i  \right] \\
-\end{multline}
-
-
-\subsubsection{Results}
-
 \begin{figure}[!h]
-\includegraphics[scale=1]{CaratteristicheIV/MOS_Nchannel_191719_DIFFERENTMODELS}
+\centering
+\subfloat[][\emph{FEMOS}]
+{\includegraphics[scale=0.38]{Results/MOS/FEMOS181718_Jn2voltONLYDEVICE.png}}
+\hspace{0.5cm}
+\subfloat[][]
+{\includegraphics[scale=0.3]{Results/MOS/LegendaArcobalenoVert.png}}
+\hspace{0.5cm}
+\subfloat[][\emph{SDEVICE}]
+{\includegraphics[scale=0.38]{Results/MOS/SDEVICE181718_Jn2voltONLYDEVICE.png}}
+\caption{Electron current density Vgate = 2.0 [V].}
 \end{figure}
 
-\clearpage 
 
-\subsubsection{Bulk method}
-Now the question is: it's possible extend the residue technique at the calculation of current inside the domain? The answer at this question is not trivial. A good start point is the work of J.R. Hughes and Larson in the article "The Continuous Galerikin Method Is Locally Conservative".The aim of their work is well exposed in the title and the conclusion is that this important property (locally conservation) is ensured less than the existence of an \textbf{auxiliary flux} denoted as $H(\omega)$ (with $\omega \subseteq\Omega$). 
-To extract the statement of global and local conservation from the variational formulation, thay need to be able to set the weighting function to one. Obviously this is possible if $\Gamma_g=\varnothing$. In order to include every case an extended weak formulation is presented: consider $\eta$ the set of all verteces of the discrete domain and $\eta_g$ the subset of verteces on Dirichlet boundaries.
-Now we are able to define the discrete space $\mathcal{V}^h:=span\{\psi_i\}_{i\in \eta - \eta_g} $ and  $V^h:=\mathcal{V}^h \oplus span\{\psi_i\}_{i\in \eta_g}$, where $\psi_i$ is the basis function assiociated with the node $i$.
-The last space is the completion of the usual finite element space ($\mathcal{V}^h$). Note that the constant function having value 1 is contained in $V^h$. The modified form of Galerkin's method is given by:
-
-Find $u^h\in \mathcal{S}^h$ and $H^h(\Omega)\in V^h - \mathcal{V}^h$ such that
-
-\begin{equation}
-\label{eq: extended weak formulation}
-(W^h,H^h(\Omega))_{\Gamma_g}=B(W^h,u^h)-L(W^h) \psp{10} \forall W^h\in V^h
-\end{equation}
-
-Note that \referenzaeq{eq: extended weak formulation} splits into two subproblems:
-
-\begin{equation}
-\label{eq: usally problem}
-0=B(w^h,u^h)-L(w^h) \psp{10} \forall w^h\in \mathcal{V}^h
-\end{equation}
-\begin{equation}
-\label{eq: problem auxiliary flux}
-(W^h,H^h(\Omega))_{\Gamma_g}=B(W^h,u^h)-L(W^h) \psp{10} \forall W^h\in V^h-\mathcal{V}^h
-\end{equation}
-
-Equation \referenzaeq{eq: problem auxiliary flux} is a problem which determines $H^h(\Omega)$. In it we assume $u^h$ is already determined by \referenzaeq{eq: usally problem}.
-The coefficient matrix for \referenzaeq{eq: problem auxiliary flux} is the mass matrix associated with $\Gamma_g$
-
-\begin{equation}
-\sum_{j\in \eta_g} (\psi_i,\psi_j)H^h_j(\Omega) = B(\psi_i,u^h)-L(\psi_i) \psp{10} \forall i \in \eta_g
-\end{equation}
-
-\textcolor{red}{Il prodotto sul bordo genera la medesima matrice di massa?E cosa succede nei punti che non sono di Dirichlet?Non può essere formulato in questo modo il problema?}
-
-In ogni caso noi abbiamo provato ad estendere il secondo problema ad ogni elemento interno che intersechi o meno i bordi di Dirichlet.
-Questo a cosa corrsiponde?
-
-Abbiamo interpretato la costruzione per elemento come se in ogni elemento il problema avesse delle condizioni di dirichlet che si affacciano con gli altri elementi adiacenti.
-Se assumiamo che questa procedura sia corretta allora penso che i successivi ragionamenti stiano in piedi.
-
-Sempre nell'articolo viene testata la formulazione estesa contro la funzione test costante e si ottiene la seguente equivalenza:
-
-\begin{equation}
-\int_{\Gamma_g}H^h(\Omega) \, d\Gamma = \int_{\Gamma^+_h}(a_nu^h-h^+) \, d\Gamma - \int_{\Gamma_h^-}h^- \, d\Gamma - \int_\Omega f \, d\Omega
-\end{equation}
-
-avendo assunto ogni nodo come Dirichlet allora valgono le seguenti affermazioni:
-\begin{itemize}
-\item $\Gamma_g = \partial \Omega$
-\item $\Gamma_h = \varnothing$
-\end{itemize}
-
-quindi possiamo affermare che per ogni elemento vale:
-
-\begin{equation}
-\int_{\partial\Omega}H^h(\Omega) \, d\Gamma =  - \int_\Omega f \, d\Omega
-\end{equation}
-
-Ora vorrei ripartire dal problema di partenza:
-
-\begin{equation}
-\begin{array}{rcl}
--\nabla \cdot \vect{J} & = & f \\
-\\
-\int_\Omega -\nabla \cdot \vect{J} \Psi_k \, d\Omega & = & 
-\int_\Omega f \Psi_k \, d\Omega  \psp{10}  \forall k = 1 ... N_{elements}\\
-\\
-\int_K -\nabla \cdot \vect{J} \, d\Omega & = & \int_K f \, d\Omega  \psp{10}  \forall k = 1 ... N_{elements}\\
-\\
-\int_{\partial K} -\vect{J} \cdot \vect{n} \, d\Omega & = & \int_K f \, d\Omega  \psp{10}  \forall k = 1 ... N_{elements}\\
-
-\end{array}
-\end{equation}
-
-La domanda quindi \`e possiamo in qualche modo dire che:
-\begin{equation}
-H^h(K) = \vect{J}\cdot \vect{n} 
-\end{equation}
-
-Entrambe le quantit\`a sono definite sul bordo dell'elemento, inoltre la ricostruzione dalle componenti normali al vettore densit\`a di corrente non \`e impossibile.
-Tuttavia occorre passare prima a definire la grandezza sulle facce del tetraedro:
-\begin{itemize}
-\item Calcolo delle quantit\`a nodali $H^h_j(\Omega)$
-\item Redistribuzione dei valori sulle facce (metodo percentuale proporzionalmente alle aree) $\bar{H}^h_j(\Omega)$
-\item Ortogonalizzazione dei contributi normali alle facce $\bar{H}^h_j(\Omega) \vect{n}_j$ tramite procedura alla Grand-Shmidt $H^*_j \vect{n}_j^*$
-\item Calcolo del vettore densit\`a di corrente nell'elemento $\vect{J}=\sum_{i=1}^4 H^*_j\vect{n}_j^*$
-\end{itemize}
-
+%\clearpage 
+%
+%\subsubsection{Bulk method}
+%Now the question is: it's possible extend the residue technique at the calculation of current inside the domain? The answer at this question is not trivial. A good start point is the work of J.R. Hughes and Larson in the article "The Continuous Galerikin Method Is Locally Conservative".The aim of their work is well exposed in the title and the conclusion is that this important property (locally conservation) is ensured less than the existence of an \textbf{auxiliary flux} denoted as $H(\omega)$ (with $\omega \subseteq\Omega$). 
+%To extract the statement of global and local conservation from the variational formulation, thay need to be able to set the weighting function to one. Obviously this is possible if $\Gamma_g=\varnothing$. In order to include every case an extended weak formulation is presented: consider $\eta$ the set of all verteces of the discrete domain and $\eta_g$ the subset of verteces on Dirichlet boundaries.
+%Now we are able to define the discrete space $\mathcal{V}^h:=span\{\psi_i\}_{i\in \eta - \eta_g} $ and  $V^h:=\mathcal{V}^h \oplus span\{\psi_i\}_{i\in \eta_g}$, where $\psi_i$ is the basis function assiociated with the node $i$.
+%The last space is the completion of the usual finite element space ($\mathcal{V}^h$). Note that the constant function having value 1 is contained in $V^h$. The modified form of Galerkin's method is given by:
+%
+%Find $u^h\in \mathcal{S}^h$ and $H^h(\Omega)\in V^h - \mathcal{V}^h$ such that
+%
+%\begin{equation}
+%\label{eq: extended weak formulation}
+%(W^h,H^h(\Omega))_{\Gamma_g}=B(W^h,u^h)-L(W^h) \psp{10} \forall W^h\in V^h
+%\end{equation}
+%
+%Note that \referenzaeq{eq: extended weak formulation} splits into two subproblems:
+%
+%\begin{equation}
+%\label{eq: usally problem}
+%0=B(w^h,u^h)-L(w^h) \psp{10} \forall w^h\in \mathcal{V}^h
+%\end{equation}
+%\begin{equation}
+%\label{eq: problem auxiliary flux}
+%(W^h,H^h(\Omega))_{\Gamma_g}=B(W^h,u^h)-L(W^h) \psp{10} \forall W^h\in V^h-\mathcal{V}^h
+%\end{equation}
+%
+%Equation \referenzaeq{eq: problem auxiliary flux} is a problem which determines $H^h(\Omega)$. In it we assume $u^h$ is already determined by \referenzaeq{eq: usally problem}.
+%The coefficient matrix for \referenzaeq{eq: problem auxiliary flux} is the mass matrix associated with $\Gamma_g$
+%
+%\begin{equation}
+%\sum_{j\in \eta_g} (\psi_i,\psi_j)H^h_j(\Omega) = B(\psi_i,u^h)-L(\psi_i) \psp{10} \forall i \in \eta_g
+%\end{equation}
+%
+%\textcolor{red}{Il prodotto sul bordo genera la medesima matrice di massa?E cosa succede nei punti che non sono di Dirichlet?Non può essere formulato in questo modo il problema?}
+%
+%In ogni caso noi abbiamo provato ad estendere il secondo problema ad ogni elemento interno che intersechi o meno i bordi di Dirichlet.
+%Questo a cosa corrsiponde?
+%
+%Abbiamo interpretato la costruzione per elemento come se in ogni elemento il problema avesse delle condizioni di dirichlet che si affacciano con gli altri elementi adiacenti.
+%Se assumiamo che questa procedura sia corretta allora penso che i successivi ragionamenti stiano in piedi.
+%
+%Sempre nell'articolo viene testata la formulazione estesa contro la funzione test costante e si ottiene la seguente equivalenza:
+%
+%\begin{equation}
+%\int_{\Gamma_g}H^h(\Omega) \, d\Gamma = \int_{\Gamma^+_h}(a_nu^h-h^+) \, d\Gamma - \int_{\Gamma_h^-}h^- \, d\Gamma - \int_\Omega f \, d\Omega
+%\end{equation}
+%
+%avendo assunto ogni nodo come Dirichlet allora valgono le seguenti affermazioni:
+%\begin{itemize}
+%\item $\Gamma_g = \partial \Omega$
+%\item $\Gamma_h = \varnothing$
+%\end{itemize}
+%
+%quindi possiamo affermare che per ogni elemento vale:
+%
+%\begin{equation}
+%\int_{\partial\Omega}H^h(\Omega) \, d\Gamma =  - \int_\Omega f \, d\Omega
+%\end{equation}
+%
+%Ora vorrei ripartire dal problema di partenza:
+%
+%\begin{equation}
+%\begin{array}{rcl}
+%-\nabla \cdot \vect{J} & = & f \\
+%\\
+%\int_\Omega -\nabla \cdot \vect{J} \Psi_k \, d\Omega & = & 
+%\int_\Omega f \Psi_k \, d\Omega  \psp{10}  \forall k = 1 ... N_{elements}\\
+%\\
+%\int_K -\nabla \cdot \vect{J} \, d\Omega & = & \int_K f \, d\Omega  \psp{10}  \forall k = 1 ... N_{elements}\\
+%\\
+%\int_{\partial K} -\vect{J} \cdot \vect{n} \, d\Omega & = & \int_K f \, d\Omega  \psp{10}  \forall k = 1 ... N_{elements}\\
+%
+%\end{array}
+%\end{equation}
+%
+%La domanda quindi \`e possiamo in qualche modo dire che:
+%\begin{equation}
+%H^h(K) = \vect{J}\cdot \vect{n} 
+%\end{equation}
+%
+%Entrambe le quantit\`a sono definite sul bordo dell'elemento, inoltre la ricostruzione dalle componenti normali al vettore densit\`a di corrente non \`e impossibile.
+%Tuttavia occorre passare prima a definire la grandezza sulle facce del tetraedro:
+%\begin{itemize}
+%\item Calcolo delle quantit\`a nodali $H^h_j(\Omega)$
+%\item Redistribuzione dei valori sulle facce (metodo percentuale proporzionalmente alle aree) $\bar{H}^h_j(\Omega)$
+%\item Ortogonalizzazione dei contributi normali alle facce $\bar{H}^h_j(\Omega) \vect{n}_j$ tramite procedura alla Grand-Shmidt $H^*_j \vect{n}_j^*$
+%\item Calcolo del vettore densit\`a di corrente nell'elemento $\vect{J}=\sum_{i=1}^4 H^*_j\vect{n}_j^*$
+%\end{itemize}
+%

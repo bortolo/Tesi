@@ -29,7 +29,7 @@ f & = f_s \mathcal{I}_{\Omega_{Si}} + f_{ox} \mathcal{I}_{\Omega_{ox}} \\
 \end{align*}
 
 where $\mathcal{I}_A(\vect{x})$ is equal to $1$ if $\vect{x}\in A$ and $0$ otherwise.
-System \referenzaeq{sys: NLP general problem linearized} constitute a classical Diffusion-Reaction (DR) problem in $\Omega$, respect the variable $\delta \varphi^k$. 
+System \referenzaeq{sys: NLP general problem linearized} constitutes a classical Diffusion-Reaction (DR) problem in $\Omega$, respect the variable $\delta \varphi^k$. 
 Now we multiply the equation with a test function $v \in H^1_{\Gamma_D}$ and we integrate over all the domain
 
 \begin{equation}
@@ -140,8 +140,8 @@ We can easily obtain the weak formulation repeating the same steps made for the 
 \end{equation}
 
 
-The existence and uniqueness of the unkown variable $u_n$ enures the same properties on $n$, thanks to the univocal relation between $u_n$ and $n$.
-We have to make some hypotesis on the coefficients $\forall i\geq 0$:
+The existence and uniqueness of the unknown variable $u_n$ ensures the same properties on $n$, thanks to the univocal relation between $u_n$ and $n$.
+We have to make some hypotheses on the coefficients $\forall i\geq 0$:
 \begin{itemize}
 \item $q D_n e^{(\varphi^{i}/V_{th})} \in L^{\infty}(\Omega_{Si})$ and $\exists m$ s.t. $0 < m \leq q D_n e^{(\varphi^{i}/V_{th})}$ (a.e.) in $\Omega_{Si}$;
 \item  $\sigma_n^{i-1} e^{(\varphi^{i}/V_{th})} \in L^{\infty}(\Omega_{Si})$ and $\exists m$ s.t. $0 < m \leq \sigma_n^{i-1} e^{(\varphi^{i}/V_{th})}$ (a.e.) in $\Omega_{Si}$.
@@ -166,7 +166,7 @@ Now the well-posedness of this problem is ensured repeating the same passages sh
 
 
 \section{Numerical approximation}
-
+\label{sec: Numerical approximation}
 
 
 In this section we shall introduce briefly the classical Galerkin's method for the approximation of a weak formulation on $\Omega$. Every weak formulation could be represented in a more compact and generic form as, find $u \in V$ such that
@@ -217,7 +217,7 @@ dim X^1_h & = N_h \\
 dim X^1_{h,\Gamma_D} & = N_h - N_g
 \end{align*}
 
-where $N_h$ is the number of verteces of the partition $\mathcal{T}_h$ and $N_g$ are the number of verteces lie on Dirichlet boundaries.
+where $N_h$ is the number of vertices of the partition $\mathcal{T}_h$ and $N_g$ are the number of vertices lie on Dirichlet boundaries.
 
 We denote by $\{ \psi_j \}_{j=1}^{N_h} $ the Lagrangian basis of the space $X^1_{h}$. Naturally  as $u_h \in X^1_{h}$ there are $u_j \in \mathbb{R}$ with $j=1,\, ... \,, N_h$ such that:
 
@@ -232,7 +232,7 @@ Because every functions of $V_h$ is a linear combination of $\psi_i$, we can tes
 \sum_{j=1}^{N_h}u_ja(\psi_j,\psi_i) = F(\psi_i) \psp{10} \forall i = 1, \, . \, . \, . \, , \, N_h
 \end{equation}
 
-In order to implement this routine it's useful make explicit the subdivsion of the bilinear form on the element of the partition $\mathcal{T}_h$:
+In order to implement this routine it's useful make explicit the subdivision of the bilinear form on the element of the partition $\mathcal{T}_h$:
 
 \begin{equation}
 \sum_{j=1}^{N_h}u_j\sum_{K\in \mathcal{T}_h}a_K(\psi_j,\psi_i) = \sum_{K\in \mathcal{T}_h}F_K(\psi_i) \psp{10} \forall i = 1, \, . \, . \, . \, , \, N_h
@@ -265,23 +265,13 @@ and the relative restriction on the element is
 a_K(\psi_j,\psi_i)  = \int_{K} \epsilon \nabla \psi_j \nabla \psi_i \, dK + \int_{K} \sigma^{k}\psi_j \psi_i \, dK
 \end{equation}
 
-Equation \referenzaeq{eq: bilinear local discrete} it's formed by two distinct contributions, the former indentifies the diffusive contribution and generates the so called \textit{stifness matrix}, while the latter refers to the reaction and generates the \textit{mass matrix}.
+Equation \referenzaeq{eq: bilinear local discrete} it's formed by two distinct contributions, the former identifies the diffusive contribution and generates the so called \textit{stiffness matrix}, while the latter refers to the reaction and generates the \textit{mass matrix}.
 
-The coefficient $\epsilon$ is a piece-wise costant function, which changes on different material regions. $\mathcal{T}_h$ is built such that every $K$ belongs to a single region, while it is possible that verteces belong to different regions. Therefore $\epsilon$ is costant over each elements and integral in \referenzaeq{eq: bilinear local discrete} become easier.
+The coefficient $\epsilon$ is a piece-wise constant function, which changes on different material regions. $\mathcal{T}_h$ is built such that every $K$ belongs to a single region, while it is possible that vertices belong to different regions. Therefore $\epsilon$ is constant over each elements and integral in \referenzaeq{eq: bilinear local discrete} become easier.
 
-As a consequence of choose the discrete space $X^1_{h}$,  we can't expect a better priori estimation error on the solution, than the first order respect the characteristic discretization step $h_K$ \textcolor{red}{referenza}. This implies that is not necessary and useful the use of an high order quadrature, and the trapezoidal rule is enough accurate. 
-The main conseguence of using trapezoidal quadrature rule is that extra-diagonal elements of the mass-matrix disappear.
-This technique is well known as \textit{lumping procedure} applied on the mass-matrix \textcolor{red}{referenza}.
-
-%\vspace{1cm}
-%
-%It's possible adopt some simplifications which makes easier the treatment of these integrals. First of all consider that the diffusive coefficient $\epsilon$ can be a rapidly varying function and one could choose to integrate it with a consequently grow up of the computational cost, or it's possible use a suitable average on each elment of this quantity. In view of further discussions of this issue, for each set $S \subset \Omega$ having measure $|S|$, we introduce the following averages of a given function $g$ that is integrable on $S$:
-%
-%\begin{equation*}
-%\mathcal{M}_S(g) = \dfrac{\int_S g \, dS}{|S|} \psp{15} \mathcal{H}_S = (\mathcal{M}_S(g^{-1}))^{-1} 
-%\end{equation*}
-%
-%Notice that $\mathcal{M}_S$ is the usual average, while $\mathcal{H}_S$ is the \textit{harmonic average}. It is well-known that the use of tha harmonic average provides a superior approximation performance than the usual average \textcolor{red}{referenza}.
+As a consequence of choose the discrete space $X^1_{h}$,  we can't expect a better priori estimation error on the solution, than the first order in $||\cdot||_{1,\Omega}$ respect the characteristic discretization step $h_K$ \cite{quarteroni:modnum}. This implies that is not necessary and useful the use of an high order quadrature, and the trapezoidal rule is enough accurate. 
+The main consequence of using trapezoidal quadrature rule is that extra-diagonal elements of the mass-matrix disappear.
+This technique is well known as \textit{lumping procedure} applied on the mass-matrix.
 
 Finally we obtain the contributions of the local system matrix $A_K^k$:
 
@@ -321,7 +311,7 @@ b_{I}^k = \sum_{\substack{\forall K \in \mathcal{T}_h s.t. \\ \mathcal{J}_K(I) \
  [F_K]_{i}^k
 \end{equation}
 
-Once we have built the global matrix $A^k$ and the global vector $\vect{b}^k$ we need to take into account the essential boundary conditions. In fact the displacement formulation is a primal formulation which forces Dirichlet boundary condition in a strong way. Therefore we have to modify the algebraic system. We choose the \textit{diagonalization} techinique which does not alter the matrix pattern nor introduce ill-conditioning for the system.  Let $i_D$ be the generic index of a Dirichlet node, we denote by $[\delta \varphi_{D}]_i$ (which in this case is equal to zero) the known value of the solution $\delta \varphi $ at the node. We consider the Dirichlet condition as an equation of the form $a [\delta \varphi]_i = a [\delta \varphi_{D}]_i$, where $a\neq 0$ is a suitable coefficient. In order to avoid degrading of the global matrix condition number, we take $a$ equal to the diagonal element of the matrix at the row  $i_D$.
+Once we have built the global matrix $A^k$ and the global vector $\vect{b}^k$ we need to take into account the essential boundary conditions. In fact the displacement formulation is a primal formulation which forces Dirichlet boundary condition in a strong way. Therefore we have to modify the algebraic system. We choose the \textit{diagonalization} technique which does not alter the matrix pattern nor introduce ill-conditioning for the system.  Let $i_D$ be the generic index of a Dirichlet node, we denote by $[\delta \varphi_{D}]_i$ (which in this case is equal to zero) the known value of the solution $\delta \varphi $ at the node. We consider the Dirichlet condition as an equation of the form $a [\delta \varphi]_i = a [\delta \varphi_{D}]_i$, where $a\neq 0$ is a suitable coefficient. In order to avoid degrading of the global matrix condition number, we take $a$ equal to the diagonal element of the matrix at the row  $i_D$.
 
 Finally we have completed the discretization of (Step 1), which reads as follows:
 
@@ -335,7 +325,7 @@ A^k\vect{\delta \varphi}^k & = & \vect{b}^k \\
 \right.
 \end{equation}
 
-As every iteration procedure, problem \referenzaeq{eq: NLP discretizated} needs a suitable convergence break criterion. A good method is based on cheking the satisfaction of the fixed point equation \referenzaeq{eq: abstract problem fully} by the $k$-th solution, then the inner loop of the Gummel Map reads as: given a tollerance $toll>0$ solve problem \referenzaeq{eq: NLP discretizated} untill:
+As every iteration procedure, problem \referenzaeq{eq: NLP discretizated} needs a suitable convergence break criterion. A good method is based on checking the satisfaction of the fixed point equation \referenzaeq{eq: abstract problem fully} by the $k$-th solution, then the inner loop of the Gummel Map reads as: given a tolerance $toll>0$ solve problem \referenzaeq{eq: NLP discretizated} untill:
 \begin{equation}
 ||\vect{b}(\varphi^{k+1})||_2 > toll
 \end{equation}
@@ -351,15 +341,16 @@ The main problem associated with the classical Newton method is the tendency to 
 \tilde{A}(\varphi_k)&=\dfrac{1}{t_k}A(\varphi_k) \label{eq: NLP mod used}
 \end{align}
 
-$t_k$ is a properly chosen positive parameter: for $t_k=1$ the modified Newton methods reduce to the classical Newton method. We have now to deal with the question how to choose $t_k$ or $s_k$ such that the modified Newton methods exhibit superior convergence properties compared to the classical Newton method.
-For the case \referenzaeq{eq: NLP mod used} there's a simple criterion suggested by Deuflhard \cite{selberherr:SimSem} $t_k$ is taken from the interval $(0,1]$ in such a manner that for any norm,
+$t_k$ is a properly chosen positive parameter: for $t_k=1$ the modified Newton method reduces to the classical Newton method. We have now to deal with the question how to choose $t_k$ or $s_k$ such that the modified Newton method exhibits superior convergence properties compared to the classical Newton method.
+For the case \referenzaeq{eq: NLP mod used} there's a simple criterion suggested by Deuflhard \cite{DefulhardDamp}. $t_k$ is taken from the interval $(0,1]$ in such a manner that for any norm,
+
 \begin{equation}
 \label{eq: extended criterion}
 ||A(\varphi_k)^{-1}\vect{b}(\varphi_k-t_kA(\varphi_k)^{-1}\vect{b}(\varphi_k))||<||A(\varphi_k)^{-1}\vect{b}(\varphi_k)||
 \end{equation}
 
 Condition \referenzaeq{eq: extended criterion} guarantees that the correction of the k-th iterate is an improved approximation to the final solution, in other words the residual norm can only descents.
-This condition can be easily evaluated only if the Jacobian matrix is factored into triangular matrices because the evaluation of the argument of the norm on the left hand side of \referenzaeq{eq: extended criterion} is then reduced to a forward and backward substitution and the evaluation of $\vect{b}(\varphi)$. Although we use an iterative methods (BCG solver) which implies serious diffuclties to the application of the above criterion. Another valid possibility is to use the main diagonal of $A(\varphi_k)$, denoted as $D(\varphi_k)$:
+This condition can be easily evaluated only if the Jacobian matrix is factored into triangular matrices because the evaluation of the argument of the norm on the left hand side of \referenzaeq{eq: extended criterion} is then reduced to a forward and backward substitution and the evaluation of $\vect{b}(\varphi)$. Although we use an iterative method (BCG solver based on \cite{NumericalRecipes}) which implies serious difficulties to the application of the above criterion. Another valid possibility is to use the main diagonal of $A(\varphi_k)$, denoted as $D(\varphi_k)$:
 \begin{equation}
 \label{eq: easy criterion}
 ||D(\varphi_k)^{-1}\vect{b}(\varphi_k-t_kD(\varphi_k)^{-1}\vect{b}(\varphi_k))||<||D(\varphi_k)^{-1}\vect{b}(\varphi_k)||
@@ -375,47 +366,126 @@ t_k & = \dfrac{1}{2^{\dfrac{i(i+1)}{2}}}
 obiuvsly $i$ is the subiterations of damping reached when satisfied \referenzaeq{eq: easy criterion}. Sufficiently close to the solution \referenzaeq{eq: extended criterion} (and so \referenzaeq{eq: easy criterion}) will be satisfied with $t_k=1$ so that the convergence properties of the classical Newton method are recovered.
  
 
+\begin{figure}[!h]
+\centering
+
+\subfloat[][]
+{\includegraphics[scale=0.8]{FiniteElementDiscretization/NLPconvergence.eps}}
+
+\subfloat[][]
+{\includegraphics[scale=0.8]{FiniteElementDiscretization/NLPconvergenceDamping.eps}}
+
+\caption{Number of iteration against reasidual for different bias in a diode case test. (a) NLP solving without damping, (b) NLP solving with Deuflhard damping criterion.}
+
+\end{figure}
+
+
+
+
+\begin{figure}[!h]
+\centering
+
+{\includegraphics[scale=0.8]{FiniteElementDiscretization/NLPconvergenceDamping.eps}}
+
+\caption{Behaviour of the $t_k$ coefficients.}
+
+\end{figure}
+
+
+
 
  \subsection{Continuity equations}
 
-Let us write the discretized electron continuity equation in a suitable generic form on the $K$-th element:
+As regards the LEC equation we have:
+
+\begin{equation}
+\label{eq: weak formulation displacement}
+a(u,v) =  \int_{\Omega_{Si}}  q D_n e^{(\varphi^{i}/V_{th})} \nabla \psi_j \nabla \psi_i \, d\Omega + \int_{\Omega_{Si}} \sigma_n^{i-1} e^{(\varphi^{i}/V_{th})} \psi_j \psi_i \, d\Omega
+\end{equation}
+
+Even if this form guarantees an easily analysis of well-posedness, the choice of using Slotboom variables $u_n$ and $u_p$ causes the onset of overflow problems due to the evaluation of $exp(\varphi/V_{th})$, which can be a rapidly varying function according to the behaviour of the potential $\varphi$.
+
+Therefore special care has to be taken in the treatment of the diffusion coefficient. In view of further discussions of this issue, we introduce some useful notation. For each set $S \subset \Omega$ having measure $|S|$, we introduce the following averages of a given function $g$ that is integrable on $S$:
+
+\begin{equation*}
+\mathcal{M}_S(g) = \dfrac{\int_S g \, dS}{|S|} \psp{15} \mathcal{H}_S = (\mathcal{M}_S(g^{-1}))^{-1} 
+\end{equation*}
+
+Notice that $\mathcal{M}_S$ is the usual average, while $\mathcal{H}_S$ is the \textit{harmonic average}. It is well-known that the use of tha harmonic average provides a superior approximation performance than the usual average \cite{BabuskaMixMet}.
+
+
+The weak form \referenzaeq{eq: weak formulation displacement}  is the result of a displacement approach which is the most classical way of setting these problems.
+Although different variational formulations and therefore different finite element approximations may be used, like a primal mixed approach (PM), for a more complete treatment see \cite{TesiDotDeFalco}.  First of all it's convenient to reformulate problem \referenzaeq{eq: LEC system new} by using the relation \referenzaeq{eq: un slotboom} and \referenzaeq{eq: Jn slotboom} in a more generic form. This yields the following equivalent form of the strong ADR model problem 
+
+\begin{equation}
+\label{eq: LEC system slotboom generic}
+\begin{cases}
+\nabla \cdot (\vect{J}_n(n) ) +\sigma n = f & in \psp{3} \Omega_{Si}
+ \\
+ \vect{J}_n = qD_n e^{(\varphi/V_{th})} \nabla (e^{(-\varphi/V_{th})}n) & in \psp{3} \Omega_{Si}\\
+n = n_D & on \psp{3} \Gamma_{D,Si}
+ \\
+ \vect{J}_n \cdot \vect{n} = 0 & on \psp{3} \Gamma_{N,Si}
+\end{cases}
+\end{equation}
+
+We report here the weak formulation of \referenzaeq{eq: LEC system slotboom generic} which is well investigated in \cite{TesiDotDeFalco}, find $\vect{J}_n \in [L^2(\Omega)]^d$ and $n \in H^1_{\Gamma_{D,Si}}(\Omega)$ such that
+
+\begin{align}
+- \int_{\Omega_{Si}} \vect{J}_n\cdot \nabla v \, d\Omega + \int_{\Omega_{Si}} \sigma n v \, d\Omega = \int_{\Omega_{Si}} f v \, d\Omega \psp{10} \forall v \in H^1_{\Gamma_{D,Si}}(\Omega)
+\label{eq: weak form PM1} \\
+\int_{\Omega_{Si}} (qD_n e^{(\varphi/V_{th})})^{-1} \vect{J}_n\cdot \vect{q} \, d\Omega + \int_{\Omega_{Si}} \nabla(e^{(\varphi/V_{th})n}) \cdot \vect{q} \, d\Omega = 0 \psp{10} \forall \vect{q} \in [L^2(\Omega)]^d \label{eq: weak form PM2} 
+\end{align}
+
+In order to approximate $[L^2(\Omega)]^d$ we introduce a new discrete space
+
+\begin{equation}
+\Sigma_h := \left\{   \vect{q}_h \in  [L^2(\Omega)]^d : \vect{q}|_{K} \in [\mathbb{P}_0]^d \forall K \in \mathcal{T}_h\right\}
+\end{equation} 
+
+As usual $d$ is the dimension of $\Omega$ and if $d=3$, $\vect{q}_h$ is characterized for every $K \in \mathcal{T}_h$ by the triplet
+
+\begin{equation}
+\label{eq: form of qh}
+\vect{q}^h_{1,2,3} = \left\{ \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}  \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}  \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}  \right\}
+\end{equation}
+
+Therefore we can easily deduced the restriction on a generic element of \referenzaeq{eq: weak form PM1} and \referenzaeq{eq: weak form PM2} and write the relative discretized bilinear form
+
 \begin{equation}
 \label{eq: LEC discretized general}
 \left\{
 \begin{array}{rcl}
-a_h^K(n_h,v_h) & = & \int_{K} J_h^K(n_h) \nabla v_h \, dK + \int_{K} \sigma n_h v_h \, dK 
+a_h^K(n_h,v_h) & = & \int_{K}\vect{ J}_{n,h}^K(n_h) \nabla v_h \, dK + \int_{K} \sigma n_h v_h \, dK 
 \\
 \\
 F(v_h)^K & = & \int_K f v_h \, dK
 \\
 \\
-J_h^K & = & D_K(\bar{D}_n) \nabla  (e^{(-\varphi / V_{th})}n_h)
+\vect{J}_{n,h}^K & = & D_K(qD_n e^{(\varphi/V_{th})}) \nabla  (e^{(-\varphi / V_{th})}n_h)
 \end{array}
 \right.
 \end{equation}
 
-Notice that we came back on carrier density variable, because 
-\textcolor{red}{finire spiegazione sulla difficolta numerica variabili di slotboom}
-
-We want to extend now the discussion about the treatment of the diffusive coefficient. The matrix $D_K(\bar{D}_n) \in \mathbb{R}^3$ can be characerized in three different ways:
+where $D_K \in \mathbb{R}^{3\times 3}$ is the element stiffness matrix. Several treatments may be performed on this matrix
 
 \begin{equation}
-D_K(\bar{D}_n) = \left\{ 
+D_K(qD_n e^{(\varphi/V_{th})}) = \left\{ 
 \begin{array}{l}
-\mathcal{M}_K(\bar{D}_n) \, \mathcal{I}
+\mathcal{M}_K(qD_n e^{(\varphi/V_{th})}) \, \mathcal{I}
 \\
 \\
-\mathcal{H}_K(\bar{D}_n) \, \mathcal{I}
+\mathcal{H}_K(qD_n e^{(\varphi/V_{th})}) \, \mathcal{I}
 \\
 \\
- \dfrac{1}{|K|}\sum_{i=1}^6 \mathcal{H}_{e_i}(\bar{D}_n) |e_i| s_i \vect{t}_i \vect{t}_i^T
+ \dfrac{1}{|K|}\sum_{i=1}^6 \mathcal{H}_{e_i}(qD_n e^{(\varphi/V_{th})}) |e_i| s_i \vect{t}_i \vect{t}_i^T
 \end{array}
 \right.
 \end{equation} 
 
 These different approaches in the computation of the average of the diffusion coefficient are responsible for the quite different numerical perfomance of the relative methods.
 We already presented the standard average and the armonic average and we discussed briefly the advantages of them. 
-Now we are interested in the latter method which  is an exponentially fitted treatment of $\bar{D}_n$ over the entire subdomain $K$. 
+Now we are interested in the latter method which  is an exponentially fitted treatment over the entire subdomain $K$. 
 From \referenzaeq{eq: LEC discretized general} we immeditaly obtain:
 
 \begin{equation}
@@ -427,16 +497,16 @@ Having defined the flux vector over $K$ in the form \referenzaeq{eq: exp fitted 
 
 \subsubsection{Edge flux density computation}
 
-We introduce an approximate flux density computation along the edges of $\partial K$ based on the classical one dimensional \textit{Sharfetter-Gummel} method \textcolor{red}{referenza o anticipazione?}. For each edge $e_i$, the tangential component of $J_h^K(n_h)$ is defined as:
+We introduce an approximate flux density computation along the edges of $\partial K$ based on the classical one dimensional \textit{Sharfetter-Gummel} method. For each edge $e_i$, the tangential component of $J_h^K(n_h)$ is defined as:
 
 \begin{equation}
-j_{e_i}  \simeq \mathcal{H}_{e_i}(\bar{D}_n) \dfrac{\mathcal{B}(\delta_i(\varphi / V_{th}))n_{h,k} -  \mathcal{B}(-\delta_i(\varphi / V_{th}))n_{h,j}}{|e_i|}
+j_{e_i}  \simeq \mathcal{H}_{e_i}(qD_n e^{(\varphi/V_{th})}) \dfrac{\mathcal{B}(\delta_i(\varphi / V_{th}))n_{h,k} -  \mathcal{B}(-\delta_i(\varphi / V_{th}))n_{h,j}}{|e_i|}
 \end{equation}
 
 where 
 
 \begin{equation}
-\delta_i(\varphi / V_{th}) = \dfrac{\varphi_k - \varphi_j}{V_{th}} = 2 \dfrac{(\vect{b}_K\cdot \vect{t}_{e_i}) |e_i|}{2\mathcal{H}_{e_i}(\bar{D}_n) } = 2 \gamma_i
+\delta_i(\varphi / V_{th}) = \dfrac{\varphi_k - \varphi_j}{V_{th}} = 2 \dfrac{(\vect{b}_K\cdot \vect{t}_{e_i}) |e_i|}{2\mathcal{H}_{e_i}(qD_n e^{(\varphi/V_{th})}) } = 2 \gamma_i
 \end{equation}
 
 \begin{equation}
@@ -452,7 +522,7 @@ being $\vect{b}_K$ the relative drift component of the problem on $K$ and $|\gam
 
 \subsubsection{The discretization scheme}
 
-The local contributions to the assembling of the global stiffness matrix and load vector associated with the linear algebraic system read as follows:
+Given the choice for $j_{e_i}$ and substituting the equation for $\vect{J}_h^K$ in the bilinear form of  \referenzaeq{eq: LEC discretized general}, we can compute the local system matrix over each element which reads as follows:
 
 \begin{equation}
 \Phi_K  = 
@@ -513,16 +583,21 @@ a_{e43}\mathcal{B}_{43}L^K_{43}
 \end{equation}
 
 \begin{equation}
-A_K = \Phi_K + \dfrac{|K|}{4} diag (\sigma_n)
+\label{eq: matrice continuità}
+A_K = \Phi_K + \dfrac{|K|}{4} diag (\sigma)
 \end{equation}
 
 \begin{equation}
 \vect{F}_K = \dfrac{|K|}{4} (f_1,f_2,f_3,f_4)^T
 \end{equation}
 
+For the assembling of the system matrix and the imposition of the essential boundary conditions we refer to the previous section.
+
+
+
+
 
 \textcolor{red}{Vale la seguente uguaglianza?}
-
 \begin{equation}
 L_{ij} = s_{ij} \vect{t}_{ij} \cdot \nabla \psi_i
 \end{equation}

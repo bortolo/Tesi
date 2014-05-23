@@ -1,4 +1,35 @@
-\begin{thebibliography}{Qua08}
+\begin{thebibliography}{PTVF07}
+
+\bibitem[Deu74]{DefulhardDamp}
+P.~Deuflhard.
+\newblock A modified newton method for the solution of ill-conditioned system
+  of nonlinear equations with application to multiple shooting.
+\newblock {\em Numer. Math}, 22:289--315, 1974.
+
+\bibitem[DF05]{TesiDotDeFalco}
+Carlo De~Falco.
+\newblock {\em Quantum Corrected Drift-Diffusion Models and Numerical
+  Simulation of Nanoscale Semiconductor Devices}.
+\newblock Dottorato di ricerca in matematica e statistica per le scienze
+  computazionali, A.A. 2004/2005.
+
+\bibitem[GS74]{ContactCurrentRM}
+R.~Gusmeroli and A.~S. Spinelli.
+\newblock Accurate boundary integrals calculation in semiconductor device
+  simulation.
+\newblock {\em Numer. Math}, 22:289--315, 1974.
+
+\bibitem[IE83]{BabuskaMixMet}
+Babu\v{s}ka I. and Osborn~J. E.
+\newblock Generlized finite element methods: Their performance and their
+  relation to mixed methods.
+\newblock {\em Numer. Anal.}, 20:510--536, 1983.
+
+\bibitem[PTVF07]{NumericalRecipes}
+William~H. Press, Saul~A. Teukoisky, William~T. Vetterling, and Brian~P.
+  Flannery.
+\newblock {\em Numerical Recipes, The Art of Scientific Computing}.
+\newblock Cambridge University Press, New York, 2007.
 
 \bibitem[Qua08]{quarteroni:modnum}
 Alfio Quarteroni.
@@ -9,11 +40,6 @@ Alfio Quarteroni.
 Sandro Salsa.
 \newblock {\em Equazioni a Derivate Parziali, metodi, modelli e applicazioni}.
 \newblock Springer Italia, Milan, 2010.
-
-\bibitem[Sie84]{selberherr:SimSem}
-Selberherr Siegfried.
-\newblock {\em Analysis and Simulation of Semiconductor Devices}.
-\newblock Springer-Verlag, Wien, 1984.
 
 \bibitem[YT09]{ModernVLSIdevices}
 Taur Yuan and H.~Ning Tak.

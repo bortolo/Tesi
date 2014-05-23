@@ -84,7 +84,7 @@ n_D = \dfrac{D + \sqrt{D^2+4n_i^2}}{2}
 p_D = \dfrac{-D + \sqrt{D^2+4n_i^2}}{2}
 \end{equation}
 
-where $D := N_D-N_A$ is the net doping concentration. Furthermore  we can approximate that quasif fermi potential level of silicon at contact is aligend with the external applyed voltage. As a conseguence we can easily calculate potential condition on $\Gamma_{D,Si}$ using \referenzaeq{eq: n density mb} and \referenzaeq{eq: p density mb}
+where $D := N_D-N_A$ is the net doping concentration. Furthermore  we can approximate that the quasi fermi potential level of silicon at contact is aligend with the external applyed voltage. As a conseguence we can easily calculate potential condition on $\Gamma_{D,Si}$ using \referenzaeq{eq: n density mb} and \referenzaeq{eq: p density mb}
 
 \begin{equation}
 \varphi_D = \varphi_f + V_{th}ln\left( \dfrac{n_D}{n_i} \right) = \varphi_f - V_{th}ln\left( \dfrac{p_D}{n_i} \right)
@@ -99,7 +99,7 @@ As we conveyed the boundary conditions, we are able to write in the closed way t
 \begin{equation}
 \label{eq: system closed}
 \begin{array}{rcll}
-- \Delta \epsilon \varphi - qn_i(e^{((\varphi_p-\varphi)/V_{th})}-e^{((\varphi-\varphi_n)/V_{th})}) & =  & qD & in \, \Omega = \Omega_{ox} \cup \Omega_{Si}\\
+- \Delta \epsilon \varphi - q(p-n) & =  & qD & in \, \Omega = \Omega_{ox} \cup \Omega_{Si}\\
 \varphi & = & \varphi_D & on \, \Gamma_D \\
 \nabla \varphi \cdot \vect{n} & = & 0 & on \, \Gamma_N 
 \\
@@ -130,6 +130,7 @@ The high coupled nonlinear nature of system	\referenzaeq{eq: system closed} make
 where:
 
 \begin{equation}
+\label{eq: functional operator}
 \vect{U}:=[\varphi,n,p]^T \psp{30} \vect{F(U)}:=\left[ \begin{array}{c}
 F_1(\vect{U}) \\
 F_2(\vect{U}) \\
@@ -141,7 +142,7 @@ F_3(\vect{U})
 and having set:
 
 \begin{align*}
-F_1(\vect{U}) & = \nabla \cdot (-\epsilon \nabla \varphi) - q(n_i(e^{((\varphi_p-\varphi)/V_{th})}-e^{((\varphi-\varphi_n)/V_{th})})+D) \\
+F_1(\vect{U}) & = \nabla \cdot (-\epsilon \nabla \varphi) - q(p-n+D) \\
 F_2(\vect{U}) & = \nabla \cdot ( q\mu_n n \nabla \varphi - qD_n \nabla n )+qR \\
 F_3(\vect{U}) & = \nabla \cdot (- q\mu_p p \nabla \varphi - qD_p \nabla p )+qR
 \end{align*}
@@ -199,21 +200,32 @@ The above setting of function spaces are used widely in the proceeding of this w
 
 Before introducing the abstract Newton's method we have to define some useful concept.
 
-\begin{Definizione}[Frech\`et derivative]
+\begin{Definizione}[Frech\`et differentiable]
+Let be $X$ and $Y$ two vector spaces. Given $f,g \in X$ and a functional $F:X\rightarrow Y$, the functional $F$ is Frech\'et differentiable if it exists a linear bounded operator $A_f:X\rightarrow Y$ such that:
 
+\begin{equation}
+\lim_{||g||\to 0}\dfrac{||F(f+g)-F(f)-A_f(g)||_Y}{||g||_X} = 0 
+\end{equation}
+
+If the limit exists, we write $DF(f)=A_f$ and call it the Frech\'et derivative of $F$ at $f$.
 \end{Definizione}
 
 
-\begin{Definizione}[Jacobian matrix]
-Given a vector function $\vect{F}$ the Jacobian matrix $\vect{F}'$ 
-\end{Definizione}
+Considering the functional operator \referenzaeq{eq: functional operator} we can easily compute the relative \textit{Jacobian matrix} $\vect{F}'$, whose $(i,j)-th$ entry represents the Frech\'et derivative of the $i-th$ row of the non linear operator with respect to the $j-th$ variable.
+
+\begin{equation}
+\vect{F}'_{ij}(\vect{U})[\vect{V}]_j := \lim_{\eta \to 0}\dfrac{F_i(\vect{U}+\eta [\vect{V}]_j)-F_i(\vect{U})}{\eta}  \psp{10} \vect{V} \in V
+\end{equation}
+
+where $[\vect{V}]_j \in V$ is the projection  of  $\vect{V}$ in the $j-th$ direction. 
+
+$\vect{F}'_{ij}(\cdot)$ is a linear operator from $V$ into $L(V,V)$, while $\vect{F}'_{ij}(\vect{U})$ is the Frech\'et derivative of the functional $F_i$ respect the variable $[\vect{U}]_j$.
 
 Accordingly with the above definitions the abstract Newton's method reads as follows:
 
-%\vspace{0.3cm}
 
 \mybox{
-Let be $\vect{F}$ a function operator, given $\vect{U}^0\in V$, for all $k\geq 0$ until convergence, solve the following linearized problem: 
+Let be $\vect{F}$ a function operator, given $\vect{U}^0\in V$, for all $k\geq 0$ until convergence, solve the following linear problem: 
 
 \begin{equation}
 \label{eq: abstract newton's method}
@@ -259,7 +271,7 @@ Then there exists in correspondence $\delta '>0$, with $\delta '\leq\delta$, suc
 \subsection{Fully coupled Newthon's method}
 
 
-If we consider the linearization of the entire system \referenzaeq{eq: system closed} the relative Jacobian matrix is a 3x3 matrix of the form
+If we consider the linearization of the entire system \referenzaeq{eq: system closed} the relative Jacobian matrix is a 3x3 matrix and the problem reads as
 
 \begin{equation}
 \left[
@@ -287,7 +299,7 @@ F_{3,\varphi} & F_{3,n} & F_{3,p} \\
 \end{equation}
 
 
- Every entry of the above matrix is a PDE's equation which we can discretize with suitable numerical proceedings (i.e. finite element method). If we spent for example $N_{dof}$ degrees of freedom to represent $\delta \varphi$, $\delta n$ and $\delta p$ we note that the structure of the relative discretizated matrix is a 3x3 block matrix system where every block is a $N_{dof} \times N_{dof}$ matrix:
+ Every row of the above matrix is a PDE's equation which we can discretize with suitable numerical proceedings (i.e. finite element method). If we spent for example $N_{dof}$ degrees of freedom to represent $\delta \varphi$, $\delta n$ and $\delta p$ we note that the structure of the relative discretizated matrix is a 3x3 block matrix system where every block is a $N_{dof} \times N_{dof}$ matrix:
 
 
 \begin{equation}
@@ -315,28 +327,27 @@ F_{3,\varphi} & F_{3,n} & F_{3,p} \\
 \right].
 \end{equation}
 
-This implies that at every iteration step we have to solve a linear problem of $3 \times N_{dof}$ dimension ...
+This implies that at every iteration step we have to solve a linear problem of $3 \times N_{dof}$ variables.
 
 Moreover to ensure convergence of the Newton iterative process, it is particularly important to provide a very good initial guess vector $[\varphi_0,n_0,p_0]$, therefore we have to know for every equation a possibly shape of the solution.
 
 Finally variable in play have different order of magnitude and the jacobian matrix is often quite ill-conditioned and needs appropriate scaling and balancing in order to avoid problems associated with round-off error. 
 
-This method is widely used in commercial software especially for the strong result ...
+This method is widely used in commercial software especially for the strong result of convergence, although we chose an alternative algorithm knwon as \textit{Decoupled Gummel Map}.
 
 
 \subsection{Gummel map algorithm}
 
 In 1964 H. K. Gummel proposed an orginal and alternative iterative algorithm in order to solve the system \referenzaeq{eq: system closed} in a semiconductor device in one spatial dimension.
 
-The main idea of the algorithm is to move the nonlinearity to the Poisson equation only and once obtained the electric potential profile, both continuity equations are linearized.  More precisely give an initial guess for $\varphi$, $n$ and $p$, the functional iteration consists in the succesive solution of the nonlinear Poisson's equation (NLP) in a inner loop (Newton's method is applyed for this equation) and of the two linearized continuity equations (DD electrons and DD holes). 
-A concisely scheme is presented in \figref{fig: gummel map}.
+The main idea of the algorithm is to move the nonlinearity to the Poisson equation only, and once obtained the electric potential profile, both continuity equations are linearized. This is possible if we consider the Maxwell-Boltzmann approximation for electrons \referenzaeq{eq: n density mb} and holes \referenzaeq{eq: p density mb}
 
-Unfortunately there isn't any convergence result for this method like \referenzaeq{theorem: newton convergence}, although there are several advantages which make Gummel map algorithm preferable to the Fully Coupled Newton's Method.
-In fact simulations experience shows that the Gummel process is much more insesitive to the choice of the initial guess than Newton's method. This is particularly important in multidimensional problems where it is far from trivial to design a good starting point for initializing.
-
-Another attractive feature is the reduced computational and memory stage cost: at each iteration step the Gummel algorithm requires the successive solution of three problems, each one of size equal to $N_{dof}\times N_{dof}$.
+\begin{equation}
+F_1(\varphi)  =  \nabla \cdot (-\epsilon \nabla \varphi) - q(n_i(e^{((\varphi_p-\varphi)/V_{th})}-e^{((\varphi-\varphi_n)/V_{th})})+D) .
+\end{equation}
 
 
+We have decoupled the system and the new algorithm reads as
 
 
 
@@ -344,9 +355,9 @@ Another attractive feature is the reduced computational and memory stage cost: a
 \begin{itemize}
 
 
-\item[(Step 0)] Give a suitable initial condition for $\varphi^0_i$ $n^0$ and $p^0$.
+\item[\bf (Step 0)] Give a suitable initial condition for $\varphi^0$ and set a positive parameter $toll_{GM}>0$ (Gummel Map tollerance)
 
-\item[(Step 1)] Fixed a positive parameter $toll>0$, solve the linearized Non Linear Poisson equation (NLP) in $\Omega$ using the Newton's method untill $||F_1(\varphi^{k+1}_i)||>toll$:
+\item[\bf (Step 1)] Fix a positive parameter $toll_{NLP}>0$ (Non Linear Poisson tollerance), solve the linearized Non Linear Poisson equation (NLP) in $\Omega$ using the Newton's method untill $||F_1(\varphi^{k+1})||>toll_{NLP}$:
 
 
 \begin{equation}
@@ -370,16 +381,17 @@ Another attractive feature is the reduced computational and memory stage cost: a
 having set,
 
 \begin{align*}
-\sigma_{Si}^k(\varphi^{k},\varphi_n^{i},\varphi_p^{i}) & = qn_i \left[ e^{((\varphi_p^i-\varphi^k)/V_{th})}-e^{((\varphi^k-\varphi_n^i)/V_{th})} \right]
+\sigma_{Si}^k(\varphi^{k}) & = qn_i \left[ e^{((\varphi_p-\varphi^k)/V_{th})}-e^{((\varphi^k-\varphi_n)/V_{th})} \right]
 \\
-f_{Si}^k(\varphi^k,\varphi_n^i,\varphi_p^i) & = \nabla \cdot (-\epsilon \nabla \varphi^k) + qn_i \left[ e^{((\varphi_p^i-\varphi^k)/V_{th})}-e^{((\varphi^k-\varphi_n^i)/V_{th})}  + D \right]
+f_{Si}^k(\varphi^k) & = \nabla \cdot (-\epsilon \nabla \varphi^k) + qn_i \left[ e^{((\varphi_p-\varphi^k)/V_{th})}-e^{((\varphi^k-\varphi_n)/V_{th})}  + D \right]
 \\
 f_{ox}^k(\varphi^k) & = \nabla \cdot (-\epsilon \nabla \varphi^k) 
 \end{align*}
 
+computed accordingly to the definition of the Frech\'et derivate.
 
 
-\item[(Step 2)] Solve the Linear Electron Contintuity Equation (LEC):
+\item[\bf (Step 2)] Solve the Linear Electron Contintuity Equation (LEC):
 
 \begin{equation}
 \label{eq: LEC system}
@@ -392,7 +404,7 @@ f_{ox}^k(\varphi^k) & = \nabla \cdot (-\epsilon \nabla \varphi^k)
 \end{cases}
 \end{equation}
 
-\item[(Step 3)] Solve the Linear Hole Contintuity Equation (LHC):
+\item[\bf (Step 3)] Solve the Linear Hole Contintuity Equation (LHC):
 
 \begin{equation}
 \label{eq: LHC system}
@@ -405,56 +417,20 @@ f_{ox}^k(\varphi^k) & = \nabla \cdot (-\epsilon \nabla \varphi^k)
 \end{cases}
 \end{equation}
 
-\item[(Step 4)] If $max\{||\varphi^i-\varphi^{i-1}||_{L^{\infty}},||p^i-p^{i-1}||_{L^{\infty}},||n^i-n^{i-1}||_{L^{\infty}}\}>toll$ restart from step 1.
+\item[\bf (Step 4)] If $max\{||\varphi^i-\varphi^{i-1}||_{L^{\infty}},||p^i-p^{i-1}||_{L^{\infty}},||n^i-n^{i-1}||_{L^{\infty}}\}>toll_{GM}$ restart from step (1).
 
 
 \end{itemize}
 
-We spent some considerations over step 2 and step 3. The general recombination/generation phenomenon is described by \referenzaeq{eq: generic RG}, this implies that we can separate the reaction term from the force term (except for the II which is only a force term contribution). In fact we can denote the general recombination/generation term as follows:
 
-\begin{equation}
-\label{eq: real Rn and Rp}
-\begin{array}{rcl}
-R_n^{i-1}(n) & = \sigma_n^{i-1} n - f^{i-1} \\
-R_p^{i-1}(p) & = \sigma_p^{i-1} p - f^{i-1} \\
-\end{array}
-\end{equation}
+We shall note with $k$ the iteration step of the inner loop, while with $i$ the iteration step of the Gummel Map. A concisely scheme is presented in \figref{fig: gummel map}.
+Unfortunately there isn't any convergence result for this method like \referenzaeq{theorem: newton convergence}, although there are several advantages which make Gummel map algorithm preferable to the Fully Coupled Newton's Method.
+In fact simulations experience shows that the Gummel process is much more insesitive to the choice of the initial guess than Newton's method. This is particularly important in multidimensional problems where it is far from trivial to design a good starting point for initializing.
 
-where
+Another attractive feature is the reduced computational and memory stage cost: at each iteration step the Gummel algorithm requires the successive solution of three problems, each one of size equal to $N_{dof}\times N_{dof}$.
 
 
-\begin{equation}
-\begin{array}{c}
-\sigma_n  = \dfrac{p^{i-1}}{F(p^{i-1},n^{i-1})} \psp{15} \sigma_p   = \dfrac{n^{i-1}}{F(p^{i-1},n^{i-1})} \\
-f  = \dfrac{n_i^2}{F(p^{i-1},n^{i-1})}.
-\end{array}
-\end{equation}
 
-We can rewrite systems \referenzaeq{eq: LEC system} and \referenzaeq{eq: LHC system}
-
-\begin{equation}
-\label{eq: LEC system new}
-\begin{cases}
- \nabla \cdot ( q\mu_n n \nabla \varphi^i - qD_n \nabla n ) +q\sigma_n^{i-1} n = qf^{i-1} & in \psp{3} \Omega_{Si}
- \\
- n = n_D & on \psp{3} \Gamma_{D,Si}
- \\
- \nabla n \cdot \vect{n} = 0 & on \psp{3} \Gamma_{N,Si}
-\end{cases}
-\end{equation}
-
-\begin{equation}
-\label{eq: LHC system new}
-\begin{cases}
-\nabla \cdot (- q\mu_p p \nabla \varphi^i - qD_p \nabla p ) + q\sigma_p^{i-1} p =  qf^{i-1}& in \psp{3} \Omega_{Si}
-\\
- p = p_D & on \psp{3} \Gamma_{D,Si}
- \\
- \nabla p \cdot \vect{n} = 0 & on \psp{3} \Gamma_{N,Si}
-\end{cases}
-\end{equation}
-
-We just introduced a special treatment of the continuity equations in the Gummel Decoupled Algorithm. This splitting of R/G term is called \textit{lagging approach} and corresponds to extending to the non-linear case the classical \textit{Jacobi} method for the iterative  solution of linear algbraic systems. Thus equations are sequentially solved, it's possible take advantage of the knowing a solution. Indeed an alternative approach would be use the solution of the first solved equation to compute the R/G contribute in the second equation. In such case the lagging method corresponds to extending to the nonlinear case tha classical \textit{Gauss-Seidel} method for the iterative solution in linear algebraic systems.
 
 
 \begin{figure}[!h]
@@ -498,5 +474,54 @@ We just introduced a special treatment of the continuity equations in the Gummel
 \end{center}
 \end{figure}
 
+
+
+
+
+We spent some considerations over step 2 and step 3. Accordingly with \referenzaeq{eq: generic RG} the general R/G phenomenon can be separated in a reaction term and a force term (except for the II which is only a force term contribution). In fact we can denote the general R/G term as follows:
+
+\begin{equation}
+\label{eq: real Rn and Rp}
+\begin{array}{rcl}
+R_n^{i-1}(n) & = \sigma_n^{i-1} n - f^{i-1} \\
+R_p^{i-1}(p) & = \sigma_p^{i-1} p - f^{i-1} \\
+\end{array}
+\end{equation}
+
+where
+
+
+\begin{equation}
+\begin{array}{c}
+\sigma_n  = \dfrac{p^{i-1}}{F(p^{i-1},n^{i-1})} \psp{15} \sigma_p   = \dfrac{n^{i-1}}{F(p^{i-1},n^{i-1})} \\
+f  = \dfrac{n_i^2}{F(p^{i-1},n^{i-1})}.
+\end{array}
+\end{equation}
+
+We can rewrite systems \referenzaeq{eq: LEC system} and \referenzaeq{eq: LHC system}
+
+\begin{equation}
+\label{eq: LEC system new}
+\begin{cases}
+ \nabla \cdot ( q\mu_n n \nabla \varphi^i - qD_n \nabla n ) +q\sigma_n^{i-1} n = qf^{i-1} & in \psp{3} \Omega_{Si}
+ \\
+ n = n_D & on \psp{3} \Gamma_{D,Si}
+ \\
+ \nabla n \cdot \vect{n} = 0 & on \psp{3} \Gamma_{N,Si}
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\label{eq: LHC system new}
+\begin{cases}
+\nabla \cdot (- q\mu_p p \nabla \varphi^i - qD_p \nabla p ) + q\sigma_p^{i-1} p =  qf^{i-1}& in \psp{3} \Omega_{Si}
+\\
+ p = p_D & on \psp{3} \Gamma_{D,Si}
+ \\
+ \nabla p \cdot \vect{n} = 0 & on \psp{3} \Gamma_{N,Si}
+\end{cases}
+\end{equation}
+
+Systems \referenzaeq{eq: LEC system new} and \referenzaeq{eq: LHC system new} are just a special treatment of the continuity equations in the Gummel Decoupled Algorithm. This splitting of R/G term is called \textit{lagging approach} and corresponds to extending to the non-linear case the classical \textit{Jacobi} method for the iterative  solution of linear algbraic systems. Thus equations are sequentially solved, it's possible take advantage of the knowing a solution. Indeed an alternative approach would be use the solution of the first solved equation to compute the R/G contribute in the second equation. In such case the lagging method corresponds to extending to the nonlinear case tha classical \textit{Gauss-Seidel} method for the iterative solution in linear algebraic systems.
 
 
