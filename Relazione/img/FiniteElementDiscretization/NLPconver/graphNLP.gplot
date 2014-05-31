@@ -1,0 +1,35 @@
+load '../../header'
+
+#set format x "%.1t {/Symbol \327} 10^{%T}"
+set grid
+#set xrange [-8.0:1.5]
+set logscale x 
+set xlabel 'Iterations' font "Helvetica bold,20"
+
+set yrange [1e-50:1e22]
+set format y "10^{%T}"
+set ytics nomirror
+set logscale y;
+set ylabel '||res||' font "Helvetica bold,20" 
+
+
+set lmargin 10
+
+set key bottom left
+set key font "Helvetica,16"
+set key box
+set key reverse
+set key Left
+
+plot '2voltDamping.txt' u 1:(abs($2)) ti 'damping 2[V]' w lp ls 13
+replot '2voltNODamping.txt' u 1:(abs($2)) ti 'no damping 2[V]' w lp ls 23
+replot '3voltDamping.txt' u 1:(abs($2)) ti 'damping 3[V]' w lp ls 11
+replot '3voltNODamping.txt' u 1:(abs($2)) ti 'no damping 3[V]' w lp ls 21 
+replot '5voltDamping.txt' u 1:(abs($2)) ti 'damping 5[v]' w lp ls 12
+replot '5voltNODamping.txt' u 1:(abs($2)) ti 'no damping 5[v]' w lp ls 22 
+
+
+set out 'NLPconvergence.eps'
+rep
+set out 'temp.eps'
+

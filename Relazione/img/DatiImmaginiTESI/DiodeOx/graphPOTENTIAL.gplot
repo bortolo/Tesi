@@ -1,0 +1,32 @@
+load '../header'
+
+#set format x "%.1t {/Symbol \327} 10^{%T}"
+set grid
+set xrange [0.0:0.3]
+#set logscale x 
+set xlabel 'Z axis [micron]' font "Helvetica bold,20"
+
+#set yrange [10:5e18]
+#set format y "10^{%T}"
+set ytics nomirror
+#set logscale y;
+set ylabel 'Potential [V]' font "Helvetica bold,20" 
+#set ylabel 'Electrostatic Potential [V]' font "Helvetica bold,20" 
+
+set lmargin 10
+
+# Opzioni legenda
+set key bottom left
+set key font "Helvetica,16"
+set key box
+set key reverse
+set key Left
+
+#set title 'Diode - Current at p-contact' font "Helvetica bold,20"
+plot './NPOXaxisZ03voltSDE.txt' u 54:12 ti 'SDE' w p ls 20 ps 1
+replot './NPOXaxisZ03voltFEMOS.txt' u 57:15 ti 'FEMOS' w l ls 10
+
+set out 'PotentialZaxis.eps'
+rep
+set out 'temp.eps'
+

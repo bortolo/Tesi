@@ -1,0 +1,34 @@
+load '../header'
+
+#set format x "%.1t {/Symbol \327} 10^{%T}"
+set grid
+#set xrange [0.0:0.27]
+#set logscale x 
+set xlabel 'Voltage [V]' font "Helvetica bold,20"
+
+set yrange [0:20]
+#set format y "10^{%T}"
+set ytics nomirror
+#set logscale y;
+set ylabel 'Time [s]' font "Helvetica bold,20" 
+
+set y2tics nomirror
+set y2label 'Iterations' font "Helvetica bold,20"
+
+set rmargin 10
+set lmargin 10
+
+set key top left
+set key font "Helvetica,16"
+set key box
+set key reverse
+set key Left
+
+plot './DiodeDirectPolarizationTEMPISIMULAZIONE.txt' u 1:5 ti 'DD average solving time' w lp ls 22
+replot './DiodeDirectPolarizationTEMPISIMULAZIONE.txt' u 1:3 ti 'NLP average solving time' w lp ls 21
+replot './DiodeDirectPolarizationTEMPISIMULAZIONE.txt' u 1:4 ti 'GM iterations' w lp ls 23
+
+set out 'ConfrontoTempiNLPDDGMiterations.eps'
+rep
+set out 'temp.eps'
+

@@ -369,32 +369,21 @@ obiuvsly $i$ is the subiterations of damping reached when satisfied \referenzaeq
 \begin{figure}[!h]
 \centering
 
-\subfloat[][]
-{\includegraphics[scale=0.8]{FiniteElementDiscretization/NLPconvergence.eps}}
+\subfloat[][\emph{Non Linear Poisson residual}]
+{\includegraphics[height=7cm]{FiniteElementDiscretization/NLPconver/NLPconvergence.eps}}
 
-\subfloat[][]
-{\includegraphics[scale=0.8]{FiniteElementDiscretization/NLPconvergenceDamping.eps}}
+\subfloat[][\emph{$t_k$ parameter.}]
+{\includegraphics[height=7cm]{FiniteElementDiscretization/NLPconver/NLPtheta}}
 
-\caption{Number of iteration against reasidual for different bias in a diode case test. (a) NLP solving without damping, (b) NLP solving with Deuflhard damping criterion.}
-
-\end{figure}
-
-
-
-
-\begin{figure}[!h]
-\centering
-
-{\includegraphics[scale=0.8]{FiniteElementDiscretization/NLPconvergenceDamping.eps}}
-
-\caption{Behaviour of the $t_k$ coefficients.}
+\caption{(a) Number of iteration against residual for different voltages in a diode test case. (b) Magnitude of the damping parameter $t_k$.}
 
 \end{figure}
 
 
 
 
- \subsection{Continuity equations}
+\subsection{Continuity equations}
+\label{sec: continuity equations}
 
 As regards the LEC equation we have:
 
@@ -593,11 +582,44 @@ A_K = \Phi_K + \dfrac{|K|}{4} diag (\sigma)
 
 For the assembling of the system matrix and the imposition of the essential boundary conditions we refer to the previous section.
 
+The discretization scheme just presented is well known as \textit{Edge Averaged Finite Elements} (EAFE) and it's particularly suitable for problems with coefficient highly variable. Furthermore this approach has several good properties, e.i. in 2D simulation if $\mathcal{T}_h$ is a Delauny partition the system matrix is an \textit{M-matrix} \cite{BankMmatrixEAFE}. The main conseguence of this statement is that the solution satisfied the \textit{Discrete Maximum Principle} \textcolor{red}{ref}, which means that, in this physical framework, no negative concentrations may occur. Unfortunately this property is not more valid in a 3D simulation, indeed the Delauny condition of the mesh is not sufficiently to guarantee that the system matrix of the method is an M-matrix. A more general condition is presented in \cite{ZikatanovXu}.
 
+\begin{Teorema}[Zikatanov condition]
+The system matrix of the EAFE scheme is an M-matrix if and only if for any fixed edge E of the partition $\mathcal{T}_h$ the following inequality holds:
 
-
-
-\textcolor{red}{Vale la seguente uguaglianza?}
 \begin{equation}
-L_{ij} = s_{ij} \vect{t}_{ij} \cdot \nabla \psi_i
+\label{eq: mesh delaunay condition}
+\omega_E = \dfrac{1}{n(n-1)} \sum_{T\supset E} |k_E^T|cot\theta_E^T \geq 0,
 \end{equation}
+
+where $n$ is the dimension, $\sum_{T \supset E}$ means summation over all simplexes $T$ containing $E$, $\theta_E^T$ is tha angle between the faces $f_i$, $f_j \in \mathcal{T}_h$ such that $f_i \bigcap f_j = E$  and $k_E^T$ is the edge in $T$ which doesn't share any verticies with $E$.
+\end{Teorema}
+
+\begin{Osservazione}
+For $n=2$ the condition \referenzaeq{eq: mesh delaunay condition} means that the sum of the angles opposite to any edge is less than or equal to $\pi$, this condition implies that the partition is a Delaunay triangulation.
+\end{Osservazione}
+
+\begin{Osservazione}
+Condition \referenzaeq{eq: mesh delaunay condition} highlights that in order to satisfy the discrete maximum principle, a partion without obtuse angles is preferable.
+\end{Osservazione}
+
+We notice that presently meshing software are oriented to care about the minimum angle of the elements, rather than the maximum, as a conseguence obtain a mesh which satisfied the condition \referenzaeq{eq: mesh delaunay condition} it's a really difficult task. 
+
+As example in \figref{fig: cubo zikatanov} we present a simple partition of a cube performed with the Synopsis tool SNMESH. For every element we evaluate how many edges doesn't satisfy the condition \referenzaeq{eq: mesh delaunay condition}.
+
+In order to avoid this problem some alternative solutions are proposed in the literature, like the \textit{Orthogonal Subdomain Collocation method} \cite{OSCputticorded}, but also this approach is not definitely. 
+Therefore in presence of negative concentration the most used technique during 3D numerical simulation is the fitting of the affected regions, which often are the ones where the carrier density decrease.
+
+\vspace{1cm}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[height = 7cm]{FiniteElementDiscretization/CuboElementi.png}
+\caption{Evaluation of the Zikatanov condition over a simple partition. Red elements doesn't satisfy condition  \referenzaeq{eq: mesh delaunay condition} over four edges while blue elements fully accomplished the criterion.}
+\label{fig: cubo zikatanov}
+\end{figure}
+
+%\textcolor{red}{Vale la seguente uguaglianza?}
+%\begin{equation}
+%L_{ij} = s_{ij} \vect{t}_{ij} \cdot \nabla \psi_i
+%\end{equation}

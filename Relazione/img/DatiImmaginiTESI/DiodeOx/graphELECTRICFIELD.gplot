@@ -1,0 +1,31 @@
+#load '../header'
+
+#set format x "%.1t {/Symbol \327} 10^{%T}"
+set grid
+set xrange [0.0:0.2]
+#set logscale x 
+set xlabel 'Y axis [micron]' font "Helvetica bold,20"
+
+#set yrange [4.25e3:17.25e3]
+#set format y "10^{%T}"
+set ytics nomirror
+#set logscale y;
+set ylabel 'Electrif field [V/cm]' font "Helvetica bold,20" 
+
+
+set lmargin 10
+
+set key bottom left
+set key font "Helvetica,16"
+set key box
+set key reverse
+set key Left
+
+
+plot './NPOXaxisY03voltFEMOS.txt' u 56:33 ti 'Electric field FEMOS' w l ls 10
+
+
+#set out 'ElectricFieldYaxis.eps'
+#rep
+#set out 'temp.eps'
+

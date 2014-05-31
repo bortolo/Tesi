@@ -1,0 +1,36 @@
+load '../header'
+
+#set format x "%.1t {/Symbol \327} 10^{%T}"
+set grid
+#set xrange [0.1:1.5]
+#set logscale x 
+set xlabel 'Channel-axis [micron]' font "Helvetica bold,20"
+
+set yrange [-1.8:1.1]
+#set format y "10^{%T}"
+set ytics nomirror
+#set logscale y;
+set ylabel 'Energy level [eV]' font "Helvetica bold,20" 
+
+
+set lmargin 10
+
+
+# Opzioni legenda
+set key bottom left
+set key font "Helvetica,16"
+set key box
+set key reverse
+set key Left
+
+#set title 'Diode - Current at p-contact' font "Helvetica bold,20"
+plot './MOSaxisCanale0volt.txt' u 55:23 ti 'Middle band' w l ls 20
+replot './MOSaxisCanale0volt.txt' u 55:7 ti 'Conduction band' w l ls 10
+replot './MOSaxisCanale0volt.txt' u 55:26 ti 'Valence band' w l ls 10
+replot './MOSaxisCanale0volt.txt' u 55:21 ti 'Hole quasi fermi' w l ls 12
+replot './MOSaxisCanale0volt.txt' u 55:13 ti 'Electron quasi fermi' w l ls 11
+
+set out 'BandDiagramMOS0volt.eps'
+rep
+set out 'temp.eps'
+

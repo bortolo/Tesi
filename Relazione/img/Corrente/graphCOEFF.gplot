@@ -1,0 +1,26 @@
+load '/Users/andreabortolossi/Documents/POLI/TESI/Relazione/img/header'
+
+set grid
+#set xrange [-7.5:2.0]
+set xlabel 'Voltage [V]' font "Helvetica bold,20"
+
+#set yrange [800:1.4e3]
+#set yrange [-1e4:7e4]
+set ytics nomirror
+set logscale y;
+set ylabel 'I [A]' font "Helvetica bold,20" 
+
+set lmargin 10
+
+set key top right
+set key font "Helvetica,16"
+set key box
+set key reverse
+set key Left
+
+plot './FEMOSDDcorretto08volt.txt' u 60:(abs($32)) ti 'Coefficiente stab' w lp ls 21 ps 1
+
+set out 'CoeffStabJP.eps'
+rep
+set out 'temp.eps'
+

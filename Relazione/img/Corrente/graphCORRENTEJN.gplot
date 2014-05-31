@@ -1,0 +1,30 @@
+load '/Users/andreabortolossi/Documents/POLI/TESI/Relazione/img/header'
+
+set grid
+#set xrange [-7.5:2.0]
+set xlabel 'Voltage [V]' font "Helvetica bold,20"
+
+set yrange [2.5e4:3.5e4]
+#set yrange [-1e4:7e4]
+set ytics nomirror
+#set logscale y;
+set ylabel 'I [A]' font "Helvetica bold,20" 
+
+set lmargin 10
+
+set key bottom left
+set key font "Helvetica,16"
+set key box
+set key reverse
+set key Left
+
+plot './SDE08volt.txt' u 54:(abs($40)) ti 'Jn SDE' w l ls 17 lw 6
+#replot './FEMOSDD08volt.txt' u 60:(abs($52)) ti 'Jn FEMOS DD' w lp ls 22 ps 1
+replot './FEMOSDDcorretto08volt.txt' u 60:(abs($52)) ti 'Jn FEMOS DD corretto' w lp ls 21 ps 1
+replot './FEMOSQF08volt.txt' u 60:(abs($52)) ti 'Jn FEMOS QF' w lp ls 23 ps 1
+replot './FEMOSSG08volt.txt' u 60:(abs($52)) ti 'Jn FEMOS SG' w lp ls 24 ps 1
+
+set out 'ConfrontiCorrentiBulkJN.eps'
+rep
+set out 'temp.eps'
+

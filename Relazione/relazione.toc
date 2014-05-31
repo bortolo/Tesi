@@ -35,18 +35,19 @@
 \contentsline {subsubsection}{Damping}{41}
 \contentsline {subsection}{\numberline {4.3.3}Continuity equations}{44}
 \contentsline {subsubsection}{Edge flux density computation}{46}
-\contentsline {subsubsection}{The discretization scheme}{47}
+\contentsline {subsubsection}{The discretization scheme}{46}
 \contentsline {chapter}{\numberline {5}Simulation results}{49}
 \contentsline {section}{\numberline {5.1}Test cases}{49}
 \contentsline {subsection}{\numberline {5.1.1}p-n junction}{49}
-\contentsline {subsection}{\numberline {5.1.2}p-n junction in oxide}{54}
+\contentsline {subsection}{\numberline {5.1.2}p-n junction in oxide}{53}
 \contentsline {subsection}{\numberline {5.1.3}MOSFET n-channel}{57}
+\contentsline {subsubsection}{Negative concentration}{60}
 \contentsline {section}{\numberline {5.2}Current at contacts}{62}
-\contentsline {subsection}{\numberline {5.2.1}Results}{63}
-\contentsline {subsubsection}{p-n junction}{63}
-\contentsline {subsubsection}{p-n junction in oxide}{64}
-\contentsline {subsubsection}{MOS n-channel}{66}
-\contentsline {chapter}{\numberline {6}The current calculation problem}{67}
-\contentsline {section}{\numberline {6.1}Scharfetter-Gummel formula}{68}
-\contentsline {section}{\numberline {6.2}Extension for the 3D case}{69}
-\contentsline {chapter}{Bibliografia}{73}
+\contentsline {subsection}{\numberline {5.2.1}Results}{64}
+\contentsline {subsubsection}{p-n junction}{64}
+\contentsline {subsubsection}{p-n junction in oxide}{66}
+\contentsline {subsubsection}{MOSFET n-channel}{67}
+\contentsline {chapter}{\numberline {6}The current calculation problem}{71}
+\contentsline {section}{\numberline {6.1}Scharfetter-Gummel formula}{72}
+\contentsline {section}{\numberline {6.2}Extension for the 3D case}{73}
+\contentsline {chapter}{Bibliografia}{77}

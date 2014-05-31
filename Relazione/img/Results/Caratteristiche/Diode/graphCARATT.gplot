@@ -1,0 +1,31 @@
+load '../header'
+
+#set format x "%.1t {/Symbol \327} 10^{%T}"
+set grid
+set xrange [-7.5:2.0]
+#set logscale x 
+set xlabel 'Voltage [V]' font "Helvetica bold,20"
+
+#set yrange [10:2e3]
+#set format y "10^{%T}"
+set ytics nomirror
+set logscale y;
+set ylabel 'I [A]' font "Helvetica bold,20" 
+
+set lmargin 10
+
+set key top center
+set key font "Helvetica,16"
+set key box
+set key reverse
+set key Left
+
+plot './DIODETotalCharacteristicFEMOS.txt' u 5:(abs($6)) ti 'In FEMOS' w l ls 12
+replot './DIODETotalCharacteristicSDE.txt' u 1:(abs($2)) ti 'In SDE' w p ls 22 ps 1
+replot './DIODETotalCharacteristicFEMOS.txt' u 5:(abs($7)) ti 'Ip FEMOS' w l ls 11 
+replot './DIODETotalCharacteristicSDE.txt' u 1:(abs($4)) ti 'Ip SDE' w p ls 21 ps 1
+
+set out 'CaratteristicaDiode.eps'
+rep
+set out 'temp.eps'
+

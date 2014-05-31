@@ -1,0 +1,34 @@
+load '../../header'
+
+#set format x "%.1t {/Symbol \327} 10^{%T}"
+set grid
+#set xrange [-8.0:1.5]
+#set logscale x 
+set xlabel 'Iterations' font "Helvetica bold,20"
+
+set yrange [-0.1:1.1]
+#set format y "10^{%T}"
+set ytics nomirror
+#set logscale y;
+set ylabel 'theta' font "Helvetica bold,20" 
+
+set lmargin 10
+
+set key bottom right
+set key font "Helvetica,16"
+set key box
+set key reverse
+set key Left
+
+
+#set title 'Diode - Current at p-contact' font "Helvetica bold,20"
+plot '2voltDamping.txt' u 1:(abs($4)) ti 'Bias 2[V]' w lp ls 13
+replot '3voltDamping.txt' u 1:(abs($4)) ti 'Bias 3[V]' w lp ls 11 
+replot '5voltDamping.txt' u 1:(abs($4)) ti 'Bias 5[V]' w lp ls 12
+
+
+
+set out 'NLPtheta.eps'
+rep
+set out 'temp.eps'
+

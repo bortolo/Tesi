@@ -1,0 +1,156 @@
+### GNUPLOT TEMPLATE ###  
+###           4.6.1                ###
+###-----------------------------###
+###       17-12-2012         ###
+
+
+
+set term postscript eps enhanced color  lw 2.2 "Helvetica" 18 ; set out 'temp.eps';
+
+# borders and margins
+set border 15 lw 1.5
+set lmargin 8
+set bmargin 3.2
+set rmargin 5
+set tmargin 2
+
+# Point size 
+set pointsize 1.7
+
+
+# Clipping points:  no overlap between points and borders
+set clip points
+
+# Clipping lines:  no overlap between lines and borders
+set clip two
+
+# label font
+set xlabel font "Helvetica,20"
+set x2label font "Helvetica,20"
+set ylabel font "Helvetica,20"
+set y2label font "Helvetica,20"
+
+# Legend Parameters
+
+set key samplen 1.2
+set key spacing 0.9
+# set key box ls 10
+set key width 0.5
+set key height 0.4
+set key font "Helvetica,16"
+
+
+
+# line style:  continuos line -  open square symbol
+set style line 10 lt 1 lc rgbcolor "#000000" lw 2 pt 4	#black
+set style line 11 lt 1 lc rgbcolor "#C11010" lw 2 pt 4	#red
+set style line 12 lt 1 lc rgbcolor "#1F0BD5" lw 2 pt 4  #green
+set style line 13 lt 1 lc rgbcolor "#0AA10A" lw 2 pt 4  #blue
+set style line 14 lt 1 lc rgbcolor "#EE7600" lw 2 pt 4  #orange
+set style line 15 lt 1 lc rgbcolor "#9370DB" lw 2 pt 4  #purle
+set style line 16 lt 1 lc rgbcolor "#8B4513" lw 2 pt 4  #brown 
+set style line 17 lt 1 lc rgbcolor "#8B8989" lw 2 pt 4  #grey
+set style line 18 lt 1 lc rgbcolor "#B8860B" lw 2 pt 4  #gold 
+
+
+
+#line style:  dotted line -  circle filled symbol
+set style line 20 lt 3 lc rgbcolor "#000000" lw 1 pt 7	#black
+set style line 21 lt 3 lc rgbcolor "#C11010" lw 1 pt 7	#red
+set style line 22 lt 3 lc rgbcolor "#1F0BD5" lw 1 pt 7  #green
+set style line 23 lt 3 lc rgbcolor "#0AA10A" lw 1 pt 7  #blue
+set style line 24 lt 3 lc rgbcolor "#EE7600" lw 1 pt 7  #orange
+set style line 25 lt 3 lc rgbcolor "#9370DB" lw 1 pt 7  #purle
+set style line 26 lt 3 lc rgbcolor "#8B4513" lw 1 pt 7  #brown 
+set style line 27 lt 3 lc rgbcolor "#8B8989" lw 1 pt 7  #grey
+set style line 28 lt 3 lc rgbcolor "#B8860B" lw 1 pt 7  #gold 
+
+
+
+#line style:  dash-dot-dot line -  triangle filled symbol
+set style line 30 lt 8 lc rgbcolor "#000000" lw 1 pt 9	#black
+set style line 31 lt 8 lc rgbcolor "#C11010" lw 1 pt 9	#red
+set style line 32 lt 8 lc rgbcolor "#1F0BD5" lw 1 pt 9  #green
+set style line 33 lt 8 lc rgbcolor "#0AA10A" lw 1 pt 9  #blue
+set style line 34 lt 8 lc rgbcolor "#EE7600" lw 1 pt 9  #orange
+set style line 35 lt 8 lc rgbcolor "#9370DB" lw 1 pt 9  #purle
+set style line 36 lt 8 lc rgbcolor "#8B4513" lw 1 pt 9  #brown 
+set style line 37 lt 8 lc rgbcolor "#8B8989" lw 1 pt 9  #grey
+set style line 38 lt 8 lc rgbcolor "#B8860B" lw 1 pt 9  #gold 
+
+
+
+# line style with open symbols
+set style line 40 lt 1 lc rgbcolor "#000000" lw 1 pt 2	#black
+set style line 41 lt 2 lc rgbcolor "#000000" lw 1 pt 8	#black
+set style line 42 lt 5 lc rgbcolor "#000000" lw 1 pt 12 #black
+set style line 43 lt 4 lc rgbcolor "#000000" lw 1 pt 14 #black
+set style line 44 lt 8 lc rgbcolor "#000000" lw 1 pt 3	#black
+set style line 45 lt 7 lc rgbcolor "#000000" lw 1 pt 4	#black
+
+
+
+# arrow style:  continuos line filled arrow
+
+set style arrow 10 filled size screen 0.01,20,35 ls 10
+set style arrow 11 filled size screen 0.01,20,35 ls 11
+set style arrow 12 filled size screen 0.01,20,35 ls 12
+set style arrow 13 filled size screen 0.01,20,35 ls 13
+set style arrow 14 filled size screen 0.01,20,35 ls 14
+set style arrow 15 filled size screen 0.01,20,35 ls 15
+set style arrow 16 filled size screen 0.01,20,35 ls 16
+set style arrow 17 filled size screen 0.01,20,35 ls 17
+set style arrow 18 filled size screen 0.01,20,35 ls 18
+
+
+
+# arrow style:  continuos line open arrow
+
+set style arrow 20 head empty size screen 0.03,15,135 ls 10
+set style arrow 21 head empty size screen 0.03,15,135 ls 11
+set style arrow 22 head empty size screen 0.03,15,135 ls 12
+set style arrow 23 head empty size screen 0.03,15,135 ls 13
+set style arrow 24 head empty size screen 0.03,15,135 ls 14
+set style arrow 25 head empty size screen 0.03,15,135 ls 15
+set style arrow 26 head empty size screen 0.03,15,135 ls 16
+set style arrow 27 head empty size screen 0.03,15,135 ls 17
+set style arrow 28 head empty size screen 0.03,15,135 ls 18
+
+
+# arrow style: noheads
+
+set style arrow 20 nohead ls 20
+set style arrow 21 nohead ls 21
+set style arrow 22 nohead ls 22
+set style arrow 23 nohead ls 23
+set style arrow 24 nohead ls 24
+set style arrow 25 nohead ls 25
+set style arrow 26 nohead ls 26
+set style arrow 27 nohead ls 27
+set style arrow 28 nohead ls 28
+
+set style arrow 30 nohead ls 30
+set style arrow 31 nohead ls 31
+set style arrow 32 nohead ls 32
+set style arrow 33 nohead ls 33
+set style arrow 34 nohead ls 34
+set style arrow 35 nohead ls 35
+set style arrow 36 nohead ls 36
+set style arrow 37 nohead ls 37
+set style arrow 38 nohead ls 38
+
+
+set style arrow 40 nohead ls 10
+set style arrow 41 nohead ls 11
+set style arrow 42 nohead ls 12
+set style arrow 43 nohead ls 13
+set style arrow 44 nohead ls 14
+set style arrow 45 nohead ls 15
+set style arrow 46 nohead ls 16
+set style arrow 47 nohead ls 17
+set style arrow 48 nohead ls 18
+
+
+
+
+

@@ -1,0 +1,42 @@
+load '../header'
+
+#set format x "%.1t {/Symbol \327} 10^{%T}"
+set grid
+#set xrange [0.0:0.3]
+#set logscale x 
+set xlabel 'Z axis [micron]' font "Helvetica bold,20"
+
+set yrange [-0.15:0.35]
+#set format y "10^{%T}"
+set ytics nomirror
+#set logscale y;
+set ylabel 'Potential [V]' font "Helvetica bold,20" 
+
+set lmargin 10
+
+
+
+# Opzioni legenda
+set key bottom left
+set key font "Helvetica,16"
+set key box
+set key reverse
+set key Left
+
+
+
+#set title 'Diode - Current at p-contact' font "Helvetica bold,20"
+plot './NPOXaxisZ03voltSDE.txt' u 54:32 ti 'Hole qf potential SDE' w p ls 22 ps 1
+replot './NPOXaxisZ03voltSDE.txt' u 54:25 ti 'Electron qf potential SDE' w p ls 21 ps 1
+replot './NPOXaxisZ03voltFEMOS.txt' u 57:22 ti 'Hole qf potential FEMOS' w l ls 12
+replot './NPOXaxisZ03voltFEMOS.txt' u 57:14 ti 'Electron qf potential FEMOS' w l ls 11
+#replot './MOSaxisZ2volt.txt' u 57:20 ti 'Hole Vg = 2.0 [V]' w l ls 12
+#replot './MOSaxisZ2volt.txt' u 57:12 ti 'Electron Vg = 2.0 [V]' w l ls 11
+#replot './MOSaxisZ2voltSDE.txt' u 52:26 ti 'Hole SDE Vg = 2.0[V]' w p ls 22 ps 1
+#replot './MOSaxisZ2voltSDE.txt' u 52:20 ti 'Electron SDE Vg = 2.0 [V]' w p ls 21 ps 1
+#replot './Bande0volt.txt' u 55:13 ti 'Electron quasi fermi' w l ls 11
+
+set out 'QFPotentialZaxis.eps'
+rep
+set out 'temp.eps'
+

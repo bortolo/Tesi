@@ -158,102 +158,148 @@
 \newlabel{eq: NLP mod used}{{4.29}{42}}
 \newlabel{eq: extended criterion}{{4.30}{42}}
 \newlabel{eq: easy criterion}{{4.31}{42}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Number of iteration against reasidual for different bias in a diode case test. (a) NLP solving without damping, (b) NLP solving with Deuflhard damping criterion.\relax }}{43}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces (a) Number of iteration against residual for different voltages in a diode test case. (b) Magnitude of the damping parameter $t_k$.\relax }}{43}}
 \citation{BabuskaMixMet}
 \citation{TesiDotDeFalco}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Behaviour of the $t_k$ coefficients.\relax }}{44}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Continuity equations}{44}}
-\newlabel{eq: weak formulation displacement}{{4.34}{44}}
 \citation{TesiDotDeFalco}
-\newlabel{eq: LEC system slotboom generic}{{4.35}{45}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Continuity equations}{44}}
+\newlabel{sec: continuity equations}{{4.3.3}{44}}
+\newlabel{eq: weak formulation displacement}{{4.34}{44}}
+\newlabel{eq: LEC system slotboom generic}{{4.35}{44}}
 \newlabel{eq: weak form PM1}{{4.36}{45}}
 \newlabel{eq: weak form PM2}{{4.37}{45}}
 \newlabel{eq: form of qh}{{4.39}{45}}
 \newlabel{eq: LEC discretized general}{{4.40}{45}}
 \newlabel{eq: exp fitted flux}{{4.42}{46}}
 \@writefile{toc}{\contentsline {subsubsection}{Edge flux density computation}{46}}
-\@writefile{toc}{\contentsline {subsubsection}{The discretization scheme}{47}}
+\@writefile{toc}{\contentsline {subsubsection}{The discretization scheme}{46}}
+\citation{BankMmatrixEAFE}
+\citation{ZikatanovXu}
 \newlabel{eq: matrice continuità}{{4.47}{47}}
+\newlabel{eq: mesh delaunay condition}{{4.49}{47}}
+\citation{OSCputticorded}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Evaluation of the Zikatanov condition over a simple partition. Red elements doesn't satisfy condition (\ref  {eq: mesh delaunay condition}) over four edges while blue elements fully accomplished the criterion.\relax }}{48}}
+\newlabel{fig: cubo zikatanov}{{4.2}{48}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {5}Simulation results}{49}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {5.1}Test cases}{49}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}p-n junction}{49}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Test case diode p-n.\relax }}{50}}
-\newlabel{fig: diodo struttura}{{5.1}{50}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Computational times for different bias in two mesh cases.\relax }}{51}}
-\newlabel{fig: tempi computazionali}{{5.2}{51}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Computational times and iterations.\relax }}{51}}
-\newlabel{fig: times and iterations}{{5.3}{51}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Test case dide p-n 0.3[V] potential.\relax }}{53}}
-\newlabel{fig: diode potential}{{5.4}{53}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Test case dide p-n 0.3[V] electron density.\relax }}{53}}
-\newlabel{fig: ndensity}{{5.5}{53}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Test case dide p-n 0.3[V] hole density.\relax }}{53}}
-\newlabel{fig: pdensity}{{5.6}{53}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}p-n junction in oxide}{54}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces Test case p-n junction in oxide.\relax }}{54}}
-\newlabel{fig: structure diodeox}{{5.7}{54}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.8}{\ignorespaces Test case dide p-n in ox 0.3[V], electric field.\relax }}{55}}
-\newlabel{fig: electric field diode}{{5.8}{55}}
+\newlabel{sec: PN}{{5.1.1}{49}}
+\newlabel{fig: diodo struttura}{{\caption@xref {fig: diodo struttura}{ on input line 31}}{50}}
+\newlabel{fig: tempi computazionali 1}{{5.1a}{51}}
+\newlabel{sub@fig: tempi computazionali 1}{{(a)}{a}}
+\newlabel{fig: tempi computazionali 2}{{5.1b}{51}}
+\newlabel{sub@fig: tempi computazionali 2}{{(b)}{b}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Computational times for different bias.\relax }}{51}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Initial step for different bias.\relax }}{51}}
+\newlabel{fig: different biast initial step}{{5.2}{51}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Test case dide p-n 0.3[V] potential.\relax }}{52}}
+\newlabel{fig: diode potential}{{5.3}{52}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Test case dide p-n 0.3[V] electron density.\relax }}{52}}
+\newlabel{fig: ndensity}{{5.4}{52}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Test case dide p-n 0.3[V] hole density.\relax }}{52}}
+\newlabel{fig: pdensity}{{5.5}{52}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}p-n junction in oxide}{53}}
+\newlabel{sec: PNOX}{{5.1.2}{53}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces Test case p-n junction in oxide.\relax }}{53}}
+\newlabel{fig: structure diodeox}{{5.6}{53}}
+\newlabel{eq: conservazione vettore spostamento}{{5.1}{54}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces Test case dide p-n in ox 0.3[V], electric field.\relax }}{54}}
+\newlabel{fig: electric field diode}{{5.7}{54}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.8}{\ignorespaces Test case dide p-n in ox 0.3[V].\relax }}{56}}
+\newlabel{fig: potential diodeox}{{5.8}{56}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5.9}{\ignorespaces Test case dide p-n in ox 0.3[V].\relax }}{56}}
-\newlabel{fig: potential diodeox}{{5.9}{56}}
+\newlabel{fig: edensity diodeox}{{5.9}{56}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5.10}{\ignorespaces Test case dide p-n in ox 0.3[V].\relax }}{56}}
-\newlabel{fig: edensity diodeox}{{5.10}{56}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.11}{\ignorespaces Test case dide p-n in ox 0.3[V].\relax }}{56}}
-\newlabel{fig: hdensity diodeox}{{5.11}{56}}
+\newlabel{fig: hdensity diodeox}{{5.10}{56}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1.3}MOSFET n-channel}{57}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.12}{\ignorespaces Geometry of the test case MOS n-channel.\relax }}{57}}
-\newlabel{fig: mos geometry}{{5.12}{57}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.13}{\ignorespaces Space charge $V_G=2.0[V]$\relax }}{59}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.14}{\ignorespaces Potential Vgate = 2.0 [V].\relax }}{60}}
-\newlabel{fig: potential mos}{{5.14}{60}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.15}{\ignorespaces Electron density Vgate = 2.0 [V].\relax }}{60}}
-\newlabel{fig: ndensity mos}{{5.15}{60}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.16}{\ignorespaces Electron density Vgate = 2.0 [V].\relax }}{60}}
-\newlabel{fig: pdensity mos}{{5.16}{60}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.17}{\ignorespaces Electric field density Vgate = 2.0 [V].\relax }}{61}}
+\newlabel{sec: MOS}{{5.1.3}{57}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.11}{\ignorespaces Geometry of the test case MOS n-channel.\relax }}{57}}
+\newlabel{fig: mos geometry}{{5.11}{57}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.12}{\ignorespaces Energy band levels.\relax }}{58}}
+\newlabel{fig: energy levels MOS}{{5.12}{58}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.13}{\ignorespaces Channel\relax }}{58}}
+\newlabel{fig: channel figures}{{5.13}{58}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.14}{\ignorespaces Potential Vgate = 2.0 [V].\relax }}{59}}
+\newlabel{fig: potential mos}{{5.14}{59}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.15}{\ignorespaces Electron density Vgate = 2.0 [V].\relax }}{59}}
+\newlabel{fig: ndensity mos}{{5.15}{59}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.16}{\ignorespaces Electron density Vgate = 2.0 [V].\relax }}{59}}
+\newlabel{fig: pdensity mos}{{5.16}{59}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.17}{\ignorespaces Electric field density Vgate = 2.0 [V].\relax }}{60}}
+\newlabel{fig: electric field mos}{{5.17}{60}}
+\@writefile{toc}{\contentsline {subsubsection}{Negative concentration}{60}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.18}{\ignorespaces Negative carriers in the electron density solution.\relax }}{61}}
+\newlabel{fig: negative carriers MOS}{{5.18}{61}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.19}{\ignorespaces Contribution of the impact ionization with the Van Over streaten model.\relax }}{61}}
+\newlabel{fig: drain stress mos 13000}{{5.19}{61}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.20}{\ignorespaces Contribution of the impact ionization with the Van Over streaten model.\relax }}{61}}
+\newlabel{fig: zikatanov mos}{{5.20}{61}}
 \citation{ContactCurrentRM}
 \citation{ContactCurrentRM}
+\citation{GalerkMethConsHughes}
 \@writefile{toc}{\contentsline {section}{\numberline {5.2}Current at contacts}{62}}
-\newlabel{eq: current flux}{{5.2}{62}}
-\newlabel{eq: discretization before bc}{{5.3}{62}}
-\newlabel{eq: discretization before bc 2}{{5.4}{63}}
-\newlabel{eq: new test function}{{5.5}{63}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Results}{63}}
-\@writefile{toc}{\contentsline {subsubsection}{p-n junction}{63}}
-\@writefile{toc}{\contentsline {subsubsection}{p-n junction in oxide}{64}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.18}{\ignorespaces Direct polarization constant mobility.\relax }}{64}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.19}{\ignorespaces Direct polarization Masetti mobility.\relax }}{64}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.20}{\ignorespaces Masetti mobility effect Vs. constant mobility effect.\relax }}{65}}
-\@writefile{toc}{\contentsline {subsubsection}{MOS n-channel}{66}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}The current calculation problem}{67}}
+\newlabel{eq: current flux}{{5.6}{62}}
+\citation{GalerkMethConsHughes}
+\newlabel{eq: modified galerkin}{{5.8}{63}}
+\newlabel{eq: usual problem}{{5.9}{63}}
+\newlabel{eq: flux problem}{{5.10}{63}}
+\newlabel{eq: flux problem complete}{{5.11}{63}}
+\newlabel{eq: conservative flux}{{5.12}{63}}
+\newlabel{eq: lec divergence theor}{{5.13}{63}}
+\newlabel{eq: flux current formula}{{5.14}{63}}
+\newlabel{eq: equalities integrals}{{5.15}{64}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Results}{64}}
+\@writefile{toc}{\contentsline {subsubsection}{p-n junction}{64}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.21}{\ignorespaces Diode characteristic.\relax }}{65}}
+\newlabel{fig: caratteristica diode}{{5.21}{65}}
+\@writefile{toc}{\contentsline {subsubsection}{p-n junction in oxide}{66}}
+\newlabel{fig: diode ox const}{{5.22a}{66}}
+\newlabel{sub@fig: diode ox const}{{(a)}{a}}
+\newlabel{fig: diode ox masetti}{{5.22b}{66}}
+\newlabel{sub@fig: diode ox masetti}{{(b)}{b}}
+\newlabel{fig: diode ox masetti focus}{{5.22c}{66}}
+\newlabel{sub@fig: diode ox masetti focus}{{(c)}{c}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.22}{\ignorespaces Direct polarization constant mobility.\relax }}{66}}
+\@writefile{toc}{\contentsline {subsubsection}{MOSFET n-channel}{67}}
+\newlabel{fig: current drain mos direct}{{5.23a}{67}}
+\newlabel{sub@fig: current drain mos direct}{{(a)}{a}}
+\newlabel{fig: current drain mos direct focus}{{5.23b}{67}}
+\newlabel{sub@fig: current drain mos direct focus}{{(b)}{b}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.23}{\ignorespaces Contribution of the impact ionization with the Van Overstraeten - de Man model.\relax }}{68}}
+\newlabel{fig: II MOS}{{5.23}{68}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.24}{\ignorespaces $I_D$, $I_B$ and $I_S$ against $V_D$.\relax }}{68}}
+\newlabel{fig: tutte le correnti mos stress}{{5.24}{68}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}The current calculation problem}{71}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Scharfetter-Gummel formula}{68}}
-\newlabel{eq: scharfetter gummel 1D electron}{{6.1}{69}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Extension for the 3D case}{69}}
-\newlabel{eq: current density fermi}{{6.3}{69}}
-\newlabel{eq: current density canonic form}{{6.4}{69}}
-\newlabel{eq: variation form of current density continuos}{{6.5}{69}}
-\newlabel{eq: spaces elementwise constant}{{6.6}{69}}
-\newlabel{eq: form of qh}{{6.7}{70}}
-\newlabel{eq: variation form of current density}{{6.8}{70}}
-\newlabel{eq: first formula for J}{{6.9}{70}}
-\newlabel{eq: approzimation from 3D to edge}{{6.10}{70}}
-\newlabel{eq: differenza tra pot e qf}{{6.11}{70}}
-\newlabel{eq: finally approzimation 3D to 1D}{{6.13}{71}}
-\newlabel{eq: first formula for J}{{6.15}{71}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Electron current density Vgate = 2.0 [V].\relax }}{72}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Scharfetter-Gummel formula}{72}}
+\newlabel{eq: scharfetter gummel 1D electron}{{6.1}{73}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Extension for the 3D case}{73}}
+\newlabel{eq: current density fermi}{{6.3}{73}}
+\newlabel{eq: current density canonic form}{{6.4}{73}}
+\newlabel{eq: variation form of current density continuos}{{6.5}{73}}
+\newlabel{eq: spaces elementwise constant}{{6.6}{73}}
+\newlabel{eq: form of qh}{{6.7}{74}}
+\newlabel{eq: variation form of current density}{{6.8}{74}}
+\newlabel{eq: first formula for J}{{6.9}{74}}
+\newlabel{eq: approzimation from 3D to edge}{{6.10}{74}}
+\newlabel{eq: differenza tra pot e qf}{{6.11}{74}}
+\newlabel{eq: finally approzimation 3D to 1D}{{6.13}{75}}
+\newlabel{eq: first formula for J}{{6.15}{75}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Electron current density Vgate = 2.0 [V].\relax }}{76}}
 \bibstyle{alpha}
 \bibdata{contents/Bibliografia}
+\bibcite{BankMmatrixEAFE}{{BCC98}{}{{}}{{}}}
 \bibcite{DefulhardDamp}{{Deu74}{}{{}}{{}}}
 \bibcite{TesiDotDeFalco}{{DF05}{}{{}}{{}}}
-\bibcite{ContactCurrentRM}{{GS74}{}{{}}{{}}}
 \bibcite{BabuskaMixMet}{{IE83}{}{{}}{{}}}
+\bibcite{OSCputticorded}{{PC98}{}{{}}{{}}}
 \bibcite{NumericalRecipes}{{PTVF07}{}{{}}{{}}}
 \bibcite{quarteroni:modnum}{{Qua08}{}{{}}{{}}}
 \bibcite{salsa:EDP}{{Sal10}{}{{}}{{}}}
+\bibcite{ZikatanovXu}{{XZ99}{}{{}}{{}}}
 \bibcite{ModernVLSIdevices}{{YT09}{}{{}}{{}}}
+\@writefile{toc}{\contentsline {chapter}{Bibliografia}{77}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\@writefile{toc}{\contentsline {chapter}{Bibliografia}{73}}

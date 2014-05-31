@@ -1,0 +1,39 @@
+load '../../header'
+
+#set format x "%.1t {/Symbol \327} 10^{%T}"
+set grid
+#set xrange [-1.0:2]
+#set logscale x 
+set xlabel 'V Drain [V]' font "Helvetica bold,20"
+
+set yrange [1e-21:1e-6]
+set format y "10^{%T}"
+set ytics nomirror
+set logscale y;
+set ylabel 'I [A]' font "Helvetica bold,20" 
+
+set lmargin 10
+
+
+set key bottom right
+set key font "Helvetica,16"
+set key box
+set key reverse
+set key Left
+ 
+plot './MosDrainStressCaratteristicaVI.txt' u 13:(abs($14+$15)) ti 'ID FEMOS ' w l ls 11
+replot './MosDrainStressCaratteristicaVI.txt' u 13:(abs($10+$11)) ti 'IB FEMOS' w l ls 12
+replot './MosDrainStressCaratteristicaVI.txt' u 13:(abs($6+$7)) ti 'IS FEMOS' w l ls 33 lw 2
+
+#replot './MosDrainStressCaratteristicaVI.txt' u 13:(abs($6+$7+$14+$15+$11+$10)) ti 'Bilancio FEMOS' w l ls 10
+
+replot './MosInversePolarizationSDEIdrain.txt' u 1:(abs($2+$4)) ti 'ID SDE' w p ls 21
+replot './MosInversePolarizationSDEIbulk.txt' u 1:(abs($2+$4)) ti 'IB SDE' w p ls 22
+replot './MosInversePolarizationSDEIsource.txt' u 1:(abs($2+$4)) ti 'IS SDE' w p ls 33
+
+#replot './MosInversePolarizationSDEIsource.txt' u 1:(abs($2+$4)) ti 'Bilancio SDE' w p ls 20
+
+set out 'MOScaratteristicaDrainstress.eps'
+rep
+set out 'temp.eps'
+

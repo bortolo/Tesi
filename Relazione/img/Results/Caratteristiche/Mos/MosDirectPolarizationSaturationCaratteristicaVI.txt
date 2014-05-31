@@ -1,0 +1,2 @@
+# /home/abortolo/CODICE/Test/Mos/output/MosDirectPolarizationSaturationCaratteristicaVI
+# 1 Gate	# 2 I electrons	# 3 I holes	# 4 I tot	# 5 Source	# 6 I electrons	# 7 I holes	# 8 I tot	# 9 Bulk	# 10 I electrons	# 11 I holes	# 12 I tot	# 13 Drain	# 14 I electrons	# 15 I holes	# 16 I tot	
