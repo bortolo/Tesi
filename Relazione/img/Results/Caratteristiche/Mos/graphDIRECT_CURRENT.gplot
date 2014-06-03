@@ -3,11 +3,11 @@ load '../header'
 #set format x "%.1t {/Symbol \327} 10^{%T}"
 set grid
 #set xrange [0.0:0.005]
-set xrange [1.0:2.0]
+set xrange [-0.4:1.5]
 #set logscale x 
 set xlabel 'V [V]' font "Helvetica bold,20"
 
-set yrange [1e-7:1e-5]
+#set yrange [1e-7:1e-5]
 #set yrange [1e-6:1e-3]
 set format y "10^{%T}"
 set ytics nomirror
@@ -26,13 +26,13 @@ set key Left
 
 #set title 'Diode Oxide test 1817 - Current at P-contact' font "Helvetica bold,20"
 
-plot './MosDirectPolarizationConstCaratteristicaVI.txt' u 1:(abs($6)) ti 'FEMOS - Constant' w l ls 11
-replot './MosDirectPolarizationMasettiCaratteristicaVI.txt' u 1:(abs($6)) ti 'FEMOS - Masetti' w l ls 12
-replot './MosDirectPolarizationCaratteristicaVI.txt' u 1:(abs($6)) ti 'FEMOS - Canali' w l ls 13
+#plot './MosDirectPolarizationConstCaratteristicaVI.txt' u 1:(abs($6)) ti 'FEMOS - Constant' w l ls 11
+#replot './MosDirectPolarizationMasettiCaratteristicaVI.txt' u 1:(abs($6)) ti 'FEMOS - Masetti' w l ls 12
+#replot './MosDirectPolarizationCaratteristicaVI.txt' u 1:(abs($6)) ti 'FEMOS - Canali' w l ls 13
 
-replot './MosDirectPolarizationSDEConstant.txt' u 1:(abs($2)) ti 'SDE - Constant' w p ls 21 ps 2
-replot './MosDirectPolarizationSDEMasetti.txt' u 1:(abs($2)) ti 'SDE - Masetti' w p ls 22 ps 2
-replot './MosDirectPolarizationSDECanali.txt' u 1:(abs($2)) ti 'SDE - Canali' w p ls 23 ps 2
+#replot './MosDirectPolarizationSDEConstant.txt' u 1:(abs($2)) ti 'SDE - Constant' w p ls 21 ps 2
+#replot './MosDirectPolarizationSDEMasetti.txt' u 1:(abs($2)) ti 'SDE - Masetti' w p ls 22 ps 2
+#replot './MosDirectPolarizationSDECanali.txt' u 1:(abs($2)) ti 'SDE - Canali' w p ls 23 ps 2
 
 
 #plot './DiodeOxideDirectPolarizationMasettiCaratteristicaVI.txt' u 5:(abs($6)) ti 'In FEMOS' w l ls 11
@@ -41,7 +41,22 @@ replot './MosDirectPolarizationSDECanali.txt' u 1:(abs($2)) ti 'SDE - Canali' w 
 #replot './DiodeOxideDirectPolarizationSDEmasetti.txt' u 1:(abs($4)) ti 'Ip SDE' w p ls 22 ps 2
 
 
-set out 'CurrentIDVGfocus.eps'
+# Vdrain differenti
+plot './MosDirectPolarizationConstCaratteristicaVI.txt' u 1:(abs($6)) ti 'FEMOS - Vd=0.1[V]' w l ls 11
+replot './MosDirectPolarizationDrain2CaratteristicaVI.txt' u 1:(abs($6)) ti 'FEMOS - Vd=0.2[V]' w l ls 12
+replot './MosDirectPolarizationDrain5CaratteristicaVI.txt' u 1:(abs($6)) ti 'FEMOS - Vd=0.5[V]' w l ls 13
+replot './MosDirectPolarizationDrain10CaratteristicaVI.txt' u 1:(abs($6)) ti 'FEMOS - Vd=1.0[V]' w l ls 14
+replot './MosDirectPolarizationDrain20CaratteristicaVI.txt' u 1:(abs($6)) ti 'FEMOS - Vd=2.0[V]' w l ls 15
+
+replot './MosDirectPolarizationSDEConstant.txt' u 1:(abs($2)) ti 'SDE - Vd=0.1[V]' w p ls 11
+replot './MosDirectPolarizationSDEDrain02.txt' u 1:(abs($2)) ti 'SDE - Vd=0.2[V]' w p ls 12
+replot './MosDirectPolarizationSDEDrain05.txt' u 1:(abs($2)) ti 'SDE - Vd=0.5[V]' w p ls 13
+replot './MosDirectPolarizationSDEDrain1.txt' u 1:(abs($2)) ti 'SDE - Vd=1.0[V]' w p ls 14
+replot './MosDirectPolarizationSDEDrain2.txt' u 1:(abs($2)) ti 'SDE - Vd=2.0[V]' w p ls 15
+
+set out 'CurrentIDVG_Vdvary.eps'
+
+
 #set out 'CurrentIDVD.eps'
 rep
 set out 'temp.eps'

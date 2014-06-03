@@ -1,31 +1,34 @@
 load '../header'
 
-#set format x "%.1t {/Symbol \327} 10^{%T}"
 set grid
+
 set xrange [0.0:0.27]
 #set logscale x 
-set xlabel 'Bulk-Gate axis [micron]' font "Helvetica bold,20"
+set xlabel 'Bulk-Gate axis [micron]' font "Helvetica bold,23"
 
 #set yrange [1e-20:1e-3]
-#set format y "10^{%T}"
 set ytics nomirror
 set logscale y;
-set ylabel 'Carrier density [cm-3]' font "Helvetica bold,20" 
+set ylabel 'Carrier density [cm-3]' font "Helvetica bold,23" 
 
 set lmargin 10
+set tmargin 4.5
 
-set key center left
-set key font "Helvetica,16"
-set key box
+#set key center left
+set key center tmargin
+set key spacing 2.0
+set key font "Helvetica,20"
+#set key box
+set key maxrows 2
 set key reverse
 set key Left
 
-plot './MOSaxisZ0volt.txt' u 57:20 ti 'Hole Vg = 0.0 [V]' w l ls 22
-replot './MOSaxisZ0volt.txt' u 57:12 ti 'Electron Vg = 0.0 [V]' w l ls 21
-replot './MOSaxisZ2volt.txt' u 57:20 ti 'Hole Vg = 2.0 [V]' w l ls 12
-replot './MOSaxisZ2volt.txt' u 57:12 ti 'Electron Vg = 2.0 [V]' w l ls 11
-replot './MOSaxisZ2voltSDE.txt' u 52:26 ti 'Hole SDE Vg = 2.0[V]' w p ls 22 ps 1
-replot './MOSaxisZ2voltSDE.txt' u 52:20 ti 'Electron SDE Vg = 2.0 [V]' w p ls 21 ps 1
+plot './MOSaxisZ0volt.txt' u 57:20 ti 'Hole Vg = 0.0 [V]' w l ls 22 lw 3
+replot './MOSaxisZ0volt.txt' u 57:12 ti 'Electron Vg = 0.0 [V]' w l ls 21 lw 3
+replot './MOSaxisZ2volt.txt' u 57:20 ti 'Hole Vg = 2.0 [V]' w l ls 12 lw 3
+replot './MOSaxisZ2volt.txt' u 57:12 ti 'Electron Vg = 2.0 [V]' w l ls 11 lw 3
+#replot './MOSaxisZ2voltSDE.txt' u 52:26 ti 'Hole SDE Vg = 2.0[V]' w p ls 22 ps 1 lw 3
+#replot './MOSaxisZ2voltSDE.txt' u 52:20 ti 'Electron SDE Vg = 2.0 [V]' w p ls 21 ps 1 lw 3
 
 set out 'DensityZaxis.eps'
 rep

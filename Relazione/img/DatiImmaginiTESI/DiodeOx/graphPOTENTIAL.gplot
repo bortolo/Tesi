@@ -4,29 +4,38 @@ load '../header'
 set grid
 set xrange [0.0:0.3]
 #set logscale x 
-set xlabel 'Z axis [micron]' font "Helvetica bold,20"
+set xlabel 'Z axis [micron]' font "Helvetica bold,23"
 
 #set yrange [10:5e18]
 #set format y "10^{%T}"
 set ytics nomirror
 #set logscale y;
-set ylabel 'Potential [V]' font "Helvetica bold,20" 
-#set ylabel 'Electrostatic Potential [V]' font "Helvetica bold,20" 
+set ylabel 'Potential [V]' font "Helvetica bold,23" 
 
 set lmargin 10
+set tmargin 3
 
 # Opzioni legenda
-set key bottom left
-set key font "Helvetica,16"
-set key box
+#set key bottom left
+
+set key outside
+set key center tmargin
+set key font "Helvetica,20"
+set key maxrows 1
+#set key box
 set key reverse
 set key Left
 
-#set title 'Diode - Current at p-contact' font "Helvetica bold,20"
-plot './NPOXaxisZ03voltSDE.txt' u 54:12 ti 'SDE' w p ls 20 ps 1
-replot './NPOXaxisZ03voltFEMOS.txt' u 57:15 ti 'FEMOS' w l ls 10
 
-set out 'PotentialZaxis.eps'
+#plot './NPOXaxisZ03voltSDE.txt' u 54:12 ti 'SDE' w p ls 10 ps 2
+#replot './NPOXaxisZ03voltFEMOS.txt' u 57:15 ti 'FEMOS' w l ls 10 lw 3
+#set out 'PotentialZaxis.eps'
+
+plot './NPOXaxisZ1VOLTSDE.txt' u 54:12 ti 'SDE' w p ls 10 ps 2
+replot './NPOXaxisZ1VOLTFEMOS.txt' u 57:15 ti 'FEMOS' w l ls 10 lw 3
+set out 'PotentialZaxis1VOLT.eps'
+
+
 rep
 set out 'temp.eps'
 
