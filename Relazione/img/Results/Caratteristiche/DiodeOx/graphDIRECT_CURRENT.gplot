@@ -2,48 +2,51 @@ load '../header'
 
 #set format x "%.1t {/Symbol \327} 10^{%T}"
 set grid
-set xrange [0.0:1.5]
-#set xrange [0.8:1.5]
+#set xrange [0.0:1.5]
+set xrange [0.8:1.5]
 #set logscale x 
-set xlabel 'V [V]' font "Helvetica bold,20"
+set xlabel 'V [V]' font "Helvetica bold,23"
 
-set yrange [1e-19:1e-3]
-#set yrange [1e-6:1e-3]
+#set yrange [1e-19:1e-3]
+set yrange [1e-6:1e-3]
 set format y "10^{%T}"
 set ytics nomirror
 set logscale y;
-set ylabel 'I [A]' font "Helvetica bold,20" 
-#set ylabel 'Electrostatic Potential [V]' font "Helvetica bold,20" 
+set ylabel 'I [A]' font "Helvetica bold,23" 
 
 set lmargin 10
+set tmargin 4.5
 
-
-set key bottom right
-set key font "Helvetica,12"
-set key box
+#set key bottom right
+set key font "Helvetica,20"
+#set key box
+set key spacing 2.0
+set key maxrows 2
+set key outside
+set key center tmargin
 set key reverse
 set key Left
 
 
 #set title 'Diode Oxide test 1817 - Current at P-contact' font "Helvetica bold,20"
-#plot './DiodeOxideDirectPolarizationCaratteristicaVI.txt' u 5:(abs($6)) ti 'In FEMOS' w l ls 11
-#replot './DiodeOxideDirectPolarizationCaratteristicaVI.txt' u 5:(abs($7)) ti 'Ip FEMOS' w l ls 12
-#replot './DiodeOxideDirectPolarizationSDE.txt' u 1:(abs($2)) ti 'In SDE' w p ls 21 ps 2
+#plot './DiodeOxideDirectPolarizationSDE.txt' u 1:(abs($2)) ti 'In SDE' w p ls 21 ps 2
 #replot './DiodeOxideDirectPolarizationSDE.txt' u 1:(abs($4)) ti 'Ip SDE' w p ls 22 ps 2
-
-plot './DiodeOxideDirectPolarizationMasettiCaratteristicaVI.txt' u 5:(abs($6)) ti 'In FEMOS' w l ls 11
-replot './DiodeOxideDirectPolarizationMasettiCaratteristicaVI.txt' u 5:(abs($7)) ti 'Ip FEMOS' w l ls 12
-replot './DiodeOxideDirectPolarizationSDEmasetti.txt' u 1:(abs($2)) ti 'In SDE' w p ls 21 ps 2
-replot './DiodeOxideDirectPolarizationSDEmasetti.txt' u 1:(abs($4)) ti 'Ip SDE' w p ls 22 ps 2
-
-#plot './DiodeOxideDirectPolarizationCaratteristicaVI.txt' u 5:(abs($6+$7)) ti 'Itot FEMOS' w l ls 11
-#replot './DiodeOxideDirectPolarizationMasettiCaratteristicaVI.txt' u 5:(abs($6+$7)) ti 'Itot FEMOS Masetti' w l ls 12
-#replot './DiodeOxideDirectPolarizationSDE.txt' u 1:(abs($2+$4)) ti 'Itot SDE' w p ls 21 ps 2
-#replot './DiodeOxideDirectPolarizationSDEmasetti.txt' u 1:(abs($2+$4)) ti 'Itot SDE Masetti' w p ls 22 ps 2
-
+#replot './DiodeOxideDirectPolarizationCaratteristicaVI.txt' u 5:(abs($6)) ti 'In FEMOS' w l ls 11
+#replot './DiodeOxideDirectPolarizationCaratteristicaVI.txt' u 5:(abs($7)) ti 'Ip FEMOS' w l ls 12
 #set out 'CurrentDiodeOxide.eps'
-set out 'CurrentDiodeOxideMasetti.eps'
-#set out 'CurrentDiodeOxideConstantVsMasetti.eps'
+
+#plot './DiodeOxideDirectPolarizationSDEmasetti.txt' u 1:(abs($2)) ti 'In SDE' w p ls 21 ps 2
+#replot './DiodeOxideDirectPolarizationSDEmasetti.txt' u 1:(abs($4)) ti 'Ip SDE' w p ls 22 ps 2
+#replot './DiodeOxideDirectPolarizationMasettiCaratteristicaVI.txt' u 5:(abs($6)) ti 'In FEMOS' w l ls 11
+#replot './DiodeOxideDirectPolarizationMasettiCaratteristicaVI.txt' u 5:(abs($7)) ti 'Ip FEMOS' w l ls 12
+#set out 'CurrentDiodeOxideMasetti.eps'
+
+plot './DiodeOxideDirectPolarizationCaratteristicaVI.txt' u 5:(abs($6+$7)) ti 'Itot FEMOS' w l ls 11
+replot './DiodeOxideDirectPolarizationMasettiCaratteristicaVI.txt' u 5:(abs($6+$7)) ti 'Itot FEMOS Masetti' w l ls 12
+replot './DiodeOxideDirectPolarizationSDE.txt' u 1:(abs($2+$4)) ti 'Itot SDE' w p ls 21 ps 2
+replot './DiodeOxideDirectPolarizationSDEmasetti.txt' u 1:(abs($2+$4)) ti 'Itot SDE Masetti' w p ls 22 ps 2
+set out 'CurrentDiodeOxideConstantVsMasetti.eps'
+
 rep
 set out 'temp.eps'
 

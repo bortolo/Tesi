@@ -2,29 +2,50 @@ load '/Users/andreabortolossi/Documents/POLI/TESI/Relazione/img/header'
 
 set grid
 #set xrange [-7.5:2.0]
-set xlabel 'Voltage [V]' font "Helvetica bold,20"
+set xlabel 'Z-axis [micron]' font "Helvetica bold,23"
 
-#set yrange [800:1.4e3]
-#set yrange [-1e4:7e4]
+set yrange [800:1.5e3]
+#set yrange [-2000.0:40e3]
 set ytics nomirror
 #set logscale y;
-set ylabel 'I [A]' font "Helvetica bold,20" 
+set ylabel 'I [A]' font "Helvetica bold,23" 
 
 set lmargin 10
+set tmargin 3
 
-set key bottom right
-set key font "Helvetica,16"
-set key box
+set key outside
+set key center tmargin
+set key maxrows 1
+set key spacing 2.0
+set key font "Helvetica,20"
+#set key box
 set key reverse
 set key Left
 
 plot './SDE08volt.txt' u 54:(abs($46)) ti 'Jp SDE' w l ls 17 lw 6
-replot './FEMOSDD08volt.txt' u 60:(abs($55)) ti 'Jp FEMOS DD' w lp ls 22 ps 1
-replot './FEMOSDDcorretto08volt.txt' u 60:(abs($55)) ti 'Jp FEMOS DD corretto' w lp ls 21 ps 1
+#replot './FEMOSDD08volt.txt' u 60:(abs($55)) ti 'Jp FEMOS DD' w lp ls 22 ps 1
+#replot './FEMOSDD08volt.txt' u 60:(abs($29)) ti 'Jp FEMOS DD' w l ls 32 lw 6
+#replot './FEMOSDDcorretto08volt.txt' u 60:(abs($55)) ti 'Jp FEMOS DD corretto' w lp ls 21 ps 1
+replot './FEMOSDDcorretto08volt.txt' u 60:(abs($29)) ti 'Jp FEMOS DD corretto' w l ls 31 lw 6
 #replot './FEMOSQF08volt.txt' u 60:(abs($55)) ti 'Jp FEMOS QF' w lp ls 23 ps 1
+#replot './FEMOSQF08volt.txt' u 60:(abs($29)) ti 'Jp FEMOS QF' w l ls 33 lw 6
 #replot './FEMOSSG08volt.txt' u 60:(abs($55)) ti 'Jp FEMOS SG' w lp ls 24 ps 1
+#replot './FEMOSSG08volt.txt' u 60:(abs($29)) ti 'Jp FEMOS SG' w l ls 34 lw 6
+set out 'ConfrontiCorrentiBulkJP_SDEVsDDcorretto.eps'
 
-set out 'ConfrontiCorrentiBulkJP.eps'
+
+#plot './SDE08volt.txt' u 54:(abs($40)) ti 'Jn SDE' w l ls 17 lw 6
+#replot './FEMOSDD08volt.txt' u 60:(abs($52)) ti 'Jn FEMOS DD' w lp ls 22 ps 1
+#replot './FEMOSDD08volt.txt' u 60:(abs($4)) ti 'Jn FEMOS DD' w l ls 32 lw 6
+#replot './FEMOSDDcorretto08volt.txt' u 60:(abs($52)) ti 'Jn FEMOS DD corretto' w lp ls 21 ps 1
+#replot './FEMOSDDcorretto08volt.txt' u 60:(abs($4)) ti 'Jn FEMOS DD corretto' w l ls 31 lw 6
+#replot './FEMOSQF08volt.txt' u 60:(abs($52)) ti 'Jn FEMOS QF' w lp ls 23 ps 1
+#replot './FEMOSQF08volt.txt' u 60:(abs($4)) ti 'Jn FEMOS QF' w l ls 33 lw 6
+#replot './FEMOSSG08volt.txt' u 60:(abs($52)) ti 'Jn FEMOS SG' w lp ls 24 ps 1
+#replot './FEMOSSG08volt.txt' u 60:(abs($4)) ti 'Jn FEMOS SG' w l ls 34 lw 6
+#set out 'ConfrontiCorrentiBulkJN_SDEVsDDcorretto.eps'
+
+
 rep
 set out 'temp.eps'
 

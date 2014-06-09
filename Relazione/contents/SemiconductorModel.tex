@@ -255,6 +255,7 @@ The electron density in the conduction band can be calculated using $E_{fn}$, an
 \end{Osservazione}
 
 \subsection{Carrier transport in semiconductor}
+\label{sec: carrier transport}
 
 Carrier transport or current flow in silicon is driven by two different mechanisms:
 \begin{itemize}
@@ -332,16 +333,16 @@ Considering that electric field is related to the scalar potential as:
 
 the current densities can be :
 
-\begin{align*}
-\vect{J}_n &= -qn\mu_n\left(\nabla \varphi - \dfrac{k_BT}{qn}\nabla n \right)\\ 
-\vect{J}_p &= -qp\mu_p\left(\nabla \varphi+ \dfrac{k_BT}{qp} \nabla p \right)
-\end{align*}
+\begin{align}
+\vect{J}_n &= -qn\mu_n\left(\nabla \varphi - \dfrac{k_BT}{qn}\nabla n \right) \label{eq: Jn DD} \\ 
+\vect{J}_p &= -qp\mu_p\left(\nabla \varphi+ \dfrac{k_BT}{qp} \nabla p \right) \label{eq: Jp DD}
+\end{align}
 
 Considering equations \referenzaeq{eq: non eq n density mb} and \referenzaeq{eq: non eq p density mb} the above can be written as:
 
 \begin{align}
-\vect{J}_n = -qn\mu_n\nabla \varphi_n \\
-\vect{J}_p = -qn\mu_p\nabla \varphi_p 
+\vect{J}_n = -qn\mu_n\nabla \varphi_n \label{eq: Jn qf}\\
+\vect{J}_p = -qp\mu_p\nabla \varphi_p \label{eq: Jp qf}
 \end{align}
 
 With these equations we underlying an important aspect which occur in semiconductor material:
@@ -360,7 +361,7 @@ where $V_{th}=k_BT/q$. Using the above equations into \referenzaeq{eq: drift dif
 
 \begin{align}
 \vect{J}_n &= qD_n exp\left(\dfrac{\varphi}{V_{th}}\right) \nabla u_n \label{eq: Jn slotboom} \\
-\vect{J}_p &= -qD_p exp\left(-\dfrac{\varphi}{V_{th}}\right)  \nabla u_p 
+\vect{J}_p &= -qD_p exp\left(-\dfrac{\varphi}{V_{th}}\right)  \nabla u_p \label{eq: Jp slotboom}
 \end{align}
 
 This interpretation results is:

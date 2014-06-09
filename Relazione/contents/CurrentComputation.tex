@@ -5,14 +5,97 @@ In many physical and engineering problems the real interesting variable of the c
 It's evident which this part covers a lead role in the device simulation: 
 as we are satisfied of the impressive results of the finite element scheme, it will be reather regrettable to lost the accuracy of our simulation during the computation of the current density.
 About this question many academics propose different solutions and  the relative literature is boundless.
- Nevertheless the problem shows various aspects to take into account, among these there are some which every good method should be respect:	
- \begin{itemize}
- \item reduced computational cost;
- \item easy extension to 3D simulation;
- \item detains some useful properties like orthogonal conservation across a generic surface of the domain;
- \item preserve consistency with the numerical scheme adopted.
- \end{itemize}
- It's not trivial ensure everyone of these points, thus move on toward a unique choice of a method is a delicate matter. Luckily there's some \textit{main stone} which offers ever a good start point whence achieve new results. Probably the most known and recognized by the inherent literature is the \textit{Sharfetter-Gummel formula}.
+ 
+ 
+% Nevertheless the problem shows various aspects to take into account, among these there are some which every good method should be respect:	
+% \begin{itemize}
+% \item reduced computational cost;
+% \item easy extension to 3D simulation;
+% \item detains some useful properties like orthogonal conservation across a generic surface of the domain;
+% \item preserve consistency with the numerical scheme adopted.
+% \end{itemize}
+% It's not trivial ensure everyone of these points, thus move on toward a unique choice of a method is a delicate matter. 
+ 
+In section \ref{sec: carrier transport} we saw that there exist three way to represent the current density inside a semiconductor device. However each one of these formulas is affected by several numerical issues. We'll investigate this features in order to propose appropriate treatments of the current density computation.
+
+Easily we can exlude the \textit{Slotboom equation} from our consideration. As we already highlighted this formula has relevant properties which make really simple the wellposedness of the continuity equation, however the exponential dependency by the factor $\varphi / V_{th}$ causes unavoidable numerical instability. Therefore we don't consider at priori equation \referenzaeq{eq: Jn slotboom} and \referenzaeq{eq: Jp slotboom} as a way to compute the current density.
+
+We'll center our analysis on the \textit{Drif-Diffusion formula} and the \textit{Quasi Fermi formula}. Finally we'll present two revisions of these expressions in order to fix the numerical weakness.
+
+\section{Standard approaches}
+
+Let us introduce some useful notations: $k$ subscript refers to a quantity defined on elements, while $h$ subscript refers to a quantity defined on verticies. As we used the discrete space $X_h^1$ the solutions $\varphi_h$, $n_h$ and $p_h$ are linear continuous functions. If we refer to \referenzaeq{eq: Jn DD}, \referenzaeq{eq: Jp DD}, \referenzaeq{eq: Jn qf} and \referenzaeq{eq: Jp qf} it's clear that in order to compute $\vect{J}_n$ and $\vect{J}_p$ a numerical derivative on the solutions must be done. Therefore the current densities are constant element piecewise functions ($\vect{J}_{n,k},\vect{J}_{p,k} \in [X_h^0]^3$). 
+Thus the current density lives on a different discretized space, if we want combine the quantities, we have to compute appropriate projection of the solutions
+ 
+ \begin{equation}
+ n_k := <n_h>
+ \end{equation}
+
+For example this operation could be the standard integral average or the armonic average. 
+
+Another important issue is the computation of the derivatives. For this purpose we implemented a numerical derivation based on the Lagrange polynomial interpolator of the first order
+
+\begin{equation}
+\nabla n \simeq \nabla (\Pi^1_h n) = \sum_{i=1}^{N_h} n_i \nabla \psi_i = \nabla_k n_h
+\end{equation}
+ 
+Notice that the quantity so calculated lives on the appropriate space.
+Now we can discretize equations \referenzaeq{eq: Jn DD}, \referenzaeq{eq: Jp DD}, \referenzaeq{eq: Jn qf} and \referenzaeq{eq: Jp qf} as follows
+
+\begin{align}
+\vect{J}_n^k &= -q<n>\mu_n\nabla \varphi + qD_n <n>\nabla n \label{eq: Jn DD discrete}\\ 
+\vect{J}_p^k &= -q<p>\mu_p\nabla \varphi - qD_p <p> \nabla p \label{eq: Jp DD discrete} \\
+\vect{J}_n^k &= -q<n>\mu_n\nabla \varphi_n \label{eq: Jn qf discrete}\\
+\vect{J}_p^k &= -q<p>\mu_p\nabla \varphi_p \label{eq: Jp qf discrete}
+\end{align}
+ 
+ 
+Risultati:
+\begin{itemize}
+\item Problema del compenso fra apporto di drif e diffusion, infatti zona critica quando questi due contributi diventano rilevanti...instability
+
+\item Formula molto stabile tuttavia problemi agli strati limiti delle concentrazioni (problema condizione di contatto differenti comportamenti a seconda della media utilizzata)
+
+\end{itemize}
+ 
+ 
+\begin{figure}
+\centering
+
+\subfloat[][\emph{Jn}]
+{\includegraphics[height=4.5cm]{Corrente/ConfrontiCorrentiBulkJN_SDEVsDD.eps}}
+\subfloat[][\emph{Jp}]
+{\includegraphics[height=4.5cm]{Corrente/ConfrontiCorrentiBulkJP_SDEVsDD.eps}}
+
+\subfloat[][\emph{Jn}]
+{\includegraphics[height=4.5cm]{Corrente/ConfrontiCorrentiBulkJN_SDEVsQF.eps}}
+\subfloat[][\emph{Jp}]
+{\includegraphics[height=4.5cm]{Corrente/ConfrontiCorrentiBulkJP_SDEVsQF.eps}}
+
+
+\end{figure} 
+ 
+
+ 
+\section{Modified approaches} 
+ 
+ Luckily there's some \textit{main stone} which offers ever a good start point whence achieve new results. Probably the most known and recognized by the inherent literature is the \textit{Sharfetter-Gummel formula}.
+
+\begin{figure}
+\centering
+
+\subfloat[][\emph{Jn}]
+{\includegraphics[height=4.5cm]{Corrente/ConfrontiCorrentiBulkJN_SDEVsDDcorretto.eps}}
+\subfloat[][\emph{Jp}]
+{\includegraphics[height=4.5cm]{Corrente/ConfrontiCorrentiBulkJP_SDEVsDDcorretto.eps}}
+
+\subfloat[][\emph{Jn}]
+{\includegraphics[height=4.5cm]{Corrente/ConfrontiCorrentiBulkJN_SDEVsSG.eps}}
+\subfloat[][\emph{Jp}]
+{\includegraphics[height=4.5cm]{Corrente/ConfrontiCorrentiBulkJP_SDEVsSG.eps}}
+
+
+\end{figure} 
 
 \section{Scharfetter-Gummel formula}
 
@@ -294,92 +377,12 @@ This approach is the natrual extension of the $Sharfetter-Gummel$ formula for th
 \end{figure}
 
 
-%\clearpage 
-%
-%\subsubsection{Bulk method}
-%Now the question is: it's possible extend the residue technique at the calculation of current inside the domain? The answer at this question is not trivial. A good start point is the work of J.R. Hughes and Larson in the article "The Continuous Galerikin Method Is Locally Conservative".The aim of their work is well exposed in the title and the conclusion is that this important property (locally conservation) is ensured less than the existence of an \textbf{auxiliary flux} denoted as $H(\omega)$ (with $\omega \subseteq\Omega$). 
-%To extract the statement of global and local conservation from the variational formulation, thay need to be able to set the weighting function to one. Obviously this is possible if $\Gamma_g=\varnothing$. In order to include every case an extended weak formulation is presented: consider $\eta$ the set of all verteces of the discrete domain and $\eta_g$ the subset of verteces on Dirichlet boundaries.
-%Now we are able to define the discrete space $\mathcal{V}^h:=span\{\psi_i\}_{i\in \eta - \eta_g} $ and  $V^h:=\mathcal{V}^h \oplus span\{\psi_i\}_{i\in \eta_g}$, where $\psi_i$ is the basis function assiociated with the node $i$.
-%The last space is the completion of the usual finite element space ($\mathcal{V}^h$). Note that the constant function having value 1 is contained in $V^h$. The modified form of Galerkin's method is given by:
-%
-%Find $u^h\in \mathcal{S}^h$ and $H^h(\Omega)\in V^h - \mathcal{V}^h$ such that
-%
-%\begin{equation}
-%\label{eq: extended weak formulation}
-%(W^h,H^h(\Omega))_{\Gamma_g}=B(W^h,u^h)-L(W^h) \psp{10} \forall W^h\in V^h
-%\end{equation}
-%
-%Note that \referenzaeq{eq: extended weak formulation} splits into two subproblems:
-%
-%\begin{equation}
-%\label{eq: usally problem}
-%0=B(w^h,u^h)-L(w^h) \psp{10} \forall w^h\in \mathcal{V}^h
-%\end{equation}
-%\begin{equation}
-%\label{eq: problem auxiliary flux}
-%(W^h,H^h(\Omega))_{\Gamma_g}=B(W^h,u^h)-L(W^h) \psp{10} \forall W^h\in V^h-\mathcal{V}^h
-%\end{equation}
-%
-%Equation \referenzaeq{eq: problem auxiliary flux} is a problem which determines $H^h(\Omega)$. In it we assume $u^h$ is already determined by \referenzaeq{eq: usally problem}.
-%The coefficient matrix for \referenzaeq{eq: problem auxiliary flux} is the mass matrix associated with $\Gamma_g$
-%
-%\begin{equation}
-%\sum_{j\in \eta_g} (\psi_i,\psi_j)H^h_j(\Omega) = B(\psi_i,u^h)-L(\psi_i) \psp{10} \forall i \in \eta_g
-%\end{equation}
-%
-%\textcolor{red}{Il prodotto sul bordo genera la medesima matrice di massa?E cosa succede nei punti che non sono di Dirichlet?Non può essere formulato in questo modo il problema?}
-%
-%In ogni caso noi abbiamo provato ad estendere il secondo problema ad ogni elemento interno che intersechi o meno i bordi di Dirichlet.
-%Questo a cosa corrsiponde?
-%
-%Abbiamo interpretato la costruzione per elemento come se in ogni elemento il problema avesse delle condizioni di dirichlet che si affacciano con gli altri elementi adiacenti.
-%Se assumiamo che questa procedura sia corretta allora penso che i successivi ragionamenti stiano in piedi.
-%
-%Sempre nell'articolo viene testata la formulazione estesa contro la funzione test costante e si ottiene la seguente equivalenza:
-%
-%\begin{equation}
-%\int_{\Gamma_g}H^h(\Omega) \, d\Gamma = \int_{\Gamma^+_h}(a_nu^h-h^+) \, d\Gamma - \int_{\Gamma_h^-}h^- \, d\Gamma - \int_\Omega f \, d\Omega
-%\end{equation}
-%
-%avendo assunto ogni nodo come Dirichlet allora valgono le seguenti affermazioni:
-%\begin{itemize}
-%\item $\Gamma_g = \partial \Omega$
-%\item $\Gamma_h = \varnothing$
-%\end{itemize}
-%
-%quindi possiamo affermare che per ogni elemento vale:
-%
-%\begin{equation}
-%\int_{\partial\Omega}H^h(\Omega) \, d\Gamma =  - \int_\Omega f \, d\Omega
-%\end{equation}
-%
-%Ora vorrei ripartire dal problema di partenza:
-%
-%\begin{equation}
-%\begin{array}{rcl}
-%-\nabla \cdot \vect{J} & = & f \\
-%\\
-%\int_\Omega -\nabla \cdot \vect{J} \Psi_k \, d\Omega & = & 
-%\int_\Omega f \Psi_k \, d\Omega  \psp{10}  \forall k = 1 ... N_{elements}\\
-%\\
-%\int_K -\nabla \cdot \vect{J} \, d\Omega & = & \int_K f \, d\Omega  \psp{10}  \forall k = 1 ... N_{elements}\\
-%\\
-%\int_{\partial K} -\vect{J} \cdot \vect{n} \, d\Omega & = & \int_K f \, d\Omega  \psp{10}  \forall k = 1 ... N_{elements}\\
-%
-%\end{array}
-%\end{equation}
-%
-%La domanda quindi \`e possiamo in qualche modo dire che:
-%\begin{equation}
-%H^h(K) = \vect{J}\cdot \vect{n} 
-%\end{equation}
-%
-%Entrambe le quantit\`a sono definite sul bordo dell'elemento, inoltre la ricostruzione dalle componenti normali al vettore densit\`a di corrente non \`e impossibile.
-%Tuttavia occorre passare prima a definire la grandezza sulle facce del tetraedro:
-%\begin{itemize}
-%\item Calcolo delle quantit\`a nodali $H^h_j(\Omega)$
-%\item Redistribuzione dei valori sulle facce (metodo percentuale proporzionalmente alle aree) $\bar{H}^h_j(\Omega)$
-%\item Ortogonalizzazione dei contributi normali alle facce $\bar{H}^h_j(\Omega) \vect{n}_j$ tramite procedura alla Grand-Shmidt $H^*_j \vect{n}_j^*$
-%\item Calcolo del vettore densit\`a di corrente nell'elemento $\vect{J}=\sum_{i=1}^4 H^*_j\vect{n}_j^*$
-%\end{itemize}
-%
+
+\section{Conclusions}
+
+
+\begin{itemize}
+\item Metodo SG vantaggi a livello computazionale, estensoine naturale 3D del metodo SG 1D
+\item Metodo DD corretto risolve i problemi di contatto, pi\`u soggetto ad instabilit\`a numeriche, rispetta una propriet\`a importante in maniera forte
+\item Possiblit\`a di utilizzare questi metodi come nuovo schema di discretizzazione: problemi al contatto per il metodo SG (problema della media armonica con metodo misto).Per quanto riguarda il DD corretto bisogna pensarci.
+\end{itemize}
