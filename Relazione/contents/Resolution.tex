@@ -41,7 +41,7 @@ In the case where the neighbouring material is a perfect insulator, hypotesis \r
 \caption{(a) Mos device with net dopant concentration distributed accordingly to a gaussian profile and $\Gamma_D$ colored in black. The oxide layer is colored in light blue. (b) Outline of the Mos device with $\Gamma_{int}$ in light gray. }
 \end{figure}
 
-Artificial boundaries ($\partial \Omega_a$) are needed in order to obtain a self-contained simulaiton domain.  On these boundaries no electric and current flux is exchanged with the surrounding enviroment, this fact is well performed by homogeneous Neumann boundary condition ($\partial \Omega_a = \Gamma_N$)
+Artificial boundaries ($\partial \Omega_a$) are needed in order to obtain a self-contained simulation domain.  On these boundaries no electric and current flux is exchanged with the surrounding environment, this fact is well performed by homogeneous Neumann boundary condition ($\partial \Omega_a = \Gamma_N$)
 
 \begin{equation}
 \label{eq: neumann boundar condition}
@@ -84,7 +84,7 @@ n_D = \dfrac{D + \sqrt{D^2+4n_i^2}}{2}
 p_D = \dfrac{-D + \sqrt{D^2+4n_i^2}}{2}
 \end{equation}
 
-where $D := N_D-N_A$ is the net doping concentration. Furthermore  we can approximate that the quasi fermi potential level of silicon at contact is aligend with the external applyed voltage. As a conseguence we can easily calculate potential condition on $\Gamma_{D,Si}$ using \referenzaeq{eq: n density mb} and \referenzaeq{eq: p density mb}
+where $D := N_D-N_A$ is the net doping concentration. Furthermore  we can approximate that the quasi fermi potential level of silicon at contact is aligend with the external applyed voltage. As a consequence we can easily calculate potential condition on $\Gamma_{D,Si}$ using \referenzaeq{eq: n density mb} and \referenzaeq{eq: p density mb}
 
 \begin{equation}
 \varphi_D = \varphi_f + V_{th}ln\left( \dfrac{n_D}{n_i} \right) = \varphi_f - V_{th}ln\left( \dfrac{p_D}{n_i} \right)
@@ -147,7 +147,7 @@ F_2(\vect{U}) & = \nabla \cdot ( q\mu_n n \nabla \varphi - qD_n \nabla n )+qR \\
 F_3(\vect{U}) & = \nabla \cdot (- q\mu_p p \nabla \varphi - qD_p \nabla p )+qR
 \end{align*}
 
-The non linear problem \referenzaeq{eq: abstract problem fully} is the abstract generalization of the search of a zero for a real function $f:\mathbb{R}\rightarrow\mathbb{R}$. The vector function $\vect{F}$ is a nonlinear differential operator and the associated problem which we intend to resolve is: given a functional space $V$ and the operator $\vect{F}:V\rightarrow V$, find $\vect{U}\in V$ such that \referenzaeq{eq: abstract problem fully} is satisfied.
+The non linear problem \referenzaeq{eq: abstract problem fully} is the abstract generalization of the search of a zero for a real function $f:\mathbb{R}\rightarrow\mathbb{R}$. Although the vector function $\vect{F}$ is a nonlinear differential operator and the associated problem which we intend to resolve is: given a functional space $V$ and the operator $\vect{F}:V\rightarrow V$, find $\vect{U}\in V$ such that \referenzaeq{eq: abstract problem fully} is satisfied.
 
 In our application, the function space $V$ is tipycally a subset of the Sobolev space  $[H^1(\Omega)]^d$ (in this case with $d$ we intend the number of component of $\vect{F}$). Sobolev spaces are based on the space of square integrable functions on $\Omega$ which reads as follows
 
@@ -193,7 +193,7 @@ For $v \in H^1_0(\Omega)$ we have the \textit{Poincar\'e inequality}
 
 and the seminorm $|\cdot |_{\,\Omega}$ is therefore a norm in $H^1(\Omega)$, equivalent to $||\cdot ||_{1,\Omega}$.
 
-The above setting of function spaces are used widely in the proceeding of this work. 
+The above setting of function spaces are used widely in the proceeding of this work, especially during the well-posedness analysis of the equations in chapter \ref{chap: finite element}.
 
 
 \subsection{Abstract Newton's method}
@@ -350,12 +350,12 @@ F_1(\varphi)  =  \nabla \cdot (-\epsilon \nabla \varphi) - q(n_i(e^{((\varphi_p-
 We have decoupled the system and the new algorithm reads as
 
 
-
+\mybox{
 
 \begin{itemize}
 
 
-\item[\bf (Step 0)] Give a suitable initial condition for $\varphi^0$ and set a positive parameter $toll_{GM}>0$ (Gummel Map tollerance)
+\item[\footnotesize \bf (Step 0)] Give a suitable initial condition for $\varphi^0$ and set a positive parameter $toll_{GM}>0$ (Gummel Map tollerance)
 
 \item[\bf (Step 1)] Fix a positive parameter $toll_{NLP}>0$ (Non Linear Poisson tollerance), solve the linearized Non Linear Poisson equation (NLP) in $\Omega$ using the Newton's method untill $||F_1(\varphi^{k+1})||>toll_{NLP}$:
 
@@ -422,6 +422,7 @@ computed accordingly to the definition of the Frech\'et derivate.
 
 \end{itemize}
 
+}{\textbf{Decoupled Gummel map.}}
 
 We shall note with $k$ the iteration step of the inner loop, while with $i$ the iteration step of the Gummel Map. A concisely scheme is presented in \figref{fig: gummel map}.
 Unfortunately there isn't any convergence result for this method like \referenzaeq{theorem: newton convergence}, although there are several advantages which make Gummel map algorithm preferable to the Fully Coupled Newton's Method.

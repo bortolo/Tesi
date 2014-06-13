@@ -3,12 +3,12 @@ load '../header'
 #set format x "%.1t {/Symbol \327} 10^{%T}"
 set grid
 #set xrange [0.0:1.5]
-set xrange [0.8:1.5]
+#set xrange [0.8:1.5]
 #set logscale x 
 set xlabel 'V [V]' font "Helvetica bold,23"
 
-#set yrange [1e-19:1e-3]
-set yrange [1e-6:1e-3]
+set yrange [1e-19:1e-3]
+#set yrange [1e-6:1e-3]
 set format y "10^{%T}"
 set ytics nomirror
 set logscale y;
@@ -41,11 +41,12 @@ set key Left
 #replot './DiodeOxideDirectPolarizationMasettiCaratteristicaVI.txt' u 5:(abs($7)) ti 'Ip FEMOS' w l ls 12
 #set out 'CurrentDiodeOxideMasetti.eps'
 
+# Itot
 plot './DiodeOxideDirectPolarizationCaratteristicaVI.txt' u 5:(abs($6+$7)) ti 'Itot FEMOS' w l ls 11
 replot './DiodeOxideDirectPolarizationMasettiCaratteristicaVI.txt' u 5:(abs($6+$7)) ti 'Itot FEMOS Masetti' w l ls 12
 replot './DiodeOxideDirectPolarizationSDE.txt' u 1:(abs($2+$4)) ti 'Itot SDE' w p ls 21 ps 2
 replot './DiodeOxideDirectPolarizationSDEmasetti.txt' u 1:(abs($2+$4)) ti 'Itot SDE Masetti' w p ls 22 ps 2
-set out 'CurrentDiodeOxideConstantVsMasetti.eps'
+set out 'CurrentDiodeOxideConstantVsMasettiNOZOOM.eps'
 
 rep
 set out 'temp.eps'

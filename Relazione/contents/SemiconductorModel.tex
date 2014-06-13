@@ -1,6 +1,6 @@
 \chapter{Semiconductor model}
 
-In this chapter we shall present the basic physics properties of semiconductor material accordingly with the quantum mechanics theory \citep{ModernVLSIdevices}. The Drift-Diffusion model is then presented.
+In this chapter we shall present the basic physical properties of semiconductor material accordingly with the quantum mechanics theory \citep{ModernVLSIdevices}. The Drift-Diffusion model is then presented.
 
 \section{Basic Device Physics}
 
@@ -22,7 +22,7 @@ In a silicon crystal each atom has four valence electrons to share with its four
 Because in silicon the band gap is on the order of 1 [eV], at room temperature a small fraction of the electrons are excited into the conduction band, leaving behind vacancies (called \textit{holes}) in the valence band.
 In contrast, an insulator has a much larger forbidden gap making room-temperature conduction virtually impossible, while metals have partially filled conduction bands even at absolute zero temperature, this make them good conductors at any temperature. 
 
-A suitable formulation of che carrier concentration which is given, for electrons, by the follow integral:
+A suitable formulation of che carrier concentration is given, for electrons, by the follow integral:
 \begin{equation}
 \label{eq: carrier densiy integral}
 n = \int_{E_c}^\infty g(E)f(E) \, dE
@@ -40,7 +40,7 @@ here $k_B=1.38\times10^{-23}[J/K]$ is Boltzmann's constant, $T$ is the absolute 
 The Fermi level ($E_f$) is the energy at which the probability of occupation of an energy state by an electron is exactly one-half.
 \end{Definizione}
 
-In most cases when the energy is at least several $k_BT$ above or below the Fermi level \referenzaeq{eq: fermi dirac distribution} can be approximated with the Maxwell-Boltzmann statistics for classical particles, which read as follows:
+In most cases when the energy is at least several $k_BT$ above or below the Fermi level, equation \referenzaeq{eq: fermi dirac distribution} can be approximated with the Maxwell-Boltzmann statistics for classical particles, which reads as follows:
 
 \begin{equation}
 \label{eq: maxwell distribution}
@@ -132,7 +132,7 @@ n = N_d^+ + p
 p = N_a^- + n
 \end{equation}
  
- For the sake of simplicity we consider in this work that at room temperature all impurties are ionized ($N_d = N_d^+$ and $N_a = N_a^-$). Typcally the magnitude of impurities is between $10^{16}\ast 10^{20} [cm^{-3}]$, while the usual intrinsic carrier concentration is almost $10^{10}[cm_3]$, for this reason we can approximate the equilibrium densities concentration:
+ For the sake of simplicity we consider in this work that at room temperature all impurties are ionized ($N_d = N_d^+$ and $N_a = N_a^-$). Typcally the magnitude of impurities is between $10^{16}\div 10^{20} [cm^{-3}]$, while the usual intrinsic carrier concentration is almost $10^{10}[cm^{-3}]$, for this reason we can approximate the equilibrium densities concentration:
   
 \begin{equation}
 \begin{array}{ll}
@@ -141,7 +141,7 @@ p \simeq N_a & n \simeq \dfrac{n_i^2}{N_a}
 \end{array}
 \end{equation}
 
- Take into account this approximation and substituting \referenzaeq{eq: n density fd} and \referenzaeq{eq: p density fd} in \referenzaeq{eq: equilibrium charge in n-type} and \referenzaeq{eq: equilibrium charge in p-type}, solving the algebraic equationwe have
+ Take into account this approximation and substituting \referenzaeq{eq: n density fd} and \referenzaeq{eq: p density fd} in \referenzaeq{eq: equilibrium charge in n-type} and \referenzaeq{eq: equilibrium charge in p-type}, solving the algebraic equation have
  
  \begin{align}
  E_c-E_f = KTln\left(\dfrac{N_c}{N_d}\right)  \label{eq: Ef in n-type}\\
@@ -160,11 +160,7 @@ Instead of using $N_c$, $N_v$ and referring to $E_c$ and $E_v$ equation \referen
 The distance between the Fermi level and the intrinsic Fermi level near the midgap is a logarithmic function of doping concentration.
 \end{Osservazione}
 
-As a consequences:
-\begin{itemize}
-\item non linearity relations between potential and desities,
-\item exponential dependence of densities from potential.
-\end{itemize}
+The main consequence of the observation is that desities are related with potential by high non linear relations.
 
 \begin{figure}[!h]
 \centering
@@ -474,7 +470,7 @@ The stationary form can be easily derivate from \referenzaeq{eq: full problem} b
 %\right.
 %\end{equation}
 
-
+\clearpage
 
 
 \subsection{Generation and Recombination phenomenon}
@@ -521,7 +517,7 @@ $\tau$ & s & $1.0\times 10^{-5}$ & $3.0 \times 10^{-6}$\\
 $E_T$ & eV & 0.0 & 0.0\\
 \bottomrule
 \end{tabular}
-\caption{List of parameters in the electron and hole mobility models including scattering from lattice thermal vibrations}
+\caption{List of parameters for the electron and hole mobility models including scattering from lattice thermal vibrations.}
 \end{table}
 
 \subsubsection{Auger recombination (AU)}
@@ -553,13 +549,14 @@ $C_n$ & $cm^6s^{-1}$ & $2.9 \times 10^{-31}$ \\
 $C_p$ & $cm^6s^{-1}$ & $1.028 \times 10^{-31}$ \\
 \bottomrule
 \end{tabular}
-\caption{List of parameters in the electron and hole Auger generation/recombination model.}
+\caption{List of parameters for the electron and hole Auger generation/recombination model.}
 \end{table}
 
 \subsubsection{Impact ionization (II)}
+\label{sec: ImpactIonization}
 
 The impact ionization mechanism is a three-particle generation  process and it is dissimilar from the previously phenomenon because we can't express its contribute with a relation like \referenzaeq{eq: generic RG}. The high energy carrier generation is triggered by the presence of very high electric fields. Due to these fields an electron could gains enough energy to excite an electron-hole pair out of a silicon lattice bond. Then the process can be repeated until an avalanche of generated carriers is produced within the region.
-There are several different models for the II generation, inside our code we implemented the van Overstraeten - de Man \textcolor{red}{referenza manuale sdevice} model based on the Chynoweth law \textcolor{red}{referenza dentro sdevice}:
+There are several different models for the II generation, inside our code we implemented the van Overstraeten - de Man model based on the Chynoweth law \cite{SdeviceManual}:
 \begin{equation}
 G_{II}(n,p)= \alpha_n n |\vect{v}_n| + \alpha_p p |\vect{v}_p|
 \end{equation}
@@ -573,7 +570,7 @@ where:
 \gamma = \dfrac{tanh\left(\dfrac{\hbar \omega_{op}}{2k_BT_0} \right) }{tanh\left(\dfrac{\hbar \omega_{op}}{2k_BT} \right)}
 \end{equation}
 
-The factor $\gamma$ with the optical phono energy $\hbar \omega_{op}$ expresses the temperature dependence of the phonon gas against which carriers are accelerated.
+The factor $\gamma$ with the optical phonon energy $\hbar \omega_{op}$ expresses the temperature dependence of the phonon gas against which carriers are accelerated.
 $E_{ava}$ is the driving force which takes into account how the electric field influence the generation event. There are two possibilties to compute this quantity:
 \begin{itemize}
 \item compute the component of the elctrostatic field in the direction of the current
@@ -600,8 +597,10 @@ $b_{low}$ & 1 & $1.231 \times 10^{6}$ & $2.036 \times 10^{6}$ &$1.75 \times 10^{
 $\hbar\omega_{op}$ & eV & 0.063 & 0.063\\
 \bottomrule
 \end{tabular}
-\caption{List of parameters in the electron and hole of van Overstraeten-de Man model}
+\caption{List of parameters of the electron and hole of van Overstraeten-de Man model}
 \end{table}
+
+\clearpage 
 
 \subsection{Mobility models}
 
@@ -627,7 +626,7 @@ Intuitively, carrier mobility is to be a decreasing function of temperature, as 
 
 where $\mu_\nu^0$ is the low-field mobility, $\beta_\nu$ are positive numbers and $T_0$ is a reference temperature typically $T_0=300[K]$.
 
-\begin{table}
+\begin{table}[!h]
 \centering
 \begin{tabular}{cccc}
 \toprule
@@ -637,7 +636,7 @@ $\mu^0$ & $cm^2V^{-1}s^{-1}$ & 1417.0 & 470.5\\
 $\beta$ & 1 & 2.5 & 2.2\\
 \bottomrule
 \end{tabular}
-\caption{List of parameters in the electron and hole mobility models including scattering from lattice thermal vibrations}
+\caption{List of parameters for the electron and hole mobility models including scattering from lattice thermal vibrations}
 \end{table}
 
 \subsubsection{Scattering from Ionized Impurities}
@@ -711,6 +710,6 @@ $\beta_0$ & 1 & 1.109 & 1.213 \\
 $\beta_{exp}$ & 1 & 0.66 & 0.17\\
 \bottomrule
 \end{tabular}
-\caption{List of parameters in the electron and hole mobility models including scattering from velocity saturation.}
+\caption{List of parameters for the electron and hole mobility models including scattering from velocity saturation.}
 \end{table}
 

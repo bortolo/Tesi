@@ -63,22 +63,23 @@
 \newcommand{\psp}[1]{\foreach \n in {1,...,#1}{\,}}	
 
 \begin{document}
-
 \input{contents/fronte}
-\clearpage
+{\frontmatter
 \tableofcontents
-\input{contents/Introduction}
-\clearpage
+\listoffigures
+\listoftables
+\input{contents/Introduction}}
+
+{\mainmatter
 \input{contents/SemiconductorModel}
-\clearpage
 \input{contents/Resolution}
-\clearpage
 \input{contents/FiniteElementDiscretization}
-\clearpage
 \input{contents/Results}
-\clearpage
-\input{contents/CurrentComputation}
-\clearpage
+\input{contents/CurrentComputation}}
+
+{\backmatter
+\input{contents/Conclusioni}
 \input{bib}
+\input{contents/Ringraziamenti}}
 
 \end{document}

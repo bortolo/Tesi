@@ -1,4 +1,5 @@
 \chapter{Finite element discretization}
+\label{chap: finite element}
 
 In this section we shall present the classical variational formulation of problems \referenzaeq{eq: newton step NLP linear}, \referenzaeq{eq: LEC system new} and \referenzaeq{eq: LHC system new}. For each kind of PDE problem we give a briefly presentation of the well-posedness analysis. Finally we describe the finite element discretization. 
 
@@ -423,7 +424,7 @@ We report here the weak formulation of \referenzaeq{eq: LEC system slotboom gene
 \begin{align}
 - \int_{\Omega_{Si}} \vect{J}_n\cdot \nabla v \, d\Omega + \int_{\Omega_{Si}} \sigma n v \, d\Omega = \int_{\Omega_{Si}} f v \, d\Omega \psp{10} \forall v \in H^1_{\Gamma_{D,Si}}(\Omega)
 \label{eq: weak form PM1} \\
-\int_{\Omega_{Si}} (qD_n e^{(\varphi/V_{th})})^{-1} \vect{J}_n\cdot \vect{q} \, d\Omega + \int_{\Omega_{Si}} \nabla(e^{(\varphi/V_{th})n}) \cdot \vect{q} \, d\Omega = 0 \psp{10} \forall \vect{q} \in [L^2(\Omega)]^d \label{eq: weak form PM2} 
+\int_{\Omega_{Si}} (qD_n e^{(\varphi/V_{th})})^{-1} \vect{J}_n\cdot \vect{q} \, d\Omega + \int_{\Omega_{Si}} \nabla(e^{(\varphi/V_{th})}n) \cdot \vect{q} \, d\Omega = 0 \psp{10} \forall \vect{q} \in [L^2(\Omega)]^d \label{eq: weak form PM2} 
 \end{align}
 
 In order to approximate $[L^2(\Omega)]^d$ we introduce a new discrete space
@@ -459,43 +460,33 @@ F(v_h)^K & = & \int_K f v_h \, dK
 where $D_K \in \mathbb{R}^{3\times 3}$ is the element stiffness matrix. Several treatments may be performed on this matrix
 
 \begin{equation}
-D_K(qD_n e^{(\varphi/V_{th})}) = \left\{ 
-\begin{array}{l}
-\mathcal{M}_K(qD_n e^{(\varphi/V_{th})}) \, \mathcal{I}
-\\
-\\
-\mathcal{H}_K(qD_n e^{(\varphi/V_{th})}) \, \mathcal{I}
-\\
-\\
- \dfrac{1}{|K|}\sum_{i=1}^6 \mathcal{H}_{e_i}(qD_n e^{(\varphi/V_{th})}) |e_i| s_i \vect{t}_i \vect{t}_i^T
-\end{array}
-\right.
-\end{equation} 
+\label{eq: vari diffusion coeff}
+ D_K(qD_n e^{(\varphi/V_{th})}) = 
+ 	\begin{cases}
+		  \mathcal{M}_K(qD_n e^{(\varphi/V_{th})}) \\
+		  \mathcal{H}_K(qD_n e^{(\varphi/V_{th})}) \\
+ 		  \dfrac{1}{|K|}\sum_{i=1}^6 \mathcal{H}_{e_i}(qD_ne^{(\varphi/V_{th})}) |e_i| s_i \vect{t}_i \vect{t}_i^T
+ 		 \end{cases}
+\end{equation}
+
+\textcolor{red}{Occorre aprire un discorso pi\`u ampio?Descrizione degli elementi geometrici 3D?Il significato di $s_i$ in 3D a quanto pare \`e complesso.}
+
 
 These different approaches in the computation of the average of the diffusion coefficient are responsible for the quite different numerical perfomance of the relative methods.
 We already presented the standard average and the armonic average and we discussed briefly the advantages of them. 
-Now we are interested in the latter method which  is an exponentially fitted treatment over the entire subdomain $K$. 
-From \referenzaeq{eq: LEC discretized general} we immeditaly obtain:
+The latter equation in \referenzaeq{eq: vari diffusion coeff} introduces an exponentially treatment of the diffusion coefficient along each edge of the boundary $\partial K$ of the subdomain $K$. 
 
-\begin{equation}
-\label{eq: exp fitted flux}
-\vect{J}_h^K = \dfrac{1}{|K|}\sum_{i=1}^6 |e_i| s_i j_{e_i} \vect{t}_i 
-\end{equation}
+In fact considering that along the edges of $\partial K$ the approximate flux density computation can be written as a function of its tangential components, then basing on the classical one dimensional \textit{Sharfetter-Gummel} method \textcolor{red}{ref}, for each edge $e_i$, the tangential component of $J_h^K(n_h)$ may defined as:
 
-Having defined the flux vector over $K$ in the form \referenzaeq{eq: exp fitted flux}, it is clearly possible to construct a fimily of Galerkin finite element approximations for the continuity equations by a proper choice of the quantities $j_{e_i}$. 
-
-\subsubsection{Edge flux density computation}
-
-We introduce an approximate flux density computation along the edges of $\partial K$ based on the classical one dimensional \textit{Sharfetter-Gummel} method. For each edge $e_i$, the tangential component of $J_h^K(n_h)$ is defined as:
-
-\begin{equation}
-j_{e_i}  \simeq \mathcal{H}_{e_i}(qD_n e^{(\varphi/V_{th})}) \dfrac{\mathcal{B}(\delta_i(\varphi / V_{th}))n_{h,k} -  \mathcal{B}(-\delta_i(\varphi / V_{th}))n_{h,j}}{|e_i|}
-\end{equation}
+\begin{align*}
+j_{e_i}  & =   \mathcal{H}_{e_i} \dfrac{\delta_i(e^{-\varphi /V_th}n_h)}{|e_i|} = \mathcal{H}_{e_i} \nabla (e^{-\varphi / V_{th}}n_h) \vect{t}_i \\
+& =  \mathcal{H}_{e_i}(qD_n e^{(\varphi/V_{th})}) \dfrac{\mathcal{B}(\delta_i(\varphi / V_{th}))n_{h,k} -  \mathcal{B}(-\delta_i(\varphi / V_{th}))n_{h,j}}{|e_i|}
+\end{align*}
 
 where 
 
 \begin{equation}
-\delta_i(\varphi / V_{th}) = \dfrac{\varphi_k - \varphi_j}{V_{th}} = 2 \dfrac{(\vect{b}_K\cdot \vect{t}_{e_i}) |e_i|}{2\mathcal{H}_{e_i}(qD_n e^{(\varphi/V_{th})}) } = 2 \gamma_i
+\delta_i(\varphi / V_{th}) = \dfrac{\varphi_k - \varphi_j}{V_{th}} = 2 \dfrac{(\vect{E}_K\cdot \vect{t}_{e_i}) |e_i|}{2\mathcal{H}_{e_i}(qD_n e^{(\varphi/V_{th})}) } = 2 \gamma_i
 \end{equation}
 
 \begin{equation}
@@ -507,11 +498,22 @@ where
 \right.
 \end{equation}
 
-being $\vect{b}_K$ the relative drift component of the problem on $K$ and $|\gamma_i|$ the P\`eclet number associated with the edge $e_i$.  
+being $\vect{E}_K$ the relative electric field on $K$ and $|\gamma_i|$ the P\`eclet number associated with the edge $e_i$. 
+From \referenzaeq{eq: LEC discretized general} we immeditaly obtain:
+
+\begin{equation}
+\label{eq: exp fitted flux}
+\vect{J}_h^K = \dfrac{1}{|K|}\sum_{i=1}^6 |e_i| s_i j_{e_i} \vect{t}_i 
+\end{equation}
+
+Furthermore having defined the flux vector over $K$ in the form \referenzaeq{eq: exp fitted flux}, it is possible to construct a fimily of Galerkin finite element approximations for the continuity equations by a proper choice of the quantities $j_{e_i}$ (e.g. upwind techniques). 
+
+
+
 
 \subsubsection{The discretization scheme}
 
-Given the choice for $j_{e_i}$ and substituting the equation for $\vect{J}_h^K$ in the bilinear form of  \referenzaeq{eq: LEC discretized general}, we can compute the local system matrix over each element which reads as follows:
+Given the choice for $j_{e_i}$ and substituting the equation for $\vect{J}_h^K$ in the bilinear form \referenzaeq{eq: LEC discretized general}, we can compute the local system matrix over each element which reads as follows:
 
 \begin{equation}
 \Phi_K  = 
@@ -580,9 +582,10 @@ A_K = \Phi_K + \dfrac{|K|}{4} diag (\sigma)
 \vect{F}_K = \dfrac{|K|}{4} (f_1,f_2,f_3,f_4)^T
 \end{equation}
 
+denoting by  $\mathcal{B}_{ij}$ the Bernoulli function applied to the potential difference between node $j$ and node $i$.
 For the assembling of the system matrix and the imposition of the essential boundary conditions we refer to the previous section.
 
-The discretization scheme just presented is well known as \textit{Edge Averaged Finite Elements} (EAFE) and it's particularly suitable for problems with coefficient highly variable. Furthermore this approach has several good properties, e.i. in 2D simulation if $\mathcal{T}_h$ is a Delauny partition the system matrix is an \textit{M-matrix} \cite{BankMmatrixEAFE}. The main conseguence of this statement is that the solution satisfied the \textit{Discrete Maximum Principle} \textcolor{red}{ref}, which means that, in this physical framework, no negative concentrations may occur. Unfortunately this property is not more valid in a 3D simulation, indeed the Delauny condition of the mesh is not sufficiently to guarantee that the system matrix of the method is an M-matrix. A more general condition is presented in \cite{ZikatanovXu}.
+The discretization scheme just presented is well known as \textit{Edge Averaged Finite Elements} (EAFE) and it's particularly suitable for problems with coefficient highly variable. Furthermore this approach has several good properties, e.i. in 2D simulation if $\mathcal{T}_h$ is a Delauny partition the system matrix is an \textit{M-matrix} \cite{BankMmatrixEAFE}. The main consequence of this statement is that the solution could satisfy the \textit{Discrete Maximum Principle}. This is a notable property which implies that no negative concentrations may occur. Unfortunately this property is not more valid in 3D simulations, indeed the Delauny condition of the mesh is not sufficiently to guarantee that the system matrix of the method is an M-matrix. A more general condition is presented in \cite{ZikatanovXu}.
 
 \begin{Teorema}[Zikatanov condition]
 The system matrix of the EAFE scheme is an M-matrix if and only if for any fixed edge E of the partition $\mathcal{T}_h$ the following inequality holds:
@@ -603,18 +606,20 @@ For $n=2$ the condition \referenzaeq{eq: mesh delaunay condition} means that the
 Condition \referenzaeq{eq: mesh delaunay condition} highlights that in order to satisfy the discrete maximum principle, a partion without obtuse angles is preferable.
 \end{Osservazione}
 
-We notice that presently meshing software are oriented to care about the minimum angle of the elements, rather than the maximum, as a conseguence obtain a mesh which satisfied the condition \referenzaeq{eq: mesh delaunay condition} it's a really difficult task. 
+We remark that presently meshing software are oriented to care about the minimum angle of the elements, rather than the maximum, resulting that obtain a mesh which satisfied the condition \referenzaeq{eq: mesh delaunay condition} it's a really difficult task. 
 
-As example in \figref{fig: cubo zikatanov} we present a simple partition of a cube performed with the Synopsis tool SNMESH. For every element we evaluate how many edges doesn't satisfy the condition \referenzaeq{eq: mesh delaunay condition}.
+As example in \figref{fig: cubo zikatanov} we present a simple partition of a cube performed with the Synopsis tool SNMESH. For every element we evaluated how many edges don't satisfy the condition \referenzaeq{eq: mesh delaunay condition}.
+It's clear that there are a lot of edges which don't fulfil the condition and moreover we can't recognize a precise pattern. When several bad edges belong to a single element we can indentify the presence of many obtuse angles.
 
 In order to avoid this problem some alternative solutions are proposed in the literature, like the \textit{Orthogonal Subdomain Collocation method} \cite{OSCputticorded}, but also this approach is not definitely. 
-Therefore in presence of negative concentration the most used technique during 3D numerical simulation is the fitting of the affected regions, which often are the ones where the carrier density decrease.
 
-\vspace{1cm}
+Therefore in presence of negative concentration the most used technique during 3D numerical simulation is the increasing of the degree of freedom spent over the problematic regions, which often are the ones where the carrier density decrease.
 
-\begin{figure}[!h]
+
+
+\begin{figure}[!b]
 \centering
-\includegraphics[height = 7cm]{FiniteElementDiscretization/CuboElementi.png}
+{\includegraphics[width=0.75\textwidth , height = 5.5cm]{FiniteElementDiscretization/CuboElementi.png}}
 \caption{Evaluation of the Zikatanov condition over a simple partition. Red elements doesn't satisfy condition  \referenzaeq{eq: mesh delaunay condition} over four edges while blue elements fully accomplished the criterion.}
 \label{fig: cubo zikatanov}
 \end{figure}

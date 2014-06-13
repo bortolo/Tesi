@@ -1,57 +1,57 @@
 \select@language {english}
-\contentsline {chapter}{\numberline {1}Introduction}{5}
-\contentsline {chapter}{\numberline {2}Semiconductor model}{7}
-\contentsline {section}{\numberline {2.1}Basic Device Physics}{7}
-\contentsline {subsection}{\numberline {2.1.1}Intrinsic semiconductor}{7}
-\contentsline {subsection}{\numberline {2.1.2}Extrinsic semiconductor}{10}
-\contentsline {subsection}{\numberline {2.1.3}Densities at nonequilibrium condition}{12}
-\contentsline {subsection}{\numberline {2.1.4}Carrier transport in semiconductor}{13}
-\contentsline {subsubsection}{Drif current - Ohm's law}{13}
-\contentsline {subsubsection}{Diffusion current - Fick's law}{14}
-\contentsline {subsubsection}{Drift-Diffusion transport equations}{15}
-\contentsline {section}{\numberline {2.2}Drift Diffusion Model for semiconductor}{16}
-\contentsline {subsection}{\numberline {2.2.1}Drift Diffusion formulation}{16}
-\contentsline {subsection}{\numberline {2.2.2}Generation and Recombination phenomenon}{18}
-\contentsline {subsubsection}{Shockley-Read-Hall recombination (SRH)}{19}
-\contentsline {subsubsection}{Auger recombination (AU)}{20}
-\contentsline {subsubsection}{Impact ionization (II)}{20}
-\contentsline {subsection}{\numberline {2.2.3}Mobility models}{21}
-\contentsline {subsubsection}{Scattering from thermal vibrations}{22}
-\contentsline {subsubsection}{Scattering from Ionized Impurities}{22}
-\contentsline {subsubsection}{Veclocity saturation at high electric field}{23}
-\contentsline {chapter}{\numberline {3}Resolution of the system}{25}
-\contentsline {section}{\numberline {3.1}Geometry and boundary conditions}{25}
-\contentsline {section}{\numberline {3.2}Iteration algorithms}{28}
-\contentsline {subsection}{\numberline {3.2.1}Abstract Newton's method}{29}
-\contentsline {subsection}{\numberline {3.2.2}Fully coupled Newthon's method}{31}
-\contentsline {subsection}{\numberline {3.2.3}Gummel map algorithm}{31}
-\contentsline {chapter}{\numberline {4}Finite element discretization}{35}
-\contentsline {section}{\numberline {4.1}Non Linear Poisson Equation weak form}{35}
-\contentsline {section}{\numberline {4.2}Continuity Equations weak form}{37}
-\contentsline {section}{\numberline {4.3}Numerical approximation}{38}
-\contentsline {subsection}{\numberline {4.3.1}Geometrical discretization}{39}
-\contentsline {subsection}{\numberline {4.3.2}Linearized Non Linear Poisson equation}{40}
-\contentsline {subsubsection}{Damping}{41}
-\contentsline {subsection}{\numberline {4.3.3}Continuity equations}{44}
-\contentsline {subsubsection}{Edge flux density computation}{46}
-\contentsline {subsubsection}{The discretization scheme}{46}
-\contentsline {chapter}{\numberline {5}Simulation results}{49}
-\contentsline {section}{\numberline {5.1}Test cases}{49}
-\contentsline {subsection}{\numberline {5.1.1}p-n junction}{49}
-\contentsline {subsubsection}{Computational cost and initial condition}{54}
-\contentsline {subsection}{\numberline {5.1.2}p-n junction in oxide}{56}
-\contentsline {subsubsection}{3D effect of the electric field}{60}
-\contentsline {subsection}{\numberline {5.1.3}MOSFET n-channel}{62}
-\contentsline {subsubsection}{Inverse polarization}{67}
-\contentsline {section}{\numberline {5.2}Calculation of the current at contacts}{70}
-\contentsline {subsection}{\numberline {5.2.1}Results}{72}
-\contentsline {subsubsection}{p-n junction}{72}
-\contentsline {subsubsection}{p-n junction in oxide}{74}
-\contentsline {subsubsection}{MOSFET n-channel/p-channel}{76}
-\contentsline {chapter}{\numberline {6}The current calculation problem}{85}
-\contentsline {section}{\numberline {6.1}Standard approaches}{86}
-\contentsline {section}{\numberline {6.2}Modified approaches}{88}
-\contentsline {section}{\numberline {6.3}Scharfetter-Gummel formula}{88}
-\contentsline {section}{\numberline {6.4}Extension for the 3D case}{90}
-\contentsline {section}{\numberline {6.5}Conclusions}{92}
-\contentsline {chapter}{Bibliografia}{94}
+\contentsline {chapter}{Introduction}{ix}
+\contentsline {chapter}{\numberline {1}Semiconductor model}{1}
+\contentsline {section}{\numberline {1.1}Basic Device Physics}{1}
+\contentsline {subsection}{\numberline {1.1.1}Intrinsic semiconductor}{1}
+\contentsline {subsection}{\numberline {1.1.2}Extrinsic semiconductor}{4}
+\contentsline {subsection}{\numberline {1.1.3}Densities at nonequilibrium condition}{6}
+\contentsline {subsection}{\numberline {1.1.4}Carrier transport in semiconductor}{7}
+\contentsline {subsubsection}{Drif current - Ohm's law}{7}
+\contentsline {subsubsection}{Diffusion current - Fick's law}{8}
+\contentsline {subsubsection}{Drift-Diffusion transport equations}{9}
+\contentsline {section}{\numberline {1.2}Drift Diffusion Model for semiconductor}{10}
+\contentsline {subsection}{\numberline {1.2.1}Drift Diffusion formulation}{10}
+\contentsline {subsection}{\numberline {1.2.2}Generation and Recombination phenomenon}{13}
+\contentsline {subsubsection}{Shockley-Read-Hall recombination (SRH)}{13}
+\contentsline {subsubsection}{Auger recombination (AU)}{14}
+\contentsline {subsubsection}{Impact ionization (II)}{15}
+\contentsline {subsection}{\numberline {1.2.3}Mobility models}{17}
+\contentsline {subsubsection}{Scattering from thermal vibrations}{17}
+\contentsline {subsubsection}{Scattering from Ionized Impurities}{17}
+\contentsline {subsubsection}{Veclocity saturation at high electric field}{18}
+\contentsline {chapter}{\numberline {2}Resolution of the system}{21}
+\contentsline {section}{\numberline {2.1}Geometry and boundary conditions}{21}
+\contentsline {section}{\numberline {2.2}Iteration algorithms}{24}
+\contentsline {subsection}{\numberline {2.2.1}Abstract Newton's method}{25}
+\contentsline {subsection}{\numberline {2.2.2}Fully coupled Newthon's method}{27}
+\contentsline {subsection}{\numberline {2.2.3}Gummel map algorithm}{27}
+\contentsline {chapter}{\numberline {3}Finite element discretization}{33}
+\contentsline {section}{\numberline {3.1}Non Linear Poisson Equation weak form}{33}
+\contentsline {section}{\numberline {3.2}Continuity Equations weak form}{35}
+\contentsline {section}{\numberline {3.3}Numerical approximation}{36}
+\contentsline {subsection}{\numberline {3.3.1}Geometrical discretization}{37}
+\contentsline {subsection}{\numberline {3.3.2}Linearized Non Linear Poisson equation}{38}
+\contentsline {subsubsection}{Damping}{39}
+\contentsline {subsection}{\numberline {3.3.3}Continuity equations}{42}
+\contentsline {subsubsection}{The discretization scheme}{44}
+\contentsline {chapter}{\numberline {4}Simulation results}{47}
+\contentsline {section}{\numberline {4.1}Test cases}{47}
+\contentsline {subsection}{\numberline {4.1.1}p-n junction}{47}
+\contentsline {subsubsection}{Computational cost and initial condition}{52}
+\contentsline {subsection}{\numberline {4.1.2}p-n junction in oxide}{54}
+\contentsline {subsubsection}{3D effect of the electric field}{58}
+\contentsline {subsection}{\numberline {4.1.3}MOSFET n-channel}{60}
+\contentsline {subsubsection}{Inverse polarization}{65}
+\contentsline {section}{\numberline {4.2}Calculation of the current at contacts}{68}
+\contentsline {subsection}{\numberline {4.2.1}Results}{71}
+\contentsline {subsubsection}{p-n junction}{71}
+\contentsline {subsubsection}{p-n junction in oxide}{72}
+\contentsline {subsubsection}{MOSFET n-channel/p-channel}{74}
+\contentsline {chapter}{\numberline {5}The current calculation problem}{83}
+\contentsline {section}{\numberline {5.1}Standard approaches}{84}
+\contentsline {section}{\numberline {5.2}Modified approaches}{86}
+\contentsline {section}{\numberline {5.3}Scharfetter-Gummel formula}{86}
+\contentsline {section}{\numberline {5.4}Extension for the 3D case}{88}
+\contentsline {chapter}{Conclusions and future work}{91}
+\contentsline {chapter}{Bibliografia}{91}
+\contentsline {chapter}{Ringraziamenti}{95}

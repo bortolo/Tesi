@@ -2,18 +2,18 @@ load '../header'
 
 #set format x "%.1t {/Symbol \327} 10^{%T}"
 set grid
-set xrange [-1.5:0.5]
+set xrange [0.0:1.5]
 #set logscale x 
-set xlabel 'V Gate [V]' font "Helvetica bold,23"
+set xlabel 'V Source [V]' font "Helvetica bold,23"
 
-#set yrange [1e-9:1e-5]
+set yrange [1e-19:1e-3]
 set format y "10^{%T}"
 set ytics nomirror
 set logscale y;
 set ylabel 'I [A]' font "Helvetica bold,23" 
 
-#set tmargin 4.5
-#set rmargin 23
+set tmargin 4.5
+#set rmargin 25
 #set rmargin 5
 set lmargin 10
 
@@ -21,13 +21,13 @@ set lmargin 10
 
 #set key bottom left
 set key outside
-set key center rmargin
+set key center tmargin
 set key font "Helvetica,20"
-set key spacing 3.0
+set key spacing 2.0
 set key reverse
 set key Left
-#set key maxrows 2
-set key off
+set key maxrows 2
+#set key off
 
 #plot './output/MosDirectCaratteristicaVI.txt' u 1:(abs($14)) ti 'In FEMOS Canali' w lp ls 1
 #plot './sdevice/IpSDEVs01.txt' u 1:(abs($2)) ti 'Ip SDE' w p ls 1
@@ -42,27 +42,44 @@ set key off
 #replot './output/MosDirectVS005CaratteristicaVI.txt' u 1:(abs($15)) ti 'Ip Vs=0.05 FEMOS' w l ls 4
 
 
-#plot './sdevice/IpSDEVs005_181718.txt' u 1:(abs($2)) ti 'Ip SDE' w p ls 21
-#replot './sdevice/IpSDEVs01_181718.txt' u 1:(abs($2)) ti 'Ip SDE' w p ls 22
-#replot './sdevice/IpSDEVs02_181718.txt' u 1:(abs($2)) ti 'Ip SDE' w p ls 23
-#replot './sdevice/IpSDEVs05_181718.txt' u 1:(abs($2)) ti 'Ip SDE' w p ls 24
-#replot 'MosDirectVS005_181718CaratteristicaVI.txt' u 1:(abs($15)) ti 'Ip Vs=0.05 FEMOS' w l ls 11
-#replot 'MosDirectVS01_181718CaratteristicaVI.txt' u 1:(abs($15)) ti 'Ip Vs=0.1 FEMOS' w l ls 12
-#replot 'MosDirectVS02_181718CaratteristicaVI.txt' u 1:(abs($15)) ti 'Ip Vs=0.2 FEMOS' w l ls 13
-#replot 'MosDirectVS05_181718CaratteristicaVI.txt' u 1:(abs($15)) ti 'Ip Vs=0.5 FEMOS' w l ls 14
+# Vs range ----------------------
+#plot './sdevice/IpSDEVs001_181718CANALI.txt' u 1:(abs($2)) ti 'SDE - Vs = 0.001[V]' w p ls 25
+#replot './sdevice/IpSDEVs005_181718CANALI.txt' u 1:(abs($2)) ti 'SDE - Vs = 0.05[V]' w p ls 21
+#replot './sdevice/IpSDEVs01_181718CANALI.txt' u 1:(abs($2)) ti 'SDE - Vs = 0.1[V]' w p ls 22
+#replot './sdevice/IpSDEVs02_181718CANALI.txt' u 1:(abs($2)) ti 'SDE - Vs = 0.2[V]' w p ls 23
+#replot './sdevice/IpSDEVs05_181718CANALI.txt' u 1:(abs($2)) ti 'SDE - Vs = 0.5[V]' w p ls 24
+#replot 'MosDirectVS001_181718CANALICaratteristicaVI.txt' u 1:(abs($15)) ti 'FEMOS - Vs=0.01[V]' w l ls 15
+#replot 'MosDirectVS005_181718CANALICaratteristicaVI.txt' u 1:(abs($15)) ti 'FEMOS - Vs=0.05[V]' w l ls 11
+#replot 'MosDirectVS01_181718CANALICaratteristicaVI.txt' u 1:(abs($15)) ti 'FEMOS - Vs=0.1[V]' w l ls 12
+#replot 'MosDirectVS02_181718CANALICaratteristicaVI.txt' u 1:(abs($15)) ti 'FEMOS - Vs=0.2[V]' w l ls 13
+#replot 'MosDirectVS05_181718CANALICaratteristicaVI.txt' u 1:(abs($15)) ti 'FEMOS - Vs=0.5[V]' w l ls 14
 #set out 'MOSPdirect_ISVG_varyVS.eps'
+#--------------------------------
 
 #plot './sdevice/IpSDEVs01_181718.txt' u 1:(abs($2)) ti 'Ip SDE const' w p ls 21
-#plot './sdevice/IpSDEVs01_181718MASETTI.txt' u 1:(abs($2)) ti 'Ip SDE masetti' w p ls 22
-plot './sdevice/IpSDEVs01_181718CANALI.txt' u 1:(abs($2)) ti 'Ip SDE canali' w p ls 23
-#replot 'MosDirectVS01_181718CaratteristicaVI.txt' u 1:(abs($15)) ti 'Constant' w l ls 11
+#replot './sdevice/IpSDEVs01_181718MASETTI.txt' u 1:(abs($2)) ti 'Ip SDE masetti' w p ls 22
+#replot './sdevice/IpSDEVs01_181718CANALI.txt' u 1:(abs($2)) ti 'Ip SDE canali' w p ls 23
+#replot 'MosDirectVS01_181718CONSTANTCaratteristicaVI.txt' u 1:(abs($7)) ti 'Constant' w l ls 11
 #replot 'MosDirectVS01_181718MASETTICaratteristicaVI.txt' u 1:(abs($15)) ti 'Masetti' w l ls 12
-replot 'MosDirectVS01_181718CANALICaratteristicaVI.txt' u 1:(abs($15)) ti 'Canali' w l ls 13
+#replot 'MosDirectVS01_181718CANALICaratteristicaVI.txt' u 1:(abs($15)) ti 'Canali' w l ls 13
 #set out 'MOSPdirect_ISVG_mobilitysdeCONST.eps'
 #set out 'MOSPdirect_ISVG_mobilitysdeMASETTI.eps'
-set out 'MOSPdirect_ISVG_mobilitysdeCANALI.eps'
+#set out 'MOSPdirect_ISVG_mobilitysdeCANALI.eps'
 #set out 'MOSPdirect_ISVG_mobilityfemos.eps'
 #set out 'MOSPdirect_ISVG_mobilityALL.eps'
+
+
+# Inverse polarization -------------------
+plot './ItotBULK_inverse.txt' u 1:(abs($2)) ti 'I bulk SDE' w p ls 21
+replot 'MosInverse_181718CaratteristicaVI.txt' u 5:(abs($12)) ti 'I bulk FEMOS' w l ls 11
+replot './ItotDRAIN_inverse.txt' u 1:(abs($2)) ti 'I drain SDE' w p ls 22
+replot 'MosInverse_181718CaratteristicaVI.txt' u 5:(abs($16)) ti 'I drain FEMOS' w l ls 12
+replot './ItotSOURCE_inverse.txt' u 1:(abs($2)) ti 'I source SDE' w p ls 23
+replot 'MosInverse_181718CaratteristicaVI.txt' u 5:(abs($8)) ti 'I source FEMOS' w l ls 13
+set out 'MOSPinverse_Allcurrent.eps'
+# -------------------------------------
+
+
 rep
 set out 'temp.eps'
 

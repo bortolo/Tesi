@@ -1,4 +1,4 @@
-\begin{thebibliography}{PTVF07}
+\begin{thebibliography}{HEML00}
 
 \bibitem[BCC98]{BankMmatrixEAFE}
 R.~E. Bank, W.~Coughran, and L.~C. Cowsar.
@@ -18,6 +18,17 @@ Carlo De~Falco.
   Simulation of Nanoscale Semiconductor Devices}.
 \newblock Dottorato di ricerca in matematica e statistica per le scienze
   computazionali, A.A. 2004/2005.
+
+\bibitem[GS74]{ContactCurrentRM}
+R.~Gusmeroli and A.~S. Spinelli.
+\newblock Accurate boundary integrals calculation in semiconductor device
+  simulation.
+\newblock {\em Numer. Math}, 22:289--315, 1974.
+
+\bibitem[HEML00]{GalerkMethConsHughes}
+Thomas~J.R. Hughes, Gerald Engel, Luca Mazzei, and Mats~G. Larson.
+\newblock The continuous galerkin method is locally conservative.
+\newblock {\em Journal of Computational Physics}, 163:467--488, 2000.
 
 \bibitem[IE83]{BabuskaMixMet}
 Babu\v{s}ka I. and Osborn~J. E.
@@ -46,6 +57,10 @@ Alfio Quarteroni.
 Sandro Salsa.
 \newblock {\em Equazioni a Derivate Parziali, metodi, modelli e applicazioni}.
 \newblock Springer Italia, Milan, 2010.
+
+\bibitem[Sde13]{SdeviceManual}
+{\em Sentaurus Device User Guide}.
+\newblock Synopsis Inc., 2013.
 
 \bibitem[XZ99]{ZikatanovXu}
 Jinchao Xu and Ludmil Zikatanov.

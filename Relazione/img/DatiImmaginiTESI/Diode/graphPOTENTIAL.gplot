@@ -6,10 +6,10 @@ set grid
 #set logscale x 
 set xlabel 'Z axis [micron]' font "Helvetica bold,23"
 
-set yrange [1:1e19]
+#set yrange [1:1e19]
 #set format y "10^{%T}"
 set ytics nomirror
-set logscale y;
+#set logscale y;
 #set ylabel 'Potential [V]' font "Helvetica bold,23"  
 set ylabel 'Carrier density [cm-3]' font "Helvetica bold,23"  
 
@@ -36,38 +36,71 @@ set key Left
 #replot './DiodeZazis15volt.txt' u 57:(-$23+0.05) ti 'Solution' w l ls 11 lw 5
 
 
+# 1.0 VOLT
+#set yrange [0.45:0.6]
 #plot './DIODEZaxis1VOLTSDE.txt' u 54:12 ti 'SDE' w p ls 10 ps 2
 #replot './DIODEZaxis1VOLTFEMOS.txt' u 57:15 ti 'FEMOS' w l ls 10 lw 3
 #set out 'PotentialZaxis1volt.eps'
 
+#set yrange [-0.1:1.1]
 #plot './DIODEZaxis1VOLTSDE.txt' u 54:25 ti 'Phin SDE' w p ls 11 ps 2
 #replot './DIODEZaxis1VOLTSDE.txt' u 54:32 ti 'Phip SDE' w p ls 12 ps 2
 #replot './DIODEZaxis1VOLTFEMOS.txt' u 57:14 ti 'Phin FEMOS' w l ls 11 lw 3
 #replot './DIODEZaxis1VOLTFEMOS.txt' u 57:22 ti 'Phip FEMOS' w l ls 12 lw 3
 #set out 'QuasiFermiZaxis1volt.eps'
 
+#set yrange [1:10e18]
+#set logscale y
 #plot './DIODEZaxis1VOLTSDE.txt' u 54:21 ti 'n SDE' w p ls 11 ps 2
 #replot './DIODEZaxis1VOLTSDE.txt' u 54:28 ti 'p SDE' w p ls 12 ps 2
 #replot './DIODEZaxis1VOLTFEMOS.txt' u 57:12 ti 'n FEMOS' w l ls 11 lw 3
 #replot './DIODEZaxis1VOLTFEMOS.txt' u 57:20 ti 'p FEMOS' w l ls 12 lw 3
 #set out 'DensitiesZaxis1volt.eps'
 
+#set key maxrows 2
+#set tmargin 4.5
+#set yrange [1e20:1e24]
+#set logscale y
+#set ylabel 'R/G contribution [cm-3 s-1]' font "Helvetica bold,23" 
+#plot './DIODEZaxis1VOLTSDE.txt' u 54:(abs($34)) ti 'SRH SDE' w p ls 11 ps 2
+#replot './DIODEZaxis1VOLTSDE.txt' u 54:(abs($5)) ti 'Auger SDE' w p ls 12 ps 2
+#replot './DIODEZaxis1VOLTFEMOS.txt' u 57:(abs($18)) ti 'SRH FEMOS' w l ls 11 lw 3
+#replot './DIODEZaxis1VOLTFEMOS.txt' u 57:(abs($17)) ti 'Auger FEMOS' w l ls 12 lw 3
+#set out 'SRHZaxis1volt.eps'
+
+#-----------------------------
+
+
 # 0.3 VOLT
+#set yrange [-0.2:0.55]
 #plot './DIODEZaxis03VOLTSDE.txt' u 54:12 ti 'SDE' w p ls 10 ps 2
 #replot './DIODEZaxis03VOLTFEMOS.txt' u 57:15 ti 'FEMOS' w l ls 10 lw 3
 #set out 'PotentialZaxis03volt.eps'
 
+#set yrange [-0.1:0.4]
 #plot './DIODEZaxis03VOLTSDE.txt' u 54:25 ti 'Phin SDE' w p ls 11 ps 2
 #replot './DIODEZaxis03VOLTSDE.txt' u 54:32 ti 'Phip SDE' w p ls 12 ps 2
 #replot './DIODEZaxis03VOLTFEMOS.txt' u 57:14 ti 'Phin FEMOS' w l ls 11 lw 3
 #replot './DIODEZaxis03VOLTFEMOS.txt' u 57:22 ti 'Phip FEMOS' w l ls 12 lw 3
 #set out 'QuasiFermiZaxis03volt.eps'
 
-plot './DIODEZaxis03VOLTSDE.txt' u 54:21 ti 'n SDE' w p ls 11 ps 2
-replot './DIODEZaxis03VOLTSDE.txt' u 54:28 ti 'p SDE' w p ls 12 ps 2
-replot './DIODEZaxis03VOLTFEMOS.txt' u 57:12 ti 'n FEMOS' w l ls 11 lw 3
-replot './DIODEZaxis03VOLTFEMOS.txt' u 57:20 ti 'p FEMOS' w l ls 12 lw 3
-set out 'DensitiesZaxis03volt.eps'
+#plot './DIODEZaxis03VOLTSDE.txt' u 54:21 ti 'n SDE' w p ls 11 ps 2
+#replot './DIODEZaxis03VOLTSDE.txt' u 54:28 ti 'p SDE' w p ls 12 ps 2
+#replot './DIODEZaxis03VOLTFEMOS.txt' u 57:12 ti 'n FEMOS' w l ls 11 lw 3
+#replot './DIODEZaxis03VOLTFEMOS.txt' u 57:20 ti 'p FEMOS' w l ls 12 lw 3
+#set out 'DensitiesZaxis03volt.eps'
+
+set key maxrows 2
+set tmargin 4.5
+set yrange [1e6:1e18]
+set logscale y
+set ylabel 'R/G contribution [cm-3 s-1]' font "Helvetica bold,23" 
+plot './DIODEZaxis03VOLTSDE.txt' u 54:(abs($34)) ti 'SRH SDE' w p ls 11 ps 2
+replot './DIODEZaxis03VOLTSDE.txt' u 54:(abs($5)) ti 'Auger SDE' w p ls 12 ps 2
+replot './DIODEZaxis03VOLTFEMOS.txt' u 57:(abs($18)) ti 'SRH FEMOS' w l ls 11 lw 3
+replot './DIODEZaxis03VOLTFEMOS.txt' u 57:(abs($17)) ti 'Auger FEMOS' w l ls 12 lw 3
+set out 'SRHZaxis03volt.eps'
+
 
 rep
 set out 'temp.eps'

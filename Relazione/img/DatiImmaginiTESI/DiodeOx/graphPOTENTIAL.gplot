@@ -26,11 +26,12 @@ set key maxrows 1
 set key reverse
 set key Left
 
-
+#set yrange [-0.2:0.55]
 #plot './NPOXaxisZ03voltSDE.txt' u 54:12 ti 'SDE' w p ls 10 ps 2
 #replot './NPOXaxisZ03voltFEMOS.txt' u 57:15 ti 'FEMOS' w l ls 10 lw 3
 #set out 'PotentialZaxis.eps'
 
+set yrange [0.45:0.6]
 plot './NPOXaxisZ1VOLTSDE.txt' u 54:12 ti 'SDE' w p ls 10 ps 2
 replot './NPOXaxisZ1VOLTFEMOS.txt' u 57:15 ti 'FEMOS' w l ls 10 lw 3
 set out 'PotentialZaxis1VOLT.eps'

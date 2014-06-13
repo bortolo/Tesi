@@ -1,0 +1,67 @@
+\select@language {english}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Two typical examples of state density occupation (g(E)) and probability distribution (f(E)). \relax }}{2}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Construction of tha band diagram.\relax }}{4}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Band diagrams of estrinsic silicon.\relax }}{6}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces (a) Mos device with net dopant concentration distributed accordingly to a gaussian profile and $\Gamma _D$ colored in black. The oxide layer is colored in light blue. (b) Outline of the Mos device with $\Gamma _{int}$ in light gray. \relax }}{22}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Gummel map algorithm\relax }}{30}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces (a) Number of iteration against residual for different voltages in a diode test case. (b) Magnitude of the damping parameter $t_k$.\relax }}{41}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Evaluation of the Zikatanov condition over a simple partition. Red elements doesn't satisfy condition (\ref {eq: mesh delaunay condition}) over four edges while blue elements fully accomplished the criterion.\relax }}{46}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces p-n junction.\relax }}{48}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces 1D plots of the solutions and the quasi fermi potential levels along the line parallel to the Z-axis and placed at the center of the device. On the left is presented the test case at $V_A=0.3[V]$ while on the right at $V_A=1.0[V]$..\relax }}{49}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces p-n junction 0.3[V] - Potential.\relax }}{50}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces p-n junction 0.3[V] - Electron density.\relax }}{50}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces p-n junction 0.3[V] - Hole density.\relax }}{50}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces p-n junction 1.0[V] - Potential.\relax }}{51}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces p-n junction 1.0[V] - Electron density.\relax }}{51}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces p-n junction 1.0[V] - Hole density.\relax }}{51}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Total time Gummel Map.\relax }}{52}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Time NLP and DD, iteration GM.\relax }}{53}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Initial step for different bias.\relax }}{53}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Test case p-n junction in oxide.\relax }}{54}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Plots of the solutions and the quasi fermi potential levels along the line parallel to the Z-axis and placed at the center of the device. On the left is presented the test case at $V_A=0.3[V]$ while on the left at $V_A=1.0[V]$.\relax }}{55}
+\contentsline {figure}{\numberline {4.14}{\ignorespaces p-n junction in oxide 0.3[V] - Potential.\relax }}{56}
+\contentsline {figure}{\numberline {4.15}{\ignorespaces p-n junction in oxide 0.3[V] - Electron density.\relax }}{56}
+\contentsline {figure}{\numberline {4.16}{\ignorespaces p-n junction in oxide 0.3[V] - Hole density.\relax }}{56}
+\contentsline {figure}{\numberline {4.17}{\ignorespaces p-n junction in oxide 1.0[V] - Potential.\relax }}{57}
+\contentsline {figure}{\numberline {4.18}{\ignorespaces p-n junction in oxide 1.0[V] - Electron density.\relax }}{57}
+\contentsline {figure}{\numberline {4.19}{\ignorespaces p-n junction in oxide 1.0[V] - Hole density.\relax }}{57}
+\contentsline {figure}{\numberline {4.20}{\ignorespaces Test case dide p-n in oxide 0.3[V] - Electric field.\relax }}{58}
+\contentsline {figure}{\numberline {4.21}{\ignorespaces $E_y$ along a line parallel to Y-axis, $z=0.22[\mu m]$ and $x=0.1[\mu m]$.\relax }}{59}
+\contentsline {figure}{\numberline {4.22}{\ignorespaces Geometry of the test case MOS n-channel.\relax }}{60}
+\contentsline {figure}{\numberline {4.23}{\ignorespaces Energy band levels for nMOSFET along channel.\relax }}{61}
+\contentsline {figure}{\numberline {4.24}{\ignorespaces Channel of the nMOSFET.\relax }}{62}
+\contentsline {figure}{\numberline {4.25}{\ignorespaces Electric field density - $V_G = 2.0 [V]$.\relax }}{62}
+\contentsline {figure}{\numberline {4.26}{\ignorespaces Electrostatic potential - $V_G = 0.0 [V]$.\relax }}{63}
+\contentsline {figure}{\numberline {4.27}{\ignorespaces Electron density - $V_G = 0.0 [V]$.\relax }}{63}
+\contentsline {figure}{\numberline {4.28}{\ignorespaces Electron density - $V_G = 0.0 [V]$.\relax }}{63}
+\contentsline {figure}{\numberline {4.29}{\ignorespaces Electrostatic potential - $V_G = 2.0 [V]$.\relax }}{64}
+\contentsline {figure}{\numberline {4.30}{\ignorespaces Electron density - $V_G = 2.0 [V]$.\relax }}{64}
+\contentsline {figure}{\numberline {4.31}{\ignorespaces Electron density - $V_G = 2.0 [V]$.\relax }}{64}
+\contentsline {figure}{\numberline {4.32}{\ignorespaces Negative carriers for the electron density solution.\relax }}{66}
+\contentsline {figure}{\numberline {4.33}{\ignorespaces Electron density with finer mesh.\relax }}{66}
+\contentsline {figure}{\numberline {4.34}{\ignorespaces Satisfaction of the Zikatanov condition.\relax }}{66}
+\contentsline {figure}{\numberline {4.35}{\ignorespaces Electrostatic potential - Inverse polarization.\relax }}{67}
+\contentsline {figure}{\numberline {4.36}{\ignorespaces Hole density - Inverse polarization.\relax }}{67}
+\contentsline {figure}{\numberline {4.37}{\ignorespaces Diode characteristic.\relax }}{71}
+\contentsline {figure}{\numberline {4.38}{\ignorespaces SRH and Auger RG contribution.\relax }}{72}
+\contentsline {figure}{\numberline {4.39}{\ignorespaces Current at contact p-n in oxide - Direct polarization.\relax }}{73}
+\contentsline {figure}{\numberline {4.40}{\ignorespaces pMOSFET.\relax }}{74}
+\contentsline {figure}{\numberline {4.41}{\ignorespaces $I_D-V_G$ nMOSFET characteristic - mobility models.\relax }}{75}
+\contentsline {figure}{\numberline {4.42}{\ignorespaces $I_S-V_G$ pMOSFET characteristic - mobility models.\relax }}{76}
+\contentsline {figure}{\numberline {4.43}{\ignorespaces $I_D-V_G$ nMOSFET.\relax }}{78}
+\contentsline {figure}{\numberline {4.44}{\ignorespaces $I_S-V_G$ pMOSFET.\relax }}{78}
+\contentsline {figure}{\numberline {4.45}{\ignorespaces pMOSFET mesh.\relax }}{79}
+\contentsline {figure}{\numberline {4.46}{\ignorespaces Contribution of the impact ionization with the Van Overstraeten - de Man model inside the pMOSFET $V_S=1.2[V]$.\relax }}{80}
+\contentsline {figure}{\numberline {4.47}{\ignorespaces Contribution of the impact ionization with the Van Overstraeten - de Man model inside the nMOSFET $V_D=0.5[V]$.\relax }}{81}
+\contentsline {figure}{\numberline {4.48}{\ignorespaces Inverse polarization of the nMOSFET.\relax }}{81}
+\contentsline {figure}{\numberline {4.49}{\ignorespaces Contribution of the impact ionization with the Van Overstraeten - de Man model inside the pMOSFET $V_S=0.5[V]$.\relax }}{82}
+\contentsline {figure}{\numberline {4.50}{\ignorespaces Inverse polarization of the pMOSFET.\relax }}{82}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Electron current density Vgate = 2.0 [V].\relax }}{90}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
