@@ -11,25 +11,24 @@ The large worldwide investment in VLSI technology constitutes a formidable drivi
 
 From this point we want start and remark that the aim of numerical simulations is the comprehension of the physical phenomenon which lies behind the function of modern device. 
 
-Even if many commercial software are able to resolve different physic situations, they are often specialized on precise physic branch: obviously this strategic choice guarantees more efficiency but it implies a lost in generality. The consequence is that the work of the model analyst became harder when he have to afford problems located in the middle of different phenomenon. 
+Even if many commercial software are able to resolve different physic situations, they are often specialized on particular physic branch: obviously this strategic choice guarantees more efficiency but it implies a lost in generality. The consequence is that the work of device engineer becomes harder when he had to analyze electrical response coming from different phenomena. 
 
-Consider, as example, the functionality of a new device, which its electric behaviour is strong influeced by its mechanical response. Basically you are interested to the resolution of Maxwell's law  (which is well performed by SDEVICE simulator) and the Navier-Lam\`e equations (which is well performed by COMSOL simulator). Now the question is: how to put in comunication the different outputs?
-Take into account that it's not possbile known precisely how the above programs resolves the equations, which implies a relevant risk when you decide to combine the solutions. 
-In other words the development of an own code is at least desirable and possibly helpful: the main advantage is the total control on simulation procedure and the possibility of fully customize, the major drawback is that the improvement of a personal code needs time and human resources, which in many cases are not avaible.   
+Let us consider, as example, the functionality of a new device, which its electric behaviour is strong influeced by its mechanical response. Basically you are interested to the resolution of Maxwell's law  (which is well performed by SDEVICE simulator) and the Navier-Lam\`e equations (which is well performed by COMSOL simulator). Now the question is: how to put in comunication the different outputs?
+Because it's not possbile known precisely how the above programs resolves the equations, a relevant risk occurs when you decide to combine the solutions. 
+In other words the development of an own code is at least desirable and possibly helpful: the main advantage is the control on simulation procedure and the possibility of fully customization, the major drawback is that this requires time and human resources, which in many cases are not avaible.   
 
-The FEMOS project (\textit{Finite Element Method Oriented Solver}) tries to overcome the above limitations. 
-Even if modern devices present innovative and unexpected behaviour, we can't avoid the treatment of the classical semiconductor devices from the simulation possibilties of FEMOS.
-This thesis found its origin in the development of this achievement, but subjects cover a spread wide area in terms of models and kind of devices. Therfore this work intends to effort some specific points in order to give the basic support and tools to improve then more models and features. 
+The FEMOS project (\textit{Finite Element Method Oriented Solver}) tries to overcome the above limitations. FEMOS is designed for the treatment of chemical, mechanical, thermal and fluid phenomena. 
+In this project we can't avoid the treatment of the classical semiconductor devices, this thesis found its origin in the development of this achievement.
 
-In the first chapter we recall briefly the semiconductor material properties providing necessary informations about physical behaviours and relations between the fundamental quantity (e.g. electrostatic potential, electric field, carrier densities and current densities). Finally, we arrive at the classical Drift-Diffusion model for semiconductor and present several physical models about carrier mobility and generation/recombination phenomena.
+In the first chapter we briefly recall the semiconductor material properties, physical behaviours and relations between the fundamental quantity (e.g. electrostatic potential, electric field, carrier densities and current densities). The classical Drift-Diffusion model has been detailed discussed; with the needed models for carrier mobility and generation/recombination phenomena.
 
-The second chapter consists of two main sections. The first one present the geometry framework where we operate and introduce some useful notations. In the second one is exposed the algorithm used in order to effort the equations treated in the first chapter: we chose a decoupled Gummel map approach.
+The second chapter consists of two main sections. The first one presents the geometry framework and introduce some useful notations. The second one illustrates the algorithms used in order to treat the equations of the first chapter (decoupled Gummel map approach).
 
-In the third chapter  are treated the well-posedness analysis and the numerical approximation of the equations.
+The third chapter the well-posedness analysis and the numerical approximation of the equations has been detailed discussed.
 
-The fourth chapter contains the results of the performed simulations. The validation tests are accomplished comparing the results obtained with the FEMOS code with a commercial code (SDEVICE). Moreover we deal with the delicate issue of the calculation of the current at contacts over several semiconductor devices, extending to the 3D case the \textit{residual method} \cite{ContactCurrentRM}.
+The fourth chapter contains numerical results of the simulations of typical test case (diode, MOS). The tests are compared with the results of a commercial code (SDEVICE). At the end the calculation of the current at contacts have been performed, extending the \textit{residual method} \cite{ContactCurrentRM} in the 3D case.
 
-In the fivth chapter \textcolor{red}{capitolo ancora in fase di costruzione}.
+The fivth chapter \textcolor{red}{capitolo ancora in fase di costruzione}.
 
 %\begin{itemize}
 %\item development of a finite element based simulator for semiconductor devices which deals with multiple generation/recombination and mobility models;

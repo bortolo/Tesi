@@ -1,13 +1,13 @@
 \chapter{Semiconductor model}
 
-In this chapter we shall present the basic physical properties of semiconductor material accordingly with the quantum mechanics theory \citep{ModernVLSIdevices}. The Drift-Diffusion model is then presented.
+In this chapter we present the basic physical properties of semiconductor material accordingly with the quantum mechanics theory \citep{ModernVLSIdevices} and the Drift-Diffusion model.
 
 \section{Basic Device Physics}
 
-This section covers the basic concepts of semiconductor device physics. As the most used material in the fabrication of VLSI devices is silicon, in the follow we will focus on it.
+As the most used material in the fabrication of VLSI devices is silicon, the description of physics is based on this material choice.
 
 \subsection{Intrinsic semiconductor}
-In a silicon crystal each atom has four valence electrons to share with its four nearest neighboring atoms. The valence electrons are shared in a paired configuration called a covalent bond. The most important result of the application of quantum mechanics to the description of electrons in a solid is that the allowed energy levels of electrons are grouped into bands. The bands are separated by regions of energy that the electrons in the solid cannot possess: forbidden gaps. The highest energy band that is completely filled by electron at 0[K] is called the \textit{valence band} ($E_V$). The next higher energy band, separated by a frobidden gap from the valence band, is called the \textit{conduction band} ($E_C$).
+In a silicon crystal each atom has four valence electrons to share with its four nearest neighboring atoms. The valence electrons are shared in a paired configuration called covalent bond.  The description of electrons in a solid, made by the quantum mechanics, is that the allowed energy levels of electrons are grouped into bands separated by regions of not allowed energy: forbidden gaps. The highest energy band completely filled by electron at 0[K] is called the \textit{valence band} ($E_V$), the next energy band levels are called \textit{conduction band} ($E_C$).
 
 \begin{figure}[!h]
 \centering
@@ -19,28 +19,26 @@ In a silicon crystal each atom has four valence electrons to share with its four
 \caption{Two typical examples of state density occupation (g(E)) and probability distribution (f(E)).  }
 \end{figure}
 
-Because in silicon the band gap is on the order of 1 [eV], at room temperature a small fraction of the electrons are excited into the conduction band, leaving behind vacancies (called \textit{holes}) in the valence band.
+Because in silicon the band gap is 1.11 [eV] \cite{SolidState} also at room temperature a small fraction of the electrons are excited into the conduction band, leaving behind vacancies (called \textit{holes}) in the valence band.
 In contrast, an insulator has a much larger forbidden gap making room-temperature conduction virtually impossible, while metals have partially filled conduction bands even at absolute zero temperature, this make them good conductors at any temperature. 
 
-A suitable formulation of che carrier concentration is given, for electrons, by the follow integral:
+A suitable formulation of the electron concentration is given (for holes is symmetric) by the follow integral:
 \begin{equation}
 \label{eq: carrier densiy integral}
 n = \int_{E_c}^\infty g(E)f(E) \, dE
 \end{equation}
-With $g(E)dE$ we indicate the number of electronic states per unit volume with an energy between $E$ and $E+dE$ in the conduction band and $f(E)$ is a suitable probability ditribution.
-
-The energy distribution of electrons in a solid is governed by the laws of Fermi-Dirac statistics. For a system in thermal equilibrium, the principal result of these statistics is the \textit{Fermi-Dirac distribution function}, which gives the probability that an electronic state at energy E is occupied by an electron,
+With $g(E)dE$ we indicate the number of electronic states per unit volume with an energy between $E$ and $E+dE$ in the conduction band and $f(E)$ is the \textit{Fermi-Dirac distribution function}, which gives the probability that an electronic state at energy E is occupied by an electron,
 \begin{equation}
 \label{eq: fermi dirac distribution}
 f_D(E) = \dfrac{1}{1+exp\left(\dfrac{E-E_f}{k_BT}\right)} 
 \end{equation}
-here $k_B=1.38\times10^{-23}[J/K]$ is Boltzmann's constant, $T$ is the absolute temperature and $E_f$ is the \textit{Fermi level}.
-
+here $k_B=1.38\times10^{-23}[J/K]$ is Boltzmann's constant, $T$ is the absolute temperature and $E_f$ is the \textit{Fermi level}. In general \referenzaeq{eq: carrier densiy integral} is a Fermi integral of the order $1/2$ and must be evaluated numerically.
+ 
 \begin{Definizione}
 The Fermi level ($E_f$) is the energy at which the probability of occupation of an energy state by an electron is exactly one-half.
 \end{Definizione}
 
-In most cases when the energy is at least several $k_BT$ above or below the Fermi level, equation \referenzaeq{eq: fermi dirac distribution} can be approximated with the Maxwell-Boltzmann statistics for classical particles, which reads as follows:
+In most cases when the energy is at least several $k_BT$ above or below the Fermi level (case of non degenerate semiconductor), equation \referenzaeq{eq: fermi dirac distribution} can be approximated by the Maxwell-Boltzmann statistics for classical particles, which reads as follows:
 
 \begin{equation}
 \label{eq: maxwell distribution}
@@ -51,13 +49,13 @@ exp\left(-\dfrac{E-E_f}{KT}\right) & E\gg E_f \\
 \end{cases}
 \end{equation}
 
-Fermi level plays an essential role in characterizing the equilibrium state of a stystem, it is important to keep in mind the sequent observation.
+Fermi level plays an essential role in characterizing the equilibrium state of a stystem, it is important to keep in mind the follow observation.
 
 \begin{Osservazione}
-When two systems are in thermal equilibrium with no current flow between them, their Fermi levels must be equal, in other words for a continuous region of metals and/or semiconductors in contact, the Fermi level at thermal equilibrium is flat (spatially constant throughout the region).
+When two systems are in thermal equilibrium with no current flow between them, their Fermi levels must be equal: in other words for a continuous region (of metals or semiconductors in contact), the Fermi level at thermal equilibrium is flat (spatially constant throughout the region).
 \end{Osservazione}
 
- In general \referenzaeq{eq: carrier densiy integral} is a Fermi integral of the order $1/2$ and must be evaluated numerically. In the case of non-degenerate semiconductor, Fermi levels stay at least $3KT/q$ below the edge of the conduction band (for holes we consider the same approximation above the valence band).  The Fermi-Dirac distribution can be approximated by the Maxwell-Boltzmann distribution and \referenzaeq{eq: carrier densiy integral} can be solved in the analytically way, obtaining,
+Considering \referenzaeq{eq: carrier densiy integral} with \referenzaeq{eq: maxwell distribution} the analytical results of the integration is
 
 \begin{align}
 n & = N_c exp\left(-\dfrac{E_c-E_f}{KT}\right) \label{eq: n density fd}\\
@@ -81,7 +79,7 @@ n_i = \sqrt{N_cN_v}exp\left(-\dfrac{E_g}{2KT}\right)
 \end{equation}
 
 \begin{Osservazione}
-Since the thermal energy, $k_BT$ is muc smaller than the usual semiconductor bandgap $E_g$, the intrinsic Fermi level is very close to the midpoint between the conduction band and the valence band.
+Since the thermal energy, $k_BT$ is much smaller than the usual semiconductor bandgap $E_g$, the intrinsic Fermi level is very close to the midpoint between the conduction band and the valence band.
 \end{Osservazione}
 
 Equations \referenzaeq{eq: n density fd} and \referenzaeq{eq: p density fd} can be rewritten in terms of the intrinsic carrier density ($n_i$) and energy ($E_i$) :
@@ -100,28 +98,28 @@ np=n_i^2
 
 this relation is usually note as \textit{mass action law}.
 
-One of the most used graphical tool for the anlysis of the functionality of devices is the band diagram \figref{fig: band diagram}, which summarizes the informations presented above.
+The analysis of the work principles of devices can be effective done by the band diagram (\figref{fig: band diagram}), which summarizes the informations presented above.
 \begin{figure}[!h]
 \centering
-\includegraphics[width=.8\textwidth]{SemiconductorModel/DiagrammaBande.eps}
+\includegraphics[width=.8\textwidth]{SemiconductorModel/DiagrammaBande.png}
 \caption{Construction of tha band diagram.}
 \label{fig: band diagram}
 \end{figure}
 
 \subsection{Extrinsic semiconductor}
-At room temperature intrinsic semiconductor has an extremely low free-carrier concentration, therefore, its resistivity is very high. In order to make semiconductor a better conductor it's usual add impurities atoms which introduce additional energy levels in the forbidden gap: these impurities are easily ionized adding either electrons to the conduction band or holes to the valence band. Here the electrical conductivity is dominated by the type and concentration of the impurity atoms.
+At room temperature intrinsic semiconductor has an extremely low free-carrier concentration, therefore, its resistivity is very high. In order to make semiconductor a better conductor impurities atoms are added which introduce additional energy levels in the forbidden gap: these impurities are easily ionized adding either electrons to the conduction band or holes to the valence band. Here the electrical conductivity is dominated by the type and concentration of the impurity atoms.
 
 In the case of silicon two are the types of impurities which are electrically active: those from column V such as arsenic or phosphorus, and those from column III such as boron or indium.
 
-A column-V atom in a silicon lattice tends to have one extra electron loosely bonded after forming covalent bonds with other silicon atoms. In most cases, the thermal energy at room temperature is sufficient to ionize the impurity atom and free the extra electron to the conduction band. Such type of impurities are called \textit{donors}; they become positively charged when ionized. Silicon material doped with column-V impurities or donors is called \textit{n-type} silicon.
+ In most cases, the thermal energy at room temperature is sufficient to ionize the impurities and free the extra electron to the conduction band (column V) or accepting an electron from valence band (column III). Column V impurities are called \textit{donors}; they become positively charged when ionized. Silicon material doped with column-V impurities or donors is called \textit{n-type} silicon.
 
-A column-III impurity atom in a silicon lattice tends to be deficient by one electron when forming covalent bonds with other silicon atoms. Such an impurity atom can also be ionized by accepting an electron from the valence band, which leaves a free-moving hole that contributes to electrical conduction. These impurities are called \textit{acceptors}: they become negatively charged when ionized. Silicon material doped with column-III impurities or acceptors is called \textit{p-type} silicon.
+Column III impurities are called \textit{acceptors}: they become negatively charged when ionized. Silicon material doped with column-III impurities or acceptors is called \textit{p-type} silicon.
 
 A p-type or an n-type is named as \textit{extrinsic} silicon.
 In terms of the energy-band diagrams, donors add allowed electron states in the bandgap close to the conduction-band edge, while acceptors add allowed states just above the valence-band edge.
 
-In contrast to intrinsic silicon, the Fermi level in an extrinsic silicon is not located at the midgap. The Fermi level in n-type silicon moves up towards the conduction band while in p-type silicon moves down towards the valence band.
-The exact position of the Fermi level depends on both the ionization energy and the concentration of dopants. For example, for an n-type material with a donor impurity concentration, $N_d$, the charge neutrality condition requires that
+The Fermi level in n-type silicon moves up towards the conduction band while in p-type silicon moves down towards the valence band.
+The exact position of the Fermi level depends on both the ionization energy and the concentration of dopants. For the sake of simplicity we consider that at room temperature all impurties are ionized ($N_d = N_d^+$ and $N_a = N_a^-$).  For an n-type material with a donor impurity concentration, $N_d$, the charge neutrality condition requires that
 \begin{equation}
 \label{eq: equilibrium charge in n-type}
 n = N_d^+ + p
@@ -132,24 +130,24 @@ n = N_d^+ + p
 p = N_a^- + n
 \end{equation}
  
- For the sake of simplicity we consider in this work that at room temperature all impurties are ionized ($N_d = N_d^+$ and $N_a = N_a^-$). Typcally the magnitude of impurities is between $10^{16}\div 10^{20} [cm^{-3}]$, while the usual intrinsic carrier concentration is almost $10^{10}[cm^{-3}]$, for this reason we can approximate the equilibrium densities concentration:
+ Because the magnitude of impurities is between $10^{16}\div 10^{20} [cm^{-3}]$, and intrinsic carrier concentration in the order of $10^{10}[cm^{-3}]$, in typical case we can approximate the \referenzaeq{eq: legge di azione di massa} as:
   
 \begin{equation}
+\label{eq: equilibiurm approximation}
 \begin{array}{ll}
 n \simeq N_d & p \simeq \dfrac{n_i^2}{N_d} \\ \\
 p \simeq N_a & n \simeq \dfrac{n_i^2}{N_a}
 \end{array}
 \end{equation}
 
- Take into account this approximation and substituting \referenzaeq{eq: n density fd} and \referenzaeq{eq: p density fd} in \referenzaeq{eq: equilibrium charge in n-type} and \referenzaeq{eq: equilibrium charge in p-type}, solving the algebraic equation have
+Replacing \referenzaeq{eq: equilibiurm approximation} in  \referenzaeq{eq: n density fd} and \referenzaeq{eq: p density fd} in \referenzaeq{eq: equilibrium charge in n-type} and \referenzaeq{eq: equilibrium charge in p-type} and solving the algebraic equation we have
  
  \begin{align}
  E_c-E_f = KTln\left(\dfrac{N_c}{N_d}\right)  \label{eq: Ef in n-type}\\
  E_f-E_v= KTln\left(\dfrac{N_v}{N_a}\right) \label{eq: Ef in p-type}
  \end{align}
 
-Equation \referenzaeq{eq: legge di azione di massa} is indipendent of the dopant type and Fermi level position.
-Instead of using $N_c$, $N_v$ and referring to $E_c$ and $E_v$ equation \referenzaeq{eq: Ef in n-type} and \referenzaeq{eq: Ef in p-type} can be written in a more useful form in terms of $n_i$ and $E_i$ defined by equations \referenzaeq{eq: ni equilibrium NcNv} and \referenzaeq{eq: midgap equilibrium}:
+Equation \referenzaeq{eq: Ef in n-type} and \referenzaeq{eq: Ef in p-type} can be written in a more useful form using \referenzaeq{eq: ni equilibrium NcNv} and \referenzaeq{eq: midgap equilibrium} (for $n_i$ and $E_i$):
 
  \begin{align}
  E_f-E_i = KTln\left(\dfrac{N_d}{n_i}\right)  \label{eq: Ef in n-type Ei} \\
@@ -157,10 +155,9 @@ Instead of using $N_c$, $N_v$ and referring to $E_c$ and $E_v$ equation \referen
  \end{align}
 
 \begin{Osservazione}
-The distance between the Fermi level and the intrinsic Fermi level near the midgap is a logarithmic function of doping concentration.
+The distance between the Fermi level and the intrinsic Fermi level (near the midgap) is a logarithmic function of doping concentration.
 \end{Osservazione}
 
-The main consequence of the observation is that desities are related with potential by high non linear relations.
 
 \begin{figure}[!h]
 \centering
@@ -231,23 +228,32 @@ The main consequence of the observation is that desities are related with potent
 \draw[ultra thick,dashed](\Efxa,\Efya)--(\Efxb,\Efyb);
 \draw[dashed](\Eixa,\Eiya)--(\Eixb,\Eiyb);
 \end{tikzpicture}}
-\caption{Band diagrams of estrinsic silicon.}
+\caption{Band diagrams of estrinsic silicon for \referenzaeq{eq: Ef in n-type Ei} and \referenzaeq{eq: Ef in p-type Ei}.}
 \label{fig: Band diagrams of estrinsic silicon}
 \end{figure}
 
 \subsection{Densities at nonequilibrium condition}
 
-In VLSI device operation a nonequilibrium sistuations is often possible: the densities of one or both types of carriers depart from their equilibrium values given by \referenzaeq{eq: n density mb} and \referenzaeq{eq: p density mb}.
-In particular, the minority carrier concentration can be easily overwhelmed by injection from neighboring regions. Under these circumstances, while the electrons and holes are in local equilibrium with themselves, they are not in equilibrium with each other. In order to extend the relationship between Fermi level and densities discussed above, we can introduce separate Fermi levels for electrons and holes. They are called \textit{quasi Fermi levels} defined as $E_{fn}$ and $E_{fp}$ replacing equation \referenzaeq{eq: n density mb} and \referenzaeq{eq: p density mb}:
+In VLSI device a nonequilibrium condition is often possible where the densities of one or both types of carriers depart from their equilibrium values given by \referenzaeq{eq: n density mb} and \referenzaeq{eq: p density mb}.
+In particular, the minority carrier concentration can be easily overwhelmed by injection from neighboring regions. Under these circumstances, while the electrons and holes are in local equilibrium with themselves, they are not in equilibrium with each other. In order to extend the relationship between Fermi level and densities discussed above, we can introduce different Fermi levels for electrons and holes. They are called \textit{quasi Fermi levels} defined as follow
 
 \begin{align}
-n & = n_i exp\left(\dfrac{E_{fn}-E_i}{k_BT}\right) \label{eq: non eq n density mb}\\
-p & = n_i exp\left(\dfrac{E_i-E_{fp}}{k_BT}\right)  \label{eq: non eq p density mb}
+E_{fn} = E_i + k_B T ln\left( \dfrac{n}{n_i} \right) \label{eq: quasi fermi level electron} \\
+E_{fp} = E_i - k_B T ln\left( \dfrac{p}{n_i} \right) \label{eq: quasi fermi level hole}
 \end{align}
 
-In non equilibrium condition quasi Fermi levels have a similar physical interpretation in terms of the state occupancy as the Fermi level.
+
+Considering the well known relation between electrostatic potential and energy \referenzaeq{eq: quasi fermi level electron} and \referenzaeq{eq: quasi fermi level hole} can be written as
+
+\begin{align}
+n & = n_i exp\left(\dfrac{\varphi_{i}-\varphi_n}{k_BT/q}\right) \label{eq: non eq n density mb}\\
+p & = n_i exp\left(\dfrac{\varphi_p-\varphi_{i}}{k_BT/q}\right)  \label{eq: non eq p density mb}
+\end{align}
+
+where $\varphi_n$ and $\varphi_p$ are the quasi fermi electrostatic potential levels and $\varphi_i$ is the midgap electrostatic potential level. 
+
 \begin{Osservazione}
-The electron density in the conduction band can be calculated using $E_{fn}$, and the hole density in the valence band using $E_{fp}$.
+In non equilibrium condition quasi Fermi levels have the same physical interpretation in terms of the state occupancy as the Fermi level, therefore the electron (hole) density in the conduction band can be calculated using $E_{fn}$ ($E_{fp}$).
 \end{Osservazione}
 
 \subsection{Carrier transport in semiconductor}
@@ -261,36 +267,36 @@ Carrier transport or current flow in silicon is driven by two different mechanis
 
 \subsubsection{Drif current - Ohm's law}
 
-When an electric field is applied to a media, the free carriers are accelerated and acquire a drift velocity superimposed upon their random thermal motion.
+When an electric field is applied to a silicon device, the free carriers are accelerated and acquire a drift velocity superimposed upon their random thermal motion.
 
 \begin{Osservazione}
 The drift velocity of holes ($h$) is in the direction of the applied field, and the drift velocity of electrons ($e$) is opposite to the field.
 \end{Osservazione}
 
 The velocity of the carriers does not increase indefinitely under field acceleration, since they are scattered frequently and lose their acquired momentum after each collision.
-During their motion throughout the lattice structure, carriers travel at an average speed definded as
+During their motion throughout the lattice structure, carriers travel at an average speed definded by
 \begin{equation}
 \label{eq: velocities}
 \vect{v}_d^e = - \dfrac{q\vect{E}\tau_e}{m_e}  \psp{20} 
 \vect{v}_d^h = + \dfrac{q\vect{E}\tau_h}{m_h}
 \end{equation}
 
-where $q=1.602e^{-19}[C]$ is the elementary charge, $\vect{E}$ the electric field, $\tau_\eta$ the average time of flight of the carrier between two consecutive interactions with the atoms of the lattice and $m_\eta$ is the effective mass.
-The coefficient $q\tau_\eta / m_\eta$ characterizes how quickly a carrier can move through the lattice and it's well known as carrier mobility $[m^2V^{-1}s^{-1}]$.
-In general, to include different contributions to the mobility \textit{Matthiessen's rule} is used:
+where $q=1.602e^{-19}[C]$ is the elementary charge, $\vect{E}$ the electric field, $\tau_e$, $\tau_h$ the average time between two consecutive scattering events and $m_e$, $m_h$ are the effective mass.
+The coefficient $q\tau_e / m_e$ ($q\tau_p / m_p$) characterizes how quickly a carrier can move through the lattice and it's well known as carrier mobility $[m^2V^{-1}s^{-1}]$.
+In general, to include different scattering mechanism to the mobility the \textit{Matthiessen's rule} is used:
 \begin{equation}
 \dfrac{1}{\mu} = \dfrac{1}{\mu_L} + \dfrac{1}{\mu_I} + \cdots
 \end{equation}
-where $\mu_L$ and $\mu_I$ correspond to the lattice and impurity scattering limited components of mobility (for a more detailed description of mobility models see \cite{ModernVLSIdevices}). 
+where $\mu_L$ and $\mu_I$ correspond to the lattice and impurity scattering (for a more detailed description of mobility models see \cite{ModernVLSIdevices}). 
 
-Therefore the drift electron, hole, current density, reads as follows:
+Therefore the drift electron (hole) current density, reads as follows:
 
 \begin{align}
 \vect{J}_n =& -qn\vect{v}_d^n = qn\mu_n\vect{E}   = \sigma_n\vect{E} \label{eq: drift electron} \\ 
 \vect{J}_p =& +qp\vect{v}_d^p = qp\mu_p\vect{E} = \sigma_p\vect{E} \label{eq: drift hole}
 \end{align}
 
-The scalar coefficient $qn\mu_n(qp\mu_p)$ is often summerized by the electron (hole) conductivity $\sigma_n(\sigma_p)$. 
+The scalar coefficient $qn\mu_n(qp\mu_p)$ is called electron (hole) conductivity $\sigma_n(\sigma_p)$. 
 
 Relations \referenzaeq{eq: drift electron} and \referenzaeq{eq: drift hole} expresses the well known \textit{Ohm' law} stating that the current density is directly proportional to the applied electric field.
 
@@ -303,15 +309,17 @@ In semiconductor devices it's usual have different profiles of dopant in order t
 \vect{J}_p = -D_p(+q\nabla p) \label{eq: diff hole}
 \end{align}
 
-The proportionally constants $D_n$ and $D_p$ are called the electron and hole diffusion coefficients and have units of $[cm^2s^{-1}]$. Physically, both drift and diffusion are closely associated with the random thermal motion of carriers and their collisions with the silicon lattice in thermal equilibrium. A simple relationship between the diffusion coefficient and the mobility is the well known \textit{Einstein relation}:
+The constants $D_n$ and $D_p$ are called electron and hole diffusion coefficients and have units of $[cm^2s^{-1}]$. Drift and diffusion are closely associated with the random thermal motion of carriers and their collisions with the silicon lattice in thermal equilibrium. The \textit{Einstein relation} \referenzaeq{eq: einstein relation} expresses the relation between diffusivity and mobility
+
 \begin{equation}
-D_\eta = \dfrac{k_BT}{q}\mu_\eta
+\label{eq: einstein relation}
+D_\eta = \dfrac{k_BT}{q}\mu_\eta.
 \end{equation}
 
 \subsubsection{Drift-Diffusion transport equations}
 \label{subsub:driftdiffusion transport}
 
-By considering \referenzaeq{eq: drift electron}, \referenzaeq{eq: drift hole}, \referenzaeq{eq: diff electron} and \referenzaeq{eq: diff hole}, the total electron and hole current densities are:
+By considering \referenzaeq{eq: drift electron}, \referenzaeq{eq: drift hole}, \referenzaeq{eq: diff electron} and \referenzaeq{eq: diff hole}, the total electron and hole current densities become:
 
 \begin{align}
 \vect{J}_n &= qn\mu_n\vect{E} + qD_n\nabla n  \label{eq: drift diff electron}\\ 
@@ -319,7 +327,7 @@ By considering \referenzaeq{eq: drift electron}, \referenzaeq{eq: drift hole}, \
 \end{align}
 The total conduction current density is $\vect{J}=\vect{J}_n+\vect{J}_p$.
 
-We remark that these constitutive laws can be rewritten in two other ways highlighting different physical explanations of the same phenomenon. Moreover these reinterpreations  give different start points for the discrete solver algorithm.
+Equations \referenzaeq{eq: drift diff electron} and \referenzaeq{eq: drift diff hole} are called constitutive laws and they can be rewritten in two other ways highlighting different physical explanations of the same phenomenon. These reinterpreations give also different start points for the discrete solver algorithm.
 
 Considering that electric field is related to the scalar potential as:
 \begin{equation}
@@ -327,7 +335,7 @@ Considering that electric field is related to the scalar potential as:
 \vect{E}  = -\nabla \varphi
 \end{equation}
 
-the current densities can be :
+using \referenzaeq{eq: einstein relation} the current densities can be written as:
 
 \begin{align}
 \vect{J}_n &= -qn\mu_n\left(\nabla \varphi - \dfrac{k_BT}{qn}\nabla n \right) \label{eq: Jn DD} \\ 
@@ -346,7 +354,7 @@ With these equations we underlying an important aspect which occur in semiconduc
 The current density is proportional to the gradient of the quasi Fermi potential.
 \end{Osservazione}
 
-The third way to represent the current density is based on \textit{Slotboom variables}. In 1973 Jan Slotboom proposed this change in variables for the two-dimensional numercal simulation of a bipolar transistor:
+The third way to represent the current density is based on \textit{Slotboom variables} which are particularly suited for the semiconductor equations.
 
 \begin{align}
 u_n &= n_iexp\left(-\dfrac{\varphi_n}{V_{th}} \right) \label{eq: un slotboom} \\
@@ -360,9 +368,8 @@ where $V_{th}=k_BT/q$. Using the above equations into \referenzaeq{eq: drift dif
 \vect{J}_p &= -qD_p exp\left(-\dfrac{\varphi}{V_{th}}\right)  \nabla u_p \label{eq: Jp slotboom}
 \end{align}
 
-This interpretation results is:
 \begin{Osservazione}
-The drift-diffusion current density in a semiconductor, is a totally diffusive flux of a new kind of carrier and diffusivity coefficient. 
+The drift-diffusion current density in a semiconductor, is a totally diffusive flux of a new kind of carrier with a proper diffusion coefficient. 
 \end{Osservazione}
 
 
@@ -381,7 +388,7 @@ Simulations on integrated devices works on several different scale, the \textit{
 \nabla \cdot \vect{B} &  =  0 \label{eq: no magetic charge law}
 \end{align}
 
-we complete the system with the following set of constitutive laws that characterize the electromagnetic properties of the medium:
+with the following set of constitutive laws that characterize the electromagnetic properties of the medium:
 
 \begin{equation}
 \begin{array}{rcl}
@@ -390,7 +397,7 @@ we complete the system with the following set of constitutive laws that characte
 \end{array}
 \end{equation}
 
-where $\epsilon$ is the material dielectric permettivity $[F cm^{-1}]$ and $\mu_m$ is the magnetic permeability $[H cm^{-1}]$. Since $\nabla \cdot (\nabla \times \vect{A})=0$ for any vector $\vect{A}$, \referenzaeq{eq: no magetic charge law} is satisfied by introducing a vector potential $\vect{A}$ such that $\vect{B}= \nabla \cdot \vect{A}$. We replace it in \referenzaeq{eq: ampere law} and we obtain
+where $\epsilon$ is the material dielectric permettivity $[F cm^{-1}]$ and $\mu_m$ is the magnetic permeability $[H cm^{-1}]$. Since $\nabla \cdot (\nabla \times \vect{A})=0$ for any vector $\vect{A}$, \referenzaeq{eq: no magetic charge law} is satisfied by introducing a vector potential $\vect{A}$ such that $\vect{B}= \nabla \cdot \vect{A}$. We replace it in \referenzaeq{eq: ampere law} obtains
 
 \begin{equation}
 \nabla \times \left( \vect{E} + \dfrac{\partial \vect{A}}{\partial t} \right) = 0.
@@ -404,44 +411,47 @@ From this we can state that exist a scalar potential $\varphi$ such that
 \end{equation}
 
 
-We multiply \referenzaeq{eq: potenziale scalare} by $\epsilon$, we apply the divergence operator and we obtain using \referenzaeq{eq: relazione pot electric}, \referenzaeq{eq: magnetic costitutive} and \referenzaeq{eq: gauss law}
+ Applying the divergence operator and we obtain using \referenzaeq{eq: relazione pot electric}, \referenzaeq{eq: magnetic costitutive} and \referenzaeq{eq: gauss law};  \referenzaeq{eq: potenziale scalare} becomes
 
 \begin{equation}
 \rho + \dfrac{\partial \vect{A}}{\partial t}  = -\nabla \cdot (\epsilon \nabla \varphi)
 \end{equation}
 
-We now assume that $\dfrac{\partial \vect{A}}{\partial t} = 0$ (quasi static approximation) and we obtain the \textit{Poisson Equation}
+We now assume that $\dfrac{\partial \vect{A}}{\partial t} = 0$ (quasi static approximation) and we have the \textit{Poisson Equation}
 
 \begin{equation}
 \label{eq: Poisson equation}
 \nabla \cdot (\epsilon \nabla \varphi) = \rho.
 \end{equation} 
 	
-	We apply the divergence operator on the equation \referenza{eq: magnetic equation}  and we get the \textit{Continuity Equation}
+Applying the divergence operator on the equation \referenzaeq{eq: magnetic equation}  and we get the \textit{Continuity Equation}
 
 \begin{equation}
+\label{eq: continuity equation total}
 \dfrac{\partial \rho}{\partial t} + \nabla \cdot \vect{J}  =  0 \end{equation} 
 
 
 
 
-To close the above system we need to specify the mathematical form of the electric charge density ($\rho$) and the electric conduction current density ($\vect{J}$).
-As we introduced in the preview section, devices are usually formed by extrinsic semiconductor and this causes the presence in the lattice of two kind of charge:
+To close the above system (\referenzaeq{eq: Poisson equation} and \referenzaeq{eq: continuity equation total} ), we need to specify the mathematical form of the electric charge density ($\rho$) and the electric conduction current density ($\vect{J}$).
+Considering \referenzaeq{eq: equilibiurm approximation} $\rho$ can be expressed by \referenzaeq{eq: charge balance}
+
+
+\begin{equation}
+\label{eq: charge balance}
+\rho = \underbrace{q(p-n)}_{\rho_{free}} +\underbrace{q(N_D-N_A)}_{\rho_{fixed}}
+\end{equation}
 
 \begin{itemize}
 \item free charge ($\rho_{free}$) (free electron and holes carriers),
 \item fixed charge ($\rho_{fixed}$) (ionoized dopant impurities).
 \end{itemize} 
 
-\begin{equation}
-\label{eq: charge balance}
-\rho = \underbrace{q(p-n)}_{\rho_{free}} +\underbrace{q(N_D^+-N_A^-)}_{\rho_{fixed}}
-\end{equation}
 
- Notice that we assume $N_D^+$ and $N_A^-$ time invariant ($\partial N_D^+ / \partial t=\partial N_A^- / \partial t = 0$).
+ Notice that we assume $N_D$ and $N_A$ time invariant ($\partial N_D / \partial t=\partial N_A / \partial t = 0$).
 
- Accordingly with the preview hypotesis and replacing \referenzaeq{eq: charge balance}, \referenzaeq{eq: drift diff electron} and \referenzaeq{eq: drift diff hole}, we can split the continuity equation into the contribute of electrons and holes, the DD model formulation looks as follows:
- 
+ Splitting the continuity equation for holes and electrons Drift Diffusion (DD) model formulation looks as follows:
+  
 \begin{equation}
 \label{eq: full problem}
 \left\{
@@ -453,59 +463,51 @@ q\dfrac{\partial p}{\partial t} + \nabla \cdot (- q\mu_p p \nabla \varphi - qD_p
 \right.
 \end{equation}
 
-The system is an incompletely parbolic initial value/boundary problem in three scalar unkown dependent variables $\varphi(\vect{x},t)$, $n(\vect{x},t)$ and $p(\vect{x},t)$. Notice that the problem is a nonlinearly coupled system of PDE's, because of the presence of the drift terms ($n\nabla \varphi$ and $p \nabla 	\varphi$). 
+where $R(\vect{x},t)$ can be considered as the net rate of generation and recombination.
+The system is an incompletely parbolic initial value/boundary problem in three scalar unkown dependent variables $\varphi(\vect{x},t)$, $n(\vect{x},t)$ and $p(\vect{x},t)$: the presence of the drift terms ($n\nabla \varphi$ and $p \nabla 	\varphi$) makes \referenzaeq{eq: full problem} a nonlinear coupled system of PDE's. 
 
-From Maxwell equations we are able to guarantee only that $\vect{J}$ is a solenoidal field, we can't say nothing about the properties of $\vect{J_n}$ and $\vect{J_p}$. We can interpret $R(\vect{x},t)$ as the net rate of generation and recombination.
+From Maxwell equations we are able to guarantee only that $\vect{J}$ is a solenoidal field, we can't say nothing about the properties of $\vect{J_n}$ and $\vect{J_p}$. 
 
-The stationary form can be easily derivate from \referenzaeq{eq: full problem} by not considering the temporal derivative.
+The stationary form can be easily derivate from \referenzaeq{eq: full problem} neglecting the temporal derivative.
 
-%\begin{equation}
-%\label{eq: stationary problem}
-%\left\{
-%\begin{array}{rcl}
-%\nabla \cdot (-\epsilon \nabla \varphi) & = & q(p-n+N_D^+-N_A^-) \\ \\
-%\nabla \cdot ( - q\mu_n n \nabla \varphi + qD_n \nabla n )& = & qR \\ \\
-%\nabla \cdot (- q\mu_p p \nabla \varphi - qD_p \nabla p )& = & -qR
-%\end{array}
-%\right.
-%\end{equation}
 
-\clearpage
+
 
 
 \subsection{Generation and Recombination phenomenon}
 \label{subsection: RG}
 
-The modelling of $R(\vect{x},t)$ is one of the most important feature due to the important role in determining the current-voltage characteristic of devices.
+The modelling of $R(\vect{x},t)$ is fundamental for device modeling due to its important role in determining the current-voltage characteristic.
  
-It's important to keep in mind that electrons and holes are in continuos fluctuation due to their thermal energy, but the macroscopic result of such a process at equilibrium is that the net recombination rate is identically zero at each point and at each time level. Therefore our interest is to analyze the deviations from this condition. 
+It's important to keep in mind that electrons and holes are in continuos fluctuation due to their thermal energy, but the macroscopic result is that the net recombination rate at equilibrium  is identically zero. Our interest is to analyze the deviations from this condition. 
 
-In every moment the system try to mantain the equilibrium, so it's important underlying that the response with a recombination event happens in order to neutralize an excess of charge, while generation event are usually due to thermal agitation or an external input source.
+While generation events are usually due to thermal agitation or an external input source the recombination events happen in order to neutralize an excess of charge.
 
-The phenomenological model for the net recombination rate $R$ is often given by the sequent formulation:
+The phenomenological model for the net recombination rate $R$ is often given by 
+
 \begin{equation}
 \label{eq: generic RG}
 R(n,p) = (pn-n_i^2)F(n,p)
 \end{equation}
-where $F$ is a function modelling the specific recombination/generation (R/G) event.
 
-In the following we present the classical theory about three kind of contribute. 
+where $F$ is a function modelling for specific recombination/generation (R/G) event.
+In the following we present the classical theory about three kind of contributions. 
 
 \subsubsection{Shockley-Read-Hall recombination (SRH)}
 
-Electron and hole generation and recombination can take place directly between the valence band and the conduction band, or inderactly via trap centers in the energy gap (we indicate with $E_T$ the energy level at where these traps live). The latter category includes Shockley-Read-Hall phenomena (SRH), more precisely SRH rate is a two-particle process which matematically expresses the probality that:
+Electron and hole generation and recombination can take place directly between the valence band and the conduction band, or mediated via trap centers in the energy gap. Shockley-Read-Hall phenomena is a two-particle process which matematically expresses the probality that:
 \begin{itemize}
-\item[$R_{SRH}$] an electron in the conduction band neutralizes a hole at the valence band through the mediation of an unoccupied trapping level located in the energy gap,
-\item[$G_{SRH}$] an electron is emitted from the valence band to the conduction band, through he mediation of an unoccupied trapping level located in the energy gap.
+\item an electron in the conduction band neutralizes a hole at the valence band through the mediation of an unoccupied trapping level located in the energy gap ($R_{SRH}$),
+\item an electron is emitted from the valence band to the conduction band, through he mediation of an unoccupied trapping level located in the energy gap ($G_{SRH}$).
 \end{itemize}
 
-The following expression is usually employed for the modulating function $F$:
+The function modeling $F$ is
 
 \begin{equation}
 F_{SRH}(n,p) = \dfrac{1}{\tau_n\left(p+n_i cosh\left(\dfrac{E_T}{k_BT} \right) \right)+\tau_p\left(n+n_i cosh\left(\dfrac{E_T}{k_BT}\right) \right)}
 \end{equation}
 
-the quantiaties $\tau_n$ and $\tau_p$ are called \textit{carrier lifetimes} and are phisically defined as the reciprocals of the capture rates per single carrier associated with the energy trap distribution within the semiconductor energy gap. Their typical order of magnitude lies in the range $10^{-3}\mu s\div 1 \mu s$.
+where $E_T$ is the energy level where traps live, $\tau_n$ and $\tau_p$ are called \textit{carrier lifetimes} and are physically defined as the reciprocals of the capture rates. The typical order of magnitude lies in the range of $10^{-3}\mu s\div 1 \mu s$ (see  \cite{VanOver:SRH} and \cite{Goebel:SRH}). 
 
 \begin{table}[!h]
 \centering
@@ -517,7 +519,7 @@ $\tau$ & s & $1.0\times 10^{-5}$ & $3.0 \times 10^{-6}$\\
 $E_T$ & eV & 0.0 & 0.0\\
 \bottomrule
 \end{tabular}
-\caption{List of parameters for the electron and hole mobility models including scattering from lattice thermal vibrations.}
+\caption{List of parameters for the electron and hole Shockley-Read-Hall generation/recombination model.}
 \end{table}
 
 \subsubsection{Auger recombination (AU)}
@@ -530,13 +532,13 @@ Auger R/G is a three-particle process and take place directly between the valenc
 \item[$G_{AU}^{2p,1n}$] an electron in the valence band moves to the conduction band by taking the energy from a high energy hole in the valence band and leaves a hole in the valence band.
 \end{itemize}
 
-The following expression is usually employed for the modulating function $F$:
+The function modeling $F$ becomes
 
 \begin{equation}
 F_{AU}(n,p) = C_nn+C_pp
 \end{equation}
 
-where the quantitaties $C_n$ and $C_p$ are the so called  Auger capture coefficients tipically of the order of magnitude of $10^{-25}[cm^6s^{-1}]$.
+where the quantitaties $C_n$ and $C_p$ are the so called  Auger capture coefficients tipically in the order of magnitude of $10^{-25}[cm^6s^{-1}]$ \cite{Lochmann}.
 Note that Auger R/G is relevant only when both carrier densities attain high values.
 
 \begin{table}[!h]
@@ -549,14 +551,16 @@ $C_n$ & $cm^6s^{-1}$ & $2.9 \times 10^{-31}$ \\
 $C_p$ & $cm^6s^{-1}$ & $1.028 \times 10^{-31}$ \\
 \bottomrule
 \end{tabular}
-\caption{List of parameters for the electron and hole Auger generation/recombination model.}
+\caption{List of parameters for the electron and hole in Auger generation/recombination model.}
 \end{table}
 
 \subsubsection{Impact ionization (II)}
 \label{sec: ImpactIonization}
 
-The impact ionization mechanism is a three-particle generation  process and it is dissimilar from the previously phenomenon because we can't express its contribute with a relation like \referenzaeq{eq: generic RG}. The high energy carrier generation is triggered by the presence of very high electric fields. Due to these fields an electron could gains enough energy to excite an electron-hole pair out of a silicon lattice bond. Then the process can be repeated until an avalanche of generated carriers is produced within the region.
-There are several different models for the II generation, inside our code we implemented the van Overstraeten - de Man model based on the Chynoweth law \cite{SdeviceManual}:
+The impact ionization mechanism is a three-particle phenomena where carrier generation is triggered by the presence of high electric field: due to this field an electron could gains enough energy to excite an electron-hole pair out of a silicon lattice bond. Then the process can be repeated until an avalanche of generated carriers is produced within the region: this process can't be described  with a relation like \referenzaeq{eq: generic RG}. 
+
+Among the different models for the impact ionization generation we chose the van Overstraeten - de Man model \cite{VanOverII}, based on the Chynoweth law \cite{Cynoweth}:
+
 \begin{equation}
 G_{II}(n,p)= \alpha_n n |\vect{v}_n| + \alpha_p p |\vect{v}_p|
 \end{equation}
@@ -570,14 +574,13 @@ where:
 \gamma = \dfrac{tanh\left(\dfrac{\hbar \omega_{op}}{2k_BT_0} \right) }{tanh\left(\dfrac{\hbar \omega_{op}}{2k_BT} \right)}
 \end{equation}
 
-The factor $\gamma$ with the optical phonon energy $\hbar \omega_{op}$ expresses the temperature dependence of the phonon gas against which carriers are accelerated.
-$E_{ava}$ is the driving force which takes into account how the electric field influence the generation event. There are two possibilties to compute this quantity:
+where $\hbar \omega_{op}$ is the phonon energy and$\gamma$ expresses the temperature dependence of the phonon gas against which carriers are accelerated, $E_{ava}$ is the driving force that can be computed as
 \begin{itemize}
-\item compute the component of the elctrostatic field in the direction of the current
+\item the component of the elctrostatic field in the direction of the current flows
 \begin{equation}
 E_{ava}^{n,p} = \dfrac{\vect{E}\cdot\vect{J}_{n,p}}{||\vect{J}_{n,p}||}
 \end{equation}
-\item consider the module of the quasi fermi gradient
+\item the module of the quasi fermi gradient
 \begin{equation}
 E_{ava}^{n,p} = |\nabla \varphi_{n,p}|
 \end{equation}
@@ -597,34 +600,30 @@ $b_{low}$ & 1 & $1.231 \times 10^{6}$ & $2.036 \times 10^{6}$ &$1.75 \times 10^{
 $\hbar\omega_{op}$ & eV & 0.063 & 0.063\\
 \bottomrule
 \end{tabular}
-\caption{List of parameters of the electron and hole of van Overstraeten-de Man model}
+\caption{List of parameters of the electron and hole in van Overstraeten-de Man model}
 \end{table}
 
-\clearpage 
+
 
 \subsection{Mobility models}
 
-In the following section we illustrate the most commonly used phenomenological models to describe carrier mobilities. More precisely we want describe  the several mechanisms that characterize the average time of flight \referenzaeq{eq: velocities}.
-Scattering phenomenon slow down the motion of carriers throughout the lattice and the three main physical principles governing these events are:
+In the following section we illustrate the most common phenomenological models to describe carrier mobilities. The main underlain physical phenomena for a mobility reduction are:
+
 \begin{itemize}
-\item interaction with the thermally generated vibrations of the silicon atoms;
-\item presence of ionized dopant impurities in the crystal;
-\item reduction to the velocity saturation at high electric fields.
+\item interaction with the silicon atoms (due to thermal vibrations);
+\item interaction with ionized dopant impurities in the crystal.
 \end{itemize}
 
-\subsubsection{Scattering from thermal vibrations}
+\subsubsection{Scattering with lattice}
 
-
-Intuitively, carrier mobility is to be a decreasing function of temperature, as we expect collisions to become more and more frequent as T gets higher. This idea is commonly represented using a simple power law of the form
+Carrier mobility is a decreasing function of temperature, as we expect collisions to become more and more frequent as T gets higher (see \cite{Lombardi:MobConst}). This can be represented as follows
 
 \begin{equation}
 \label{eq: mobility thermal}
 \mu_\nu^L = \mu_\nu^0\left( \dfrac{T}{T_0}\right)^{-\beta_\nu} \psp{15} \nu = n,p
 \end{equation}
 
-
-
-where $\mu_\nu^0$ is the low-field mobility, $\beta_\nu$ are positive numbers and $T_0$ is a reference temperature typically $T_0=300[K]$.
+where $\mu_\nu^0$ is the low-field mobility, $\beta_\nu$ are positive numbers and $T_0$ is a reference temperature $T_0=300[K]$.
 
 \begin{table}[!h]
 \centering
@@ -640,7 +639,8 @@ $\beta$ & 1 & 2.5 & 2.2\\
 \end{table}
 
 \subsubsection{Scattering from Ionized Impurities}
-Dopant ionized impurities represent local perturbations of the periodic distribution of silicon atoms. They strongly influence the carrier motion through electrostatic interaction, reducing the mobility of electrons and holes. The model used to simulate doping-dependent mobility in silicon was proposed by \textit{Masetti}:
+
+Dopant ionized impurities represent local perturbations of the periodic silicon lattice, they strongly influence the carrier motion through electrostatic interaction, reducing the mobility. To take into account this Masetti has proposed the following model \cite{Masetti:MobDop}
 
 
 \begin{equation}
@@ -650,7 +650,7 @@ Dopant ionized impurities represent local perturbations of the periodic distribu
  - \dfrac{\mu_1}{1 + \left( \dfrac{C_s}{N_{tot}} \right)^{\beta} } 
 \end{equation}
 
-where $N_{tot} = N_D^+ + N_A^-$, $\mu_\nu^L$ is given by \referenzaeq{eq: mobility thermal}, $\mu_{min1}$ and $\mu_{min2}$  are a positive quantities representing the minimum value of $\mu$, $P_c$, $C_r$ and $C_s$ are reference doping values.
+where $N_{tot} = N_D + N_A$, $\mu_\nu^L$ is given by \referenzaeq{eq: mobility thermal}, $\mu_{min1}$ and $\mu_{min2}$  are the minimum value of $\mu$; $P_c$, $C_r$ and $C_s$ are reference doping values.
 
 
 \begin{table}[!h]
@@ -675,21 +675,24 @@ $\beta$& 1 & 2.0 & 2.0 \\
 
 \subsubsection{Veclocity saturation at high electric field}
 
-Under the assumption of low electric field, mobilities are reasonably constant and the carrier drift velocity is proportional to the electric field. As the applied field strength increases, the above assumption is completely wrong as it would predict an unbounded carrier velocity in the material as $|\vect{E}| \rightarrow \infty$.
-On the contrary, carrier scattering with lattice phonos produces a limitation to carrier velocity according to the following mathematical expression
+Under the assumption of low electric field, mobilities are reasonably constant and the carrier drift velocity is proportional to the electric field. As the applied field strength increases, the above assumption predicts an unbounded carrier velocity as $|\vect{E}| \rightarrow \infty$. Although at high fields the average carrier energy increases and carriers lose their energy by optical-phonon emission nearly as fast as they gain it from the field.
+
+This results in a decrease of the carrier velocity according to the following mathematical expression
 
 \begin{equation}
 \label{eq: velocity saturation}
 \lim_{|\vec{E}| \to \infty} \mu |\vect{E}| = v_{sat}
 \end{equation} 
 
-A common adopted formula is the \textit{Canali model} with temperature dependent parameters
+A common adopted formula is the \textit{Canali model} \cite{Canali:Vsat} with temperature dependent parameters
 
 \begin{equation}
 \label{eq: mobility canali}
 \mu = \dfrac{\mu_{L}}{\left[ 1 + \left( \dfrac{\mu_{L}|\vect{E}|}{v_{sat}} \right)^{\beta}   \right]^{1/\beta}} 
 \end{equation}
-\vspace{0.5cm}
+
+where $\mu_L$ is \referenzaeq{eq: mobility thermal} while $v_{sat}$ and $\beta$ are given by
+
 \begin{equation}
 \label{eq: mobility canali beta}
 v_{sat} = v_0exp\left( 	\dfrac{300}{T} \right)^{v_{exp}} 
@@ -697,6 +700,7 @@ v_{sat} = v_0exp\left( 	\dfrac{300}{T} \right)^{v_{exp}}
 \beta= \beta_0 \left( \dfrac{T}{300} \right)^{\beta_{exp}}.
 \end{equation}
 
+where $v_0$ and $\beta_{exp}$ are fitting parameters.
 
 \begin{table}[!h]
 \centering

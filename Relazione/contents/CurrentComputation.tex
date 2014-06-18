@@ -376,3 +376,54 @@ This approach is the natrual extension of the $Sharfetter-Gummel$ formula for th
 \caption{Electron current density Vgate = 2.0 [V].}
 \end{figure}
 
+
+\section{Modified Drift-Diffusion formula}
+
+Let consider equations \referenzaeq{eq: Jn DD} and \referenzaeq{eq: Jp DD} in some interesting borderline cases:
+\begin{itemize}
+\item \textbf{Constant carriers}, in the semiconductor device we have  a current density due only to the drift contribution
+\begin{align*}
+\vect{J}_n & = q\mu_n n \vect{E} \\
+\vect{J}_p & = q\mu_p p \vect{E}
+\end{align*}
+\item \textbf{Constant potential}, then we have $\vect{E}=0$ and the current density is due only to the diffusive contribution
+\begin{align*}
+\vect{J}_n & = qD_n\nabla n \\
+\vect{J}_p & = -qD_p\nabla p
+\end{align*}
+\item \textbf{Constant quasi fermi potential}, then we have $n=C_1e^{\varphi / V_{th}}$ and $p=C_2e^{-\varphi / V_{th}}$ where $C_1$ and $C_2$ are two arbitrary constants such that
+\begin{equation*}
+C_1 = exp(-\varphi_n/V_{th}) \psp{15} C_2 = exp(\varphi_p/V_{th})
+\end{equation*}
+
+Considering this hypotesis from equations \referenzaeq{eq: Jn DD} and \referenzaeq{eq: Jp DD} we can enstablish that
+
+\begin{align*}
+\vect{J}_n & = -q\mu_n (n\nabla 	\varphi - V_{th} (\dfrac{C_1}{V_{th}}\nabla \varphi e^{\varphi / V_{th}}) = 0\\
+\vect{J}_p & = -q\mu_p (p\nabla 	\varphi + V_{th} (-\dfrac{C_1}{V_{th}}\nabla \varphi e^{\varphi / V_{th}}) = 0
+\end{align*}
+
+Take into account constant quasi fermi potential lead to thermodynamical equilibrium condition for the carrier densities and this implies no current densities.
+\end{itemize}
+
+Considering equations \referenzaeq{eq: Jn DD discrete} and \referenzaeq{eq: Jp DD discrete} we are going to demonstrate that is possible obtain the well known Scharfetter-Gummel formula \textcolor{red}{ref sopra} for the 1D case, imposing that
+
+\begin{align}
+& \vect{J}_n(\Pi_1^k(Ce^{\varphi / V_{th}})) = 0 \\ 
+& \vect{J}_p(\Pi_1^k(Ce^{-\varphi / V_{th}})) = 0
+\end{align}
+
+
+
+\textcolor{red}{PASSAGGI}
+
+
+The extension of these calculations to the 3D case are trivial: $\vect{\Phi}^k$ is a 3D vector defined on each elements as follows
+
+\begin{equation}
+\label{eq: SG stabilized}
+[\vect{\Phi}^k]_i = -\dfrac{<\Pi_1^k(e^{\varphi/V_{th}})> \partial_{x_i}\varphi}{\partial_{x_i}\Pi_1^k(e^{\varphi/V_{th}}V_{th}} -1 
+\end{equation}
+
+\subsection{Numerical difficulties}
+Equation \referenzaeq{eq: SG stabilized} is affected by several numerical computational problems.
