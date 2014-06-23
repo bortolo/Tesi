@@ -1,8 +1,14 @@
 \begin{thebibliography}{HEML00}
 
-\bibitem[BCC98]{BankMmatrixEAFE}
+\bibitem[BCC98a]{BankMmatrixEAFE}
 R.~E. Bank, W.~Coughran, and L.~C. Cowsar.
 \newblock The finite volume sharfetter-gummel method for steady convection
+  diffusion equations.
+\newblock {\em Computing and Visualization in Science}, 1:123--136, 1998.
+
+\bibitem[BCC98b]{Bank:FEvsBOX}
+R.~E. Bank, W.~M. Coughran, and L.~C. Cowsar.
+\newblock The finite volume scharfetter-gummel method for steady convection
   diffusion equations.
 \newblock {\em Computing and Visualization in Science}, 1:123--136, 1998.
 
@@ -10,6 +16,11 @@ R.~E. Bank, W.~Coughran, and L.~C. Cowsar.
 Streetman Ben~G. and Sanjay Banerjee.
 \newblock {\em Solid State electronic Devices}.
 \newblock New Jersey: Prentice Hall, 2000.
+
+\bibitem[BRF83]{Bank:FVSG}
+R.~E. Bank, D.~J. Rose, and W~Fichtner.
+\newblock Numerical methods for semiconductor device simulation.
+\newblock {\em SIAM J. Sci. Stat.}, 4:416--514, 1983.
 
 \bibitem[Can75]{Canali:Vsat}
 C.~Canali.

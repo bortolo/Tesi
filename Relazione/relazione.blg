@@ -6,45 +6,45 @@ Database file #1: contents/Bibliografia.bib
 Warning--to sort, need author, editor, or key in SdeviceManual
 Warning--empty school in TesiDotDeFalco
 Warning--empty author and editor in SdeviceManual
-You've used 24 entries,
+You've used 26 entries,
             2543 wiz_defined-function locations,
-            717 strings with 8415 characters,
-and the built_in function-call counts, 9283 in all, are:
-= -- 957
-> -- 380
+            727 strings with 8719 characters,
+and the built_in function-call counts, 10183 in all, are:
+= -- 1051
+> -- 430
 < -- 11
-+ -- 128
-- -- 121
-* -- 635
-:= -- 1520
-add.period$ -- 71
-call.type$ -- 24
-change.case$ -- 133
-chr.to.int$ -- 24
-cite$ -- 28
-duplicate$ -- 376
-empty$ -- 693
-format.name$ -- 151
-if$ -- 1887
-int.to.chr$ -- 1
++ -- 148
+- -- 139
+* -- 707
+:= -- 1672
+add.period$ -- 77
+call.type$ -- 26
+change.case$ -- 147
+chr.to.int$ -- 25
+cite$ -- 30
+duplicate$ -- 404
+empty$ -- 751
+format.name$ -- 171
+if$ -- 2063
+int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 28
-newline$ -- 122
-num.names$ -- 69
-pop$ -- 119
+missing$ -- 30
+newline$ -- 132
+num.names$ -- 75
+pop$ -- 127
 preamble$ -- 1
-purify$ -- 163
+purify$ -- 179
 quote$ -- 0
-skip$ -- 316
+skip$ -- 339
 stack$ -- 0
-substring$ -- 652
-swap$ -- 51
+substring$ -- 717
+swap$ -- 53
 text.length$ -- 11
 text.prefix$ -- 7
 top$ -- 0
-type$ -- 168
+type$ -- 184
 warning$ -- 3
-while$ -- 98
-width$ -- 30
-write$ -- 305
+while$ -- 108
+width$ -- 32
+write$ -- 331
 (There were 3 warnings)

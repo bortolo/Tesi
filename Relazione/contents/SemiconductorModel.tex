@@ -44,8 +44,8 @@ In most cases when the energy is at least several $k_BT$ above or below the Ferm
 \label{eq: maxwell distribution}
 f_D(E)\simeq f_{MB}(E) = 
 \begin{cases}
-exp\left(-\dfrac{E-E_f}{KT}\right) & E\gg E_f \\
-1-exp\left(-\dfrac{E_f-E}{KT}\right) & E \ll E_f
+exp\left(-\dfrac{E-E_f}{k_B T}\right) & E\gg E_f \\
+1-exp\left(-\dfrac{E_f-E}{k_BT}\right) & E \ll E_f
 \end{cases}
 \end{equation}
 
@@ -58,8 +58,8 @@ When two systems are in thermal equilibrium with no current flow between them, t
 Considering \referenzaeq{eq: carrier densiy integral} with \referenzaeq{eq: maxwell distribution} the analytical results of the integration is
 
 \begin{align}
-n & = N_c exp\left(-\dfrac{E_c-E_f}{KT}\right) \label{eq: n density fd}\\
-p & = N_v exp\left(-\dfrac{E_f-E_v}{KT}\right)  \label{eq: p density fd}
+n & = N_c exp\left(-\dfrac{E_c-E_f}{k_BT}\right) \label{eq: n density fd}\\
+p & = N_v exp\left(-\dfrac{E_f-E_v}{k_B T}\right)  \label{eq: p density fd}
 \end{align}
 
 where $N_c$ and $N_v$ are the \textit{effective density of states}.
@@ -67,7 +67,7 @@ In intrisic semiconductor $n=p$ and the \textit{intrinsic Fermi level} $E_i$ can
 
 \begin{equation}
 \label{eq: midgap equilibrium}
-E_i=E_f=\dfrac{E_c+E_v}{2} - \dfrac{KT}{2}ln\left(\dfrac{N_c}{N_v}\right)
+E_i=E_f=\dfrac{E_c+E_v}{2} - \dfrac{k_B T}{2}ln\left(\dfrac{N_c}{N_v}\right)
 \end{equation}
 
 By replacing \referenzaeq{eq: midgap equilibrium} in \referenzaeq{eq: n density fd} we have the expression of the intrinsic carrier concentration $n_i=n=p$:
@@ -75,7 +75,7 @@ By replacing \referenzaeq{eq: midgap equilibrium} in \referenzaeq{eq: n density 
 
 \begin{equation}
 \label{eq: ni equilibrium NcNv}
-n_i = \sqrt{N_cN_v}exp\left(-\dfrac{E_g}{2KT}\right)
+n_i = \sqrt{N_cN_v}exp\left(-\dfrac{E_g}{2k_B T}\right)
 \end{equation}
 
 \begin{Osservazione}
@@ -85,8 +85,8 @@ Since the thermal energy, $k_BT$ is much smaller than the usual semiconductor ba
 Equations \referenzaeq{eq: n density fd} and \referenzaeq{eq: p density fd} can be rewritten in terms of the intrinsic carrier density ($n_i$) and energy ($E_i$) :
 
 \begin{align}
-n & = n_i exp\left(\dfrac{E_f-E_i}{KT}\right) \label{eq: n density mb}\\
-p & = n_i exp\left(\dfrac{E_i-E_f}{KT}\right)  \label{eq: p density mb}
+n & = n_i exp\left(\dfrac{E_f-E_i}{k_B T}\right) \label{eq: n density mb}\\
+p & = n_i exp\left(\dfrac{E_i-E_f}{k_B T}\right)  \label{eq: p density mb}
 \end{align}
 
 Finally we remark a fundamental and useful relation holds at the thermical equilibrium
@@ -143,15 +143,15 @@ p \simeq N_a & n \simeq \dfrac{n_i^2}{N_a}
 Replacing \referenzaeq{eq: equilibiurm approximation} in  \referenzaeq{eq: n density fd} and \referenzaeq{eq: p density fd} in \referenzaeq{eq: equilibrium charge in n-type} and \referenzaeq{eq: equilibrium charge in p-type} and solving the algebraic equation we have
  
  \begin{align}
- E_c-E_f = KTln\left(\dfrac{N_c}{N_d}\right)  \label{eq: Ef in n-type}\\
- E_f-E_v= KTln\left(\dfrac{N_v}{N_a}\right) \label{eq: Ef in p-type}
+ E_c-E_f = k_B Tln\left(\dfrac{N_c}{N_d}\right)  \label{eq: Ef in n-type}\\
+ E_f-E_v= k_B Tln\left(\dfrac{N_v}{N_a}\right) \label{eq: Ef in p-type}
  \end{align}
 
 Equation \referenzaeq{eq: Ef in n-type} and \referenzaeq{eq: Ef in p-type} can be written in a more useful form using \referenzaeq{eq: ni equilibrium NcNv} and \referenzaeq{eq: midgap equilibrium} (for $n_i$ and $E_i$):
 
  \begin{align}
- E_f-E_i = KTln\left(\dfrac{N_d}{n_i}\right)  \label{eq: Ef in n-type Ei} \\
- E_i-E_f = KTln\left(\dfrac{N_a}{n_i}\right)  \label{eq: Ef in p-type Ei} 
+ E_f-E_i = k_B Tln\left(\dfrac{N_d}{n_i}\right)  \label{eq: Ef in n-type Ei} \\
+ E_i-E_f = k_B Tln\left(\dfrac{N_a}{n_i}\right)  \label{eq: Ef in p-type Ei} 
  \end{align}
 
 \begin{Osservazione}

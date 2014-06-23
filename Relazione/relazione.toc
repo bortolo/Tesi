@@ -1,5 +1,6 @@
 \select@language {english}
-\contentsline {chapter}{Introduction}{ix}
+\contentsline {chapter}{Estratto della tesi}{ix}
+\contentsline {chapter}{Introduction}{xi}
 \contentsline {chapter}{\numberline {1}Semiconductor model}{1}
 \contentsline {section}{\numberline {1.1}Basic Device Physics}{1}
 \contentsline {subsection}{\numberline {1.1.1}Intrinsic semiconductor}{1}
@@ -48,5 +49,15 @@
 \contentsline {subsubsection}{p-n junction in oxide}{68}
 \contentsline {subsubsection}{MOSFET n-channel/p-channel}{70}
 \contentsline {subsubsection}{Impact-ionization model}{75}
-\contentsline {chapter}{Bibliografia}{79}
-\contentsline {chapter}{Ringraziamenti}{83}
+\contentsline {chapter}{\numberline {5}The current calculation problem}{79}
+\contentsline {section}{\numberline {5.1}Drift-Diffusion formula}{79}
+\contentsline {section}{\numberline {5.2}Edge average techiniques}{81}
+\contentsline {subsection}{\numberline {5.2.1}Scharfetter-Gummel 1D}{81}
+\contentsline {subsection}{\numberline {5.2.2}Scharfetter-Gummel 2D}{82}
+\contentsline {subsection}{\numberline {5.2.3}Scharfetter-Gummel 3D}{83}
+\contentsline {subsubsection}{Results}{85}
+\contentsline {section}{\numberline {5.3}Upwinding techiniques}{86}
+\contentsline {subsection}{\numberline {5.3.1}Results}{90}
+\contentsline {chapter}{Conclusions and future work}{93}
+\contentsline {chapter}{Bibliografia}{94}
+\contentsline {chapter}{Ringraziamenti}{99}
