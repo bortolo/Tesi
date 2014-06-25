@@ -3,75 +3,525 @@
 \@writefile{toc}{\select@language{english}}
 \@writefile{lof}{\select@language{english}}
 \@writefile{lot}{\select@language{english}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {1}Finite element discretization}{1}}
+\@writefile{toc}{\contentsline {chapter}{Estratto della tesi}{ix}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chap: finite element}{{1}{1}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.1}Non Linear Poisson Equation: weak form}{1}}
-\newlabel{sec: NLP weak form}{{1.1}{1}}
-\newlabel{sys: NLP general problem linearized}{{1.1}{1}}
-\newlabel{eq: integration first}{{1.2}{1}}
+\citation{ContactCurrentRM}
+\@writefile{toc}{\contentsline {chapter}{Introduction}{xi}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\citation{ContactCurrentRM}
+\citation{ModernVLSIdevices}
+\citation{Jackson:ElettroClassica}
+\citation{SolidState}
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}Physical models for charge transport in semiconductor material}{1}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {1.1}Basic Device Physics}{1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.1}Intrinsic semiconductor}{1}}
+\citation{Pierret:SemiFunda}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Two typical examples of state density occupation (g(E)) and probability distribution (f(E)). \relax }}{2}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig: density occupation and prob}{{1.1}{2}}
+\newlabel{eq: carrier densiy integral}{{1.1}{2}}
+\newlabel{eq: fermi dirac distribution}{{1.2}{2}}
+\newlabel{eq: approssimazione banda di conduzione}{{1.3}{2}}
+\newlabel{eq: state density electron}{{1.4}{3}}
+\newlabel{eq: maxwell distribution}{{1.5}{3}}
+\newlabel{eq: n density fd}{{1.6}{3}}
+\newlabel{eq: p density fd}{{1.7}{3}}
+\newlabel{eq: midgap equilibrium}{{1.8}{4}}
+\newlabel{eq: ni equilibrium NcNv}{{1.9}{4}}
+\newlabel{eq: n density mb}{{1.10}{4}}
+\newlabel{eq: p density mb}{{1.11}{4}}
+\newlabel{eq: legge di azione di massa}{{1.12}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.2}Extrinsic semiconductor}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Construction of the band diagram.\relax }}{5}}
+\newlabel{fig: band diagram}{{1.2}{5}}
+\newlabel{eq: equilibrium charge in n-type}{{1.13}{5}}
+\newlabel{eq: equilibrium charge in p-type}{{1.14}{5}}
+\newlabel{eq: equilibiurm approximation}{{1.15}{6}}
+\newlabel{eq: Ef in n-type}{{1.16}{6}}
+\newlabel{eq: Ef in p-type}{{1.17}{6}}
+\newlabel{eq: Ef in n-type Ei}{{1.18}{6}}
+\newlabel{eq: Ef in p-type Ei}{{1.19}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces Band diagrams of extrinsic silicon for (\ref  {eq: Ef in n-type Ei}) and (\ref  {eq: Ef in p-type Ei}).\relax }}{6}}
+\newlabel{fig: Band diagrams of extrinsic silicon}{{1.3}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.3}Carrier densities at nonequilibrium condition}{7}}
+\newlabel{eq: quasi fermi level electron}{{1.20}{7}}
+\newlabel{eq: quasi fermi level hole}{{1.21}{7}}
+\newlabel{eq: non eq n density mb}{{1.22}{7}}
+\newlabel{eq: non eq p density mb}{{1.23}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.4}Carrier transport in a semiconductor}{7}}
+\newlabel{sec: carrier transport}{{1.1.4}{7}}
+\citation{ModernVLSIdevices}
+\@writefile{toc}{\contentsline {subsubsection}{Drif current - Ohm's law}{8}}
+\newlabel{eq: velocities}{{1.24}{8}}
+\newlabel{eq: drift electron}{{1.26}{8}}
+\newlabel{eq: drift hole}{{1.27}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{Diffusion current - Fick's law}{8}}
+\citation{selberherr:SimSem}
+\newlabel{eq: diff electron}{{1.28}{9}}
+\newlabel{eq: diff hole}{{1.29}{9}}
+\newlabel{eq: einstein relation}{{1.30}{9}}
+\@writefile{toc}{\contentsline {subsubsection}{Drift-Diffusion transport equations}{9}}
+\newlabel{subsub:driftdiffusion transport}{{1.1.4}{9}}
+\newlabel{eq: drift diff electron}{{1.31}{9}}
+\newlabel{eq: drift diff hole}{{1.32}{9}}
+\newlabel{eq: relazione pot electric}{{1.33}{9}}
+\newlabel{eq: Jn DD}{{1.34}{9}}
+\newlabel{eq: Jp DD}{{1.35}{9}}
+\citation{Jackson:ElettroClassica}
+\newlabel{eq: Jn qf}{{1.36}{10}}
+\newlabel{eq: Jp qf}{{1.37}{10}}
+\newlabel{eq: un slotboom}{{1.38}{10}}
+\newlabel{eq: up slotboom}{{1.39}{10}}
+\newlabel{eq: Jn slotboom}{{1.40}{10}}
+\newlabel{eq: Jp slotboom}{{1.41}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}Drift Diffusion Model for semiconductors}{10}}
+\newlabel{section: dd model for semi}{{1.2}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.1}Drift Diffusion formulation}{11}}
+\newlabel{eq: magnetic equation}{{1.42}{11}}
+\newlabel{eq: ampere law}{{1.43}{11}}
+\newlabel{eq: gauss law}{{1.44}{11}}
+\newlabel{eq: no magetic charge law}{{1.45}{11}}
+\newlabel{eq: magnetic costitutive}{{1.46}{11}}
+\newlabel{eq: potenziale scalare}{{1.48}{11}}
+\newlabel{eq: Poisson equation}{{1.50}{11}}
+\newlabel{eq: continuity equation total}{{1.51}{12}}
+\newlabel{eq: charge balance}{{1.52}{12}}
+\newlabel{eq: full problem}{{1.53}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.2}Generation and Recombination phenomenon}{12}}
+\newlabel{subsection: RG}{{1.2.2}{12}}
+\citation{VanOver:SRH}
+\citation{Goebel:SRH}
+\newlabel{eq: generic RG}{{1.54}{13}}
+\@writefile{toc}{\contentsline {subsubsection}{Shockley-Read-Hall recombination (SRH)}{13}}
+\citation{Lochmann}
+\@writefile{lot}{\contentsline {table}{\numberline {1.1}{\ignorespaces List of parameters in the Shockley-Read-Hall generation/recombination model.\relax }}{14}}
+\@writefile{toc}{\contentsline {subsubsection}{Auger recombination (AU)}{14}}
+\@writefile{toc}{\contentsline {subsubsection}{Impact ionization (II)}{14}}
+\newlabel{sec: ImpactIonization}{{1.2.2}{14}}
+\citation{VanOverII}
+\citation{Cynoweth}
+\@writefile{lot}{\contentsline {table}{\numberline {1.2}{\ignorespaces List of parameters in Auger generation/recombination model.\relax }}{15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.3}Mobility models}{15}}
+\citation{Lombardi:MobConst}
+\citation{Masetti:MobDop}
+\@writefile{lot}{\contentsline {table}{\numberline {1.3}{\ignorespaces List of parameters in van Overstraeten-de Man model.\relax }}{16}}
+\@writefile{toc}{\contentsline {subsubsection}{Scattering with lattice}{16}}
+\newlabel{eq: mobility thermal}{{1.62}{16}}
+\@writefile{lot}{\contentsline {table}{\numberline {1.4}{\ignorespaces List of parameters for mobility models including scattering from lattice thermal vibrations.\relax }}{16}}
+\@writefile{toc}{\contentsline {subsubsection}{Scattering from ionized impurities}{16}}
+\newlabel{sec: Masetti model}{{1.2.3}{16}}
+\citation{ModernVLSIdevices}
+\citation{Canali:Vsat}
+\newlabel{eq: mobility impurities}{{1.63}{17}}
+\@writefile{lot}{\contentsline {table}{\numberline {1.5}{\ignorespaces List of parameters for models including scattering from ionized dopant impurities.\relax }}{17}}
+\@writefile{toc}{\contentsline {subsubsection}{Veclocity saturation at high electric field}{17}}
+\newlabel{eq: velocity saturation}{{1.64}{17}}
+\newlabel{eq: mobility canali}{{1.65}{17}}
+\newlabel{eq: mobility canali beta}{{1.66}{18}}
+\@writefile{lot}{\contentsline {table}{\numberline {1.6}{\ignorespaces List of parameters for mobility models including scattering from velocity saturation.\relax }}{18}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Solution of the DD system}{19}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Geometry and boundary conditions}{19}}
+\newlabel{eq: hypotesis oxide}{{2.1}{19}}
+\newlabel{eq: dirichlet boundary condition}{{2.2}{19}}
+\newlabel{eq: neumann boundar condition}{{2.3}{20}}
+\newlabel{fig: outline boundaries 1}{{2.1a}{20}}
+\newlabel{sub@fig: outline boundaries 1}{{(a)}{a}}
+\newlabel{fig: outline boundaries 2}{{2.1b}{20}}
+\newlabel{sub@fig: outline boundaries 2}{{(b)}{b}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces (a) MOS device with net dopant concentration distributed according to a gaussian profile and $\Gamma _D$ colored in black. The oxide layer is colored in light blue. (b) Outline of the MOS device with $\Gamma _{int}$ in light gray. \relax }}{20}}
+\newlabel{fig: outline boundaries}{{2.1}{20}}
+\newlabel{eq: systemo for dirichlet condition}{{2.5}{21}}
+\newlabel{eq: system closed}{{2.10}{21}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Iteration algorithms}{22}}
+\newlabel{eq: abstract problem fully}{{2.11}{22}}
+\newlabel{eq: functional operator}{{2.12}{22}}
+\newlabel{space: Hm}{{2.13}{22}}
+\newlabel{space: L2}{{2.14}{22}}
+\newlabel{eq: semiorm sobolev}{{2.15}{22}}
 \citation{salsa:EDP}
-\newlabel{eq: NLP weakformulation}{{1.3}{2}}
-\newlabel{eq: bilinear form NLP linearized}{{1.4}{2}}
-\newlabel{eq: functional NLP linearized}{{1.5}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.2}Continuity Equations: weak form}{3}}
-\newlabel{sec: LEC weak}{{1.2}{3}}
-\newlabel{eq: system continuity equation}{{1.6}{3}}
-\newlabel{eq: LEC weakformulation}{{1.7}{3}}
-\newlabel{eq: bilinear form LEC}{{1.8}{3}}
+\citation{Adams:SobolevSpaces}
+\newlabel{eq: norm sobolev}{{2.16}{23}}
+\newlabel{space: h1 zero}{{2.17}{23}}
+\newlabel{space: h1 zero gamma}{{2.18}{23}}
+\newlabel{eq: poincarre inequality}{{2.19}{23}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Newton's method}{23}}
+\newlabel{eq: abstract newton's method}{{2.22}{24}}
+\newlabel{eq: fixed point U}{{2.23}{24}}
+\newlabel{eq: iteration function}{{2.24}{24}}
+\newlabel{theorem: newton convergence}{{2.1}{24}}
+\newlabel{eq: convergece newton}{{2.26}{24}}
+\citation{GummelMap}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Fully coupled Newthon's method}{25}}
+\newlabel{eq: NLP algorithm matrix}{{2.27}{25}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.3}Gummel map algorithm}{25}}
+\newlabel{eq: newton step NLP linear}{{2.30}{26}}
+\newlabel{eq: LEC system}{{2.31}{26}}
+\newlabel{eq: LHC system}{{2.32}{26}}
+\citation{Jerome:AnalyCharTran}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces Flow chart of Gummel.\relax }}{27}}
+\newlabel{fig: gummel map}{{2.2}{27}}
+\citation{Jerome:AnalyCharTran}
+\newlabel{eq: real Rn and Rp}{{2.33}{28}}
+\newlabel{eq: LEC system new}{{2.35}{28}}
+\newlabel{eq: LHC system new}{{2.36}{28}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Finite element discretization}{29}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{chap: finite element}{{3}{29}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Non Linear Poisson Equation: weak form}{29}}
+\newlabel{sec: NLP weak form}{{3.1}{29}}
+\newlabel{sys: NLP general problem linearized}{{3.1}{29}}
+\newlabel{eq: integration first}{{3.2}{29}}
+\citation{salsa:EDP}
+\newlabel{eq: NLP weakformulation}{{3.3}{30}}
+\newlabel{eq: bilinear form NLP linearized}{{3.4}{30}}
+\newlabel{eq: functional NLP linearized}{{3.5}{30}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Continuity Equations: weak form}{31}}
+\newlabel{sec: LEC weak}{{3.2}{31}}
+\newlabel{eq: system continuity equation}{{3.6}{31}}
+\newlabel{eq: LEC weakformulation}{{3.7}{31}}
+\newlabel{eq: bilinear form LEC}{{3.8}{31}}
 \citation{quarteroni:NumApprox}
-\newlabel{eq: functional LEC}{{1.9}{4}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.3}Numerical approximation}{4}}
-\newlabel{sec: Numerical approximation}{{1.3}{4}}
-\newlabel{eq: general galerkin problem}{{1.12}{4}}
-\newlabel{eq: dimensione polinomi}{{1.15}{4}}
+\newlabel{eq: functional LEC}{{3.9}{32}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Numerical approximation}{32}}
+\newlabel{sec: Numerical approximation}{{3.3}{32}}
+\newlabel{eq: general galerkin problem}{{3.12}{32}}
+\newlabel{eq: dimensione polinomi}{{3.15}{32}}
 \citation{quarteroni:modnum}
 \citation{quarteroni:NumApprox}
-\newlabel{eq: problem galerkin completo}{{1.17}{5}}
-\newlabel{eq: sistema algebrico in sommatoria}{{1.18}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.1}Geometrical discretization}{5}}
-\newlabel{eq: mesh regular condition}{{1.19}{5}}
+\newlabel{eq: problem galerkin completo}{{3.17}{33}}
+\newlabel{eq: sistema algebrico in sommatoria}{{3.18}{33}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Geometrical discretization}{33}}
+\newlabel{eq: mesh regular condition}{{3.19}{33}}
 \citation{quarteroni:NumApprox}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.2}Linearized Non Linear Poisson equation}{6}}
-\newlabel{eq: bilinear local discrete}{{1.21}{6}}
-\newlabel{eq: NLP discretizated}{{1.27}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Linearized Non Linear Poisson equation}{34}}
+\newlabel{eq: bilinear local discrete}{{3.21}{34}}
+\newlabel{eq: NLP discretizated}{{3.27}{35}}
 \citation{DefulhardDamp}
 \citation{NumericalRecipes}
-\@writefile{toc}{\contentsline {subsubsection}{Damping}{8}}
-\newlabel{eq: NLP mod used}{{1.29}{8}}
-\newlabel{eq: extended criterion}{{1.30}{8}}
-\newlabel{eq: easy criterion}{{1.31}{8}}
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig: Damping err}{{1.1a}{10}}
+\@writefile{toc}{\contentsline {subsubsection}{Damping}{36}}
+\newlabel{eq: NLP mod used}{{3.29}{36}}
+\newlabel{eq: extended criterion}{{3.30}{36}}
+\newlabel{eq: easy criterion}{{3.31}{36}}
+\newlabel{fig: Damping err}{{3.1a}{38}}
 \newlabel{sub@fig: Damping err}{{(a)}{a}}
-\newlabel{fig: Damping theta}{{1.1b}{10}}
+\newlabel{fig: Damping theta}{{3.1b}{38}}
 \newlabel{sub@fig: Damping theta}{{(b)}{b}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces (a) Number of iteration against residual for different voltages in a diode test case. (b) Magnitude of the damping parameter $t_k$.\relax }}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces (a) Number of iteration against residual for different voltages in a diode test case. (b) Magnitude of the damping parameter $t_k$.\relax }}{38}}
 \citation{BabuskaMixMet}
 \citation{Zikatanov:EAFE1}
 \citation{Zikatanov:EAFE2}
 \citation{BankMmatrixEAFE}
 \citation{Zikatanov:EAFE1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.3}Continuity equations}{11}}
-\newlabel{sec: continuity equations}{{1.3.3}{11}}
-\newlabel{eq: weak formulation displacement}{{1.34}{11}}
-\newlabel{eq: LEC system slotboom generic}{{1.35}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Continuity equations}{39}}
+\newlabel{sec: continuity equations}{{3.3.3}{39}}
+\newlabel{eq: weak formulation displacement}{{3.34}{39}}
+\newlabel{eq: LEC system slotboom generic}{{3.35}{39}}
 \citation{OSCputticorded}
-\newlabel{eq: mesh delaunay condition}{{1.36}{12}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Evaluation of the Zikatanov condition over a simple partition. Red elements do not satisfy condition (\ref  {eq: mesh delaunay condition}) over four edges while blue elements fully satisfy the criterion.\relax }}{13}}
-\newlabel{fig: cubo zikatanov}{{1.2}{13}}
+\newlabel{eq: mesh delaunay condition}{{3.36}{40}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Evaluation of the Zikatanov condition over a simple partition. Red elements do not satisfy condition (\ref  {eq: mesh delaunay condition}) over four edges while blue elements fully satisfy the criterion.\relax }}{41}}
+\newlabel{fig: cubo zikatanov}{{3.2}{41}}
+\citation{SdeviceManual}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Simulation results}{43}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{chap: results}{{4}{43}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Test cases}{43}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}p-n junction}{43}}
+\newlabel{sec: PN}{{4.1.1}{43}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces p-n junction.\relax }}{44}}
+\newlabel{fig: diodo struttura}{{4.1}{44}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces p-n junction - list of settings, parameters and models.\relax }}{44}}
+\newlabel{tab: diode direct}{{4.1}{44}}
+\newlabel{fig: diode 1v pot}{{4.2b}{45}}
+\newlabel{sub@fig: diode 1v pot}{{(b)}{b}}
+\newlabel{fig: qf pot diode 03}{{4.2e}{45}}
+\newlabel{sub@fig: qf pot diode 03}{{(e)}{e}}
+\newlabel{fig: qf pot diode 1}{{4.2f}{45}}
+\newlabel{sub@fig: qf pot diode 1}{{(f)}{f}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces 1D plots of the solutions and the quasi fermi potential levels along the line parallel to the Z-axis and placed at the center of the device. On the left is presented the test case at $V_A=0.3[V]$ while on the right at $V_A=1.0[V]$.\relax }}{45}}
+\newlabel{fig: Solutions case test 0.3}{{4.2}{45}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces p-n junction 0.3[V] - Electrostatic Potential.\relax }}{46}}
+\newlabel{fig: diode potential 03V}{{4.3}{46}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces p-n junction 0.3[V] - Electron density.\relax }}{46}}
+\newlabel{fig: ndensity 03V}{{4.4}{46}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.5}{\ignorespaces p-n junction 0.3[V] - Hole density.\relax }}{46}}
+\newlabel{fig: pdensity 03V}{{4.5}{46}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.6}{\ignorespaces p-n junction 1.0[V] - Electrostatic Potential.\relax }}{47}}
+\newlabel{fig: diode potential 1V}{{4.6}{47}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.7}{\ignorespaces p-n junction 1.0[V] - Electron density.\relax }}{47}}
+\newlabel{fig: ndensity 1V}{{4.7}{47}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.8}{\ignorespaces p-n junction 1.0[V] - Hole density.\relax }}{47}}
+\newlabel{fig: pdensity 1V}{{4.8}{47}}
+\@writefile{toc}{\contentsline {subsubsection}{Computational cost and initial condition}{48}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.9}{\ignorespaces Total time Gummel Map.\relax }}{48}}
+\newlabel{fig: tempi computazionali 1}{{4.9}{48}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.10}{\ignorespaces Time to solve the NLP and DD equations, and number of iterations of the Gummel map.\relax }}{49}}
+\newlabel{fig: tempi computazionali 2}{{4.10}{49}}
+\newlabel{fig: different biast initial step 1}{{4.11a}{49}}
+\newlabel{sub@fig: different biast initial step 1}{{(a)}{a}}
+\newlabel{fig: different biast initial step 2}{{4.11b}{49}}
+\newlabel{sub@fig: different biast initial step 2}{{(b)}{b}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.11}{\ignorespaces Initial guess for different bias compared with the final solution.\relax }}{49}}
+\newlabel{fig: different biast initial step}{{4.11}{49}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}p-n junction in oxide}{50}}
+\newlabel{sec: PNOX}{{4.1.2}{50}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.12}{\ignorespaces Test case p-n junction in oxide.\relax }}{50}}
+\newlabel{fig: structure diodeox}{{4.12}{50}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces p-n junction in oxide - list of settings, parameters and models.\relax }}{50}}
+\newlabel{tab: diodeox 3d}{{4.2}{50}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.13}{\ignorespaces 1D plots of the solutions and the quasi Fermi potential levels along the line parallel to the Z-axis and placed at the center of the device. On the left test case at $V_A=0.3[V]$ is reported while on the right at $V_A=1.0[V]$.\relax }}{51}}
+\newlabel{fig: plot 1D diodeox}{{4.13}{51}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.14}{\ignorespaces p-n junction in oxide 0.3[V] - ElectrostaticPotential.\relax }}{52}}
+\newlabel{fig: potential diodeox}{{4.14}{52}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.15}{\ignorespaces p-n junction in oxide 0.3[V] - Electron density.\relax }}{52}}
+\newlabel{fig: edensity diodeox}{{4.15}{52}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.16}{\ignorespaces p-n junction in oxide 0.3[V] - Hole density.\relax }}{52}}
+\newlabel{fig: hdensity diodeox}{{4.16}{52}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.17}{\ignorespaces p-n junction in oxide 1.0[V] - Electrostatic Potential.\relax }}{53}}
+\newlabel{fig: potential diodeox 1V}{{4.17}{53}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.18}{\ignorespaces p-n junction in oxide 1.0[V] - Electron density.\relax }}{53}}
+\newlabel{fig: edensity diodeox 1V}{{4.18}{53}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.19}{\ignorespaces p-n junction in oxide 1.0[V] - Hole density.\relax }}{53}}
+\newlabel{fig: hdensity diodeox 1V}{{4.19}{53}}
+\@writefile{toc}{\contentsline {subsubsection}{3D effect on the electric field}{54}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.20}{\ignorespaces Test case dide p-n in oxide 0.3[V] - Electric field.\relax }}{54}}
+\newlabel{fig: electric field diode}{{4.20}{54}}
+\newlabel{eq: conservazione vettore spostamento}{{4.1}{55}}
+\newlabel{eq: rapporto campi}{{4.4}{55}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.21}{\ignorespaces $E_y$ along a line parallel to Y-axis, $z=0.22[\mu m]$ and $x=0.1[\mu m]$.\relax }}{55}}
+\newlabel{fig: salto electric field}{{4.21}{55}}
+\citation{ModernVLSIdevices}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.3}n-channel MOSFET}{56}}
+\newlabel{sec: MOS}{{4.1.3}{56}}
+\newlabel{fig: mos geometry 1}{{4.22a}{56}}
+\newlabel{sub@fig: mos geometry 1}{{(a)}{a}}
+\newlabel{fig: mos geometry 2}{{4.22b}{56}}
+\newlabel{sub@fig: mos geometry 2}{{(b)}{b}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.22}{\ignorespaces Geometry of a n-channel MOSFET.\relax }}{56}}
+\newlabel{fig: mos geometry}{{4.22}{56}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.23}{\ignorespaces Energy band levels for a n-MOSFET along the channel.\relax }}{57}}
+\newlabel{fig: energy levels MOS}{{4.23}{57}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.3}{\ignorespaces n-MOSFET - list of settings, parameters and models.\relax }}{57}}
+\newlabel{tab: mos direct pol}{{4.3}{57}}
+\newlabel{fig: channel figures 1D}{{4.24a}{58}}
+\newlabel{sub@fig: channel figures 1D}{{(a)}{a}}
+\newlabel{fig: channel figures 3D}{{4.24b}{58}}
+\newlabel{sub@fig: channel figures 3D}{{(b)}{b}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.24}{\ignorespaces Channel of the n-MOSFET.\relax }}{58}}
+\newlabel{fig: channel figures}{{4.24}{58}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.25}{\ignorespaces Electric field - $V_G = 2.0 [V]$.\relax }}{58}}
+\newlabel{fig: electric field mos}{{4.25}{58}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.26}{\ignorespaces Electrostatic potential - $V_G = 0.0 [V]$.\relax }}{59}}
+\newlabel{fig: potential mos off}{{4.26}{59}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.27}{\ignorespaces Electron density - $V_G = 0.0 [V]$.\relax }}{59}}
+\newlabel{fig: ndensity mos off}{{4.27}{59}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.28}{\ignorespaces Hole density - $V_G = 0.0 [V]$.\relax }}{59}}
+\newlabel{fig: pdensity mos off}{{4.28}{59}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.29}{\ignorespaces Electrostatic potential - $V_G = 2.0 [V]$.\relax }}{60}}
+\newlabel{fig: potential mos}{{4.29}{60}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.30}{\ignorespaces Electron density - $V_G = 2.0 [V]$.\relax }}{60}}
+\newlabel{fig: ndensity mos}{{4.30}{60}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.31}{\ignorespaces Hole density - $V_G = 2.0 [V]$.\relax }}{60}}
+\newlabel{fig: pdensity mos}{{4.31}{60}}
+\@writefile{toc}{\contentsline {subsubsection}{Reverse bias}{61}}
+\newlabel{sec: inv pol mos}{{4.1.3}{61}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.4}{\ignorespaces n-MOSFET (reverse bias) - list of settings, parameters and models.\relax }}{61}}
+\newlabel{tab: nmos inverse}{{4.4}{61}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.32}{\ignorespaces Negative carriers spots for the electron density solution.\relax }}{62}}
+\newlabel{fig: negative carriers MOS}{{4.32}{62}}
+\newlabel{fig: drain stress mos 13000 1}{{4.33a}{62}}
+\newlabel{sub@fig: drain stress mos 13000 1}{{(a)}{a}}
+\newlabel{fig: drain stress mos 13000 2}{{4.33b}{62}}
+\newlabel{sub@fig: drain stress mos 13000 2}{{(b)}{b}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.33}{\ignorespaces Electron density with finer mesh.\relax }}{62}}
+\newlabel{fig: drain stress mos 13000}{{4.33}{62}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.34}{\ignorespaces Zikatanov condition.\relax }}{62}}
+\newlabel{fig: zikatanov mos}{{4.34}{62}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.35}{\ignorespaces Electrostatic potential - Reverse bias.\relax }}{63}}
+\newlabel{fig: pot MOS negative}{{4.35}{63}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.36}{\ignorespaces Hole density - Reverse bias.\relax }}{63}}
+\newlabel{fig: hole MOS negative}{{4.36}{63}}
+\citation{ContactCurrentRM}
+\citation{GalerkMethConsHughes}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Current evaluation at the Ohmic contacts}{64}}
+\newlabel{eq: current flux}{{4.6}{64}}
+\citation{GalerkMethConsHughes}
+\newlabel{eq: modified galerkin}{{4.8}{65}}
+\newlabel{eq: usual problem}{{4.9}{65}}
+\newlabel{eq: flux problem}{{4.10}{65}}
+\newlabel{eq: flux problem complete}{{4.11}{65}}
+\newlabel{eq: conservative flux}{{4.12}{65}}
+\newlabel{eq: lec divergence theor}{{4.13}{65}}
+\newlabel{eq: flux current formula}{{4.14}{65}}
+\newlabel{eq: equalities integrals}{{4.15}{65}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Simulation results}{66}}
+\@writefile{toc}{\contentsline {subsubsection}{p-n junction}{66}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.5}{\ignorespaces p-n junction (characteristic) - list of settings, parameters and models.\relax }}{66}}
+\newlabel{tab: caratt diodo}{{4.5}{66}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.37}{\ignorespaces Diode characteristic.\relax }}{67}}
+\newlabel{fig: caratteristica diode}{{4.37}{67}}
+\newlabel{fig: RG 0.3 volt}{{4.38a}{67}}
+\newlabel{sub@fig: RG 0.3 volt}{{(a)}{a}}
+\newlabel{fig: RG 1 volt}{{4.38b}{67}}
+\newlabel{sub@fig: RG 1 volt}{{(b)}{b}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.38}{\ignorespaces SRH and Auger RG contribution.\relax }}{67}}
+\newlabel{fig: SRH Auger RG}{{4.38}{67}}
+\@writefile{toc}{\contentsline {subsubsection}{p-n junction in oxide}{68}}
+\newlabel{fig: diode ox const}{{4.39a}{68}}
+\newlabel{sub@fig: diode ox const}{{(a)}{a}}
+\newlabel{fig: diode ox masetti}{{4.39b}{68}}
+\newlabel{sub@fig: diode ox masetti}{{(b)}{b}}
+\newlabel{fig: diode ox masetti focus}{{4.39c}{68}}
+\newlabel{sub@fig: diode ox masetti focus}{{(c)}{c}}
+\newlabel{fig: diode ox masetti focus}{{4.39d}{68}}
+\newlabel{sub@fig: diode ox masetti focus}{{(d)}{d}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.39}{\ignorespaces p-n junction in oxide current at contact - Forward bias.\relax }}{68}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.6}{\ignorespaces p-n junction in oxide - list of settings, parameters and models.\relax }}{69}}
+\newlabel{tab: par diodeox curr}{{4.6}{69}}
+\@writefile{toc}{\contentsline {subsubsection}{n-channel/p-channel MOSFET}{70}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.40}{\ignorespaces p-MOSFET.\relax }}{70}}
+\newlabel{fig: dop mesh pMOSFET}{{4.40}{70}}
+\newlabel{fig: current drain mos direct ALL}{{4.41a}{71}}
+\newlabel{sub@fig: current drain mos direct ALL}{{(a)}{a}}
+\newlabel{fig: current drain mos direct CONST}{{4.41b}{71}}
+\newlabel{sub@fig: current drain mos direct CONST}{{(b)}{b}}
+\newlabel{fig: current drain mos direct MASETTI}{{4.41c}{71}}
+\newlabel{sub@fig: current drain mos direct MASETTI}{{(c)}{c}}
+\newlabel{fig: current drain mos direct CANALI}{{4.41d}{71}}
+\newlabel{sub@fig: current drain mos direct CANALI}{{(d)}{d}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.41}{\ignorespaces $I_D-V_G$ n-MOSFET characteristic - mobility models.\relax }}{71}}
+\newlabel{fig: current drain mos direct}{{4.41}{71}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.7}{\ignorespaces n-MOSFET (low drain bias characteristic) - list of settings, parameters and models.\relax }}{71}}
+\newlabel{tab: mos charact N}{{4.7}{71}}
+\newlabel{fig: current source mos direct ALL}{{4.42a}{72}}
+\newlabel{sub@fig: current source mos direct ALL}{{(a)}{a}}
+\newlabel{fig: current source mos direct CONSTANT}{{4.42b}{72}}
+\newlabel{sub@fig: current source mos direct CONSTANT}{{(b)}{b}}
+\newlabel{fig: current source mos direct MASETTI}{{4.42c}{72}}
+\newlabel{sub@fig: current source mos direct MASETTI}{{(c)}{c}}
+\newlabel{fig: current source mos direct CANALI}{{4.42d}{72}}
+\newlabel{sub@fig: current source mos direct CANALI}{{(d)}{d}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.42}{\ignorespaces $I_S-V_G$ p-MOSFET characteristic - mobility models.\relax }}{72}}
+\newlabel{fig: current source Pmos direct}{{4.42}{72}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.8}{\ignorespaces pMOSFET (low drain bias characteristic) - list of settings, parameters and models.\relax }}{72}}
+\newlabel{tab: mos charact P}{{4.8}{72}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.9}{\ignorespaces n-MOSFET (different drain bias) - list of settings, parameters and models.\relax }}{73}}
+\newlabel{tab: mos charact N vary bias}{{4.9}{73}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.10}{\ignorespaces p-MOSFET (different drain bias) - list of settings, parameters and models.\relax }}{73}}
+\newlabel{tab: mos charact P vary bias}{{4.10}{73}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.43}{\ignorespaces $I_D-V_G$ n-MOSFET - several drain voltages.\relax }}{74}}
+\newlabel{fig: current drain mos different}{{4.43}{74}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.44}{\ignorespaces $I_S-V_G$ p-MOSFET - several source voltages.\relax }}{74}}
+\newlabel{fig: current drain mos different P}{{4.44}{74}}
+\@writefile{toc}{\contentsline {subsubsection}{Impact-ionization model}{75}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.45}{\ignorespaces pMOSFET mesh.\relax }}{76}}
+\newlabel{fig: mesh finer pMOS}{{4.45}{76}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.11}{\ignorespaces n-MOSFET (off-state characteristic) - list of settings, parameters and models.\relax }}{76}}
+\newlabel{tab: inverse mos}{{4.11}{76}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.12}{\ignorespaces p-MOSFET (off-state characteristic) - list of settings, parameters and models.\relax }}{76}}
+\newlabel{tab: inverse Pmos}{{4.12}{76}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.46}{\ignorespaces Contribution of the impact ionization with the Van Overstraeten - de Man model inside the n-MOSFET $V_D=0.5[V]$.\relax }}{77}}
+\newlabel{fig: II MOS}{{4.46}{77}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.47}{\ignorespaces Contribution of the impact ionization with the Van Overstraeten - de Man model inside the p-MOSFET $V_S=0.5[V]$.\relax }}{77}}
+\newlabel{fig: II pMOS}{{4.47}{77}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.48}{\ignorespaces Contribution of the impact ionization with the Van Overstraeten - de Man model inside the p-MOSFET $V_S=1.2[V]$.\relax }}{77}}
+\newlabel{fig: II pMOS high}{{4.48}{77}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.49}{\ignorespaces Reverse bias of the n-MOSFET.\relax }}{78}}
+\newlabel{fig: tutte le correnti mos stress}{{4.49}{78}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.50}{\ignorespaces Reverse bias of the p-MOSFET.\relax }}{78}}
+\newlabel{fig: tutte le correnti Pmos stress}{{4.50}{78}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}The current calculation problem}{79}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Drift-Diffusion formula}{79}}
+\newlabel{eq: Jn DD discrete}{{5.2}{80}}
+\newlabel{eq: Jp DD discrete}{{5.3}{80}}
+\citation{Bank:FVSG}
+\citation{Bank:FEvsBOX}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Edge average techiniques}{81}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Scharfetter-Gummel 1D}{81}}
+\newlabel{eq: scharfetter gummel 1D electron}{{5.4}{81}}
+\citation{Bank:FEvsBOX}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Effect of high electric field over the current density of electron.\relax }}{82}}
+\newlabel{fig: SF figure}{{5.1}{82}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Scharfetter-Gummel 2D}{82}}
+\newlabel{eq: map current}{{5.6}{82}}
+\newlabel{eq: map is current}{{5.7}{82}}
+\newlabel{eq: EAFE edge formula}{{5.10}{83}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Scharfetter-Gummel 3D}{83}}
+\newlabel{sec: SG 3D}{{5.2.3}{83}}
+\newlabel{eq: current density fermi}{{5.12}{83}}
+\newlabel{eq: current density canonic form}{{5.13}{83}}
+\newlabel{eq: variation form of current density continuos}{{5.14}{83}}
+\newlabel{eq: spaces elementwise constant}{{5.15}{84}}
+\newlabel{eq: form of qh}{{5.16}{84}}
+\newlabel{eq: variation form of current density}{{5.17}{84}}
+\newlabel{eq: first formula for J}{{5.18}{84}}
+\newlabel{eq: approzimation from 3D to edge}{{5.19}{84}}
+\newlabel{eq: differenza tra pot e qf}{{5.20}{84}}
+\newlabel{eq: finally approzimation 3D to 1D}{{5.22}{85}}
+\newlabel{eq: approssimazione sm}{{5.23}{85}}
+\newlabel{eq: first formula for J}{{5.24}{85}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Upwinding techiniques}{86}}
+\newlabel{eq: consistenza}{{5.25}{86}}
+\newlabel{eq: perturbed problem}{{5.26}{86}}
+\newlabel{eq: weak form perturbed}{{5.27}{86}}
+\newlabel{eq: phi per SG 1D}{{5.28}{86}}
+\newlabel{eq: j element 1d perturbata}{{5.29}{87}}
+\newlabel{eq: SG stabilized}{{5.32}{89}}
+\newlabel{eq: SG stabilized}{{5.33}{89}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Results}{89}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces 1D plot p-n junction - $V_A=1.0[V]$ \relax }}{90}}
+\newlabel{fig: pn current density 1V}{{5.2}{90}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces 1D plot p-n junction - $V_A=1.0[V]$.\relax }}{91}}
+\newlabel{fig: p-n upwinding tech}{{5.3}{91}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces 1D plot p-n junction - $V_A=1.0[V]$.\relax }}{91}}
+\newlabel{fig: p-n drift diffusion}{{5.4}{91}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces 1D plot p-n junction - $V_A=1.0[V]$.\relax }}{92}}
+\newlabel{fig: p-n drift diffusion}{{5.5}{92}}
+\@writefile{toc}{\contentsline {chapter}{Conclusions and future work}{93}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
 \bibstyle{alpha}
 \bibdata{contents/Bibliografia}
+\@writefile{toc}{\contentsline {chapter}{Bibliografia}{94}}
+\bibcite{Adams:SobolevSpaces}{{AF03}{}{{}}{{}}}
 \bibcite{BankMmatrixEAFE}{{BCC98}{}{{}}{{}}}
+\bibcite{SolidState}{{BGB00}{}{{}}{{}}}
+\bibcite{Canali:Vsat}{{Can75}{}{{}}{{}}}
+\bibcite{Cynoweth}{{Chy58}{}{{}}{{}}}
 \bibcite{DefulhardDamp}{{Deu74}{}{{}}{{}}}
+\bibcite{Goebel:SRH}{{GH92}{}{{}}{{}}}
+\bibcite{ContactCurrentRM}{{GS74}{}{{}}{{}}}
+\bibcite{GummelMap}{{Gum64}{}{{}}{{}}}
+\bibcite{GalerkMethConsHughes}{{HEML00}{}{{}}{{}}}
 \bibcite{BabuskaMixMet}{{IE83}{}{{}}{{}}}
+\bibcite{Jackson:ElettroClassica}{{Jac84}{}{{}}{{}}}
+\bibcite{Jerome:AnalyCharTran}{{Jer96}{}{{}}{{}}}
+\bibcite{Lochmann}{{LH80}{}{{}}{{}}}
+\bibcite{Lombardi:MobConst}{{Lom88}{}{{}}{{}}}
+\bibcite{Masetti:MobDop}{{MS83}{}{{}}{{}}}
 \bibcite{OSCputticorded}{{PC98}{}{{}}{{}}}
+\bibcite{Pierret:SemiFunda}{{PN}{}{{}}{{}}}
 \bibcite{NumericalRecipes}{{PTVF07}{}{{}}{{}}}
 \bibcite{quarteroni:modnum}{{Qua08}{}{{}}{{}}}
 \bibcite{quarteroni:NumApprox}{{QV08}{}{{}}{{}}}
 \bibcite{salsa:EDP}{{Sal10}{}{{}}{{}}}
+\bibcite{SdeviceManual}{{Sde13}{}{{}}{{}}}
+\bibcite{selberherr:SimSem}{{Sie84}{}{{}}{{}}}
+\bibcite{VanOverII}{{vOdM70}{}{{}}{{}}}
+\bibcite{VanOver:SRH}{{VOT83}{}{{}}{{}}}
 \bibcite{Zikatanov:EAFE1}{{XZ99}{}{{}}{{}}}
+\bibcite{ModernVLSIdevices}{{YT09}{}{{}}{{}}}
 \bibcite{Zikatanov:EAFE2}{{ZL12}{}{{}}{{}}}
-\@writefile{toc}{\contentsline {chapter}{Bibliografia}{15}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
+\@writefile{toc}{\contentsline {chapter}{Ringraziamenti}{99}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
