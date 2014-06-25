@@ -1,4 +1,4 @@
 \select@language {english}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces (a) Number of iteration against residual for different voltages in a diode test case. (b) Magnitude of the damping parameter $t_k$.\relax }}{9}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Evaluation of the Zikatanov condition over a simple partition. Red elements doesn't satisfy condition (\ref {eq: mesh delaunay condition}) over four edges while blue elements fully accomplished the criterion.\relax }}{14}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces (a) Number of iteration against residual for different voltages in a diode test case. (b) Magnitude of the damping parameter $t_k$.\relax }}{10}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Evaluation of the Zikatanov condition over a simple partition. Red elements do not satisfy condition (\ref {eq: mesh delaunay condition}) over four edges while blue elements fully satisfy the criterion.\relax }}{13}

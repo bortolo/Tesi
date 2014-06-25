@@ -1,24 +1,24 @@
 \chapter{Simulation results}
 \label{chap: results}
 
-In this chapter we present the work done in order to validate the numerical implementation of the discretization method illustrated in chapter \ref{chap: finite element} compared with a reference simulation tool (SDEVICE commercialized by Synopsis \cite{SdeviceManual}).
-In particular we illustrate (and compare) the algorithm used to calculate current at the contacts.
+In this chapter we present the work done in order to validate the numerical implementation of the discretization method illustrated in Chapter \ref{chap: finite element}, in the FEMOS 3D code compared with a reference simulation tool (SDEVICE, commercialized by Synopsis \cite{SdeviceManual}).
+In particular we illustrate (and compare) the algorithm used to calculate the current at the ohmic contacts.
 
 \section{Test cases}
 
-We consider three kind of semiconductor devices: 
+We consider three kinds of semiconductor devices: 
 
 \begin{itemize}
 \setlength{\itemsep}{0.5pt}
 \item {\bf p-n junction}
 \item {\bf p-n junction in oxide}
-\item {\bf MOSFET n-channel / p-channel}
+\item {\bf n-channel / p-channel MOSFET}
 \end{itemize}
 
 \subsection{p-n junction}
 \label{sec: PN}
 
-In this example we consider a simple p-n junction. \figref{fig: diodo struttura} presents the partition and the doping profile for this test. The section of the parallelepiped is a $0.05 \times 0.05 [\mu m^2]$ square while the device is $0.1 [\mu m]$ long.  The number of vertices are $4933$, while the elements are $24576$.  The doping concentration is obtained setting a constant profile of acceptors over all the domain ($N_A = 1.0\times 10^{17}$) overhelmed by a doping profile of  donors ($N_D=1.0 \times 10^{18}$) bounded on one side of the device resulting in an almost abrupt junction. 
+In this example we consider a simple p-n junction. \figref{fig: diodo struttura} presents the partition and the doping profile for this test. The section of the parallelepiped is a $0.05 \times 0.05 [\mu m^2]$ square while the device is $0.1 [\mu m]$ long.  The number of vertices are $4933$, while the elements are $24576$.  The doping concentration is obtained setting a constant profile of acceptors over all the domain ($N_A^- = 1.0\times 10^{17} [cm^{-3}]$) overwhelmed by a doping profile of  donors ($N_D^+=1.0 \times 10^{18} [cm^{-3}]$) bounded on one side of the device and resulting in an almost abrupt junction. 
 Two contacts are defined: (A) contact is placed at $Z=0.1[\mu m]$ and (B) contact is placed at $Z=0.0 [\mu m]$.  
 
 
@@ -36,11 +36,11 @@ Two contacts are defined: (A) contact is placed at $Z=0.1[\mu m]$ and (B) contac
 \end{figure}
 
 
-In order to analyze the operating function of the diode, two cases of direct polarization are performed: $0.3[V]$-$1.0[V]$. The setting values and the parameters are summerized in \tabref{tab: diode direct}. 
+In order to analyze the operating function of the diode, two cases of direct bias are performed: $0.3[V]$-$1.0[V]$. The setting values and the parameters are summarized in \tabref{tab: diode direct}. 
 \figref{fig: Solutions case test 0.3} reports the solutions for $V_A=0.3[V]$ and $V_A=1.0[V]$, along a line parallel to the Z-axis and placed at the center of the device. 
 Because the built-in voltage is around $0.7 \div 0.8 [V]$ the behaviour of the device is different when the applied bias is below or above this threshold. 
-At $0.3[V]$ of polarization, potential drop is almost bounded around the junction, and due to the asymmetric doping, is major extended in the p-side. The carriers can't cross the potential barrier and this will cause a low current flux inside the device.
-At $1.0[V]$ the minority carriers density becomes almost ten order bigger, resulting in a large amount of current toward the contacts:  the device turns from exponential to linear resistive. This is clear in \figref{fig: diode 1v pot} where the potential shape becomes similar to a resistence voltage profile (linear potential profile). Comparing the quasi-fermi potential of \figref{fig: qf pot diode 03} and \figref{fig: qf pot diode 1} the boundary layers at contacts increase with the polarization. This effect is related to the ohmic contact hypotesis, and can be avoided with different boundary condition: this occurs also for the carrier concentration because at the contacts the charge neutrality and the thermodynamic equilibrium  are imposed.
+At a bias voltage of $0.3[V]$, potential drop is almost bounded around the junction, and due to the asymmetric doping, is mostly extended in the p-side. Carriers cannot cross the potential barrier and this causes a low current flux inside the device.
+At $1.0[V]$ the minority carrier density becomes almost ten order bigger, resulting in a large amount of current toward the contacts:  the device turns from exponential to linear resistive. This is clear in \figref{fig: diode 1v pot} where the potential shape becomes similar to a that of a resistance voltage profile (linear potential profile). Comparing the quasi-fermi potential of \figref{fig: qf pot diode 03} and \figref{fig: qf pot diode 1} the boundary layers at contacts increase with the polarization. This effect is related to the ohmic contact hypotesis, and can be avoided with different boundary condition: this occurs also for the carrier concentration because at the contacts the charge neutrality and the thermodynamic equilibrium  are imposed.
 
 \figref{fig: diode potential 03V}$\div$\ref{fig: pdensity 03V} shows the comparison between SDEVICE and FEMOS in 3D plots for electrostatic potential, electron and hole densities at $0.3[V]$, while \figref{fig: diode potential 1V}$\div$\ref{fig: pdensity 1V} show the same comparison at $1.0[V]$. In both of the condition the agreement is very good.
 

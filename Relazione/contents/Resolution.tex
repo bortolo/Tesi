@@ -429,7 +429,7 @@ f_{ox}^k(\varphi^k) & = \nabla \cdot (-\epsilon \nabla \varphi^k) .
 
  \figref{fig: gummel map} shows a flow chart of the Gummel algorithm where $k$ is the iteration step of the inner loop, while $i$ is the iteration step of the Gummel Map.
  
-For the Gummel map, similar result as \teoref{theorem: newton convergence}  can be found in \cite{Jerome:AnalyCharTran}, but the  priori convergence error estimation demonstrated is linear. However heuristic experience often shows superlinear convergence behaviour.
+For the Gummel map, similar result as \teoref{theorem: newton convergence}  can be found in \cite{Jerome:AnalyCharTran}, but the convergence rate is linear. However heuristic experience often shows superlinear convergence behaviour.
 
 There are several advantages which make Gummel map algorithm bettern than the Fully Coupled Newton's Method, indeed simulations experience shows that the Gummel process is much more insensitive to the choice of the initial guess than Newton's method. This is particularly important in multidimensional problems where it is far from trivial to design a good starting point for initializing the iterative procedure. Another attractive feature is the reduced computational effort and memory cost: at each iteration step the Gummel algorithm requires the successive solution of three problems, each one of size equal to $N_{dof}\times N_{dof}$.
 

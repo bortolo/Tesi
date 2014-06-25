@@ -1,24 +1,59 @@
-\begin{thebibliography}{Gum64}
+\begin{thebibliography}{PTVF07}
 
-\bibitem[AF03]{Adams:SobolevSpaces}
-R.~A. Adams and J.~J.~F. Fournier.
-\newblock {\em Sobolev Spaces}.
-\newblock Academic Press, 2003.
+\bibitem[BCC98]{BankMmatrixEAFE}
+R.~E. Bank, W.~Coughran, and L.~C. Cowsar.
+\newblock The finite volume sharfetter-gummel method for steady convection
+  diffusion equations.
+\newblock {\em Computing and Visualization in Science}, 1:123--136, 1998.
 
-\bibitem[Gum64]{GummelMap}
-H.~K. Gummel.
-\newblock A self-consistent iterative scheme for one-dimensional steady state
-  transistor calculations.
-\newblock {\em Electron Devices}, pages 455--465, 1964.
+\bibitem[Deu74]{DefulhardDamp}
+P.~Deuflhard.
+\newblock A modified newton method for the solution of ill-conditioned system
+  of nonlinear equations with application to multiple shooting.
+\newblock {\em Numer. Math}, 22:289--315, 1974.
 
-\bibitem[Jer96]{Jerome:AnalyCharTran}
-J.~W. Jerome.
-\newblock {\em Analysis of Charge Transport}.
-\newblock Springer, 1996.
+\bibitem[IE83]{BabuskaMixMet}
+Babu\v{s}ka I. and Osborn~J. E.
+\newblock Generlized finite element methods: Their performance and their
+  relation to mixed methods.
+\newblock {\em Numer. Anal.}, 20:510--536, 1983.
+
+\bibitem[PC98]{OSCputticorded}
+M.~Putti and C.~Cordes.
+\newblock Finite element approximation of the diffusion operator on tetrahedra.
+\newblock {\em Society for Industrial and Applied Mathematics}, 19:1154--1168,
+  1998.
+
+\bibitem[PTVF07]{NumericalRecipes}
+William~H. Press, Saul~A. Teukoisky, William~T. Vetterling, and Brian~P.
+  Flannery.
+\newblock {\em Numerical Recipes, The Art of Scientific Computing}.
+\newblock Cambridge University Press, New York, 2007.
+
+\bibitem[Qua08]{quarteroni:modnum}
+Alfio Quarteroni.
+\newblock {\em Modellistica Numerica per Problemi Differenziali}.
+\newblock Springer Italia, Milan, 2008.
+
+\bibitem[QV08]{quarteroni:NumApprox}
+Alfio Quarteroni and Alberto Valli.
+\newblock {\em Numerical Approximation of Partial Differential Equations}.
+\newblock Springer, 2008.
 
 \bibitem[Sal10]{salsa:EDP}
 Sandro Salsa.
 \newblock {\em Equazioni a Derivate Parziali, metodi, modelli e applicazioni}.
 \newblock Springer Italia, Milan, 2010.
+
+\bibitem[XZ99]{Zikatanov:EAFE1}
+Jinchao Xu and Ludmil Zikatanov.
+\newblock A monotone finite element scheme for convection-diffusion equations.
+\newblock {\em Mathematics of Computation}, 68:1429--1446, 1999.
+
+\bibitem[ZL12]{Zikatanov:EAFE2}
+L.~T. Zikatanov and R.~D. Lazarov.
+\newblock An exponential fitting scheme for general convection-diffusion
+  equations on tetrahedral meshes.
+\newblock {\em math}, pages 455--465, 2012.
 
 \end{thebibliography}
