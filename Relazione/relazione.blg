@@ -5,46 +5,47 @@ The style file: alpha.bst
 Database file #1: contents/Bibliografia.bib
 Warning--to sort, need author, editor, or key in SdeviceManual
 Warning--empty school in TesiDotDeFalco
+Warning--empty year in Pierret:SemiFunda
 Warning--empty author and editor in SdeviceManual
-You've used 26 entries,
+You've used 29 entries,
             2543 wiz_defined-function locations,
-            727 strings with 8719 characters,
-and the built_in function-call counts, 10183 in all, are:
-= -- 1051
-> -- 430
-< -- 11
-+ -- 148
-- -- 139
-* -- 707
-:= -- 1672
-add.period$ -- 77
-call.type$ -- 26
-change.case$ -- 147
-chr.to.int$ -- 25
-cite$ -- 30
-duplicate$ -- 404
-empty$ -- 751
-format.name$ -- 171
-if$ -- 2063
+            744 strings with 9060 characters,
+and the built_in function-call counts, 11057 in all, are:
+= -- 1126
+> -- 465
+< -- 14
++ -- 158
+- -- 149
+* -- 757
+:= -- 1819
+add.period$ -- 86
+call.type$ -- 29
+change.case$ -- 160
+chr.to.int$ -- 28
+cite$ -- 34
+duplicate$ -- 451
+empty$ -- 826
+format.name$ -- 186
+if$ -- 2240
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 30
-newline$ -- 132
-num.names$ -- 75
-pop$ -- 127
+missing$ -- 36
+newline$ -- 147
+num.names$ -- 84
+pop$ -- 157
 preamble$ -- 1
-purify$ -- 179
+purify$ -- 198
 quote$ -- 0
-skip$ -- 339
+skip$ -- 369
 stack$ -- 0
-substring$ -- 717
-swap$ -- 53
-text.length$ -- 11
-text.prefix$ -- 7
+substring$ -- 738
+swap$ -- 57
+text.length$ -- 14
+text.prefix$ -- 9
 top$ -- 0
-type$ -- 184
-warning$ -- 3
-while$ -- 108
-width$ -- 32
-write$ -- 331
-(There were 3 warnings)
+type$ -- 196
+warning$ -- 4
+while$ -- 115
+width$ -- 35
+write$ -- 367
+(There were 4 warnings)

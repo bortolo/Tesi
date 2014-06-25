@@ -287,6 +287,7 @@ The extension of this procedure to the 3D case is not trivial: the meaning of th
 
 
 \subsection{Scharfetter-Gummel 3D}
+\label{sec: SG 3D} 
  
 In the previous sections we have discussed the goodness of the Sharfetter-Gummel formula, but in the 2D case we see also that the computation of the total current density becomes more complex as the dimension of the simulation increases. In this section we present and validate an innovative method which can go beyond the above limitations.
 
@@ -411,42 +412,7 @@ where $n_{min}=n_i e^{\Phi_m}$ and $n_{max}=n_i e^{\Phi_M}$.
 
 If we consider equation \referenzaeq{eq: first formula for J} over a one spatial domain we can recover equation \referenzaeq{eq: scharfetter gummel 1D electron}, then we can say that this approach is the natrual extension of the $Sharfetter-Gummel$ formula for the 3D case.
 
-\subsubsection{Results}
 
-\begin{figure}[!h]
-\centering
-\subfloat[][\emph{Jn}]
-{\includegraphics[width = 0.5\textwidth , height=4.5cm]{Corrente/ConfrontiCorrentiBulkJN_SDEVsSG.eps}}
-\subfloat[][\emph{Jp}]
-{\includegraphics[width = 0.5\textwidth , height=4.5cm]{Corrente/ConfrontiCorrentiBulkJP_SDEVsSG.eps}}
-\end{figure} 
-
-\textcolor{red}{Aggiungere le figure del diodo in 3D}
-
-
-
-\begin{figure}[!h]
-\centering
-\subfloat[][\emph{Hole current density.}]
-{\includegraphics[width=0.5\textwidth , height=4.5cm]{DatiImmaginiTESI/Diode/ContactFiner.eps}}
-\subfloat[][\emph{Hole quasi fermi potential.}]
-{\includegraphics[width = 0.5\textwidth , height=4.5cm]{DatiImmaginiTESI/Diode/ContactFinerQFP.eps}}
-\end{figure} 
-
-
-
-\begin{figure}[!h]
-\centering
-\subfloat[][\emph{FEMOS}]
-{\includegraphics[scale=0.38]{Results/MOS/FEMOS181718_Jn2voltONLYDEVICE.png}}
-\hspace{0.5cm}
-\subfloat[][]
-{\includegraphics[scale=0.3]{Results/MOS/LegendaArcobalenoVert.png}}
-\hspace{0.5cm}
-\subfloat[][\emph{SDEVICE}]
-{\includegraphics[scale=0.38]{Results/MOS/SDEVICE181718_Jn2voltONLYDEVICE.png}}
-\caption{Electron current density Vgate = 2.0 [V].}
-\end{figure}
 
 
 \section{Upwinding techiniques}
@@ -591,6 +557,75 @@ In \referenzaeq{eq: SG stabilized} the argument of the exponential could be an h
 
 \subsection{Results}
 
+In this section we compare the performance of the different current computation methods . The test problems are the p-n junction presented in \tabref{tab: diode direct} with $V_A=1.0[V]$ and the nMOSFET \tabref{tab: mos direct pol} in on-state condition.
+The procedures considered are:
+\begin{itemize}
+\item {\bf Drift-Diffusion} defined by \referenzaeq{eq: Jn DD discrete} and \referenzaeq{eq: Jp DD discrete} with $n|_K=\mathcal{M}(n_h)$, where $\mathcal{M}(\cdot)$ is the standard integral average;
+\item {\bf Scharfetter-Gummel 3D} method described in section \ref{sec: SG 3D};
+\item {\bf Modified Drift-Diffusion} which is for the electron current density 
+\begin{equation}
+\vect{J}_n|_K = -qn|_K\mu_n\nabla \varphi + qD_nn|_K(\mathcal{I}+\mathcal{I}\vect{\Phi}_K) \nabla n_h 
+\end{equation}
+considering $n|_K=\mathcal{M}(n_h)$ and $\vect{\Phi}_K$ as equation \referenzaeq{eq: SG stabilized}.
+\end{itemize}
+
+The comparison currents for the p-n junction are depicted in \figref{fig: pn current density 1V} using 1D plots along a line parallel to the Z-axis and placed at the center of the device. Both electron and hole current densities are shown for the three methods. 
+
+Apparently from this test case the best result is obtained with the modified DD method, as the standard DD is unstable and the SG 3D computes wrong values next to the contacts. Although the latter problem is strictly related with the mesh refinement, indeed fig shows the results 
+
+  
+\begin{figure}[!h]
+\centering
+
+
+\subfloat[][\emph{Standard DD - Jn}]
+{\includegraphics[width = 0.5\textwidth , height=4.5cm]{Corrente/ConfrontiCorrentiBulkJN_SDEVsDD.eps}}
+\subfloat[][\emph{Standard DD - Jp}]
+{\includegraphics[width = 0.5\textwidth , height=4.5cm]{Corrente/ConfrontiCorrentiBulkJP_SDEVsDD.eps}}
+
+
+\subfloat[][\emph{SG 3D - Jn}]
+{\includegraphics[width = 0.5\textwidth , height=4.5cm]{Corrente/ConfrontiCorrentiBulkJN_SDEVsSG.eps}}
+\subfloat[][\emph{SG 3D - Jp}]
+{\includegraphics[width = 0.5\textwidth , height=4.5cm]{Corrente/ConfrontiCorrentiBulkJP_SDEVsSG.eps}}
+
+\subfloat[][\emph{Modified DD - Jn}]
+{\includegraphics[width = 0.5\textwidth , height=4.5cm]{Corrente/ConfrontiCorrentiBulkJN_SDEVsDDcorretto.eps}}
+\subfloat[][\emph{Modified DD - Jp}]
+{\includegraphics[width = 0.5\textwidth , height=4.5cm]{Corrente/ConfrontiCorrentiBulkJP_SDEVsDDcorretto.eps}}
+
+\caption{1D plot p-n junction - $V_A=1.0[V]$ }
+\label{fig: pn current density 1V}
+\end{figure}
+
+\textcolor{red}{Aggiungere le figure del diodo in 3D}
+
+
+
+\begin{figure}[!h]
+\centering
+\subfloat[][\emph{Hole current density.}]
+{\includegraphics[width=0.5\textwidth , height=4.5cm]{DatiImmaginiTESI/Diode/ContactFiner.eps}}
+\subfloat[][\emph{Hole quasi fermi potential.}]
+{\includegraphics[width = 0.5\textwidth , height=4.5cm]{DatiImmaginiTESI/Diode/ContactFinerQFP.eps}}
+\end{figure} 
+
+
+
+%\begin{figure}[!h]
+%\centering
+%\subfloat[][\emph{FEMOS}]
+%{\includegraphics[scale=0.38]{Results/MOS/FEMOS181718_Jn2voltONLYDEVICE.png}}
+%\hspace{0.5cm}
+%\subfloat[][]
+%{\includegraphics[scale=0.3]{Results/MOS/LegendaArcobalenoVert.png}}
+%\hspace{0.5cm}
+%\subfloat[][\emph{SDEVICE}]
+%{\includegraphics[scale=0.38]{Results/MOS/SDEVICE181718_Jn2voltONLYDEVICE.png}}
+%\caption{Electron current density Vgate = 2.0 [V].}
+%\end{figure}
+
+
 When $(\varphi_{max}-\varphi_{min})$ is small or when the diode is in high direct polarization the modified technique works (\figref{fig: p-n upwinding tech}) better than the Drift-Diffusion formula (\figref{fig: p-n drift diffusion}).
 
 \begin{figure}[!h]
@@ -609,6 +644,33 @@ When $(\varphi_{max}-\varphi_{min})$ is small or when the diode is in high direc
 {\includegraphics[width = 0.5\textwidth , height=4.5cm]{Corrente/ConfrontiCorrentiBulkJN_SDEVsDD.eps}}
 \subfloat[][\emph{Jp}]
 {\includegraphics[width = 0.5\textwidth , height=4.5cm]{Corrente/ConfrontiCorrentiBulkJP_SDEVsDD.eps}}
+\caption{1D plot p-n junction - $V_A=1.0[V]$.}
+\label{fig: p-n drift diffusion}
+\end{figure} 
+
+
+
+
+
+\begin{figure}[!h]
+\centering
+\subfloat[][\emph{SDE}]
+{\includegraphics[width = 0.45\textwidth , height=5cm]{CapitoloCorrente/nMOS_SDE.png}}
+
+
+\subfloat[][\emph{SG}]
+{\includegraphics[width = 0.45\textwidth , height=5cm]{CapitoloCorrente/nMOS_SG_device.png}}
+\hspace{0.05\textwidth}
+\subfloat[][\emph{DD upwind}]
+{\includegraphics[width = 0.45\textwidth , height=5cm]{CapitoloCorrente/nMOS_DDcorretto.png}}
+
+\subfloat[][\emph{DD upwind (mesh finer)}]
+{\includegraphics[width = 0.45\textwidth , height=5cm]{CapitoloCorrente/nMOS_DDcorretto35000.png}}
+\hspace{0.05\textwidth}
+\subfloat[][\emph{DD standard (mesh finer)}]
+{\includegraphics[width = 0.45\textwidth , height=5cm]{CapitoloCorrente/nMOS_DD35000.png}}
+
+
 \caption{1D plot p-n junction - $V_A=1.0[V]$.}
 \label{fig: p-n drift diffusion}
 \end{figure} 

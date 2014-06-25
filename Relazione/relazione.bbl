@@ -76,6 +76,11 @@ Babu\v{s}ka I. and Osborn~J. E.
   relation to mixed methods.
 \newblock {\em Numer. Anal.}, 20:510--536, 1983.
 
+\bibitem[Jac84]{Jackson:ElettroClassica}
+J.~D. Jackson.
+\newblock {\em Elettrodinamica Classica}.
+\newblock Zanichelli, 1984.
+
 \bibitem[LH80]{Lochmann}
 W.~Lochmann and A.~Haug.
 \newblock Phonon-assisted auger recombination in si with direct calclation of
@@ -100,6 +105,11 @@ M.~Putti and C.~Cordes.
 \newblock {\em Society for Industrial and Applied Mathematics}, 19:1154--1168,
   1998.
 
+\bibitem[PN]{Pierret:SemiFunda}
+R.~F. Pierret and G.~W. Neudeck.
+\newblock {\em Advanced Semiconductor Fundamentals}, volume~6.
+\newblock Prentice Hall.
+
 \bibitem[PTVF07]{NumericalRecipes}
 William~H. Press, Saul~A. Teukoisky, William~T. Vetterling, and Brian~P.
   Flannery.
@@ -119,6 +129,11 @@ Sandro Salsa.
 \bibitem[Sde13]{SdeviceManual}
 {\em Sentaurus Device User Guide}.
 \newblock Synopsis Inc., 2013.
+
+\bibitem[Sie84]{selberherr:SimSem}
+Selberherr Siegfried.
+\newblock {\em Analysis and Simulation of Semiconductor Devices}.
+\newblock Springer-Verlag, Wien, 1984.
 
 \bibitem[vOdM70]{VanOverII}
 R.~van Overstraeten and H.~de~Man.
