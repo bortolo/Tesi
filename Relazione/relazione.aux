@@ -3,80 +3,71 @@
 \@writefile{toc}{\select@language{english}}
 \@writefile{lof}{\select@language{english}}
 \@writefile{lot}{\select@language{english}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {1}Resolution of the system}{1}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}Finite element discretization}{1}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {1.1}Geometry and boundary conditions}{1}}
-\newlabel{eq: hypotesis oxide}{{1.1}{1}}
-\newlabel{eq: dirichlet boundary condition}{{1.2}{1}}
-\newlabel{eq: neumann boundar condition}{{1.3}{2}}
+\newlabel{chap: finite element}{{1}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.1}Non Linear Poisson Equation: weak form}{1}}
+\newlabel{sec: NLP weak form}{{1.1}{1}}
+\newlabel{sys: NLP general problem linearized}{{1.1}{1}}
+\newlabel{eq: integration first}{{1.2}{1}}
+\citation{salsa:EDP}
+\newlabel{eq: NLP weakformulation}{{1.3}{2}}
+\newlabel{eq: bilinear form NLP linearized}{{1.4}{2}}
+\newlabel{eq: functional NLP linearized}{{1.5}{2}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}Continuity Equations: weak form}{3}}
+\newlabel{eq: system continuity equation}{{1.6}{3}}
+\newlabel{eq: LEC weakformulation}{{1.7}{3}}
+\newlabel{eq: bilinear form LEC}{{1.8}{3}}
+\newlabel{eq: functional LEC}{{1.9}{4}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.3}Numerical approximation}{4}}
+\newlabel{sec: Numerical approximation}{{1.3}{4}}
+\newlabel{eq: general galerkin problem}{{1.12}{4}}
+\newlabel{eq: dimensione polinomi}{{1.15}{4}}
+\citation{quarteroni:modnum}
+\newlabel{eq: sistema algebrico in sommatoria}{{1.18}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.1}Geometrical discretization}{5}}
+\newlabel{eq: mesh regular condition}{{1.19}{5}}
+\citation{quarteroni:modnum}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.2}Linearized Non Linear Poisson equation}{6}}
+\newlabel{eq: bilinear local discrete}{{1.21}{6}}
+\newlabel{eq: NLP discretizated}{{1.27}{7}}
+\@writefile{toc}{\contentsline {subsubsection}{Damping}{7}}
+\citation{DefulhardDamp}
+\citation{NumericalRecipes}
+\newlabel{eq: NLP mod used}{{1.29}{8}}
+\newlabel{eq: extended criterion}{{1.30}{8}}
+\newlabel{eq: easy criterion}{{1.31}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces (a) Number of iteration against residual for different voltages in a diode test case. (b) Magnitude of the damping parameter $t_k$.\relax }}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.3}Continuity equations}{9}}
+\newlabel{sec: continuity equations}{{1.3.3}{9}}
+\newlabel{eq: weak formulation displacement}{{1.34}{9}}
+\citation{BabuskaMixMet}
+\citation{Zikatanov:EAFE}
+\citation{TesiDotDeFalco}
+\citation{TesiDotDeFalco}
+\newlabel{eq: LEC system slotboom generic}{{1.35}{10}}
+\newlabel{eq: weak form PM1}{{1.36}{10}}
+\newlabel{eq: weak form PM2}{{1.37}{10}}
+\newlabel{eq: form of qh}{{1.39}{11}}
+\newlabel{eq: LEC discretized general}{{1.40}{11}}
+\newlabel{eq: vari diffusion coeff}{{1.41}{11}}
+\citation{BankMmatrixEAFE}
+\citation{ZikatanovXu}
+\newlabel{eq: peclet number}{{1.42}{12}}
+\newlabel{eq: exp fitted flux}{{1.44}{12}}
+\@writefile{toc}{\contentsline {subsubsection}{The discretization scheme}{12}}
+\newlabel{eq: matrice continuità}{{1.46}{12}}
+\citation{OSCputticorded}
+\newlabel{eq: mesh delaunay condition}{{1.48}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Evaluation of the Zikatanov condition over a simple partition. Red elements doesn't satisfy condition (\ref  {eq: mesh delaunay condition}) over four edges while blue elements fully accomplished the criterion.\relax }}{14}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig: outline boundaries 1}{{1.1a}{2}}
-\newlabel{sub@fig: outline boundaries 1}{{(a)}{a}}
-\newlabel{fig: outline boundaries 2}{{1.1b}{2}}
-\newlabel{sub@fig: outline boundaries 2}{{(b)}{b}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces (a) MOS device with net dopant concentration distributed accordingly to a gaussian profile and $\Gamma _D$ colored in black. The oxide layer is colored in light blue. (b) Outline of the MOS device with $\Gamma _{int}$ in light gray. \relax }}{2}}
-\newlabel{fig: outline boundaries}{{1.1}{2}}
-\newlabel{eq: systemo for dirichlet condition}{{1.5}{3}}
-\newlabel{eq: system closed}{{1.9}{3}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.2}Iteration algorithms}{4}}
-\newlabel{eq: abstract problem fully}{{1.10}{4}}
-\newlabel{eq: functional operator}{{1.11}{4}}
-\newlabel{space: Hm}{{1.12}{4}}
-\newlabel{space: L2}{{1.13}{4}}
-\newlabel{eq: semiorm sobolev}{{1.14}{4}}
-\newlabel{eq: norm sobolev}{{1.15}{4}}
-\newlabel{space: h1 zero}{{1.16}{5}}
-\newlabel{space: h1 zero gamma}{{1.17}{5}}
-\newlabel{eq: poincarre inequality}{{1.18}{5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.1}Newton's method}{5}}
-\newlabel{eq: abstract newton's method}{{1.21}{6}}
-\newlabel{eq: fixed point U}{{1.22}{6}}
-\newlabel{eq: iteration function}{{1.23}{6}}
-\newlabel{theorem: newton convergence}{{1.1}{6}}
-\newlabel{eq: convergece newton}{{1.25}{6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.2}Fully coupled Newthon's method}{6}}
-\newlabel{eq: NLP algorithm matrix}{{1.26}{6}}
-\citation{GummelMap}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.3}Gummel map algorithm}{7}}
-\newlabel{eq: newton step NLP linear}{{1.29}{8}}
-\newlabel{eq: LEC system}{{1.30}{8}}
-\newlabel{eq: LHC system}{{1.31}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Gummel map algorithm\relax }}{9}}
-\newlabel{fig: gummel map}{{1.2}{9}}
-\newlabel{eq: real Rn and Rp}{{1.32}{10}}
-\newlabel{eq: LEC system new}{{1.34}{10}}
-\newlabel{eq: LHC system new}{{1.35}{10}}
+\newlabel{fig: cubo zikatanov}{{1.2}{14}}
 \bibstyle{alpha}
 \bibdata{contents/Bibliografia}
-\bibcite{BankMmatrixEAFE}{{BCC98a}{}{{}}{{}}}
-\bibcite{Bank:FEvsBOX}{{BCC98b}{}{{}}{{}}}
-\bibcite{SolidState}{{BGB00}{}{{}}{{}}}
-\bibcite{Bank:FVSG}{{BRF83}{}{{}}{{}}}
-\bibcite{Canali:Vsat}{{Can75}{}{{}}{{}}}
-\bibcite{Cynoweth}{{Chy58}{}{{}}{{}}}
-\bibcite{DefulhardDamp}{{Deu74}{}{{}}{{}}}
-\bibcite{TesiDotDeFalco}{{DF05}{}{{}}{{}}}
-\bibcite{Goebel:SRH}{{GH92}{}{{}}{{}}}
-\@writefile{toc}{\contentsline {chapter}{Bibliografia}{11}}
-\bibcite{ContactCurrentRM}{{GS74}{}{{}}{{}}}
+\bibcite{Adams:SobolevSpaces}{{AF03}{}{{}}{{}}}
 \bibcite{GummelMap}{{Gum64}{}{{}}{{}}}
-\bibcite{GalerkMethConsHughes}{{HEML00}{}{{}}{{}}}
-\bibcite{BabuskaMixMet}{{IE83}{}{{}}{{}}}
-\bibcite{Jackson:ElettroClassica}{{Jac84}{}{{}}{{}}}
-\bibcite{Lochmann}{{LH80}{}{{}}{{}}}
-\bibcite{Lombardi:MobConst}{{Lom88}{}{{}}{{}}}
-\bibcite{Masetti:MobDop}{{MS83}{}{{}}{{}}}
-\bibcite{OSCputticorded}{{PC98}{}{{}}{{}}}
-\bibcite{Pierret:SemiFunda}{{PN}{}{{}}{{}}}
-\bibcite{NumericalRecipes}{{PTVF07}{}{{}}{{}}}
-\bibcite{quarteroni:modnum}{{Qua08}{}{{}}{{}}}
+\bibcite{Jerome:AnalyCharTran}{{Jer96}{}{{}}{{}}}
 \bibcite{salsa:EDP}{{Sal10}{}{{}}{{}}}
-\bibcite{SdeviceManual}{{Sde13}{}{{}}{{}}}
-\bibcite{selberherr:SimSem}{{Sie84}{}{{}}{{}}}
-\bibcite{VanOverII}{{vOdM70}{}{{}}{{}}}
-\bibcite{VanOver:SRH}{{VOT83}{}{{}}{{}}}
-\bibcite{ZikatanovXu}{{XZ99}{}{{}}{{}}}
-\bibcite{ModernVLSIdevices}{{YT09}{}{{}}{{}}}
-\bibcite{Zikatanov:EAFE}{{ZL12}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
+\@writefile{toc}{\contentsline {chapter}{Bibliografia}{15}}

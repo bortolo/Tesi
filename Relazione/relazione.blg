@@ -3,49 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: relazione.aux
 The style file: alpha.bst
 Database file #1: contents/Bibliografia.bib
-Warning--to sort, need author, editor, or key in SdeviceManual
-Warning--empty school in TesiDotDeFalco
-Warning--empty year in Pierret:SemiFunda
-Warning--empty author and editor in SdeviceManual
-You've used 29 entries,
+You've used 4 entries,
             2543 wiz_defined-function locations,
-            744 strings with 9060 characters,
-and the built_in function-call counts, 11057 in all, are:
-= -- 1126
-> -- 465
-< -- 14
-+ -- 158
-- -- 149
-* -- 757
-:= -- 1819
-add.period$ -- 86
-call.type$ -- 29
-change.case$ -- 160
-chr.to.int$ -- 28
-cite$ -- 34
-duplicate$ -- 451
-empty$ -- 826
-format.name$ -- 186
-if$ -- 2240
-int.to.chr$ -- 2
+            583 strings with 4929 characters,
+and the built_in function-call counts, 1341 in all, are:
+= -- 125
+> -- 43
+< -- 4
++ -- 13
+- -- 12
+* -- 71
+:= -- 225
+add.period$ -- 12
+call.type$ -- 4
+change.case$ -- 18
+chr.to.int$ -- 4
+cite$ -- 4
+duplicate$ -- 71
+empty$ -- 111
+format.name$ -- 19
+if$ -- 279
+int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 36
-newline$ -- 147
-num.names$ -- 84
-pop$ -- 157
+missing$ -- 7
+newline$ -- 23
+num.names$ -- 12
+pop$ -- 32
 preamble$ -- 1
-purify$ -- 198
+purify$ -- 25
 quote$ -- 0
-skip$ -- 369
+skip$ -- 54
 stack$ -- 0
-substring$ -- 738
-swap$ -- 57
-text.length$ -- 14
-text.prefix$ -- 9
+substring$ -- 61
+swap$ -- 13
+text.length$ -- 4
+text.prefix$ -- 3
 top$ -- 0
-type$ -- 196
-warning$ -- 4
-while$ -- 115
-width$ -- 35
-write$ -- 367
-(There were 4 warnings)
+type$ -- 20
+warning$ -- 0
+while$ -- 12
+width$ -- 7
+write$ -- 51

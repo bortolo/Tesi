@@ -1,4 +1,4 @@
 \select@language {english}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces (a) MOS device with net dopant concentration distributed accordingly to a gaussian profile and $\Gamma _D$ colored in black. The oxide layer is colored in light blue. (b) Outline of the MOS device with $\Gamma _{int}$ in light gray. \relax }}{2}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Gummel map algorithm\relax }}{9}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces (a) Number of iteration against residual for different voltages in a diode test case. (b) Magnitude of the damping parameter $t_k$.\relax }}{9}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Evaluation of the Zikatanov condition over a simple partition. Red elements doesn't satisfy condition (\ref {eq: mesh delaunay condition}) over four edges while blue elements fully accomplished the criterion.\relax }}{14}
