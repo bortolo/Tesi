@@ -1,162 +1,19 @@
-\begin{thebibliography}{HEML00}
+\begin{thebibliography}{BCC98}
 
-\bibitem[AF03]{Adams:SobolevSpaces}
-R.~A. Adams and J.~J.~F. Fournier.
-\newblock {\em Sobolev Spaces}.
-\newblock Academic Press, 2003.
-
-\bibitem[BCC98]{BankMmatrixEAFE}
-R.~E. Bank, W.~Coughran, and L.~C. Cowsar.
-\newblock The finite volume sharfetter-gummel method for steady convection
+\bibitem[BCC98]{Bank:FEvsBOX}
+R.~E. Bank, W.~M. Coughran, and L.~C. Cowsar.
+\newblock The finite volume scharfetter-gummel method for steady convection
   diffusion equations.
 \newblock {\em Computing and Visualization in Science}, 1:123--136, 1998.
 
-\bibitem[BGB00]{SolidState}
-Streetman Ben~G. and Sanjay Banerjee.
-\newblock {\em Solid State electronic Devices}.
-\newblock New Jersey: Prentice Hall, 2000.
+\bibitem[BRF83]{Bank:FVSG}
+R.~E. Bank, D.~J. Rose, and W~Fichtner.
+\newblock Numerical methods for semiconductor device simulation.
+\newblock {\em SIAM J. Sci. Stat.}, 4:416--514, 1983.
 
-\bibitem[Can75]{Canali:Vsat}
-C.~Canali.
-\newblock Electron and hole drift velocity measurements in silicon and their
-  empirical relation to electric field and temperature.
-\newblock {\em IEEE Transactions on Electron Devices}, 22:1045--1047, 1975.
-
-\bibitem[Chy58]{Cynoweth}
-A.~G. Chynoweth.
-\newblock Ionization rates for electrons and holes in silicon.
-\newblock {\em Physical Review}, 109:1537--1540, 1958.
-
-\bibitem[Deu74]{DefulhardDamp}
-P.~Deuflhard.
-\newblock A modified newton method for the solution of ill-conditioned system
-  of nonlinear equations with application to multiple shooting.
-\newblock {\em Numer. Math}, 22:289--315, 1974.
-
-\bibitem[GH92]{Goebel:SRH}
-H~Goebel and K.~Hoffmann.
-\newblock Full dynamic power diode model including temperature behavior for use
-  in circuit simulations.
-\newblock {\em Proceedings of the 4th International Symposium on Power
-  Semiconductor Devices \& ICs}, pages 130--135, 1992.
-
-\bibitem[GS74]{ContactCurrentRM}
-R.~Gusmeroli and A.~S. Spinelli.
-\newblock Accurate boundary integrals calculation in semiconductor device
-  simulation.
-\newblock {\em Numer. Math}, 22:289--315, 1974.
-
-\bibitem[Gum64]{GummelMap}
-H.~K. Gummel.
-\newblock A self-consistent iterative scheme for one-dimensional steady state
-  transistor calculations.
-\newblock {\em Electron Devices}, pages 455--465, 1964.
-
-\bibitem[HEML00]{GalerkMethConsHughes}
-Thomas~J.R. Hughes, Gerald Engel, Luca Mazzei, and Mats~G. Larson.
-\newblock The continuous galerkin method is locally conservative.
-\newblock {\em Journal of Computational Physics}, 163:467--488, 2000.
-
-\bibitem[IE83]{BabuskaMixMet}
-Babu\v{s}ka I. and Osborn~J. E.
-\newblock Generlized finite element methods: Their performance and their
-  relation to mixed methods.
-\newblock {\em Numer. Anal.}, 20:510--536, 1983.
-
-\bibitem[Jac84]{Jackson:ElettroClassica}
-J.~D. Jackson.
-\newblock {\em Elettrodinamica Classica}.
-\newblock Zanichelli, 1984.
-
-\bibitem[Jer96]{Jerome:AnalyCharTran}
-J.~W. Jerome.
-\newblock {\em Analysis of Charge Transport}.
-\newblock Springer, 1996.
-
-\bibitem[LH80]{Lochmann}
-W.~Lochmann and A.~Haug.
-\newblock Phonon-assisted auger recombination in si with direct calclation of
-  the overlap integrals.
-\newblock {\em Solid State Communications}, 35:553--556, 1980.
-
-\bibitem[Lom88]{Lombardi:MobConst}
-C.~Lombardi.
-\newblock A physically based mobility model for numerical simulation of
-  nonplanar devices.
-\newblock {\em IEEE Transactions on Computer-Aided Design}, 7:1164--1171, 1988.
-
-\bibitem[MS83]{Masetti:MobDop}
-G.~Masetti and M.~Severi.
-\newblock Modeling of carrier mobility against carrier concentration in
-  arsenic-, phosphorus-, and boron-doped silicon.
-\newblock {\em IEEE Transactions on Electron Devices}, 7:764--769, 1983.
-
-\bibitem[PC98]{OSCputticorded}
-M.~Putti and C.~Cordes.
-\newblock Finite element approximation of the diffusion operator on tetrahedra.
-\newblock {\em Society for Industrial and Applied Mathematics}, 19:1154--1168,
-  1998.
-
-\bibitem[PN]{Pierret:SemiFunda}
-R.~F. Pierret and G.~W. Neudeck.
-\newblock {\em Advanced Semiconductor Fundamentals}, volume~6.
-\newblock Prentice Hall.
-
-\bibitem[PTVF07]{NumericalRecipes}
-William~H. Press, Saul~A. Teukoisky, William~T. Vetterling, and Brian~P.
-  Flannery.
-\newblock {\em Numerical Recipes, The Art of Scientific Computing}.
-\newblock Cambridge University Press, New York, 2007.
-
-\bibitem[Qua08]{quarteroni:modnum}
-Alfio Quarteroni.
-\newblock {\em Modellistica Numerica per Problemi Differenziali}.
-\newblock Springer Italia, Milan, 2008.
-
-\bibitem[QV08]{quarteroni:NumApprox}
-Alfio Quarteroni and Alberto Valli.
-\newblock {\em Numerical Approximation of Partial Differential Equations}.
-\newblock Springer, 2008.
-
-\bibitem[Sal10]{salsa:EDP}
-Sandro Salsa.
-\newblock {\em Equazioni a Derivate Parziali, metodi, modelli e applicazioni}.
-\newblock Springer Italia, Milan, 2010.
-
-\bibitem[Sde13]{SdeviceManual}
-{\em Sentaurus Device User Guide}.
-\newblock Synopsis Inc., 2013.
-
-\bibitem[Sie84]{selberherr:SimSem}
-Selberherr Siegfried.
-\newblock {\em Analysis and Simulation of Semiconductor Devices}.
-\newblock Springer-Verlag, Wien, 1984.
-
-\bibitem[vOdM70]{VanOverII}
-R.~van Overstraeten and H.~de~Man.
-\newblock Measurement of the ionization rates in diffused silicon p-n
-  junctions.
-\newblock {\em Solid-State Electronics}, 13:583--608, 1970.
-
-\bibitem[VOT83]{VanOver:SRH}
-R.~Van~Overstraeten and M.~S. Tyagi.
-\newblock Minority carrier recombination in heavily-doped silicon.
-\newblock {\em Solid-State Electronics}, 26:577--597, 1983.
-
-\bibitem[XZ99]{Zikatanov:EAFE1}
-Jinchao Xu and Ludmil Zikatanov.
-\newblock A monotone finite element scheme for convection-diffusion equations.
-\newblock {\em Mathematics of Computation}, 68:1429--1446, 1999.
-
-\bibitem[YT09]{ModernVLSIdevices}
-Taur Yuan and H.~Ning Tak.
-\newblock {\em Fundamentals of Modern VLSI Devices}.
-\newblock Cambridge University Press, 2009.
-
-\bibitem[ZL12]{Zikatanov:EAFE2}
-L.~T. Zikatanov and R.~D. Lazarov.
-\newblock An exponential fitting scheme for general convection-diffusion
-  equations on tetrahedral meshes.
-\newblock {\em math}, pages 455--465, 2012.
+\bibitem[GS69]{Gummel:SignAnalys}
+H.~K. Gummel and D.~Scharfetter.
+\newblock Large-signal analysis of a silicon read diode oscillator.
+\newblock {\em IEEE Trans. Electron Devices}, pages 64--77, 1969.
 
 \end{thebibliography}
