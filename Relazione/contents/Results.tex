@@ -1,7 +1,7 @@
 \chapter{Simulation results}
 \label{chap: results}
 
-In this chapter we present the work done in order to validate the numerical implementation of the discretization method illustrated in Chapter \ref{chap: finite element}, in the FEMOS 3D code compared with a reference simulation tool (SDEVICE, commercialized by Synopsis \cite{SdeviceManual}).
+In this chapter we present the work done in order to validate the numerical implementation of the discretization method illustrated in Chapter \ref{chap: finite element}, in FEMOS 3D code compared with a reference simulation tool (SDEVICE, commercialized by Synopsis \cite{SdeviceManual}).
 In particular we illustrate (and compare) the algorithm used to calculate the current at the ohmic contacts.
 
 \section{Test cases}
@@ -39,10 +39,10 @@ Two contacts are defined: (A) contact is placed at $Z=0.1[\mu m]$ and (B) contac
 In order to analyze the operating function of the diode, two cases of direct bias are performed: $0.3[V]$-$1.0[V]$. The setting values and the parameters are summarized in \tabref{tab: diode direct}. 
 \figref{fig: Solutions case test 0.3} reports the solutions for $V_A=0.3[V]$ and $V_A=1.0[V]$, along a line parallel to the Z-axis and placed at the center of the device. 
 Because the built-in voltage is around $0.7 \div 0.8 [V]$ the behaviour of the device is different when the applied bias is below or above this threshold. 
-At a bias voltage of $0.3[V]$, potential drop is almost bounded around the junction, and due to the asymmetric doping, is mostly extended in the p-side. Carriers cannot cross the potential barrier and this causes a low current flux inside the device.
-At $1.0[V]$ the minority carrier density becomes almost ten order bigger, resulting in a large amount of current toward the contacts:  the device turns from exponential to linear resistive. This is clear in \figref{fig: diode 1v pot} where the potential shape becomes similar to a that of a resistance voltage profile (linear potential profile). Comparing the quasi Fermi potentials of \figref{fig: qf pot diode 03} and \figref{fig: qf pot diode 1} the boundary layers at contacts increase with the applied bias. This effect is related to the ohmic contact hypothesis, and can be avoided by adopting different boundary condition: this occurs also for the carrier concentration because at the contacts, charge neutrality and thermodynamic equilibrium  are imposed.
+At a bias voltage of $0.3[V]$, potential drop is almost bounded around the junction, and due to the asymmetric doping, is mostly extended in the p-side. Carriers cannot cross the potential barrier and this causes low current flux inside the device.
+At $1.0[V]$ the minority carrier density becomes almost ten order bigger, resulting in a large amount of current toward the contacts:  the device turns from exponential to linear resistive. This is clear in \figref{fig: diode 1v pot} where the potential shape becomes similar to a that of a resistance voltage profile (linear potential profile). Comparing the quasi Fermi potentials of \figref{fig: qf pot diode 03} and \figref{fig: qf pot diode 1} the boundary layers at contacts increase with the applied bias. This effect is related to the ohmic contact hypothesis, and can be changed by adopting different boundary condition: this occurs also for the carrier concentration because at the contacts, charge neutrality and thermodynamic equilibrium  are imposed.
 
-\figsref{fig: diode potential 03V}$\div$\ref{fig: pdensity 03V} shows the comparison between SDEVICE and FEMOS in 3D plots for electrostatic potential, electron and hole densities at $0.3[V]$, while \figsref{fig: diode potential 1V}$\div$\ref{fig: pdensity 1V} show the same comparison at $1.0[V]$. In both conditions the agreement is very good.
+\figsref{fig: diode potential 03V}-\ref{fig: pdensity 03V} show the comparison between SDEVICE and FEMOS in 3D plots for electrostatic potential, electron and hole densities at $0.3[V]$, while \figsref{fig: diode potential 1V}-\ref{fig: pdensity 1V} show the same comparison at $1.0[V]$. In both conditions the agreement is very good.
 
 \begin{table}[!h]
 \centering
@@ -78,7 +78,7 @@ $V_A=1.0$ & $\mu_n = 1417$, $\mu_p = 470.5$ & SRH, Auger & 11.6 \\\bottomrule
 \subfloat[][\emph{Quasi Fermi potentials} \label{fig: qf pot diode 1}]
 {\includegraphics[width=0.5\textwidth , height=5cm]{DatiImmaginiTESI/Diode/QuasiFermiZaxis1volt.eps}}
 
-\caption{1D plots of the solutions and the quasi fermi potential levels along the line parallel to the Z-axis and placed at the center of the device. On the left is presented the test case at $V_A=0.3[V]$ while on the right at $V_A=1.0[V]$.}
+\caption{1D plots of the solutions and the quasi fermi potential levels along the line parallel to the Z-axis and placed at the center of the device of \figref{fig: diodo struttura}. On the left is presented the test case at $V_A=0.3[V]$ while on the right at $V_A=1.0[V]$.}
 \label{fig: Solutions case test 0.3}
 \end{figure}
 
@@ -196,7 +196,7 @@ In order to analyze the response of the system at different bias an additional t
  
  Let us consider the case with a coarse mesh. In \figref{fig: tempi computazionali 2} it is clear how the average time spent to solve the NLP and the DD equations remains almost unchanged. On the contrary the number of GM iterations needed by the system to reach the solution, increases for voltages above $\approx 1.5[V]$.
 
-A possible explanation of this trend can be found comparing solution and initial guess for a bias below and above $1.5[V]$ (similar considerations may be done for carrier densities). When voltage is low, like in \figref{fig: different biast initial step 1} ($V_A = 0.1[V]$), the potential shape is well predicted by the initial guess, resulting in a better convergence for the Gummel map algorithm. On the contrary in \figref{fig: different biast initial step 2} ($V_A=1.6[V]$) the device operates as a resistence and the potential profile is close to a linear function: this implies that the solution is far from the initial guess as equilibrium condition and the algorithm needs more steps.
+A possible explanation of this trend can be found comparing solution and initial guess for a bias below and above $1.5[V]$ (similar considerations can be done for carrier densities). When voltage is low, like in \figref{fig: different biast initial step 1} ($V_A = 0.1[V]$), the potential shape is well predicted by the initial guess, resulting in a better convergence for the Gummel map algorithm. On the contrary in \figref{fig: different biast initial step 2} ($V_A=1.6[V]$) the device operates as a resistence and the potential profile is close to a linear function: this implies that the solution is far from the initial guess as equilibrium condition and the algorithm needs more steps.
 
 
  
@@ -213,7 +213,7 @@ A possible explanation of this trend can be found comparing solution and initial
 {\includegraphics[height=4.5cm]{DatiImmaginiTESI/Diode/PotentialZaxis01volt.eps}}
 \subfloat[][\label{fig: different biast initial step 2}]
 {\includegraphics[height=4.5cm]{DatiImmaginiTESI/Diode/PotentialZaxis15volt.eps}}
-\caption{Initial guess for different bias compared with the final solution.}
+\caption{Initial guess for different bias compared with the final solution of the device of \figref{fig: diodo struttura}.}
 \label{fig: different biast initial step}
 \end{figure}
  
@@ -229,8 +229,8 @@ A possible explanation of this trend can be found comparing solution and initial
 In this test case a silicon p-n junction $0.3[\mu m]$ long is surrounded by an oxide layer $0.025[\mu m]$ thick. The section of the silicon part is a $0.1 \times 0.1 [\mu m^2]$ square.  We employ $6334$ vertices and $33121$ elements overall the domain. The structure and the doping are shown in \figref{fig: structure diodeox}. The setting of the electrodes is similar to the previous test case and contacts are defined only on silicon surface. 
 \tabref{tab: diodeox 3d} reports settings, models and parameters used in the simulations.
 
-\figref{fig: plot 1D diodeox} shows the solutions and the quasi Fermi potential levels along a line parallel to the Z-axis and placed at the center of the device. The main features are similar to the previous test case, also for the boundary layers at contact in carriers and quasi Fermi potentials.
-\figsref{fig: potential diodeox} $\div$ \ref{fig: hdensity diodeox} show the 3D solutions for the test at $0.3[V]$, while \figref{fig: potential diodeox 1V}$\div$\ref{fig: hdensity diodeox 1V} refer to the case at $1.0[V]$. Both the 1D cuts and 3D plots agreement with the commercial software is very good. 
+\figref{fig: plot 1D diodeox} shows the solutions and the quasi Fermi potential levels along a line parallel to the Z-axis and placed at the center of the device. The main features are similar to the previous test case, also for the boundary layers at contact for carriers and quasi Fermi potentials.
+\figsref{fig: potential diodeox}-\ref{fig: hdensity diodeox} show the 3D solutions for the test at $0.3[V]$, while \figref{fig: potential diodeox 1V}-\ref{fig: hdensity diodeox 1V} refer to the case at $1.0[V]$. Both the 1D cuts and 3D plots agreement with the commercial software is very good. 
 
 \vspace{0.5cm}
 
@@ -288,7 +288,7 @@ $V_A=1.0$ & $\mu_n = 1417$, $\mu_p = 470.5$ & SRH, Auger & 11.6 & 3.9 \\\bottomr
 {\includegraphics[width=0.5\textwidth , height=5cm]{DatiImmaginiTESI/DiodeOx/QFPotentialZaxis1VOLT.eps}}
 
 
-\caption{1D plots of the solutions and the quasi Fermi potential levels along the line parallel to the Z-axis and placed at the center of the device. On the left test case at $V_A=0.3[V]$ is reported while on the right at $V_A=1.0[V]$.}
+\caption{1D plots of the solutions and the quasi Fermi potential levels along the line parallel to the Z-axis and placed at the center of the device of \figref{fig: structure diodeox}. On the left test case at $V_A=0.3[V]$ is reported while on the right at $V_A=1.0[V]$.}
 \label{fig: plot 1D diodeox}
 \end{figure}
 
@@ -394,8 +394,8 @@ $V_A=1.0$ & $\mu_n = 1417$, $\mu_p = 470.5$ & SRH, Auger & 11.6 & 3.9 \\\bottomr
 
 
 \figref{fig: potential diodeox} shows how at low bias the electrostatic potential behaves in a different manner in the oxide with the respect to the silicon region.
-Since we impose $\nabla \varphi \cdot \vect{n}=0$ on the oxide boundary no field lines of the electric field can cross that boundary and as a consequence field lines can start and end only at contact A or B.
-The electric field inside the device is due only to the displacement effect in the junction of the silicon which imposes the electric response also in the oxide material where the solution is no more linear. \figref{fig: electric field diode} reports the electric field lines in the case $V_A=0.3[V]$ compared with the commercial software. The lower magnitude of the electric field in the oxide, results in a more diffused potential.
+Since we impose $\nabla \varphi \cdot \vect{n}=0$ on the oxide boundary no field lines of the electric field can cross that boundary and, as a consequence, field lines can start and end only at contact A or B.
+The electric field inside the device is due only to the displacement effect in the junction of the silicon which imposes the electric response also in the oxide material where the solution is no more linear. \figref{fig: electric field diode} reports the electric field lines in the case of $V_A=0.3[V]$ compared with the commercial software with very good agreement. The lower magnitude of the electric field in the oxide, results in a more diffused potential.
 
 At high bias (\figref{fig: potential diodeox 1V}) the influence of the contacts (A,B) becomes higher and the electrostatic potential is much more similiar in the two subdomains.
 
@@ -418,7 +418,7 @@ At high bias (\figref{fig: potential diodeox 1V}) the influence of the contacts 
 \vspace{0.5cm}
 
 
-It is important to notice that the displacement formulation approach does not satisfied  in a strong manner the princinple of action and reaction at \textcolor{red}{?} boundaries.
+It is important to notice that the displacement formulation approach does not satisfied  in a strong manner the princinple of action and reaction at boundaries.
 This is equivalent to saying that given two elements $K_i,K_j\in \mathcal{T}_h$ such that $K_i \bigcap K_j = f_i$ where $f_i \in \mathcal{F}_h$ and denoting by $\vect{n}_{i}$ the outward normal vector of $\partial K_i$ and $\vect{n}_{j}$ the outward normal vector of $\partial K_j$,  the following equations are satisfied only in a weak sense:
 
 \begin{align}
@@ -437,7 +437,7 @@ In fact, taking in consideration equation \referenzaeq{eq: conservazione vettore
 
 According with the parameters used in the simulations the jump of the electric field component from oxide to semiconductor is around $3.00$. \figref{fig: salto electric field} shows the plots of $E_y$ along a line parallel to the Y-axis crossing both oxide and silicon: the ratio expressed by \referenzaeq{eq: rapporto campi} is almost $3.6$ at $y=0.05[\mu m]$ and $y = 0.15[\mu m]$ where the interfaces are located.
 
-Each tetrahedral interface of the partition is affected by this problem, which means that the normal component of the electric field from one element of the grid to the neighbouring is not conserved even if the material is homogeneous and there is no charge at the interface. Despite this drawback, the solutions are acceptable. But if we would satisfy equation \referenzaeq{eq: conservazione vettore spostamento} in a strong manner, the use of a mixed-hybrid formulation is needed which ensures the conservation of the flux also under possbile strong discontinuities of material properties.
+Each tetrahedral interface of the partition is affected by the same problem, which means that the normal component of the electric field from one element of the grid to the neighbouring is not conserved even if the material is homogeneous and there is no charge at the interface. Despite this drawback, the solutions are acceptable. But if we would like to satisfy equation \referenzaeq{eq: conservazione vettore spostamento} in a strong manner, the use of a mixed-hybrid formulation is needed which ensures the conservation of the flux also under possbile strong discontinuities of material properties.
 
 
 \begin{figure}[!h]
@@ -457,8 +457,8 @@ Each tetrahedral interface of the partition is affected by this problem, which m
 \subsection{n-channel MOSFET}
 \label{sec: MOS}
 
-The description of functioning of a MOSFET device can be found in \cite{ModernVLSIdevices}: it is a four-terminal device with the electrodes designated as gate (G), source (S), drain (D) and substrate or bulk (B). The gate electrode is usually made of metal or heavily doped polysilicon and is separated from the substrate by a thin silicon dioxide. The surface region under the gate oxide between source and drain is called \textit{channel} region.
-Because the current in a MOSFET is due by carriers of one polarity, the MOSFET is usually referred as a unipolar or majority-carrier device: n-channel (n-MOSFET) and p-channel (p-MOSFET) are considered in the test. A \textit{n-MOSFET} (p-MOSFET) consists of a p-type (n-type) silicon substrate into which two n-regions (p-regions) are designed as source and drain. The n-regions (p-regions) are doped according with a Gaussian profile as in a real implantation process. 
+The description of the working principle of a MOSFET device can be found in \cite{ModernVLSIdevices}: it is a four-terminal device with the electrodes designated as gate (G), source (S), drain (D) and substrate or bulk (B). The gate electrode is usually made of metal or heavily doped polysilicon and is separated from the substrate by a thin silicon dioxide. The surface region under the gate oxide between source and drain is called \textit{channel} region.
+Because the current in a MOSFET is due to carriers of one polarity, the MOSFET is usually referred as a unipolar or majority-carrier device: n-channel (n-MOSFET) and p-channel (p-MOSFET) are considered in the test. A \textit{n-MOSFET} (p-MOSFET) consists of a p-type (n-type) silicon substrate into which two n-regions (p-regions) are designed as source and drain. The n-regions (p-regions) are doped according with a Gaussian profile as in a real implantation process. 
 \figref{fig: mos geometry 1} and \figref{fig: mos geometry 2} show the geometry and the doping concentration for the n-MOSFET with a coarse mesh ($2739$ vertices and $12338$ elements). 
 We note that the mesh has been refined where the more interesting phenomena occur, i.e., along channel and at drain/source contacts.
 
@@ -500,7 +500,7 @@ The voltage applied to the gate tends to decrease the energy barrier in the chan
 Finally \figref{fig: electric field mos} reports the streamline plot of the electric field inside the device for FEMOS and the SDEVICE in the case of on-state MOSFET.
 
 
-Settings, parameters and models used for these simulations are summarized in \tabref{tab: mos direct pol}. \figsref{fig: potential mos off}$\div$\ref{fig: pdensity mos off} show the 3D view of the electrostatic potential, electron and hole densities obtained by FEMOS and by the commercial code in the off-state ($V_G=0.0[V]$), while \figsref{fig: potential mos}$\div$\ref{fig: pdensity mos} refer to the on-state ($V_G=2.0[V]$): the agreement is very good.
+Settings, parameters and models used for these simulations are summarized in \tabref{tab: mos direct pol}. \figsref{fig: potential mos off}-\ref{fig: pdensity mos off} show the 3D view of the electrostatic potential, electron and hole densities obtained by FEMOS and by the commercial code in the off-state ($V_G=0.0[V]$), while \figsref{fig: potential mos}-\ref{fig: pdensity mos} refer to the on-state ($V_G=2.0[V]$): the agreement is very good.
 
 
 
@@ -550,7 +550,7 @@ $V_G=2.0 [V]$, $V_D=0.1[V]$,& $\mu_n = 1417$ & \multirow{2}*{SRH, Auger} & \mult
 {\includegraphics[width=0.38\textwidth ,height=4.5cm]{Results/MOS/SDEVICE181718_ElectricField2voltONLYDEVICE.png}}
 \hspace{0.04\textwidth}
 {\includegraphics[width=0.1\textwidth ,height=4.5cm]{Results/MOS/LegendElectricFieldNMOS.png}}
-\caption{Electric field - $V_G = 2.0 [V]$.}
+\caption{n-MOSFET $V_G = 2.0 [V]$ - Electric field.}
 \label{fig: electric field mos}
 \end{figure}
 
@@ -567,7 +567,7 @@ $V_G=2.0 [V]$, $V_D=0.1[V]$,& $\mu_n = 1417$ & \multirow{2}*{SRH, Auger} & \mult
 {\includegraphics[width=0.38\textwidth ,height=4.5cm]{Results/MOS/MOSNelectrostaticpotSUBTHRESONLYDEVICE.png}}
 \hspace{0.04\textwidth}
 {\includegraphics[width=0.1\textwidth ,height=4.5cm]{Results/MOS/LegendPotentialNMOSdirect.png}}
-\caption{Electrostatic potential - $V_G = 0.0 [V]$.}
+\caption{n-MOSFET $V_G = 0.0 [V]$ - Electrostatic potential.}
 \label{fig: potential mos off}
 \end{figure}
 
@@ -582,7 +582,7 @@ $V_G=2.0 [V]$, $V_D=0.1[V]$,& $\mu_n = 1417$ & \multirow{2}*{SRH, Auger} & \mult
 {\includegraphics[width=0.38\textwidth ,height=4.5cm]{Results/MOS/MOSNedensitySUBTHRESONLYDEVICE.png}}
 \hspace{0.04\textwidth}
 {\includegraphics[width=0.1\textwidth ,height=4.5cm]{Results/MOS/LegendEdensityNMOSdirect.png}}
-\caption{Electron density - $V_G = 0.0 [V]$.}
+\caption{n-MOSFET $V_G = 0.0 [V]$ - Electron density.}
 \label{fig: ndensity mos off}
 \end{figure}
 
@@ -597,7 +597,7 @@ $V_G=2.0 [V]$, $V_D=0.1[V]$,& $\mu_n = 1417$ & \multirow{2}*{SRH, Auger} & \mult
 {\includegraphics[width=0.38\textwidth ,height=4.5cm]{Results/MOS/MOSNhdensitySUBTHRESONLYDEVICE.png}}
 \hspace{0.04\textwidth}
 {\includegraphics[width=0.1\textwidth ,height=4.5cm]{Results/MOS/LegendHdensityNMOSdirect.png}}
-\caption{Hole density - $V_G = 0.0 [V]$.}
+\caption{n-MOSFET $V_G = 0.0 [V]$ - Hole density.}
 \label{fig: pdensity mos off}
 \end{figure}
 
@@ -617,7 +617,7 @@ $V_G=2.0 [V]$, $V_D=0.1[V]$,& $\mu_n = 1417$ & \multirow{2}*{SRH, Auger} & \mult
 {\includegraphics[width=0.38\textwidth ,height=4.5cm]{Results/MOS/FEMOS181718_potential2voltONLYDEVICE.png}}
 \hspace{0.04\textwidth}
 {\includegraphics[width=0.1\textwidth ,height=4.5cm]{Results/MOS/LegendPotentialNMOSdirectON.png}}
-\caption{Electrostatic potential - $V_G = 2.0 [V]$.}
+\caption{n-MOSFET $V_G = 2.0 [V]$ - Electrostatic potential.}
 \label{fig: potential mos}
 \end{figure}
 
@@ -632,7 +632,7 @@ $V_G=2.0 [V]$, $V_D=0.1[V]$,& $\mu_n = 1417$ & \multirow{2}*{SRH, Auger} & \mult
 {\includegraphics[width=0.38\textwidth ,height=4.5cm]{Results/MOS/FEMOS181718_ndensity2voltONLYDEVICE.png}}
 \hspace{0.04\textwidth}
 {\includegraphics[width=0.1\textwidth ,height=4.5cm]{Results/MOS/LegendEdensityNMOSdirectON.png}}
-\caption{Electron density - $V_G = 2.0 [V]$.}
+\caption{n-MOSFET $V_G = 2.0 [V]$ - Electron density.}
 \label{fig: ndensity mos}
 \end{figure}
 
@@ -647,7 +647,7 @@ $V_G=2.0 [V]$, $V_D=0.1[V]$,& $\mu_n = 1417$ & \multirow{2}*{SRH, Auger} & \mult
 {\includegraphics[width=0.38\textwidth ,height=4.5cm]{Results/MOS/FEMOS181718_pdensity2volt.png}}
 \hspace{0.04\textwidth}
 {\includegraphics[width=0.1\textwidth ,height=4.5cm]{Results/MOS/LegendHdensityNMOSdirect.png}}
-\caption{Hole density - $V_G = 2.0 [V]$.}
+\caption{n-MOSFET $V_G = 2.0 [V]$ - Hole density.}
 \label{fig: pdensity mos}
 \end{figure}
 
@@ -662,7 +662,7 @@ In Section \ref{sec: continuity equations} we pointed out that the discretizatio
 In order to highlight this possible critical situation, a n-channel MOSFET is simulated in reverse bias regime by grounding all the contacts except the drain which is ramped to $0.5[V]$: \tabref{tab: nmos inverse} reports the needed indications for the simulation.
 
 \figref{fig: negative carriers MOS} reports the electron density computed with FEMOS and SDEVICE using the mesh presented in \figref{fig: mos geometry 2}: the results are comparable, but near the drain-bulk junction FEMOS presents some points with negative concentrations. Increasing drain bias the phenomenon tends to spread over a larger area, until it affects irremediably the simulation of the device.
-As we anticipated in Chapter \ref{chap: finite element}, the most practiced technique to limit this problem is local mesh refinement.
+As we anticipated in Chapter \ref{chap: finite element}, the most practice technique to limit this problem is local mesh refinement.
 \figref{fig: drain stress mos 13000 1} represents a finer mesh with $13000$ points and $67388$ elements. Using this mesh the correctness of the solution is recovered \figref{fig: drain stress mos 13000 2}. \figref{fig: zikatanov mos} shows how the satisfaction of \referenzaeq{eq: mesh delaunay condition} changes between the different meshes: increasing the number of vertices over the critical region a better fulfillment of \referenzaeq{eq: mesh delaunay condition} is guaranteed. 
 Results suggest that in order to treat this situation it may be useful to implement a suitable a-posteriori error estimation and adaptive mesh refinement techniques. 
 
@@ -698,7 +698,7 @@ Finally \figref{fig: pot MOS negative} and \figref{fig: hole MOS negative} repor
 {\includegraphics[width=0.38\textwidth ,height=4.5cm]{Results/Drainstress/CarrierSDEonlydevice.png}}
 \hspace{0.04\textwidth}
 {\includegraphics[width=0.1\textwidth ,height=4.5cm]{Results/Drainstress/LegendEdensityNMOSinverse.png}}
-\caption{Negative carriers spots for the electron density solution.}
+\caption{n-MOSFET reverse bias: negative carriers spots for the electron density solution.}
 \label{fig: negative carriers MOS}
 \end{figure}
 
@@ -711,7 +711,7 @@ Finally \figref{fig: pot MOS negative} and \figref{fig: hole MOS negative} repor
 {\includegraphics[width=0.38\textwidth ,height=4.5cm]{Results/Drainstress/NegativeCarrier13000onlydevice.png}}
 \hspace{0.04\textwidth}
 {\includegraphics[width=0.1\textwidth ,height=4.5cm]{Results/Drainstress/LegendEdensityNMOSinverse.png}}
-\caption{Electron density with finer mesh.}
+\caption{n-MOSFET reverse bias: electron density with finer mesh.}
 \label{fig: drain stress mos 13000}
 \end{figure}
 
@@ -724,7 +724,7 @@ Finally \figref{fig: pot MOS negative} and \figref{fig: hole MOS negative} repor
 {\includegraphics[width=0.38\textwidth ,height=4.5cm]{Results/Drainstress/Zikatanov13000.png}}
 \hspace{0.04\textwidth}
 {\includegraphics[width=0.1\textwidth ,height=4.5cm]{Results/Drainstress/LegendZikatanov.png}}
-\caption{Zikatanov condition.}
+\caption{n-MOSFET: Zikatanov condition.}
 \label{fig: zikatanov mos}
 \end{figure}
 
@@ -740,7 +740,7 @@ Finally \figref{fig: pot MOS negative} and \figref{fig: hole MOS negative} repor
 {\includegraphics[width=0.38\textwidth ,height=4.5cm]{Results/Drainstress/MOSNelectrostaticpotDRAINSTRESSONLYDEVICE.png}}
 \hspace{0.04\textwidth}
 {\includegraphics[width=0.1\textwidth ,height=4.5cm]{Results/Drainstress/LegendPotentialNMOSinverse.png}}
-\caption{Electrostatic potential - Reverse bias.}
+\caption{n-MOSFET reverse bias - Electrostatic potential.}
 \label{fig: pot MOS negative}
 \end{figure}
 
@@ -754,7 +754,7 @@ Finally \figref{fig: pot MOS negative} and \figref{fig: hole MOS negative} repor
 {\includegraphics[width=0.38\textwidth ,height=4.5cm]{Results/Drainstress/MOSNhdensityDRAINSTRESSONLYDEVICE.png}}
 \hspace{0.04\textwidth}
 {\includegraphics[width=0.1\textwidth ,height=4.5cm]{Results/Drainstress/LegendHdensityNMOSinverse.png}}
-\caption{Hole density - Reverse bias.}
+\caption{n-MOSFET reverse bias - Hole density.}
 \label{fig: hole MOS negative}
 \end{figure}
 
@@ -920,7 +920,7 @@ These results holds also for the hole continuity equation.
 
 \subsection{Simulation results}
 
-The residual method is applied to the devices previously presented and compared with the SDEVICE results. In this section, different mobility and recombination/generation models are tested and verified along with the commercial code solution.
+The residual method is applied to the already analysed devices and compared with the SDEVICE results. In this section, different mobility and recombination/generation models are tested and verified along with the commercial code results.
 
 \subsubsection{p-n junction}
 
@@ -934,7 +934,7 @@ Diode breakdown voltage is appearing around $-7.0[V]$ and it is quite well align
 \begin{figure}[!h]
 \centering
 \includegraphics[width = 0.8\textwidth , height=8cm]{Results/Caratteristiche/Diode/CaratteristicaDiode.eps}
-\caption{Diode characteristic.}
+\caption{p-n junction characteristic.}
 \label{fig: caratteristica diode}
 \end{figure}
 
@@ -969,7 +969,7 @@ $V_A=-7.5 \div 1.5$, & $\mu_n = 1417$& SRH & \multirow{2}*{11.6}\\
 \subfloat[][\emph{$V_A=1.0[V]$.}\label{fig: RG 1 volt}]
 {\includegraphics[width=0.48\textwidth , height = 5.3cm]{DatiImmaginiTESI/Diode/SRHZaxis1volt.eps}}
 
-\caption{SRH and Auger RG contribution.}
+\caption{p-n junction SRH and Auger RG contribution.}
 \label{fig: SRH Auger RG}
 \end{figure}
 
@@ -977,8 +977,28 @@ $V_A=-7.5 \div 1.5$, & $\mu_n = 1417$& SRH & \multirow{2}*{11.6}\\
 
 \subsubsection{p-n junction in oxide}
 
-In the case of diode in oxide we analyze the influence of the Masetti mobility model introduced in Section \ref{sec: Masetti model}. \figref{fig: diode ox const} reports electron and hole currents at contact A using the constant mobility model, while \figref{fig: diode ox masetti} refers to the Masetti mobility model. 
+For diode in oxide we analyze the influence of the Masetti mobility model introduced in Section \ref{sec: Masetti model}. \figref{fig: diode ox const} reports electron and hole currents at contact A using the constant mobility model, while \figref{fig: diode ox masetti} refers to the Masetti mobility model. 
 This model predicts a decreased value of current flow due to the scattering with impurity dopants, as shown in the 1D plot proposed by \figref{fig: diode ox masetti focus}. Agreement with SDEVICE is very good.
+
+\vspace{1cm}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{ccccc}
+\toprule
+ Test case $[V]$ & Mobility model $[cm^2V{-1}s^{-1}]$ & R/G model & $\epsilon_{Si}$ & $\epsilon_{0x}$  \\
+\midrule
+$V_A=0.0 \div 1.5$, & $\mu_n = 1417$ & SRH & \multirow{2}*{11.6} & \multirow{2}*{3.9} \\
+ $V_B=0.0$ & $\mu_p = 470.5$ & II, Auger  & & \\
+\midrule
+$V_A=0.0 \div 1.5$, & \multirow{2}*{Masetti} & SRH & \multirow{2}*{11.6} & \multirow{2}*{3.9} \\
+ $V_B=0.0$ & & II, Auger  & & \\
+ \bottomrule
+\end{tabular}
+\caption{p-n junction in oxide - list of settings, parameters and models.}
+\label{tab: par diodeox curr}
+\end{table}
+
 
 \begin{figure}[!h]
 \centering
@@ -998,22 +1018,7 @@ This model predicts a decreased value of current flow due to the scattering with
 
 \end{figure}
 
-\begin{table}[!h]
-\centering
-\begin{tabular}{ccccc}
-\toprule
- Test case $[V]$ & Mobility model $[cm^2V{-1}s^{-1}]$ & R/G model & $\epsilon_{Si}$ & $\epsilon_{0x}$  \\
-\midrule
-$V_A=0.0 \div 1.5$, & $\mu_n = 1417$ & SRH & \multirow{2}*{11.6} & \multirow{2}*{3.9} \\
- $V_B=0.0$ & $\mu_p = 470.5$ & II, Auger  & & \\
-\midrule
-$V_A=0.0 \div 1.5$, & \multirow{2}*{Masetti} & SRH & \multirow{2}*{11.6} & \multirow{2}*{3.9} \\
- $V_B=0.0$ & & II, Auger  & & \\
- \bottomrule
-\end{tabular}
-\caption{p-n junction in oxide - list of settings, parameters and models.}
-\label{tab: par diodeox curr}
-\end{table}
+
 
 %\begin{figure}[!h]
 %\centering
@@ -1041,7 +1046,7 @@ Results for the n-MOSFET and the p-MOSFET are shown in this section. For the n-c
 \end{itemize}
 
 \tabref{tab: mos charact N} and \tabref{tab: mos charact P} show simulation settings of the first test case for the n-MOSFET and the p-MOSFET respectively.
-\figref{fig: current drain mos direct} shows the results for the n-MOSFET: \figsref{fig: current drain mos direct ALL}$\div$\ref{fig: current drain mos direct CANALI}
+\figref{fig: current drain mos direct} reports the results for the n-MOSFET: \figsref{fig: current drain mos direct ALL}-\ref{fig: current drain mos direct CANALI}
 shows how the current densities change as a function of the use of different mobility models, the agreement with SDEVICE is very good.
 
 \begin{figure}[!b]
@@ -1101,7 +1106,7 @@ $V_G=-0.5 \div 2.0$,& \multirow{2}*{Canali} & \multirow{2}*{SRH, Auger} & \multi
   $V_D=0.1$, $V_S=V_B=0.0$ & & & & \\
  \bottomrule
 \end{tabular}
-\caption{n-MOSFET (low drain bias characteristic) - list of settings, parameters and models.}
+\caption{$I_D-V_G$ n-MOSFET characteristic - list of settings, parameters and models.}
 \label{tab: mos charact N}
 \end{table}
 
@@ -1140,13 +1145,13 @@ $V_G=-1.5 \div 0.5 $,& \multirow{2}*{Canali} & \multirow{2}*{SRH, Auger} & \mult
   $V_S=0.1$, $V_D=V_B=0.0$ & & & & \\
  \bottomrule
 \end{tabular}
-\caption{pMOSFET (low drain bias characteristic) - list of settings, parameters and models.}
+\caption{$I_S-V_G$ p-MOSFET characteristic - list of settings, parameters and models.}
 \label{tab: mos charact P}
 \end{table}
 
 
 
-\figref{fig: current drain mos different} presents the characteristic of the n-MOSFET at different values of the drain voltage. The analogous test for the p-MOSFET is presented in \figref{fig: current drain mos different P}. Both are very well in agreement with the commercial code.
+\figref{fig: current drain mos different} presents the characteristic of the n-MOSFET at different values of the drain voltage. The analogous test for the p-MOSFET is presented in \figref{fig: current drain mos different P}. Both are very well in agreement with the commercial code results.
 
 All values and models used for these simulations are summarized in \tabref{tab: mos charact N vary bias} for the n-MOSFET and \tabref{tab: mos charact P vary bias} for the p-MOSFET.
 
@@ -1174,7 +1179,7 @@ $V_G=-0.5 \div 2.0 $,& \multirow{2}*{Canali} & \multirow{2}*{SRH, II} & \multiro
   $V_D=2.0$, $V_S=V_B=0.0$ & & & & \\ 
  \bottomrule
 \end{tabular}
-\caption{n-MOSFET (different drain bias) - list of settings, parameters and models.}
+\caption{$I_D-V_G$ n-MOSFET for different drain voltages - list of settings, parameters and models.}
 \label{tab: mos charact N vary bias}
 \end{table}
 
@@ -1198,7 +1203,7 @@ $V_G=-1.5 \div 0.5$,& \multirow{2}*{Canali} & \multirow{2}*{SRH, II} & \multirow
   $V_S=0.5$, $V_D=V_B=0.0$ & & & & \\
  \bottomrule
 \end{tabular}
-\caption{p-MOSFET (different drain bias) - list of settings, parameters and models.}
+\caption{$I_S-V_G$ p-MOSFET for different source voltages - list of settings, parameters and models.}
 \label{tab: mos charact P vary bias}
 \end{table}
 
@@ -1208,7 +1213,7 @@ $V_G=-1.5 \div 0.5$,& \multirow{2}*{Canali} & \multirow{2}*{SRH, II} & \multirow
 \begin{figure}[!h]
 \centering
 {\includegraphics[width = 0.9\textwidth , height=9cm]{Results/Caratteristiche/Mos/CurrentIDVG_Vdvary.eps}}
-\caption{$I_D-V_G$ n-MOSFET - several drain voltages.}
+\caption{$I_D-V_G$ n-MOSFET for different drain voltages.}
 \label{fig: current drain mos different}
 \end{figure}
 
@@ -1218,7 +1223,7 @@ $V_G=-1.5 \div 0.5$,& \multirow{2}*{Canali} & \multirow{2}*{SRH, II} & \multirow
 \begin{figure}[!h]
 \centering
 {\includegraphics[width = 0.9\textwidth , height=9cm]{Results/Caratteristiche/MosP/MOSPdirect_ISVG_varyVS.eps}}
-\caption{$I_S-V_G$ p-MOSFET -  several source voltages.}
+\caption{$I_S-V_G$ p-MOSFET for different source voltages.}
 \label{fig: current drain mos different P}
 \end{figure}
 
@@ -1261,7 +1266,7 @@ Due to the difference in the doping level between n-MOSFET and p-MOSFET the gene
  $V_G=V_S=V_B=0.0$ & $\mu_p = 470.5$ & Auger, II & & \\ 
  \bottomrule
 \end{tabular}
-\caption{n-MOSFET (off-state characteristic) - list of settings, parameters and models.}
+\caption{n-MOSFET $I_D-V_D$ off-state characteristic - list of settings, parameters and models.}
 \label{tab: inverse mos}
 \end{table}
 
@@ -1278,7 +1283,7 @@ Due to the difference in the doping level between n-MOSFET and p-MOSFET the gene
  $V_G=V_D=V_B=0.0$ & $\mu_p = 470.5$ & Auger, II & & \\ 
  \bottomrule
 \end{tabular}
-\caption{p-MOSFET (off-state characteristic) -  list of settings, parameters and models.}
+\caption{p-MOSFET $I_D-V_S$ off-state characteristic -  list of settings, parameters and models.}
 \label{tab: inverse Pmos}
 \end{table}
 
@@ -1292,7 +1297,7 @@ Due to the difference in the doping level between n-MOSFET and p-MOSFET the gene
 {\includegraphics[width = 0.38\textwidth , height=4.3cm]{Results/Drainstress/IISDEonlydevice.png}}
 \hspace{0.04\textwidth}
 {\includegraphics[width = 0.1\textwidth , height=4.3cm]{Results/Drainstress/LegendGimpactNMOS.png}}
-\caption{Contribution of the impact ionization with the Van Overstraeten - de Man model inside the n-MOSFET $V_D=0.5[V]$.}
+\caption{n-MOSFET $V_D=0.5[V]$: contribution of the impact ionization with the Van Overstraeten - de Man model.}
 \label{fig: II MOS}
 \end{figure}
 
@@ -1305,7 +1310,7 @@ Due to the difference in the doping level between n-MOSFET and p-MOSFET the gene
 {\includegraphics[width = 0.38\textwidth , height=4.3cm]{Results/PMOSimpactSDE.png}}
 \hspace{0.04\textwidth}
 {\includegraphics[width = 0.1\textwidth , height=4.3cm]{Results/LegendGimpactPMOS.png}}
-\caption{Contribution of the impact ionization with the Van Overstraeten - de Man model inside the p-MOSFET $V_S=0.5[V]$.}
+\caption{p-MOSFET $V_S=0.5[V]$: contribution of the impact ionization with the Van Overstraeten - de Man model.}
 \label{fig: II pMOS}
 \end{figure}
 
@@ -1317,7 +1322,7 @@ Due to the difference in the doping level between n-MOSFET and p-MOSFET the gene
 {\includegraphics[width = 0.38\textwidth , height=4.5cm]{Results/PMOS_IMPACT_12voltSDE.png}}
 \hspace{0.04\textwidth}
 {\includegraphics[width = 0.1\textwidth , height=4.5cm]{Results/LegendGimpactNMOShigh.png}}
-\caption{Contribution of the impact ionization with the Van Overstraeten - de Man model inside the p-MOSFET $V_S=1.2[V]$.}
+\caption{p-MOSFET $V_S=1.2[V]$: contribution of the impact ionization with the Van Overstraeten - de Man model.}
 \label{fig: II pMOS high}
 \vspace{0.5cm}
 \end{figure}
@@ -1330,7 +1335,7 @@ Due to the difference in the doping level between n-MOSFET and p-MOSFET the gene
 
 \begin{figure}[!h]
 \includegraphics[width = 0.9\textwidth , height=9cm]{Results/Caratteristiche/Mos/Inverse/MOScaratteristicaDrainstress.eps}
-\caption{Reverse bias of the n-MOSFET.}
+\caption{n-MOSFET off-state characteristic.}
 \label{fig: tutte le correnti mos stress}
 \end{figure}
 
@@ -1342,7 +1347,7 @@ Due to the difference in the doping level between n-MOSFET and p-MOSFET the gene
 
 \begin{figure}[!h]
 \includegraphics[width = 0.9\textwidth , height=9cm]{Results/Caratteristiche/MosP/MOSPinverse_Allcurrent.eps}
-\caption{Reverse bias of the p-MOSFET.}
+\caption{p-MOSFET off-state characteristic.}
 \label{fig: tutte le correnti Pmos stress}
 \end{figure}
 

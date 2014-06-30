@@ -52,36 +52,41 @@
 
 \graphicspath{{img/}}
 
+\pagestyle{plain}
+
 %Comandi personali
 \newcommand{\vect}[1]{\mathbf{#1}}
 \newcommand{\classe}[1]{\emph{#1}}
 \newcommand{\referenza}[1]{[\ref{#1}]}
 \newcommand{\referenzaeq}[1]{(\ref{#1})}
 \newcommand{\figref}[1]{Fig.\ref{#1}}
-\newcommand{\figsref}[1]{Figs.\ref{#1}}
+\newcommand{\figsref}[1]{Figs.:\ref{#1}}
 \newcommand{\tabref}[1]{Tab.\ref{#1}}
 \newcommand{\teoref}[1]{Thm.\ref{#1}}
 \newcommand{\nsp}[1]{\foreach \n in {1,...,#1}{\!}}
 \newcommand{\psp}[1]{\foreach \n in {1,...,#1}{\,}}	
 
 \begin{document}
-\input{contents/fronte}
 {\frontmatter
+\input{contents/fronte}
 \tableofcontents
 \listoffigures
 \listoftables
-%\input{contents/Introduction}}
+\input{contents/Abstract}
+}
 
 {\mainmatter
-%\input{contents/SemiconductorModel}
-%\input{contents/Resolution}
-%\input{contents/FiniteElementDiscretization}
-%\input{contents/Results}
+\input{contents/Introduction}
+\input{contents/SemiconductorModel}
+\input{contents/Resolution}
+\input{contents/FiniteElementDiscretization}
+\input{contents/Results}
 \input{contents/CurrentComputation}}
 
 {\backmatter
-%\input{contents/Conclusioni}
+\input{contents/Conclusioni}
 \input{bib}
-%\input{contents/Ringraziamenti}}
+%\input{contents/Ringraziamenti}
+}
 
 \end{document}

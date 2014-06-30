@@ -1,16 +1,21 @@
-\chapter{Post-Processing techniques for current density evaluation}
+\chapter{Post-Processing techniques for current density calculation}
 \chaptermark{Current density evaluation}
+\label{chap: postprocess}
 
-In many physical and engineering problems the real interesting variable of the conservation law is the flux inside the domain. The study of micro and nano electronics devices does not except this observation so that an accurate good description of the current density is a basic requirement.
+In many physical and engineering problems the real interesting variable of the conservation law is the flux inside the domain. The study of micro and nano electronics devices does not except this observation so that an accurate description of the current density is a basic requirement.
+However, we recall that we chose to follow a displacement approach and this implies that the current density is not a dependent variable of the system but rather a post-calculated quantity.
 
-However, we recall that we chose to follow a displacement approach and this implies that the current density is not a dependent variable of the system rather, it is a post-processing quantity of computations.
+In this chapter we present the standard Drift-Diffusion formula and we propose an extension of the 1D Scharfetter-Gummel scheme \cite{Gummel:SignAnalys} to the 3D case through two novel schemes:
+\begin{itemize}
+\item[-] \textit{edge average approximation};
+\item[-] \textit{alternative upwinding technique}.   
+\end{itemize}
 
-In this chapter we investigate some techniques that allow us to reconstruct the current density inside the device, starting from the available model values of electric potential and carrier concentrations.
-
+The results obtained are compared with a well tested field simulator as a reference (SDEVICE).
 
 \section{Drift-Diffusion formula}
 
-In Section \ref{sec: carrier transport} we saw that exist three different but mathematically equivalent ways to represent the current density, but due to numerical issues not all of them are appropriate for numerical implementation. In particular we exluded from our analysis the \textit{Slotboom equations} \referenzaeq{eq: Jn slotboom}-\referenzaeq{eq: Jp slotboom} because  the exponential dependency by the factor $\varphi / V_{th}$ brings unavoidable numerical instability. 
+In Section \ref{sec: carrier transport} we have presented three different but mathematically equivalent ways to represent the current density, but not all of them are appropriate for numerical implementation. In particular we exluded from our analysis the \textit{Slotboom equations} \referenzaeq{eq: Jn slotboom}-\referenzaeq{eq: Jp slotboom} because  the exponential dependency by the factor $\varphi / V_{th}$ brings unavoidable numerical instability. 
 The classical \textit{Drift-Diffusion formula} \referenzaeq{eq: drift diff electron}-\referenzaeq{eq: drift diff hole} presents also some difficulties: the drift and diffusion contributions are respectively well defined but the combination of them may give rise oscillations.
 
 Let us introduce some useful notation: with the subscript $K$  we refer to a quantity defined on elements, while the subscript $h$ refers to a quantity defined on vertices. The solutions $\varphi_h$, $n_h$ and $p_h$ obtained with the discretization scheme presented in Section \ref{sec: Numerical approximation} are piecewise linear continuous functions over $\mathcal{T}_h$. According to  \referenzaeq{eq: drift diff electron} and \referenzaeq{eq: drift diff hole},  in order to compute $\vect{J}_n$ and $\vect{J}_p$ numerical differentiation of the solutions must be carried out. Notice that $\vect{J}_{n},\vect{J}_{p} \in [X_h^0]^3$. If we want combine solutions and their derivatives, we have to compute appropriate projection of $n_h$ and $p_h$
@@ -19,22 +24,23 @@ Let us introduce some useful notation: with the subscript $K$  we refer to a qua
  n|_K := <n_h> \\ 
 p|_K := <p_h>
  \end{align*}
-where with the symbol $<\cdot >$ we refer to a suitable average on the element, for example this operation could be the standard integral or the harmonic average presented in Section \ref{sec: continuity equations}. If the diffusion and the mobility coefficients are variable functions of the space and defined on vertices they also have to be projected on the space $X_h^0$.
+where with the symbol $<\cdot >$ we refer to a suitable average on the element, as presented in Section \ref{sec: continuity equations}. If the diffusion and the mobility coefficients are variable functions of the space and defined on vertices they also have to be projected on the space $X_h^0$.
 
 We implemented a numerical differentiation based on Lagrange polynomial interpolation
 
-\begin{equation}
-\nabla n \simeq \nabla (\Pi^1_h n) = \sum_{i=1}^{N_h} n_i \nabla \psi_i = \nabla n_h.
-\end{equation}
+\begin{align*}
+\nabla n \simeq \nabla (\Pi^1_h n) & = \sum_{i=1}^{N_h} n_i \nabla \psi_i = \nabla n_h \\
+\nabla p \simeq \nabla (\Pi^1_h p) & = \sum_{i=1}^{N_h} p_i \nabla \psi_i = \nabla p_h
+\end{align*}
  
-Notice that $\nabla n_h \in X_h^0$.
+Notice that $\nabla n_h, \, \nabla p_h \in X_h^0$.
 The discretized form of equations \referenzaeq{eq: Jn DD}, \referenzaeq{eq: Jp DD} reads as:
 
 \begin{align}
 \vect{J}_n|_K &= -qn|_K\mu_n\nabla \varphi_h + qD_n n|_K\nabla n_h \label{eq: Jn DD discrete}\\ 
 \vect{J}_p|_K &= -qp|_K\mu_p\nabla \varphi_h - qD_p p|_K \nabla p_h \label{eq: Jp DD discrete} 
 \end{align}
-where for sake of simplicity we assume constant diffusion and mobility coefficients.
+where for sake of simplicity we assume constant diffusion and mobility coefficients in $K$.
 Equations \referenzaeq{eq: Jn DD discrete} and \referenzaeq{eq: Jp DD discrete} can be easily computed over each element of $\mathcal{T}_h$.
 
 %  \referenzaeq{eq: Jn qf} and \referenzaeq{eq: Jp qf}
@@ -78,17 +84,17 @@ Equations \referenzaeq{eq: Jn DD discrete} and \referenzaeq{eq: Jp DD discrete} 
  
 \section{Edge averaging techniques} 
  
-It is well known that the classical Scharfetter-Gummel (SG) scheme for discretizing drift-diffusion models has proven  itself to be the workhorse for semiconductor device modeling codes \cite{Gummel:SignAnalys}. As a matter of fact the EAFE scheme proposed in Section \ref{sec: continuity equations} is strictly related to the FVSG (Finite Volume Scharfetter-Gummel) method presented by Bank, Fichtner and Rose \cite{Bank:FVSG}. 
+It is well known that the classical Scharfetter-Gummel (SG) scheme for discretizing drift-diffusion models has proven to be the workhorse for semiconductor device modeling codes \cite{Gummel:SignAnalys}. As a matter of fact the EAFE scheme proposed in Section \ref{sec: continuity equations} is strictly related to the FVSG (Finite Volume Scharfetter-Gummel) method presented by Bank, Fichtner and Rose \cite{Bank:FVSG}. 
 
 In this section we recall the Scharfetter-Gummel formula in a one-dimension spatial domain and we report the extension of the method to the 2D case proposed in \cite{Bank:FEvsBOX}. Finally we present a novel method in order to extend the Scharfetter-Gummel approach to the 3D framework.
 
 \subsection{The 1D Scharfetter-Gummel scheme}
 
-Consider the solution of the electron continuity equation along a one-dimensional domain. For sake of simplicity, we assume a uniform partition. Moreover at every node is defined the electrostatic potential $\varphi_h$, and in every element the associated electrostatic field $\vect{E}_K$.
+Consider the solution of the electron continuity equation along a one-dimensional domain. For sake of simplicity, we assume a uniform partition. Moreover at every node is defined $\varphi_h$, and in every element the associated electrostatic field $\vect{E}_K$.
 
- In 1969 D. Scharfetter and H.K. Gummel (two scientists of Bell Labs), introduced a formula to compute the current density, in this case, given $\varphi_h$ and the density solution ($n_h$) at each node of the discretization grid. 
+ In 1969 D. Scharfetter and H.K. Gummel (two scientists of Bell Labs), introduced a formula to compute the current densities given $\varphi_h$ and $n_h$, $p_h$ at each node of the discretization grid. 
  
-We know that the constitutive law is composed by a drift component, which depends on the electric field, and a diffusion component, which depends on the variation of the carrier density. Consider a generic element $K$ and define the voltage drop $\Delta \varphi|_K=\varphi_{i+1}-\varphi_{i}$. There are three possible situations: 
+The constitutive law for the current density is composed by a drift component, which depends on the electric field, and a diffusion component, which depends on the variation of the carrier density. Consider the geometry shown in \figref{fig: SF figure}, given a generic element $K$ and define the voltage drop $\Delta \varphi|_K=\varphi_{i+1}-\varphi_{i}$ we can distinguish three limit situations: 
 \begin{itemize}
 \item $\Delta \varphi|_K \gg0$, mainly drift component from right to left 
 \item $\Delta \varphi|_K \ll0$, mainly drift component from left to right
@@ -223,7 +229,7 @@ We know that the constitutive law is composed by a drift component, which depend
 \label{fig: SF figure}
 \end{figure}
 
-The three limiting situations can be accounted for by the following unifying SG formula
+All these situations can be accounted for by the following unifying formula
 
  \begin{equation}
 \label{eq: scharfetter gummel 1D electron}
@@ -247,17 +253,25 @@ while for $\Delta \varphi|_K \ll 0$ we have
 J_n|_K = q\mu_n n_{i+1}\dfrac{\Delta \varphi|_K}{h}.
 \end{equation}
 
-The current density on the element $K$ becomes similar to the Ohm's law where the carrier transported is $n_{i+1}$ when $\Delta \varphi|_K \ll 0$ or $n_i$ when $\Delta \varphi|_K \gg 0$. These situations are illustreated in \figref{fig: SF figure}.
+The current density on the element $K$ becomes similar to the Ohm's law where the carrier transported is $n_{i+1}$ when $\Delta \varphi|_K \ll 0$ or $n_i$ when $\Delta \varphi|_K \gg 0$. These situations are well illustreated in \figref{fig: SF figure}.
+Analogous considerations holds also for the holes, considering the associated formula for the current density
+
+ \begin{equation}
+\label{eq: scharfetter gummel 1D hole}
+J_p|_K=q\frac{D_p}{h}
+\left[ p_{i+1}\mathcal{B}\left(-\frac{\Delta \varphi|_K}{V_{th}}\right)- p_i\mathcal{B}\left(\frac{\Delta \varphi|_K}{V_{th}}\right)\right].  
+\end{equation}
+
 
 \subsection{The 2D Scharfetter-Gummel scheme}
 
-One of the main results of \cite{Bank:FEvsBOX} is the equivalence between the finite volume and Galerkin discretizations of the continuity equation. In order to facilitate the connection between these two different discretization approaches the authors introduce for each $K \in \mathcal{T}_h$ a linear map $\mathcal{J}_{K}:\mathbb{R}^3\rightarrow\mathbb{R}^2$ defined by
+One of the main results of \cite{Bank:FEvsBOX} is the equivalence between the finite volume approach and the finite element Galerkin discretizations of the continuity equation. In order to facilitate the connection between these two different discretization approaches the authors introduce for each $K \in \mathcal{T}_h$ a linear map $\mathcal{J}_{K}:\mathbb{R}^3\rightarrow\mathbb{R}^2$ defined by
 
 \begin{equation}
 \label{eq: map current}
 \mathcal{J}_{K}(\{\gamma_i\}_{i=1}^3) = \dfrac{1}{|K|}\sum_{i=1}^3 \gamma_i |e_i| s_i \vect{t}_i
 \end{equation}
-where $s_i$ is the meausure of the segment from the midpoint  of $e_i$ to the intersection of the perpendicular edge bisectors and $\vect{t}_i$ denotes the unit tangent vector of the edge $e_i$. \figref{fig: parameter 2D} shows the parameters just presented.
+where $s_i$ is the meausure of the segment from the midpoint  of $e_i$ to the intersection of the perpendicular edge bisectors and $\vect{t}_i$ denotes the unit tangent vector of the edge $e_i$ (see \figref{fig: parameter 2D}).
 $\mathcal{J}_K$ has the following properties:
 
 \begin{align}
@@ -268,7 +282,7 @@ $\mathcal{J}_K$ has the following properties:
  
 Equation \referenzaeq{eq: map is current} says that if we are able to compute the tangential component of the current density over all edges, we can combine these values according to \referenzaeq{eq: map current} and obtain the current density $\forall K \in \mathcal{T}_h$.
  
-For the EAFE scheme in the case of electron we have
+Using the EAFE scheme, in the case of electron we have
  
 \begin{equation}
 \label{eq: EAFE edge formula}
@@ -281,13 +295,13 @@ where
 \delta_i(\varphi_h/V_{th}) = \dfrac{\varphi_{h,k}-\varphi_{h,j}}{V_{th}}.
 \end{equation}
 
-Similarly for the classical FVSG scheme this contribution is defined as
-
-\begin{equation}
-\vect{J}_n\cdot \vect{t}_i = \mathcal{H}_{e_i}(qD_n e^{\varphi_h/V_{th}}) \nabla (\Pi^1|_K(e^{-\varphi_h / V_{th}}n_h)) \cdot \vect{t}_i
-\end{equation}
-where $\mathcal{H}_{e_i}$ is the harmonic average along the edge $e_i$ and $\Pi^1|_K$ is the interpolant over $K$.
-The extension of this procedure to the 3D case is non trivial, because the characterization of the cross-section $s_i$ becomes more involved.
+%Similarly for the classical FVSG scheme this contribution is defined as
+%
+%\begin{equation}
+%\vect{J}_n\cdot \vect{t}_i = \mathcal{H}_{e_i}(qD_n e^{\varphi_h/V_{th}}) \nabla (\Pi^1|_K(e^{-\varphi_h / V_{th}}n_h)) \cdot \vect{t}_i
+%\end{equation}
+%where $\mathcal{H}_{e_i}$ is the harmonic average along the edge $e_i$ and $\Pi^1|_K$ is the interpolant over $K$.
+The extension of this procedure to the 3D case is non trivial, because the characterization of the cross-section $s_i$ becomes much more complex.
 
 \begin{figure}[!h]
 \centering
@@ -329,7 +343,7 @@ The extension of this procedure to the 3D case is non trivial, because the chara
   %    (A) -- (As) (B) -- (Bs) (C) -- (Cs);
 \draw [thick] (A) -- (B) -- (C) -- cycle ;
 \end{tikzpicture}
-\caption{Parameters associated with element $K$.}
+\caption{Parameters associated with element $K$ for the current density calculation.}
 \label{fig: parameter 2D}
 \end{figure}
 
@@ -345,7 +359,7 @@ We start by recalling here the formula for the electron current density expresse
 \vect{J}_n=-q \mu_n n \nabla \varphi_n.
 \end{equation}
 
-Relation \referenzaeq{eq: current density fermi} can be rewritten considering equation \referenzaeq{eq: non eq n density mb} as
+Relation \referenzaeq{eq: current density fermi} can be written considering equation \referenzaeq{eq: non eq n density mb} as
 
 \begin{equation}
 \label{eq: current density canonic form}
@@ -361,7 +375,7 @@ Let $\vect{J}_n\in[L^2(\Omega)]^3$ and $\varphi_n,\varphi \in H^1(\Omega)$. We m
 \end{equation}
 
 
-We proceed taking the usual discrete space of the piecewise constant functions over $\mathcal{T}_h$
+We proceed using the discrete space of the piecewise constant functions over $\mathcal{T}_h$
 
 \begin{equation}
 \label{eq: spaces elementwise constant}
@@ -383,7 +397,7 @@ From \referenzaeq{eq: variation form of current density continuos} we obtain a s
  + \int_K \nabla \varphi_n^h \cdot \vect{q}^h_i \, dK = 0 \psp{10}  i=1,2,3
 \end{equation}
 
-After intagration we obtain the formula for the generic component of the current density:
+After integration we have for the generic component of the current density
 
 \begin{equation}
 \label{eq: first formula for J}
@@ -396,8 +410,12 @@ We do not evaluate the harmonic average with an exact 3D integration because it 
 \label{eq: approzimation from 3D to edge}
 \left(\dfrac{\int_K f^{-1} \, dK}{|K|} \right)^{-1} \simeq \left(\dfrac{\int_{e*} f^{-1} \, de}{|e^*|} \right)^{-1}
 \end{equation}
- where $f=q \mu_n n_i exp((\varphi-\varphi_n)/V_{th})$ and $e^*$ is the edge of $\partial K$ where the maximum drop of $f$ occuring.
- The above idea amounts to assuming that the diffusion coefficient is represented by the edge where the phenomenon are more significant rather than considering the entire element. In order to define which is the correct edge, consider a quantity defined at the vertices
+ where 
+\begin{equation*}
+ f=q \mu_n n_i exp((\varphi-\varphi_n)/V_{th}) \, ,
+\end{equation*} 
+ and $e^*$ is the edge of $\partial K$ where the maximum drop of $f$ occuring.
+This becomes by the fact that the diffusion coefficient is represented by the edge where the phenomenon are more significant rather than considering the entire element: the problem now is the indentification of the correct edge. Let us consider a quantity defined at the vertices
 
 \begin{equation}
 \label{eq: differenza tra pot e qf}
@@ -445,84 +463,90 @@ Equation \referenzaeq{eq: finally approzimation 3D to 1D} and \referenzaeq{eq: a
 \vect{J}_n|_K = -  q \mu_n  \left[ \dfrac{ n_{\min} \mathcal{B}(-\Delta \Phi_{max})  + n_{\max}\mathcal{B}(\Delta \Phi_{max})}{2} \right]\nabla \varphi_n^h
 \end{equation}
 where $n_{\min}=n_i e^{\Phi_m}$ and $n_{\max}=n_i e^{\Phi_M}$ while $\Delta \Phi_{\max} := \Phi_M - \Phi_m$. If we consider equation \referenzaeq{eq: first formula for J} over a one-dimensional domain we can recover equation \referenzaeq{eq: scharfetter gummel 1D electron}, which shows that the above described approach is the natural extension of the $Scharfetter-Gummel$ formula to the 3D case.
-
+Following the same procedure we obtain for the hole current density
+\begin{equation}
+\label{eq: first formula for Jp}
+\vect{J}_p|_K = -  q \mu_p  \left[ \dfrac{ p_{\min} \mathcal{B}(\Delta \Phi_{max})  + p_{\max}\mathcal{B}(-\Delta \Phi_{max})}{2} \right]\nabla \varphi_p^h
+\end{equation}
 
 
 \section{Upwinding techniques}
 
-It is well known that the classical finite element method is unstable when the P\`eclet number ($\mathbb{P}e$) is large. The coefficient $\mathbb{P}e$ includes the influence of the drift component and is proportional to the product $|\nabla \varphi| h$. Therefore the presence of boundary layers for the electrostatic potential makes the solution of the continuity equation a difficult task. This has led to the use of upwind finite element techniques: in the one-dimensional case this contribution is written as an artificial diffusion term which modifies the origin convection-diffusion equation. Generally speaking we can define a function $\Phi(\mathbb{P}e)$ of the P\`eclet number such that
+It is well known that the classical finite element method applied on a con- vection-diffusion problem is unstable when the solution presents boundary layers. This has led to the introduction of upwinding techniques which in one-dimensional case consists of adding an artificial diffusion term to the origin problem.
 
-\begin{align}
-\label{eq: consistenza}
-\lim_{\mathbb{P}e \to 0} \Phi(\mathbb{P}e) = 0.
-\end{align}
+% P\`eclet number ($\mathbb{P}e$) is large. The coefficient $\mathbb{P}e$ includes the influence of the drift component and is proportional to the product $|\nabla \varphi| h$. Therefore the presence of boundary layers for the electrostatic potential makes the solution of the continuity equation a difficult task. This has led to the use of upwinding techniques: in the one-dimensional case this consists of adding an artificial diffusion term to the origin convection-diffusion equation.
 
-The perturbed problem in the case of the electron continuity equation becomes
+Using the finite element space $X_h^1$, in the case of the 1D electron continuity equation we have the following perturbed problem
 
 \begin{equation}
 \label{eq: perturbed problem}
-- \nabla \cdot (qD_n(1+\Phi(\mathbb{P}e))\nabla n - q \mu_n n \nabla \varphi) = -qR.
+- \partial_x  (qD_n(1+\Phi(\mathbb{P}e|_K))\partial_x n - q \mu_n n \partial_x \varphi) = -qR.
 \end{equation}
-
-Similarly the new weak form is
+where $\Phi$ is the stabilization function and $\mathbb{P}e|_K$ is the local P\`eclet number defined as 
+ 
+ \begin{equation*}
+ \mathbb{P}e|_K = \dfrac{\partial_x \varphi_h h}{2V_{th}}  = \dfrac{\Delta \varphi }{2 V_{th}}
+ \end{equation*}
+ 
+The weak form associated with problem \referenzaeq{eq: perturbed problem} is
 
 \begin{equation}
 \label{eq: weak form perturbed}
-a_h(n,v) = a(n,v) + \sum_{K\in \mathcal{T}_h}\int_{K} \Phi(\mathbb{P}e) \nabla n \cdot \nabla v \, dK.
+a_h(n,v) = a(n,v) + \sum_{K\in \mathcal{T}_h}\int_{K} \Phi(\mathbb{P}e|_K) \partial_x n \cdot \partial_x v \, dK
 \end{equation}
-
-Property \referenzaeq{eq: consistenza} is fundamental in order to guarantee the consistency of \referenzaeq{eq: weak form perturbed} with respect to the standard Galerkin weak form.
-
-Considering the framework just presented the \textit{Scharfetter-Gummel} discretization scheme in one spatial dimension can be obtained using the following choice of the function $\Phi$
-
+and relation \referenzaeq{eq: Jn DD discrete} becomes
 \begin{equation}
-\label{eq: phi per SG 1D}
-\Phi(\mathbb{P}e) = \mathcal{B}(2\mathbb{P}e) + \mathbb{P}e -1
+\label{eq: j element 1d perturbata}
+J_n|_K = -qn|_K\mu_n\partial_x \varphi_h + qD_n(1+\Phi(\mathbb{P}e|_K)) n|_K\partial_x n_h .
 \end{equation}
+where, considering local indices for the vertices of $K$, we have:
 
-It is possible to deduce equation \referenzaeq{eq: phi per SG 1D} 
-considering \referenzaeq{eq: Jn DD} and \referenzaeq{eq: Jp DD} in some interesting limiting cases:
+\begin{align*}
+n|_K & = \dfrac{\int_K n_h \, dx}{|K|} = \dfrac{n_1+n_2}{2} \\
+\partial_x \varphi_h & = \dfrac{\varphi_2-\varphi_1}{h} = \dfrac{\Delta \varphi}{h}\\
+\partial_x n_h & = \dfrac{n_2 - n_1}{h}.
+\end{align*}
+
+In order to guarantee the consistency of \referenzaeq{eq: weak form perturbed} with respect to the standard Galerkin weak form the  stabilization function  must respect the following relation 
+
+\begin{align}
+\label{eq: consistenza}
+\lim_{\mathbb{P}e|_K \to 0} \Phi(\mathbb{P}e|_K) = 0 \psp{15} \forall K\in\mathcal{T}_h.
+\end{align}
+
+
+
+%Considering the framework just presented the \textit{Scharfetter-Gummel} discretization scheme in one spatial dimension can be obtained using the following choice of the function $\Phi$
+%
+%\begin{equation}
+%\label{eq: phi per SG 1D}
+%\Phi(\mathbb{P}e) = \mathcal{B}(2\mathbb{P}e) + \mathbb{P}e -1
+%\end{equation}
+The efficiency of an upwinding scheme is related to the choice of $\Phi(\mathbb{P}e|_K)$ and as we are perturbing the problem we would like satisfy some interesting limit cases for the current density formula which occur for the origin problem when we have 
 \begin{itemize}
-\item \textbf{Constant carrier concentrations}, in the semiconductor device we have  a current density due only to the drift contribution
-\begin{align*}
-\vect{J}_n & = q\mu_n n \vect{E} \\
-\vect{J}_p & = q\mu_p p \vect{E}
-\end{align*}
-\item \textbf{Constant potential}, then we have $\vect{E}=0$ and the current density is due only to the diffusive contribution
-\begin{align*}
-\vect{J}_n & = qD_n\nabla n \\
-\vect{J}_p & = -qD_p\nabla p
-\end{align*}
-\item \textbf{Constant quasi Fermi potential}, then we have $n=C_1e^{\varphi / V_{th}}$ and $p=C_2e^{-\varphi / V_{th}}$ where $C_1$ and $C_2$ are two arbitrary constants such that
+\item[1] \textbf{constant carrier concentrations}
+\begin{equation*}
+\vect{J}_n  = q\mu_n n \vect{E}\, , \psp{15} \vect{J}_p  = q\mu_p p \vect{E} \, ;
+\end{equation*}
+\item[2] \textbf{constant potential} ($\vect{E}=0$),
+\begin{equation*}
+\vect{J}_n  = qD_n\nabla n \, , \psp{15} \vect{J}_p  = -qD_p\nabla p \, ;
+\end{equation*}
+\item[3] \textbf{constant quasi Fermi potential}, which implies that $n=C_1e^{\varphi / V_{th}}$ and $p=C_2e^{-\varphi / V_{th}}$ where $C_1$ and $C_2$ are two arbitrary constants such that
 \begin{equation*}
 C_1 = \exp(-\bar\varphi_n/V_{th}) \psp{15} C_2 = \exp(\bar\varphi_p/V_{th})
 \end{equation*}
-where $\bar\varphi_n$ and $\bar\varphi_p$ are given contact values. Under this assumption from equations \referenzaeq{eq: Jn DD} and \referenzaeq{eq: Jp DD} we can enstablish that
+where $\bar\varphi_n$ and $\bar\varphi_p$ are given contact values. Under this assumption from equations \referenzaeq{eq: Jn DD} and \referenzaeq{eq: Jp DD} we have that
 
 \begin{align*}
 \vect{J}_n & = -q\mu_n (n\nabla 	\varphi - V_{th} (\dfrac{C_1}{V_{th}}\nabla \varphi e^{\varphi / V_{th}}) = 0\\
 \vect{J}_p & = -q\mu_p (p\nabla 	\varphi + V_{th} (-\dfrac{C_1}{V_{th}}\nabla \varphi e^{-\varphi / V_{th}}) = 0
 \end{align*}
-
-which tells us that constant quasi Fermi potentials lead to thermodynamical equilibrium condition for the carrier densities and this implies no current flow in the device.
+ 
+Constant quasi Fermi potentials correspond to thermodynamical equilibrium condition for the carrier densities and implies no current flow in the device.
 \end{itemize}
 
-Consider  the following modified version of \referenzaeq{eq: Jn DD discrete} restricted to a single element $K$ between two vertices (for the sake of simplicity we consider local indices for the vertices)
-
-\begin{equation}
-\label{eq: j element 1d perturbata}
-J_n|_K = -q\mu_n <n_h> \partial_x \varphi_h + qD_{n,h} \partial_x n_h
-\end{equation}
-where:
-
-\begin{align*}
-D_{n,h} & = (1+\Phi_K(\mathbb{P}e))D_n \\
-<n_h> & = \dfrac{\int_K n_h \, dx}{|K|} = \dfrac{n_1+n_2}{2} \\
-\partial_x \varphi_h & = \dfrac{\varphi_2-\varphi_1}{h} = \dfrac{\Delta \varphi}{h}\\
-\partial_x n_h & = \dfrac{n_2 - n_1}{h}.
-\end{align*}
-
-Equation \referenzaeq{eq: phi per SG 1D} can be obtained imposing that
+If \referenzaeq{eq: consistenza} occurs relation \referenzaeq{eq: j element 1d perturbata} satisfies case 1 and 2, while case 3 is obtained imposing that
 
 \begin{equation}
 J_n|_K(\Pi_1^k(Ce^{\varphi / V_{th}})) = 0 .
@@ -531,29 +555,32 @@ J_n|_K(\Pi_1^k(Ce^{\varphi / V_{th}})) = 0 .
 From \referenzaeq{eq: j element 1d perturbata} we have
 
 \begin{align*}
-q\mu_n <n_h>\partial_x \varphi_h & = q D_ n(1+\Phi_K)\partial_x n_h \\
-<n_h>\partial_x \varphi_h & = V_{th}(1+\Phi_K)\partial_x n_h \\
-\Phi_K & = \sigma \mathbb{P}e \dfrac{n_1+n_2}{n_2-n_1}  -1
+q\mu_n <n_h>\partial_x \varphi_h & = q D_ n(1+\Phi(\mathbb{P}e|_K)\partial_x n_h \\
+<n_h>\partial_x \varphi_h & = V_{th}(1+\Phi(\mathbb{P}e|_K))\partial_x n_h \\
 \end{align*}
+and finally get the following relation for the stabilization function
+\begin{equation}
+\label{eq: SG stab func alternative}
+\Phi(\mathbb{P}e|_K)  = \sigma \mathbb{P}e|_K \dfrac{n_1+n_2}{n_2-n_1}  -1
+\end{equation}
 where 
 
-\begin{align*}
-\mathbb{P}e & = \dfrac{\partial_x \varphi_h h}{2V_{th}}  = \dfrac{\Delta \varphi }{2 V_{th}} \\
-\sigma & = sign(\Delta \varphi).
-\end{align*}
+\begin{equation*}
+\sigma = sign(\Delta \varphi).
+\end{equation*}
 
 Now we impose the constant quasi Fermi potential hypothesis
 
 \begin{align*}
-\Phi_K & = \sigma \mathbb{P}e \dfrac{e^{\varphi_1/V_{th}}+e^{\varphi_2/V_{th}}}{e^{\varphi_2/V_{th}}-e^{\varphi_1/V_{th}}} -1 \\
-& = \sigma \mathbb{P}e \dfrac{e^{\Delta \varphi/V_{th}}+1}{e^{\Delta \varphi/V_{th}}-1} -1 \\
-& = \sigma \mathbb{P}e \dfrac{e^{2 \sigma \mathbb{P}e}+1}{e^{2\sigma \mathbb{P}e}-1} -1.
+\Phi(\mathbb{P}e|_K) & = \sigma \mathbb{P}e|_K \dfrac{e^{\varphi_1/V_{th}}+e^{\varphi_2/V_{th}}}{e^{\varphi_2/V_{th}}-e^{\varphi_1/V_{th}}} -1 \\
+& = \sigma \mathbb{P}e|_K \dfrac{e^{\Delta \varphi/V_{th}}+1}{e^{\Delta \varphi/V_{th}}-1} -1 \\
+& = \sigma \mathbb{P}e|_K \dfrac{e^{2 \sigma \mathbb{P}e|_K}+1}{e^{2\sigma \mathbb{P}e|_K}-1} -1.
 \end{align*}
 
-Setting $X := 2 \sigma \mathbb{P}e$ we have
+Setting $X := 2 \sigma \mathbb{P}e|_K$ we have
 
 \begin{align*}
-\Phi_K & = \dfrac{X}{2} \left( \dfrac{e^{X}}{e^{X}-1} + \dfrac{1}{e^{X}-1} \right) -1 \\
+\Phi(X) & = \dfrac{X}{2} \left( \dfrac{e^{X}}{e^{X}-1} + \dfrac{1}{e^{X}-1} \right) -1 \\
 & = \dfrac{1}{2} \left( \mathcal{B}(-X) + \mathcal{B}(X) \right) -1 \\
  & = \dfrac{1}{2} \left( X + \mathcal{B}(X) + \mathcal{B}(X) \right) -1 \\
   & =  \mathcal{B}(X) +\dfrac{X}{2}  -1.
@@ -562,12 +589,14 @@ Setting $X := 2 \sigma \mathbb{P}e$ we have
 Replacing the definition of $X$ we obtain for both $\Delta \varphi > 0$ and $\Delta \varphi < 0$
 
 \begin{equation}
-\Phi_K = \mathcal{B}(2\mathbb{P}e) + \mathbb{P}e -1.
+\label{eq: SG stabilization function}
+\Phi(\mathbb{P}e|_K) = \mathcal{B}(2\mathbb{P}e|_K) + \mathbb{P}e|_K -1.
 \end{equation}
 
 %Many efforts have been made in order to propose a similar uniform framework  for the study of upwinding schemes also in multidimensional domain \cite{Bank:Upwinding}. 
 
-From the above analysis we can say that a straightforward extension to the 3D case of the Scharfetter-Gummel stabilization can be found considering a $3\times 3$ diagonal tensor  $\underline{\underline{\vect{\Phi}}}^K$  defined on each element as follows
+Considering relation \referenzaeq{eq: SG stabilization function} we obtain the well known 1D Scharfetter-Gummel discretization scheme proposed by Allen and Southwell in \cite{Allen:SGformula}.
+In a 3D framework it is not intuitive how to evaluate equation \referenzaeq{eq: SG stabilization function}, but considering  \referenzaeq{eq: SG stab func alternative} we can say that a straightforward extension to the 3D case of the 1D Scharfetter-Gummel stabilization can be found considering a $3\times 3$ diagonal tensor  $\underline{\underline{\vect{\Phi}}}^K$  defined on each element as follows
 
 \begin{equation}
 \label{eq: SG stabilized}
@@ -582,6 +611,13 @@ In \referenzaeq{eq: SG stabilized} the argument of the exponential can be a high
 \underline{\underline{\vect{\Phi}}}^K_{\, ii}  = -\dfrac{<\Pi_1^k(e^{(\varphi-\varphi_{min})/V_{th}})> \partial_{x_i}\varphi}{\partial_{x_i}\Pi_1^k(e^{(\varphi-\varphi_{min})/V_{th}})V_{th}} -1 \psp{10} i = 1,2,3,
 \end{equation}
 
+Finally, for the 3D electron current density we have
+
+\begin{equation}
+\vect{J}_n|_K = -qn|_K\mu_n\nabla \varphi_h + qD_nn|_K(\underline{\underline{\mathcal{I}}}+\underline{\underline{\vect{\Phi}}}_K) \nabla n_h.
+\end{equation}
+
+where $\underline{\underline{\mathcal{I}}}$ is the $3\times 3$ identity tensor and $n|_K=\mathcal{M}(n_h)$.
 \subsection{Results}
 
 In this section we compare the performance of the different current computation methods . The test problems are the p-n junction (\tabref{tab: diode direct}  $V_A=1.0[V]$) and the n-MOSFET (\tabref{tab: mos direct pol} on-state condition).
@@ -590,10 +626,8 @@ The procedures considered are:
 \item {\bf Drift-Diffusion} defined by \referenzaeq{eq: Jn DD discrete} and \referenzaeq{eq: Jp DD discrete} with $n|_K=\mathcal{M}(n_h)$, where $\mathcal{M}(\cdot)$ is the standard integral average;
 \item {\bf Scharfetter-Gummel 3D} method described in section \ref{sec: SG 3D};
 \item {\bf Modified Drift-Diffusion} which is for the electron current density 
-\begin{equation}
-\vect{J}_n|_K = -qn|_K\mu_n\nabla \varphi_h + qD_nn|_K(\underline{\underline{\mathcal{I}}}+\underline{\underline{\vect{\Phi}}}_K) \nabla n_h 
-\end{equation}
-where $\underline{\underline{\mathcal{I}}}$ is the $3\times 3$ identity tensor and considering $n|_K=\mathcal{M}(n_h)$ and $\underline{\underline{\vect{\Phi}}}_K$ as equation \referenzaeq{eq: SG stabilized}.
+
+ and $\underline{\underline{\vect{\Phi}}}_K$ as equation \referenzaeq{eq: SG stabilized}.
 \end{itemize}
 
 The comparison currents for the forward biased p-n junction are depicted in \figref{fig: pn current density 1V} using 1D plots along a line parallel to the Z-axis and placed at the center of the device. Both electron and hole current densities are shown for the three methods. 
@@ -635,7 +669,7 @@ The results for the n-MOSFET are shown in \figref{fig: nMOSFET current methods} 
 {\includegraphics[width = 0.7\textwidth , height=6.5cm]{DatiImmaginiTESI/Diode/ContactFinerQFP.eps}}
 \vspace{1cm}
 \subfloat[][\emph{Jp.}\label{fig: Jp SG 3D finer}]
-{\includegraphics[width=0.7\textwidth , height=6.5cm]{DatiImmaginiTESI/Diode/ContactFiner.eps}}
+{\includegraphics[width=0.7\textwidth , height=6.5cm]{DatiImmaginiTESI/Diode/ContactFinerJP.eps}}
 
 \caption{p-n junction forward biased - mesh refinement at contact}
 \label{fig: pn junct mesh refinement}

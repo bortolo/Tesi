@@ -1,2 +1,26 @@
 \select@language {english}
 \addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {1.1}{\ignorespaces Parameters in the Shockley-Read-Hall generation/recombination model.\relax }}{22}
+\contentsline {table}{\numberline {1.2}{\ignorespaces Parameters in Auger generation/recombination model.\relax }}{22}
+\contentsline {table}{\numberline {1.3}{\ignorespaces Parameters in van Overstraeten-de Man model.\relax }}{24}
+\contentsline {table}{\numberline {1.4}{\ignorespaces Parameters for mobility models including scattering from lattice thermal vibrations.\relax }}{24}
+\contentsline {table}{\numberline {1.5}{\ignorespaces Parameters for models including scattering from ionized dopant impurities.\relax }}{25}
+\contentsline {table}{\numberline {1.6}{\ignorespaces Parameters for mobility models including scattering from velocity saturation.\relax }}{26}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces p-n junction - list of settings, parameters and models.\relax }}{54}
+\contentsline {table}{\numberline {4.2}{\ignorespaces p-n junction in oxide - list of settings, parameters and models.\relax }}{60}
+\contentsline {table}{\numberline {4.3}{\ignorespaces n-MOSFET - list of settings, parameters and models.\relax }}{67}
+\contentsline {table}{\numberline {4.4}{\ignorespaces n-MOSFET (reverse bias) - list of settings, parameters and models.\relax }}{71}
+\contentsline {table}{\numberline {4.5}{\ignorespaces p-n junction (characteristic) - list of settings, parameters and models.\relax }}{76}
+\contentsline {table}{\numberline {4.6}{\ignorespaces p-n junction in oxide - list of settings, parameters and models.\relax }}{78}
+\contentsline {table}{\numberline {4.7}{\ignorespaces $I_D-V_G$ n-MOSFET characteristic - list of settings, parameters and models.\relax }}{81}
+\contentsline {table}{\numberline {4.8}{\ignorespaces $I_S-V_G$ p-MOSFET characteristic - list of settings, parameters and models.\relax }}{82}
+\contentsline {table}{\numberline {4.9}{\ignorespaces $I_D-V_G$ n-MOSFET for different drain voltages - list of settings, parameters and models.\relax }}{83}
+\contentsline {table}{\numberline {4.10}{\ignorespaces $I_S-V_G$ p-MOSFET for different source voltages - list of settings, parameters and models.\relax }}{83}
+\contentsline {table}{\numberline {4.11}{\ignorespaces n-MOSFET $I_D-V_D$ off-state characteristic - list of settings, parameters and models.\relax }}{86}
+\contentsline {table}{\numberline {4.12}{\ignorespaces p-MOSFET $I_D-V_S$ off-state characteristic - list of settings, parameters and models.\relax }}{86}
+\addvspace {10\p@ }
+\addvspace {10\p@ }

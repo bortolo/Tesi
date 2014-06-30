@@ -120,7 +120,7 @@ Then we can state that $\forall k \geq 0$ there exists a unique weak solution of
 \section{Continuity Equations: weak form}
 \label{sec: LEC weak}
 
-Without loss of generality we consider only the electron continuity equation. System \referenzaeq{eq: LEC system new} is a diffusion-advection-reaction (DAR) problem in conservative form. With a suitable change of variables we are able to treat these PDE likewise the linearized Non Linear Poisson equation in the previous section. Consider the Slotboom variable \referenzaeq{eq: un slotboom}, we can rewrite system \referenzaeq{eq: LEC system new} as:
+Without loss of generality we consider only the electron continuity equation. System \referenzaeq{eq: LEC system new} is a diffusion-advection-reaction (DAR) problem in conservative form. With a suitable change of variables we are able to treat these PDE likewise the linearized Non Linear Poisson equation in the previous section. In fact, considering the Slotboom variable \referenzaeq{eq: un slotboom}, we can write system \referenzaeq{eq: LEC system new} as:
 
 \begin{equation}
 \label{eq: system continuity equation}
@@ -281,7 +281,7 @@ Equation \referenzaeq{eq: bilinear local discrete} contains two distinct contrib
 
 The coefficient $\epsilon$ is a piece wise constant function, which changes on different material regions. Therefore $\epsilon$ is constant over each element and the first integral in \referenzaeq{eq: bilinear local discrete} become easier to compute.
 
-As a consequence of choosing the discrete space $X^1_{h}$,  we can not expect a better convergence rate than the first order in $||\cdot||_{1,\Omega}$ with respect to $h$ \cite{quarteroni:NumApprox}. This implies that is not necessary to make use of an high-order quadrature rule, so that the trapezoidal rule is enough accurate. 
+As a consequence of choosing the discrete space $X^1_{h}$,  we can not expect a better convergence rate than the first order in $||\cdot||_{1,\Omega}$ with respect to $h$ \cite{quarteroni:NumApprox}. This implies that the trapezoidal rule is enough accurate and an high-order quadrature rule is not needed. 
 The main consequence of the using trapezoidal quadrature rule is that the mass-matrix becomes diagonal.
 This technique is well known as \textit{lumping procedure} applied on the mass-matrix.
 
@@ -345,23 +345,23 @@ where $||\cdot ||_2$ is the usual Euclideian norm for a vector.
 \subsubsection{Damping}
 
 Despite the validity of \teoref{theorem: newton convergence}, the 
-use of the Newton's method may be affected by numerical difficulties.
-The main problem is the tendency of the method to overestimate the length of the correction step. This phenomenon is frequently indicated as \textit{overshoot}. In the case of the semiconductor equations this overshoot problem can be treated by simply limiting the size of the correction vector ($\delta \varphi$) determined by Newton's method. The usual established modifications to avoid overshoot are given by the following formulation:
+use of the Newton's method may be affected by numerical implications.
+The main problem is the fact that the method overestimate the length of the correction step. This phenomenon is frequently indicated as \textit{overshoot}. In the case of the semiconductor equations this overshoot problem can be treated by simply limiting the size of the correction vector ($\delta \varphi$) determined by Newton's method. The usual established modifications to avoid overshoot are given by the following formulation:
 
 
 \begin{align}
 \tilde{A}(\varphi_k)&=\dfrac{1}{t_k}A(\varphi_k) \label{eq: NLP mod used}
 \end{align}
 where $t_k$ is a positive parameter to be properly chosen, with $t_k=1$ the modified Newton method reduces to the classical Newton method.
-For the case \referenzaeq{eq: NLP mod used} a simple criterion suggested by Deuflhard \cite{DefulhardDamp}, prescirbes that $t_k$ is taken in $(0,1]$ in such a way that for any norm, we have
+For the case \referenzaeq{eq: NLP mod used} a simple criterion suggested by Deuflhard \cite{DefulhardDamp}, prescribes that $t_k$ is taken in $(0,1]$ in such a way that for any norm, we have
 
 \begin{equation}
 \label{eq: extended criterion}
 ||A(\varphi_k)^{-1}\vect{b}(\varphi_k-t_kA(\varphi_k)^{-1}\vect{b}(\varphi_k))||<||A(\varphi_k)^{-1}\vect{b}(\varphi_k)||.
 \end{equation}
 
-Satisfying condition \referenzaeq{eq: extended criterion} guarantees that the norm of the residual is decreasing with $k$.
-This condition is hardly to be evaluated because the presence of the inverse of $A$. If the solution is accomplished using a direct method like the $LU$ factorization, the evaluation of the argument of the norm on the left hand side of \referenzaeq{eq: extended criterion} is reduced to a forward and backward substitution and the evaluation of $\vect{b}(\varphi)$. However we use an iterative method (BCG solver based on \cite{NumericalRecipes}) and this implies serious difficulties to the application of the criterion \referenzaeq{eq: extended criterion}. In order to overcome this problem we consider another valid possibility, replacing $A$ in \referenzaeq{eq: extended criterion} with  the main diagonal $D(\varphi_k)$:
+Condition \referenzaeq{eq: extended criterion} guarantees that the norm of the residual is decreasing with $k$.
+This condition is hardly to be evaluated because the presence of the inverse of $A$. If the solution is accomplished using a direct method like the $LU$ factorization, the evaluation of the argument of the norm on the left hand side of \referenzaeq{eq: extended criterion} is reduced to a forward and backward substitution and the evaluation of $\vect{b}(\varphi)$. However we use an iterative method (BCG solver based on \cite{NumericalRecipes}) and this implies serious difficulties to the application of the criterion \referenzaeq{eq: extended criterion}. In order to overcome this problem we replace $A$ in \referenzaeq{eq: extended criterion} with  the main diagonal $D(\varphi_k)$:
 \begin{equation}
 \label{eq: easy criterion}
 ||D(\varphi_k)^{-1}\vect{b}(\varphi_k-t_kD(\varphi_k)^{-1}\vect{b}(\varphi_k))||<||D(\varphi_k)^{-1}\vect{b}(\varphi_k)||.
@@ -385,6 +385,8 @@ Finally, we notice that for high voltages the scheme needs more iterations to co
 
 \subfloat[][\emph{Non Linear Poisson residual: damping benefit prodedure.}\label{fig: Damping err}]
 {\includegraphics[height=7cm]{FiniteElementDiscretization/NLPconver/NLPconvergence.eps}}
+
+\vspace{1cm}
 
 \subfloat[][\emph{$t_k$ parameter.}\label{fig: Damping theta}]
 {\includegraphics[height=7cm]{FiniteElementDiscretization/NLPconver/NLPtheta}}
@@ -597,7 +599,7 @@ Problem \referenzaeq{eq: LEC system slotboom generic} can be discretized conside
 %denoting by  $\mathcal{B}_{ij}$ the Bernoulli function applied to the potential difference between node $j$ and node $i$.
 
 
-The EAFE scheme is particularly suited for problems with a highly variable diffusion coefficient. Furthermore this approach has several good properties, i.e. in 2D simulation if $\mathcal{T}_h$ is a Delaunay partition the system matrix is an M-matrix \cite{BankMmatrixEAFE}. The main consequence of this statement is that the solution satisfying the \textit{Discrete Maximum Principle}. This is a notable property which implies that no negative concentrations are admitted. Unfortunately this property is not anymore valid in 3D framework, because the Delaunay condition on the mesh is not sufficient to guarantee that the system matrix is an M-matrix. A more general condition is presented in \cite{Zikatanov:EAFE1}.
+The EAFE scheme is particularly suited for problems with a highly variable diffusion coefficient. Furthermore this approach has several good properties, i.e. in 2D framework if $\mathcal{T}_h$ is a Delaunay partition the system matrix is an M-matrix \cite{BankMmatrixEAFE}. The main consequence of this statement is that the solution satisfying the \textit{Discrete Maximum Principle}. This is a notable property which implies that no negative concentrations are admitted. Unfortunately this property is not anymore valid in 3D framework, because the Delaunay condition on the mesh is not sufficient to guarantee that the system matrix is an M-matrix. A more general condition is presented in \cite{Zikatanov:EAFE1}.
 
 \begin{Teorema}[Zikatanov condition]
 The system matrix of the EAFE scheme is an M-matrix if and only if for any fixed edge E of the partition $\mathcal{T}_h$ the following inequality holds
@@ -623,9 +625,9 @@ We remark that presently meshing algorithm are oriented to care about the minimu
 \figref{fig: cubo zikatanov} shows a simple partition of a cube performed with the Synopsis tool SNMESH. For every element we evaluated how many edges do not satisfy condition \referenzaeq{eq: mesh delaunay condition}.
 It is clear that there are a lot of edges which do not fulfil the condition and a precise pattern cannot be signed out. When several bad edges belong to a single element we can identify the presence of many obtuse angles.
 
-In order to avoid this problem some alternative solutions are proposed in the literature, like the \textit{Orthogonal Subdomain Collocation method} \cite{OSCputticorded}, but also this approach is not a definite solution. 
+In order to avoid this problem some alternative solutions are proposed in the literature. In certain conditions the system matrix can be changed in a M-matrix using the \textit{Orthogonal Subdomain Collocation method} \cite{OSCputticorded}, but also this approach is not a definite solution. 
 
-Therefore in presence of a negative concentration the most used technique in 3D numerical simulation is to local mesh refinement in the regions where trouble occurs, which often are the ones where the carrier density decreases.
+Therefore, in 3D numerical simulation, in presence of a negative concentration the most used technique  is to local mesh refinement in the regions where trouble occurs, which often are the ones where the carrier density decreases.
 
 
 

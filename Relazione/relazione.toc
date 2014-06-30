@@ -1,10 +1,61 @@
 \select@language {english}
-\contentsline {chapter}{\numberline {1}Post-Processing techniques for current density evaluation}{1}
-\contentsline {section}{\numberline {1.1}Drift-Diffusion formula}{1}
-\contentsline {section}{\numberline {1.2}Edge averaging techniques}{2}
-\contentsline {subsection}{\numberline {1.2.1}The 1D Scharfetter-Gummel scheme}{3}
-\contentsline {subsection}{\numberline {1.2.2}The 2D Scharfetter-Gummel scheme}{4}
-\contentsline {subsection}{\numberline {1.2.3}The 3D Scharfetter-Gummel scheme}{5}
-\contentsline {section}{\numberline {1.3}Upwinding techniques}{8}
-\contentsline {subsection}{\numberline {1.3.1}Results}{11}
-\contentsline {chapter}{Bibliografia}{17}
+\contentsline {chapter}{Abstract}{xi}
+\contentsline {chapter}{Estratto della tesi}{1}
+\contentsline {chapter}{Introduction}{5}
+\contentsline {chapter}{\numberline {1}Physical models for charge transport in semiconductor material}{9}
+\contentsline {section}{\numberline {1.1}Basic Device Physics}{9}
+\contentsline {subsection}{\numberline {1.1.1}Intrinsic semiconductor}{9}
+\contentsline {subsection}{\numberline {1.1.2}Extrinsic semiconductor}{13}
+\contentsline {subsection}{\numberline {1.1.3}Carrier densities at nonequilibrium condition}{14}
+\contentsline {subsection}{\numberline {1.1.4}Carrier transport in a semiconductor}{15}
+\contentsline {subsubsection}{Drif current - Ohm's law}{15}
+\contentsline {subsubsection}{Diffusion current - Fick's law}{16}
+\contentsline {subsubsection}{Drift-Diffusion transport equations}{17}
+\contentsline {section}{\numberline {1.2}Drift Diffusion Model for semiconductors}{18}
+\contentsline {subsection}{\numberline {1.2.1}Drift Diffusion formulation}{18}
+\contentsline {subsection}{\numberline {1.2.2}Generation and Recombination phenomenon}{20}
+\contentsline {subsubsection}{Shockley-Read-Hall recombination (SRH)}{21}
+\contentsline {subsubsection}{Auger recombination (AU)}{21}
+\contentsline {subsubsection}{Impact ionization (II)}{22}
+\contentsline {subsection}{\numberline {1.2.3}Mobility models}{23}
+\contentsline {subsubsection}{Scattering with lattice}{24}
+\contentsline {subsubsection}{Scattering from ionized impurities}{24}
+\contentsline {subsubsection}{Veclocity saturation at high electric field}{25}
+\contentsline {chapter}{\numberline {2}Solution of the Drift-Diffusion system}{27}
+\contentsline {section}{\numberline {2.1}Geometry and boundary conditions}{27}
+\contentsline {section}{\numberline {2.2}Iteration algorithms}{30}
+\contentsline {subsection}{\numberline {2.2.1}Newton's method}{32}
+\contentsline {subsection}{\numberline {2.2.2}Fully coupled Newthon's method}{33}
+\contentsline {subsection}{\numberline {2.2.3}Gummel map algorithm}{34}
+\contentsline {chapter}{\numberline {3}Finite element discretization}{39}
+\contentsline {section}{\numberline {3.1}Non Linear Poisson Equation: weak form}{39}
+\contentsline {section}{\numberline {3.2}Continuity Equations: weak form}{41}
+\contentsline {section}{\numberline {3.3}Numerical approximation}{42}
+\contentsline {subsection}{\numberline {3.3.1}Geometrical discretization}{43}
+\contentsline {subsection}{\numberline {3.3.2}Linearized Non Linear Poisson equation}{44}
+\contentsline {subsubsection}{Damping}{46}
+\contentsline {subsection}{\numberline {3.3.3}Continuity equations}{49}
+\contentsline {chapter}{\numberline {4}Simulation results}{53}
+\contentsline {section}{\numberline {4.1}Test cases}{53}
+\contentsline {subsection}{\numberline {4.1.1}p-n junction}{53}
+\contentsline {subsubsection}{Computational cost and initial condition}{58}
+\contentsline {subsection}{\numberline {4.1.2}p-n junction in oxide}{60}
+\contentsline {subsubsection}{3D effect on the electric field}{64}
+\contentsline {subsection}{\numberline {4.1.3}n-channel MOSFET}{66}
+\contentsline {subsubsection}{Reverse bias}{71}
+\contentsline {section}{\numberline {4.2}Current evaluation at the Ohmic contacts}{74}
+\contentsline {subsection}{\numberline {4.2.1}Simulation results}{76}
+\contentsline {subsubsection}{p-n junction}{76}
+\contentsline {subsubsection}{p-n junction in oxide}{78}
+\contentsline {subsubsection}{n-channel/p-channel MOSFET}{80}
+\contentsline {subsubsection}{Impact-ionization model}{85}
+\contentsline {chapter}{\numberline {5}Post-Processing techniques for current density calculation}{89}
+\contentsline {section}{\numberline {5.1}Drift-Diffusion formula}{89}
+\contentsline {section}{\numberline {5.2}Edge averaging techniques}{91}
+\contentsline {subsection}{\numberline {5.2.1}The 1D Scharfetter-Gummel scheme}{91}
+\contentsline {subsection}{\numberline {5.2.2}The 2D Scharfetter-Gummel scheme}{92}
+\contentsline {subsection}{\numberline {5.2.3}The 3D Scharfetter-Gummel scheme}{94}
+\contentsline {section}{\numberline {5.3}Upwinding techniques}{96}
+\contentsline {subsection}{\numberline {5.3.1}Results}{99}
+\contentsline {chapter}{Conclusions and future work}{105}
+\contentsline {chapter}{Bibliografia}{106}

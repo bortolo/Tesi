@@ -1,33 +1,38 @@
 \chapter{Conclusions and future work}
 
 
-In this MD Thesis, we have presented 
+In this MD Thesis, we have addressed the thecniques of numerical simulating semiconductor devices. 
+In order to accomplish our goal we used the Gummel map algorithm \cite{GummelMap} to solve the Drift-Diffusion model  \cite{Jackson:ElettroClassica}. The Non Linear Poisson problem has been discretized using the Galerkin finite element method \cite{quarteroni:NumApprox} following a displacement formulation while the Continuity equations have been treated using the EAFE scheme \cite{Zikatanov:EAFE1}. 
 
-We accomplished our goal
+Concerning the model part we introduced several mobility and R/G models that can be choose dynamically by the user at run time.
 
-A great effort has been spent in order to compute the current both at contacts and inside the device. In the first case we extended to the 3D framework the \textit{residue method} with excellent results over all tests performed. About the current density we investigated the standard approaches using equation  and  . As expected the standard Drift-Diffusion formula gives bad results expecially when the balance between the drift and diffusion component becomes critical. On the other side using the gradient of the quasi fermi potentials ensure good results negletting the contact problems due to the boundary layers. Some modifications has been presented for both methods.
- We presented the extension to the 3D case of the Sharfetter-Gummel formula and we obtained good results
- 
- Although the boundary layer problems still remains at contacts.
+The above issues have been implemented using an object-oriented programming language (C++) and are gathered in five libraries of the FEMOS project: \textit{DD\_semiconductor}, \textit{Semiconductor}, \textit{NLPsolver}, \textit{ModelsManage} and \textit{ImplementedModels}. Moreover new models can be added, updating the \textit{ImplementedModels} library.
 
+The code has been thoroughly tested on three semiconductor devices (p-n junction, p-n junction in oxide and n-channel/p-channel MOSFET), comparing with the solutions of SDEVICE. We obtained excellent results for several different operating conditions. Furthermore, we analyzed the performance of the code and shown some critical situations of the techniques used.
 
+The convergence rate of the Non Linear Poisson solving may be degraded with respect to the choice of the initial guess. To solve this difficulty we implemented the damping technique proposed in \cite{DefulhardDamp}.
 
+Concerning the relation between the EAFE system matrix and the Zikatanov condition addressed in  \cite{Zikatanov:EAFE1},  we shown some interesting cases where carrier solution presents locally negative concentration.
 
+\vspace{1cm}
 
+A great effort has been spent in order to compute the current both at contacts and inside the device. In the first case we extended to the 3D framework the \textit{residual method} \cite{ContactCurrentRM} with excellent results over all tests performed. 
 
-Despite our best efforts, there are still many issues to be addressed:
+Concerning the evaluation of the current density we proposed two novel schemes to post-processing the solutions extending the 1D Scharfetter-Gummel scheme to the 3D case:
 \begin{itemize}
-\item the conservation of the fluxes between neighbouring elements is a condition 
-
-\item From the mathematical point of view, it would also be interesting to investigated the problems related to the fulfilment of the condition Zikatanov and proposed alternative algorithm in order to ensure the discrete maximum principle.
-
+\item \textit{edge average technique}, based on a primal mixed formulation of the continuity equation, followed by the approximation of the harmonic average of the diffusion coefficient;
+\item \textit{alternative upwinding technique}, based on an accurate analysis of the 1D stabilization function associated to the Scharfetter-Gummel technique.   
 \end{itemize}
+The edge average technique has been successfully tested over several cases, while the alternative upwinding scheme presents unavoidable numerical instability as the structure of the device and the phenomenon involved become more complex.
 
+\vspace{1cm}
 
-
-
+To conclude, we wish to mention some possible directions for future activity and investigation:
 \begin{itemize}
-\item Metodo SG vantaggi a livello computazionale, estensione naturale 3D del metodo SG 1D
-\item Metodo DD corretto risolve i problemi di contatto, pi\`u soggetto ad instabilit\`a numeriche, rispetta una propriet\`a importante in maniera forte
-\item Possiblit\`a di utilizzare questi metodi come nuovo schema di discretizzazione: problemi al contatto per il metodo SG (problema della media armonica con metodo misto).Per quanto riguarda il DD corretto bisogna pensarci.
+\item the novel schemes presented in Chapter \ref{chap: postprocess} could be also used to discretized the continuity equation. Moreover, as regards to the edge average technique, some cares must be taken due to the highly non linear relation with respect to the quasi Fermi potential levels.
+
+\item in order to complete the integration with the other modules of FEMOS the development of the coupling with respect to the multiphysic environment could be an interesting challenge.
+
+\item a more thorough analysis of the Zikatanov condition and the relation with the discrete maximum principle would be also an issue of great interest.
+
 \end{itemize}

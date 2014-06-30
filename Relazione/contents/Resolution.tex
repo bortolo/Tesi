@@ -1,4 +1,4 @@
-\chapter{Solution of the DD system}
+\chapter{Solution of the Drift-Diffusion system}
 
 In this chapter we introduce geometry and boundary conditions for the stationary form of system \referenzaeq{eq: full problem} and we discuss the functional iteration algorithms used to decouple the problem.
 
@@ -36,7 +36,7 @@ We point that in the case of a perfect insulator domain, \referenzaeq{eq: dirich
 {\includegraphics[scale=0.35]{Resolution/MosContacts}}
 \psp{30}
 \subfloat[][\label{fig: outline boundaries 2}]
-{\includegraphics[scale=0.35]{Resolution/MosOnlyContacts}}
+{\includegraphics[scale=0.35]{Resolution/ContattiEsurface}}
 \caption{(a) MOS device with net dopant concentration distributed according to a gaussian profile and $\Gamma_D$ colored in black. The oxide layer is colored in light blue. (b) Outline of the MOS device with $\Gamma_{int}$ in light gray. }
 \label{fig: outline boundaries}
 \end{figure}
@@ -65,14 +65,14 @@ When oxide is present the silicon boundaries for continuity equations become
 
 \figref{fig: outline boundaries} shows an example of boundary setting for a MOS device: in \figref{fig: outline boundaries 1} contacts are colored in black and in \figref{fig: outline boundaries 2} with light gray we indicate the interface between oxide and silicon.
 
-Thermodynamical equilibrium and charge neutrality are the physical characterizing conditions of an ideal contact. These conditions correspond to the following algebraic system for $n_D$ and $p_D$:
+Thermodynamical equilibrium and charge neutrality are the physical characteristic of an ideal contact. These conditions correspond to the following algebraic system for $n_D$ and $p_D$:
 
 \begin{equation}
 \label{eq: systemo for dirichlet condition}
 \left\{
 \begin{array}{lcl}
 p_Dn_D & = &n_i^2 \\
-p_D -n_D +N_D-N_A & = & 0 
+p_D -n_D +N_D^+-N_A^- & = & 0 
 \end{array}
 \right. .
 \end{equation}
@@ -146,7 +146,7 @@ F_3(\vect{U})
 \right]
 \end{equation}
 
-and having set:
+having set:
 
 \begin{align*}
 F_1(\vect{U}) & = \nabla \cdot (-\epsilon \nabla \varphi) - q(p-n+D) \\
@@ -201,7 +201,7 @@ For $v \in H^1_0(\Omega),H^1_{0,\Gamma_D}(\Omega)$ we have the \textit{Poincar\'
 
 from which it follows that the seminorm $|\cdot |_{\,\Omega}$ is actually a norm in $H^1(\Omega)$, equivalent to $||\cdot ||_{1,\Omega}$.
 
-The above function spaces are used widely in the remainder of this work, especially during the well-posedness analysis as reported in Chapter \ref{chap: finite element} (for a more detailed description see \cite{Adams:SobolevSpaces}).
+The above function spaces (for a more detailed description see \cite{Adams:SobolevSpaces}) are used widely in the remainder of this work, especially during the well-posedness analysis as reported in Chapter \ref{chap: finite element}.
 
 
 \subsection{Newton's method}
@@ -259,7 +259,7 @@ T_{\vect{F}}(\vect{U}) = \vect{F}'(\vect{U})^{-1}(\vect{F}'(\vect{U})\vect{U}-F(
 \end{equation}
 
 is the \textit{iteration function} associated with the Newton method.
-The main result about the convergence of this method is as follows.
+The main result about the convergence of this method is the follow \cite{Ortega:IterNonlinearEq}
 
 \begin{Teorema}
 \label{theorem: newton convergence}
@@ -340,12 +340,54 @@ Moreover, to ensure convergence of the Newton iterative process, it is important
 
 \subsection{Gummel map algorithm}
 
-In 1964 H. K. Gummel proposed an original and alternative to  \referenzaeq{eq: NLP algorithm matrix} in order to solve system \referenzaeq{eq: system closed} in a semiconductor device in one spatial dimension \cite{GummelMap}.
+In 1964 H. K. Gummel proposed an original and alternative to  \referenzaeq{eq: NLP algorithm matrix} approach in order to solve system \referenzaeq{eq: system closed} in a semiconductor device in one spatial dimension \cite{GummelMap}.
 The main idea of the algorithm is to move the nonlinearity to the Poisson equation only, and once obtained the electric potential profile, both continuity equations are solved in linear form. This is possible if we consider the Maxwell-Boltzmann approximation for electrons \referenzaeq{eq: n density mb} and holes \referenzaeq{eq: p density mb} obtaining
 
 \begin{equation}
 F_1(\varphi)  =  \nabla \cdot (-\epsilon \nabla \varphi) - q(n_i(e^{(\varphi_p-\varphi)/V_{th}}-e^{(\varphi-\varphi_n)/V_{th}})+D) .
 \end{equation}
+
+\begin{figure}[!h]
+\begin{center}
+\begin{tikzpicture}
+[scale=1.2]
+
+\tikzstyle{NLP}=[rectangle,text width=3cm, align=center,draw, fill=gray!40];
+\tikzstyle{DD}=[rectangle,text width=3cm,align=center,draw,fill=gray!10];
+\tikzstyle{Normal}=[rectangle,fill=white];
+\tikzstyle{CYC}=[diamond,draw];
+\useasboundingbox (0,1) rectangle (8,9.5);
+\draw [thick] (-0.5,1.0) rectangle (8.5,9.5);
+%main boxes
+\node [Normal] (v0) at (1,8) {$[\varphi,n,p]_{start}$};
+\node [NLP] (v1) at (4,8) {\large NLP};
+\node [CYC] (v2) at (4,7) {\small k};
+\node [DD] (v3) at (4,5.5) {\large DD electrons};
+\node [DD] (v4) at (4,4.0) {\large DD holes};
+\node [CYC] (v5) at (4,2.5) {\small i};
+
+%collegamenti
+\draw [thick,->] (v0) -- (v1);
+\draw [thick,->] (v1) -- (v2);
+\draw [thick,->] (v2) -- (v3);
+\draw [thick,->] (v3) -- (v4);
+\draw [thick,->] (v4) -- (v5);
+\draw [thick,->] (v5)--(7,2.5)--(7,9)--(4,9)--(v1);
+\draw [thick,->] (v2)--(6,7)--(6,8)--(v1);
+\draw [thick,->] (v5)--(4,1.5);
+
+%note
+\node [Normal] (v6) at (5.5,7.3) {$\varphi^{k+1}$};
+\node [Normal] (v6) at (4.5,6.2) {$\varphi_{i+1}$};
+\node [Normal] (v6) at (4.5,4.7) {$n_{i+1}$};
+\node [Normal] (v6) at (4.5,3.2) {$p_{i+1}$};
+\node [Normal] (v0) at (5.0,1.8) {$[\varphi,n,p]_{end}$};
+\end{tikzpicture}
+\caption{Flow chart of Gummel algorithm.}
+\label{fig: gummel map}
+\end{center}
+\end{figure}
+
 
 The Gummel algorithm is represented by the following iteration.
 
@@ -431,58 +473,10 @@ f_{ox}^k(\varphi^k) & = \nabla \cdot (-\epsilon \nabla \varphi^k) .
  
 For the Gummel map, similar result as \teoref{theorem: newton convergence}  can be found in \cite{Jerome:AnalyCharTran}, but the convergence rate is linear. However heuristic experience often shows superlinear convergence behaviour.
 
-There are several advantages which make Gummel map algorithm bettern than the Fully Coupled Newton's Method, indeed simulations experience shows that the Gummel process is much more insensitive to the choice of the initial guess than Newton's method. This is particularly important in multidimensional problems where it is far from trivial to design a good starting point for initializing the iterative procedure. Another attractive feature is the reduced computational effort and memory cost: at each iteration step the Gummel algorithm requires the successive solution of three problems, each one of size equal to $N_{dof}\times N_{dof}$.
+There are several advantages which make Gummel map algorithm better than the Fully Coupled Newton's Method, indeed simulations experience shows that the Gummel process is much more insensitive to the choice of the initial guess than Newton's method. This is particularly important in multidimensional problems where it is far from trivial to design a good starting point for initializing the iterative procedure. Another attractive feature is the reduced computational effort and memory cost: at each iteration step the Gummel algorithm requires the successive solution of three problems, each one of size equal to $N_{dof}\times N_{dof}$.
 
 
-
-
-
-\begin{figure}[!h]
-\begin{center}
-\begin{tikzpicture}
-[scale=1.2]
-
-\tikzstyle{NLP}=[rectangle,text width=3cm, align=center,draw, fill=gray!40];
-\tikzstyle{DD}=[rectangle,text width=3cm,align=center,draw,fill=gray!10];
-\tikzstyle{Normal}=[rectangle,fill=white];
-\tikzstyle{CYC}=[diamond,draw];
-\useasboundingbox (0,1) rectangle (8,9.5);
-\draw [thick] (-0.5,1.0) rectangle (8.5,9.5);
-%main boxes
-\node [Normal] (v0) at (1,8) {$[\varphi,n,p]_{start}$};
-\node [NLP] (v1) at (4,8) {\large NLP};
-\node [CYC] (v2) at (4,7) {\small k};
-\node [DD] (v3) at (4,5.5) {\large DD electrons};
-\node [DD] (v4) at (4,4.0) {\large DD holes};
-\node [CYC] (v5) at (4,2.5) {\small i};
-
-%collegamenti
-\draw [thick,->] (v0) -- (v1);
-\draw [thick,->] (v1) -- (v2);
-\draw [thick,->] (v2) -- (v3);
-\draw [thick,->] (v3) -- (v4);
-\draw [thick,->] (v4) -- (v5);
-\draw [thick,->] (v5)--(7,2.5)--(7,9)--(4,9)--(v1);
-\draw [thick,->] (v2)--(6,7)--(6,8)--(v1);
-\draw [thick,->] (v5)--(4,1.5);
-
-%note
-\node [Normal] (v6) at (5.5,7.3) {$\varphi^{k+1}$};
-\node [Normal] (v6) at (4.5,6.2) {$\varphi_{i+1}$};
-\node [Normal] (v6) at (4.5,4.7) {$n_{i+1}$};
-\node [Normal] (v6) at (4.5,3.2) {$p_{i+1}$};
-\node [Normal] (v0) at (5.0,1.8) {$[\varphi,n,p]_{end}$};
-\end{tikzpicture}
-\caption{Flow chart of Gummel.}
-\label{fig: gummel map}
-\end{center}
-\end{figure}
-
-
-
-
-
-Let us discuss again on step 2-3 of \textit{Decoupled Gummel map}. According with \referenzaeq{eq: generic RG} the general R/G phenomenon can be separated in a reaction term and a force term (except for the II which is only a force term contribution). 
+Let us discuss again steps 2-3 of \textit{Decoupled Gummel map}. According with \referenzaeq{eq: generic RG} the general R/G phenomenon can be separated in a reaction term and a force term (except for the II which is only a force term contribution). 
 Considering
 
 \begin{equation}
@@ -528,6 +522,6 @@ we can rewrite systems \referenzaeq{eq: LEC system} and \referenzaeq{eq: LHC sys
 \end{equation}
 
 
-The above splitting of R/G term is called \textit{lagging approach} \cite{Jerome:AnalyCharTran} and corresponds to extending to the non-linear case the classical \textit{Jacobi} method for the iterative  solution of linear algebraic systems. Since equations are sequentially solved, it is possible take advantage of the solution at the present step. Indeed an alternative approach would be use the solution of the first solved equation to compute the R/G contribution in the second equation. In such a case, the lagging method corresponds to extending to the nonlinear case tha classical \textit{Gauss-Seidel} method for the iterative solution in linear algebraic systems.
+The above splitting of R/G term is called \textit{lagging approach} \cite{Jerome:AnalyCharTran} and corresponds to extend to the non-linear case the classical \textit{Jacobi} method for the iterative  solution of linear algebraic systems. Since equations are sequentially solved, it is possible take advantage of the solution at the present step. Indeed an alternative approach would be use the solution of the first solved equation to compute the R/G contribution in the second equation. In such a case, the lagging method corresponds to extend to the nonlinear case the classical \textit{Gauss-Seidel} method for the iterative solution in linear algebraic systems.
 
 

@@ -106,6 +106,21 @@ set key Left
 
 # 1 VOLT test contact mesh finer --------------------------------------------------------
 # JP
+set key maxrows 1
+set tmargin 3
+set lmargin 12
+set xrange [0:0.1]
+set format y "%.1t 10^{%T}"
+#set yrange [-200:200000]
+#set logscale y
+set ylabel 'Jp [A cm-2]' font "Helvetica bold,23" 
+set xlabel 'Z axis [micron]' font "Helvetica bold,23" 
+plot './DIODE1VOLT_Ncontactnotfiner.txt' u 57:(abs($29)) ti 'hz = 0.01' w l ls 11
+replot './DIODE1VOLT_Ncontactfiner11000.txt' u 57:(abs($29)) ti 'hz = 0.002' w l ls 12
+replot './DIODE1VOLT_Ncontactfiner40000.txt' u 57:(abs($29)) ti 'hz = 0.001' w l ls 13
+set out 'ContactFinerJP.eps'
+
+# QF P
 #set key maxrows 1
 #set tmargin 3
 #set lmargin 12
@@ -113,25 +128,12 @@ set key Left
 #set format y "%.1t 10^{%T}"
 #set yrange [-200000:0]
 #set logscale y
-#set ylabel 'Jp [A cm-2]' font "Helvetica bold,23" 
-#plot './DIODE1VOLT_Ncontactnotfiner.txt' u 57:29 ti 'Jp 0.01' w l ls 11
-#replot './DIODE1VOLT_Ncontactfiner11000.txt' u 57:29 ti 'Jp 0.002' w l ls 12
-#replot './DIODE1VOLT_Ncontactfiner40000.txt' u 57:29 ti 'Jp 0.001' w l ls 13
-#set out 'ContactFinerJP.eps'
-
-# QF P
-set key maxrows 1
-set tmargin 3
-set lmargin 12
-set xrange [0:0.1]
-set format y "%.1t 10^{%T}"
-#set yrange [-200000:0]
-#set logscale y
-set ylabel 'Phi p [V]' font "Helvetica bold,23" 
-plot './DIODE1VOLT_Ncontactnotfiner.txt' u 57:22 ti 'Phi P 0.01' w l ls 11
-replot './DIODE1VOLT_Ncontactfiner11000.txt' u 57:22 ti 'Phi P 0.002' w l ls 12
-replot './DIODE1VOLT_Ncontactfiner40000.txt' u 57:22 ti 'Phi P 0.001' w l ls 13
-set out 'ContactFinerQFP.eps'
+#set ylabel 'Phi p [V]' font "Helvetica bold,23"
+#set xlabel 'Z axis [micron]' font "Helvetica bold,23" 
+#plot './DIODE1VOLT_Ncontactnotfiner.txt' u 57:22 ti 'hz = 0.01' w l ls 11
+#replot './DIODE1VOLT_Ncontactfiner11000.txt' u 57:22 ti 'hz = 0.002' w l ls 12
+#replot './DIODE1VOLT_Ncontactfiner40000.txt' u 57:22 ti 'hz = 0.001' w l ls 13
+#set out 'ContactFinerQFP.eps'
 
 # P
 #set key maxrows 1
@@ -143,9 +145,9 @@ set out 'ContactFinerQFP.eps'
 #set logscale y
 ##set logscale x
 #set ylabel 'Jp [A cm-2]' font "Helvetica bold,23" 
-#plot './DIODE1VOLT_Ncontactnotfiner.txt' u 57:20 ti 'Phi P 0.01' w l ls 11
-#replot './DIODE1VOLT_Ncontactfiner11000.txt' u 57:20 ti 'Phi P 0.002' w l ls 12
-#replot './DIODE1VOLT_Ncontactfiner40000.txt' u 57:20 ti 'Phi P 0.001' w l ls 13
+#plot './DIODE1VOLT_Ncontactnotfiner.txt' u 57:20 ti 'hz = 0.01' w l ls 11
+#replot './DIODE1VOLT_Ncontactfiner11000.txt' u 57:20 ti 'hz = 0.002' w l ls 12
+#replot './DIODE1VOLT_Ncontactfiner40000.txt' u 57:20 ti 'hz = 0.001' w l ls 13
 #set out 'ContactFinerPdensity.eps'
 
 

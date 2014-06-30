@@ -1,56 +1,95 @@
-\chapter{Estratto della tesi}
+\chapter*{Estratto della tesi}
+\addcontentsline{toc}{chapter}{Estratto della tesi}
 
-Nel 1947 John Bardeen, William Shockley e Walter Brattain inventarono il transistor bipolare dando inizio ad una crescita esponenziale delle industrie di dispositivi a semiconduttore. Prima di raggiungere le funzionalit\`a dei dispositivi moderni alcuni passi fondamentali sono stati fatti: nel 1958 venne prodotto il primo circuito integrato (IC), seguito dall'introduzione del MOSFET (1960) e dal CMOS (1963). Queste prime scoperte portarono all'invenzione del primo microprocessore (1971): da allora un incessante sviluppo ed una continua opera di miniaturizzazione di tali dispositivi, hanno portato le industrie di microelettronica alla soglia della VLSI era (Very-Large-Scale-Integration). 
+Nel 1947 John Bardeen, William Shockley e Walter Brattain inventarono il transistore bipolare dando inizio ad una crescita esponenziale delle industrie di dispositivi a semiconduttore. Prima di raggiungere le funzionalit\`a dei dispositivi moderni alcuni passi fondamentali sono stati fatti: nel 1958 venne prodotto il primo circuito integrato (IC), seguito dall'introduzione del MOSFET (1960) e dal CMOS (1963). Queste prime scoperte portarono all'invenzione del primo microprocessore (1971): da allora un incessante sviluppo ed una continua opera di miniaturizzazione di tali dispositivi, hanno portato le industrie di microelettronica alla soglia della VLSI era (Very-Large-Scale-Integration). 
 
 Negli ultimi trenta anni questo processo ha garantito performance superiori e riduzione dei costi della produzione dei moderni computer, unit\`a wireless e sistemi di comunicazione, influenzando drasticamente lo stile di vita odierno.
-
 Gli investimenti spesi nello sviluppo delle tecnologie VLSI, costituitiscono ancora oggi una forza trainante nello sviluppo di dispositivi ad alta densit\`a di integrazione e superiore velocit\`a di risposta.
 
-In questo ambiente dove la ricerca e le dinamiche aziendali si incontrano, l'obiettivo delle simulazioni numeriche \`e la comprensione dei fenomeni fisici che governano il funzionamento dei moderni dispositivi.
+Grandi sforzi sono stati spesi al fine di comprendere al meglio le dinamiche fisiche che governano il funzionamento dei moderni dispositivi portando ad un sempre pi\`u crescente utilizzo di solutori numerici commerciali.
+Tuttavia affidandosi ad un software esterno risulta ovviamente impossibile avere un pieno controllo delle funzionalit\`a rese disponibili dalla software house. In un ambiente in cos\`i rapida evoluzione tale limitazione pu\`o risultare vincolante e dunque lo sviluppo di un solutore personale \`e auspicabile.
 
-Il progetto FEMOS (\textit{Finite Element Method Oriented Solver}) \`e stato progettato al fine di simulare le interazioni fra i diversi fenomeni che caratterizzano il funzionamento dei pi\`u moderni dispositivi. All'interno di FEMOS sono gi\`a presenti i moduli che si occupano delle dinamiche chimiche, mecchaniche e termiche. In questo lavoro di tesi abbiamo sviluppato la parte relativa ai semiconduttori. 
+Il progetto FEMOS (\textit{Finite Element Method Oriented Solver}) nasce al fine di sopperire a tale richiesta. Si tratta di un solutore \textit{homemade} in grado di predire il funzionamento dei pi\`u moderni dispositivi, tenendo conto delle interazioni fra i diversi fenomeni caratterizzanti. Il codice \`e scritto in C++ ed \`e costituito da librerie dinamiche orientate alla risoluzione delle dinamiche elettriche, chimiche, meccaniche e termiche utilizzando il metodo agli elementi finiti (FEM). All'interno di questo framework l'obiettivo della tesi \`e di implementare gli strumenti matematici volti alla modellizzazione e simulazione del comportamento elettrico dei dispositivi a semiconduttore. Il lavoro \`e stato svolto nel corso di un'esperienza lavorativa presso Micron Technology (una delle compagnie leader fra le industrie di semiconduttori) ed \`e costituito dalle seguenti librerie:
 
-Nel primo capitolo richiamiamo brevemente le propriet\`a fisiche dei semiconduttori ed enunciamo le principali relazioni che intercorrono fra le grandezze fondamentali (potenziale elettrostatico, campo elettrico, densit\`a di portatori e di corrente). Presentiamo inoltre il modello Drift-Diffusion e alcuni dei principali modelli di mobilit\`a dei portatori e dei fenomeni di generazione/ricombinazione.
+\begin{itemize}[leftmargin=3.7cm]
+\item[\textit{Semiconductor}] l'oggetto principale di questa libreria \`e la classe \texttt{Semi-} \texttt{conductor}, nella quale sono implementate le relazioni fondamentali fra le quantit\`a caratteristiche dei materiali a semiconduttore.
 
-Il secondo capitolo \`e diviso in due sezioni. Nella prima ci occupiamo di introdurre le geometrie considerate durante le simulazioni e le notazioni utilizzate. Nella seconda parte illustriamo gli algoritmi usati al fine di trattare il modello esposto nel primo capitolo.
+\item[\textit{NLPsolver}] questa libreria raccoglie le funzioni utili alla gestione del metodo di Newton applicato all'equazione di Poisson.
 
-Il terzo capitolo illustra la buona posizione delle equazioni trattate e i metodi utilizzati per discretizzarle.
+\item[\textit{DD\_semiconductor}]  in questa libreria sono incluse le funzioni adibite alla gestione della risoluzione dell'equazione di continuit\`a e i metodi volti alla valutazione della corrente ai contatti e all'interno del dispositivo.
 
-Il quarto capitolo contiene i risultati ottenuti su dispositivi a semiconduttore tipici (diodo, MOSFET). La validazione dei risultati \`e stata condotta confrontandosi con un software commerciale (SDEVICE). La parte finale del capitolo riguarda l'estensione del metodo dei residui al caso 3D per il calcolo della corrente di contatto \cite{ContactCurrentRM}.
+\item[\textit{ModelsManage}] l'oggetto principale di questa libreria \`e la classe \texttt{Models-} \texttt{Manage}, il cui compito risiede nel mettere in comunicazione le variabili interne del codice con i modelli (di mobilit\`a e R/G) caricati dall'utente.
+
+\item[\textit{ImplementedModels}] questa libreria raccoglie tutti i modelli di mobilit	\`a e R/G ed \`e stata scritta in modo tale che sia possibile aggiungere nuovi modelli senza mutare altre parti del codice.
+\end{itemize}
+
+\vspace{1cm}
+
+L'elaborato \`e organizzato nel seguente modo:
+\begin{itemize}[leftmargin=2.5cm]
+\item[\bf Capitolo 1]  richiamiamo brevemente le propriet\`a fisiche dei semiconduttori ed enunciamo le principali relazioni che intercorrono fra le grandezze fondamentali (potenziale elettrostatico, campo elettrico, densit\`a di portatori e di corrente). Presentiamo inoltre il modello Drift-Diffusion e alcuni dei principali modelli di mobilit\`a dei portatori e dei fenomeni di R/G.
+
+\item[\bf Capitolo 2] questo capitolo \`e diviso in due sezioni. Nella prima ci occupiamo di introdurre le geometrie considerate durante le simulazioni e le notazioni utilizzate. Nella seconda parte illustriamo gli algoritmi usati al fine di trattare il modello esposto nel primo capitolo (Gummel map).
+
+\item[\bf Capitolo 3] la buona posizione delle equazioni trattate e i metodi utilizzati per discretizzarle sono approfonditi in questo capitolo. Particolare attenzione poniamo su alcune interessanti difficolt\`a numeriche.
+
+\item[\bf Capitolo 4] questo capitolo contiene i risultati ottenuti. La validazione dei tests \`e stata condotta su dispositivi a semiconduttore tipici (diodo, n-MOSFET/p-MOSFET) confrontando le soluzioni con un software commerciale (SDEVICE). La parte finale del capitolo riguarda l'estensione del \textit{metodo dei residui} al caso 3D per il calcolo della corrente ai contatti \cite{ContactCurrentRM}.
+
+\item[\bf Capitolo 5] in questo capitolo vengono trattate alcune tecniche the permettono la ricostruzione delle densit\`a di corrente all'interno dei dispositivi. Proponiamo due schemi innovativi al fine di  estendere la formula 1D di Scharfetter-Gummel \cite{Gummel:SignAnalys} al caso 3D. Infine confrontiamo i risulati con SDEVICE.
+\end{itemize}
 
 
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
 
-\chapter{Introduction}
+In 1947 John Bardeen, William Shockley and Walter Brattain (three scientists of Bell Telephone Labs) invented the bipolar transistor and since that crucial point there has been a continously increasing growth of the semiconductor industry never known before, with a serious impact on the way people work and live today. 
 
-In 1947 John Bardeen, William Shockley and Walter Brattain (three scientists of Bell Telephone Labs) invented the bipolar transistor and since that crucial point there has been a growth  of the semiconductor industry never known before, with serious impact on the way people work and live today. 
-
-Before reach the functionality and the miniaturization of modern devices, some fundamental steps has been made.
-In 1958 the first intagrated circuits (IC) was produced, followed by the introduction of the first MOSFET(1960) and CMOS(1963). Into these inventions the first micro-processor(1971) sank his roots  and since that time until present, an ever-increasing progress has continued, according to the indication of \textit{Moore's Law} (formulated by Gordton Moore in 1965).
+Before reaching the functionality and the miniaturization of nowdays devices, some fundamental steps have been made.
+In 1958 the first intagrated circuit (IC) was produced, followed by the introduction of the first MOSFET(1960) and CMOS(1963). Into these inventions the first micro-processor (1971) sank his roots  and since that time until present, an ever-increasing progress has continued, according to the indication of \textit{Moore's Law} (formulated by Gordon Moore in 1965).
 
 These events led microelectronic industry at the doors of the VLSI era (Very-Large-Scale-Integration). Indeed in the last thirty years the benefits of miniaturization have been the key in the evolutionary progress leading to today's computers, wireless units, and comunication systems that offer superior performance, dramatically reduced cost per function, and much reduced physical size.
 
-The large worldwide investment in VLSI technology constitutes a formidable driving force that guarantee the continued progress in IC integration density and speed, for as long as physical principles will allow.
+The large worldwide investment in VLSI technology constitutes a formidable driving force that guarantees the continued progress in IC integration density and speed, for as long as physical principles will allow.
 
-From this point we want start and remark that the aim of numerical simulations is the comprehension of the physical phenomenon which lies behind the function of modern device. 
+From this point we want to start and remark that the aim of numerical simulations is the comprehension of the physical phenomena which lie behind the function of a modern device. 
 
-Even if many commercial software are able to resolve different physic situations, they are often specialized on particular physic branch: obviously this strategic choice guarantees more efficiency but it implies a lost in generality. The consequence is that the work of device engineer becomes harder when he had to analyze electrical response coming from different phenomena. 
+Even if many commercial software are able to solve different physical situations, they are often specialized on a particular physical target: obviously this strategic choice guarantees more efficiency but it implies a lost in generality. The consequence is that the work of device engineer becomes harder when the analysis of the electrical response coming from different phenomena is required. 
 
-Let us consider, as example, the functionality of a new device, which its electric behaviour is strong influeced by its mechanical response. Basically you are interested to the resolution of Maxwell's law  (which is well performed by SDEVICE simulator) and the Navier-Lam\`e equations (which is well performed by COMSOL simulator). Now the question is: how to put in comunication the different outputs?
-Because it's not possbile known precisely how the above programs resolves the equations, a relevant risk occurs when you decide to combine the solutions. 
-In other words the development of an own code is at least desirable and possibly helpful: the main advantage is the control on simulation procedure and the possibility of fully customization, the major drawback is that this requires time and human resources, which in many cases are not avaible.   
+Let us consider, as an example, the functionality of a new device, whose electrical behaviour is strongly influenced by its mechanical response. Basically numerical simulation of the problem consists of the solution of Maxwell's equations (which is well performed by SDEVICE simulator) and Navier-Lam\`e equations (which is well performed by COMSOL simulator). Now the question is: how to put in communication the different outputs?
+Since it is not possbile to know precisely how the above programs numerically solve the equations, a relevant risk occurs when the two solutions need be combined. 
+In other words, the development of an own code is at least desirable and possibly helpful; the main advantage is the control on simulation procedure and the possibility of fully customization, the major drawback is that this requires time and human resources, which in many cases are not available.   
 
-The FEMOS project (\textit{Finite Element Method Oriented Solver}) tries to overcome the above limitations. FEMOS is designed for the treatment of chemical, mechanical, thermal and fluid phenomena. 
-In this project we can't avoid the treatment of the classical semiconductor devices, this thesis found its origin in the development of this achievement.
+The FEMOS project (\textit{Finite Element Method Oriented Solver}) tries to overcome the above limitations. FEMOS is designed for the treatment of electrical, chemical, mechanical, thermal and fluid phenomena in a unified modular framework using the Finite Element Method (FEM). 
+The object of this MD thesis is to implement the mathematical tools in order to model and simulate the electrical behaviour of semiconductor devices. The work has been done in the course of a job experience in Micron Technology (a leading company in the semiconductor industry), and integrated in the FEMOS project through five modules each of them is an object-oriented dynamic library (the code is writtend in C++):
 
-In the first chapter we briefly recall the semiconductor material properties, physical behaviours and relations between the fundamental quantity (e.g. electrostatic potential, electric field, carrier densities and current densities). The classical Drift-Diffusion model has been detailed discussed; with the needed models for carrier mobility and generation/recombination phenomena.
+\begin{itemize}[leftmargin=3.7cm]
+\item[\textit{Semiconductor}] the main object of this library is the \texttt{Semiconductor} class, where the fundamental relations between the characterizing quantity of a semiconductor material are implemented.  
 
-The second chapter consists of two main sections. The first one presents the geometry framework and introduce some useful notations. The second one illustrates the algorithms used in order to treat the equations of the first chapter (decoupled Gummel map approach).
+\item[\textit{NLPsolver}] this library gathered the utility functions for the manage of the Newton method applied to the Poisson equation.
 
-The third chapter the well-posedness analysis and the numerical approximation of the equations has been detailed discussed.
+\item[\textit{DD\_semiconductor}] this library includes both the functions assigned to the Continuity equation solving and the post-processing utilities for the evaluation of the current at contacts and inside the device.
 
-The fourth chapter contains numerical results of the simulations of typical test case (diode, MOS). The tests are compared with the results of a commercial code (SDEVICE). At the end the calculation of the current at contacts have been performed, extending the \textit{residual method} \cite{ContactCurrentRM} in the 3D case.
+\item[\textit{ModelsManage}] the main object of this library is the \texttt{ModelsManage} class which puts in contact the internal variables of the code with the models (mobility or R/G) loaded by the user.
 
-The fivth chapter \textcolor{red}{capitolo ancora in fase di costruzione}.
+\item[\textit{ImplementedModels}] this library stores all the mobility and R/G models. Moreover new models can be added easily without change other parts of the code.
+\end{itemize}
+
+
+\vspace{1cm}
+
+The thesis is organized as follows:
+\begin{itemize}[leftmargin=2.4cm]
+\item[\bf Chapter 1] we briefly recall the semiconductor material properties, physical behaviours and relations between the fundamental quantity (e.g. electrostatic potential, electric field, carrier densities and current densities). The classical Drift-Diffusion model has been detailed discussed; with the needed models for carrier mobility and generation/recombination phenomena.
+
+\item[\bf Chapter 2] this chapter consists of two main sections. The first one presents the geometry framework and introduce some useful notations. The second one illustrates the algorithms used in order to treat the equations of the first chapter (decoupled Gummel map approach).
+
+\item[\bf Chapter 3] the well-posedness analysis and the numerical approximation of the equations has been detailed discussed. The emphasis of this chapter has been focusing also on some iteresting numerical difficulties. 
+
+\item[\bf Chapter 4] in this chapter we present the numerical results. The validation tests are performed on typical semiconductor devices (p-n junction, n-channel/p-channel MOSFET) comparing the results with a commercial software (SDEVICE). At the end the calculation of the current at contacts have been performed, extending the \textit{residual method} \cite{ContactCurrentRM} to the 3D case.
+
+\item[\bf Chapter 5] we investigate some techniques that allows to reconstruct the current density inside the device. We propose two novel schemes in order to extend the 1D Scharfetter-Gummel formula \cite{Gummel:SignAnalys} to the 3D case. Finally, we compare the results with SDEVICE.
+
+\end{itemize}
 
 %\begin{itemize}
 %\item development of a finite element based simulator for semiconductor devices which deals with multiple generation/recombination and mobility models;
