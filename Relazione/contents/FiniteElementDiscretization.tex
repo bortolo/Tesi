@@ -146,7 +146,7 @@ find $u_n \in H^1_{\Gamma_{D,Si}}(\Omega)$ such that
 
 
 Existence and uniqueness of the unknown variable $u_n$ ensures the same properties on $n$, thanks to the relation \referenzaeq{eq: un slotboom} between $u_n$ and $n$.
-Further hypotheses on the coefficients $\forall i\geq 0$:
+Further hypotheses on the coefficients $\forall i\geq 0$ are:
 \begin{itemize}
 \item $q D_n e^{\varphi^{i}/V_{th}} \in L^{\infty}(\Omega_{Si})$ and $D_n(\mathbf{x})>0$ a.e. in $\Omega_{Si}$;
 \item  $\sigma_n^{i-1} e^{\varphi^i/V_{th}} \in L^{\infty}(\Omega_{Si})$ and $\sigma_n^{i-1}(\mathbf{x})>0$ a.e. in $\Omega_{Si}$.
@@ -293,7 +293,7 @@ L_{ij}
 +
 \dfrac{|K|}{4} \sigma^k_i
 \end{equation}
-having set
+having set:
 
 \begin{equation}
 \begin{array}{rcl}
@@ -315,7 +315,7 @@ A_{IJ}^k = \sum_{\substack{\forall K \in \mathcal{T}_h s.t. \\ \mathcal{J}_K(I),
  [A_K]_{ij}^k.
 \end{equation}
 
-Analogously for the force term $\vect{b}^{k}$
+Analogously the force term $\vect{b}^{k}$ is
 
 \begin{equation}
 b_{I}^k = \sum_{\substack{\forall K \in \mathcal{T}_h s.t. \\ \mathcal{J}_K(I) \subset \mathcal{V}_K}}
@@ -346,7 +346,7 @@ where $||\cdot ||_2$ is the usual Euclideian norm for a vector.
 
 Despite the validity of \teoref{theorem: newton convergence}, the 
 use of the Newton's method may be affected by numerical implications.
-The main problem is the fact that the method overestimate the length of the correction step. This phenomenon is frequently indicated as \textit{overshoot}. In the case of the semiconductor equations this overshoot problem can be treated by simply limiting the size of the correction vector ($\delta \varphi$) determined by Newton's method. The usual established modifications to avoid overshoot are given by the following formulation:
+The main problem is the fact that the method overestimate the length of the correction step. This phenomenon is frequently indicated as \textit{overshoot}. In the case of the semiconductor equations this overshoot problem can be treated by simply limiting the size of the correction vector ($\delta \varphi$) determined by Newton's method. The usual established modifications to avoid overshoot are given by the following formulation
 
 
 \begin{align}
@@ -367,7 +367,7 @@ This condition is hardly to be evaluated because the presence of the inverse of 
 ||D(\varphi_k)^{-1}\vect{b}(\varphi_k-t_kD(\varphi_k)^{-1}\vect{b}(\varphi_k))||<||D(\varphi_k)^{-1}\vect{b}(\varphi_k)||.
 \end{equation}
 
-This criterion has been adopted in our code. However the value to use for $t_k$ is a question of trial and error. Frequently the following sequences are used:
+This criterion has been adopted in our code. However the value to use for $t_k$ is a question of trial and error. Frequently the following sequence is used:
 
 \begin{align}
 t_k & = \dfrac{1}{2^i} \\
@@ -375,7 +375,7 @@ t_k & = \dfrac{1}{2^{\dfrac{i(i+1)}{2}}}
 \end{align}
 where $i$ is the number of subiterations of the damping procedure needed to satisfy \referenzaeq{eq: easy criterion}. Close to the solution, \referenzaeq{eq: extended criterion} (and so \referenzaeq{eq: easy criterion}) will be satisfied with $t_k=1$ so that the quadratic convergence properties of the classical Newton method are recovered.
 
-The benefits due to the damping techinque are visible in \figref{fig: Damping err}, where for different voltages applied to a p-n junction, the evolution of the residual, for the first Gummel map iteration, is shown. When damping is switched-off first iterations are critical, because the solution found is very far from the real one. When damping is switched-on this problem is solved and the scheme converges with fewer iterations. In some heuristic sense this procedure guarantees a progressive approaching of the solution to the ball mentioned in \teoref{theorem: newton convergence}, where the convergence rate is quadratical. In \figref{fig: Damping theta} the evolution of the coefficient $t_k$ is depicted. 
+The benefits due to the damping techinque are visible in \figref{fig: Damping err}, where for different voltages applied to a p-n junction, the evolution of the residual, for the first Gummel map iteration, is shown. When damping is switched-off first iterations are critical, because the solution found is very far from the real one. When damping is switched-on this problem is solved and the scheme converges with fewer iterations. In some heuristic sense this procedure guarantees a progressive approaching of the solution to the ball mentioned in \teoref{theorem: newton convergence}, where the convergence rate is quadratic. In \figref{fig: Damping theta} the evolution of the coefficient $t_k$ is shown. 
 The curves are monotonic from 0 to 1 below and this means that damping procedure is more relevant in the first iterations than in the last, where the standard Newton method is recovered.
 
 Finally, we notice that for high voltages the scheme needs more iterations to converge. This phenomena is strictly related to the shape of the initial guess and we see it in detailed in Section \ref{sec: PN}. 
@@ -418,7 +418,7 @@ Therefore special care has to be taken in the treatment of the diffusion coeffic
 
 Notice that $\mathcal{M}_S$ is the usual integral average, while $\mathcal{H}_S$ is the \textit{harmonic average}. It is well-known that the use of the harmonic average provides a superior approximation performance in one spatial dimension \cite{BabuskaMixMet}.
 
-The weak form \referenzaeq{eq: weak formulation displacement}  is the result of a standard displacement approach, although different variational formulations and therefore different finite element approximations may be used, like a primal mixed approach (PM).  First of all it is convenient to reformulate problem \referenzaeq{eq: LEC system new} by using relations \referenzaeq{eq: un slotboom} and \referenzaeq{eq: Jn slotboom} in a more generical form as:
+The weak form \referenzaeq{eq: weak formulation displacement}  is the result of a standard displacement approach, although different variational formulations and therefore different finite element approximations may be used, like a primal mixed approach (PM).  First of all it is convenient to formulate problem \referenzaeq{eq: LEC system new} by using relations \referenzaeq{eq: un slotboom} and \referenzaeq{eq: Jn slotboom} in a more generical form as:
 
 \begin{equation}
 \label{eq: LEC system slotboom generic}
@@ -599,7 +599,7 @@ Problem \referenzaeq{eq: LEC system slotboom generic} can be discretized conside
 %denoting by  $\mathcal{B}_{ij}$ the Bernoulli function applied to the potential difference between node $j$ and node $i$.
 
 
-The EAFE scheme is particularly suited for problems with a highly variable diffusion coefficient. Furthermore this approach has several good properties, i.e. in 2D framework if $\mathcal{T}_h$ is a Delaunay partition the system matrix is an M-matrix \cite{BankMmatrixEAFE}. The main consequence of this statement is that the solution satisfying the \textit{Discrete Maximum Principle}. This is a notable property which implies that no negative concentrations are admitted. Unfortunately this property is not anymore valid in 3D framework, because the Delaunay condition on the mesh is not sufficient to guarantee that the system matrix is an M-matrix. A more general condition is presented in \cite{Zikatanov:EAFE1}.
+The EAFE scheme is particularly suited for problems with a highly variable diffusion coefficient. Furthermore this approach has several good properties, i.e. in 2D framework if $\mathcal{T}_h$ is a Delaunay partition the system matrix is an M-matrix \cite{BankMmatrixEAFE}. The main consequence of this statement is that the solution satisfying the \textit{Discrete Maximum Principle}. This is a notable property which implies that no negative concentrations are admitted. Unfortunately this property is not anymore valid in 3D framework, because the Delaunay condition on the mesh is not enough to guarantee that the system matrix is an M-matrix. A more general condition is presented in \cite{Zikatanov:EAFE1}.
 
 \begin{Teorema}[Zikatanov condition]
 The system matrix of the EAFE scheme is an M-matrix if and only if for any fixed edge E of the partition $\mathcal{T}_h$ the following inequality holds
@@ -625,9 +625,9 @@ We remark that presently meshing algorithm are oriented to care about the minimu
 \figref{fig: cubo zikatanov} shows a simple partition of a cube performed with the Synopsis tool SNMESH. For every element we evaluated how many edges do not satisfy condition \referenzaeq{eq: mesh delaunay condition}.
 It is clear that there are a lot of edges which do not fulfil the condition and a precise pattern cannot be signed out. When several bad edges belong to a single element we can identify the presence of many obtuse angles.
 
-In order to avoid this problem some alternative solutions are proposed in the literature. In certain conditions the system matrix can be changed in a M-matrix using the \textit{Orthogonal Subdomain Collocation method} \cite{OSCputticorded}, but also this approach is not a definite solution. 
+In order to avoid this problem some alternative solutions are proposed in the literature. In particular conditions the system matrix can be changed in a M-matrix using the \textit{Orthogonal Subdomain Collocation method} \cite{OSCputticorded}, but also this approach is not a definite solution. 
 
-Therefore, in 3D numerical simulation, in presence of a negative concentration the most used technique  is to local mesh refinement in the regions where trouble occurs, which often are the ones where the carrier density decreases.
+Therefore, in 3D numerical simulation, in presence of a negative concentration the most used technique to recover the positivity is to local mesh refinement in the regions where trouble occurs, which often are the ones where the carrier density decreases.
 
 
 

@@ -1,8 +1,22 @@
-\chapter{Abstract}
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
 
-Nel presente elaborato vengono illustrati gli strumenti matematici necessari al fine di simulare il comportamento elettrico dei dispositivi a semiconduttore in un contesto 3D. Il modello Drift-Diffusion \cite{Jackson:ElettroClassica} \`e stato scelto come riferimento e la sua risoluzione si \`e basata sull'algoritmo della mappa di Gummel \cite{GummelMap}. Il problema non lineare di Poisson \`e stato affrontato con il metodo di Newton. La discretizzazione delle equazioni \`e stata realizzata secondo il metodo di Galerkin agli elementi finiti (FEM) ed in particolare per il problema di Poisson si \`e scelta una formulazione agli spostamenti, mentre per l'equazione di continuit\`a ci si \`e affidati allo schema numerico EAFE presentato in \cite{Zikatanov:EAFE1}.
-Sono stati introdotti diversi modelli di mobilit\`a e di genereazione/ricombinazione dei portatori in maniera tale che possano essere scelti dall'utente a run-time.
-Il codice prodotto \`e organizzato in diversi moduli che vanno ad integrarsi a FEMOS (Finite Element Method Oriented Solver): si tratta di un solutore multifisico scritto in C++ e raccolto in librerie dinamiche.
-I tests sono stati condotti su vari dispositivi a semiconduttore (diodo, n-MOSFET/p-MOSFET) ed i risultati ottenuti sono stati confrontati con un solutore commerciale (SDEVICE).
+Questo elaborato si inserisce nel progetto FEMOS (\textit{Finite Element Method Oriented Solver}) che costituisce all'interno dell'azienda Micron Technology una piattaforma per la simulazione 3D multifisica (termo-elettro-chimica-meccanica) delle memorie elettroniche.
+In particolare questo lavoro di tesi si \`e occupato della trattazione dell'approccio Drift-Diffusion \cite{Jackson:ElettroClassica} per i semiconduttori la cui risoluzione si \`e basata sull'algoritmo della mappa di Gummel \cite{GummelMap}. La discretizzazione delle equazioni \`e stata realizzata secondo il metodo di Galerkin agli elementi finiti (FEM) ed in particolare per il problema di Poisson si \`e scelta una formulazione agli spostamenti, mentre per l'equazione di continuit\`a ci si \`e affidati allo schema numerico EAFE presentato in \cite{Zikatanov:EAFE1}. Il problema non lineare di Poisson \`e stato affrontato con il metodo di Newton.
 
-Una parte fondamentale del lavoro \`e costituita dalle tecniche sviluppate al fine di valutare la corrente ai contatti e all'interno dei dispositivi. Nel primo caso abbiamo esteso il metodo dei residui  presentato in \cite{ContactCurrentRM} ad un framework 3D. Per quanto riguarda il calcolo della densit\`a di corrente, proponiamo due schemi innovativi volti all'estensione al caso 3D della formula 1D di Scharfetter-Gummel \cite{Gummel:SignAnalys}. Infine presentiamo i risultati numerici confrontandoli con SDEVICE.
+La parte pi\`u originale del lavoro \`e costituita dalle tecniche sviluppate al fine di calcolare la corrente ai contatti e all'interno dei dispositivi. Nel primo caso abbiamo esteso il metodo dei residui  presentato in \cite{ContactCurrentRM} ad un framework 3D. Per il secondo abbiamo proposto due schemi innovativi volti all'estensione nel caso 3D della formula di Scharfetter-Gummel \cite{Gummel:SignAnalys}.
+
+Sono stati condotti test di simulazione su vari dispositivi a semiconduttore (diodo, n-MOSFET/p-MOSFET) ed i risultati ottenuti sono stati confrontati con un solutore commerciale ottenendo un ottimo accordo.
+
+
+
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract (English version)}
+
+This thesis is part of the FEMOS (\textit{Finite Element Method Oriented Solver}) project which is a modular numerical code designed for the treatment of multiphysical effects (thermal-electrical-chemical-mechanical) applied to the most modern memory devices.
+More precisely in this work the Gummel map algorithm \cite{GummelMap} is employed to solve the Drift-Diffusion model  \cite{Jackson:ElettroClassica} for semiconductors. The Non Linear Poisson has been discretized using the Galerkin finite element method \cite{quarteroni:NumApprox} following a displacement formulation and the Continuity equations have been treated using the EAFE scheme \cite{Zikatanov:EAFE1}.
+
+The original part of this work is the calculation of the current both at contacts and inside the device. In the first case we applied to the 3D framework the \textit{residual method} \cite{ContactCurrentRM}, while in the second one we proposed two novel schemes in order to extend the Scharfetter-Gummel fromula \cite{Gummel:SignAnalys} to the 3D case.
+
+The code has been thoroughly tested on different semiconductor devices (p-n junction, p-n junction in oxide and n-channel/p-channel MOSFET), comparing the results with a commercial tool as reference reaching a very good agreement.

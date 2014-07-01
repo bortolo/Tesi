@@ -21,7 +21,7 @@ In a silicon crystal each atom has four valence electrons to share with its four
 \label{fig: density occupation and prob}
 \end{figure}
 
-Because in silicon the band gap is 1.11 [eV] \cite{SolidState} at room temperature a small fraction of the electrons are excited into the conduction band, leaving behind vacancies (called \textit{holes}) in the valence band.
+Because in silicon the band gap is 1.11 [eV] \cite{SolidState}, at room temperature a small fraction of the electrons are excited into the conduction band, leaving behind vacancies (called \textit{holes}) in the valence band.
 In contrast, an insulator has a much larger forbidden gap making room-temperature conduction virtually impossible, while metals have partially filled conduction bands even at absolute zero temperature, making them excellent conductors at any temperature. 
 
 A suitable formulation of the electron concentration in the conduction band is given by the following integral
@@ -42,7 +42,7 @@ In \referenzaeq{eq: fermi dirac distribution} $k_B=1.38\times10^{-23}[J/K]$ is B
 \label{eq: approssimazione banda di conduzione}
 E = E_c + \dfrac{\hbar^2}{2m_e^*}\mathrm{k}^2
 \end{equation}
-where $\hbar=h/2\pi$ and $h=6.63 \times 10^{-34} [J \, s]$ is Planck's constant, $m_e^*$ is the electron effective mass, $E_c$ is the minimum value of the conduction band and $\mathrm{k}$ is the wavenumber. Using this approximation conduction band density of states can be calculates
+where $\hbar=h/2\pi$ and $h=6.63 \times 10^{-34} [J \, s]$ is Planck's constant, $m_e^*$ the electron effective mass, $E_c$ the minimum value of the conduction band and $\mathrm{k}$ the wavenumber. Using this approximation, conduction band density of states can be calculates
 
 \begin{equation}
 \label{eq: state density electron}
@@ -66,7 +66,7 @@ f_D(E)\simeq f_{MB}(E) =
 \end{cases}
 \end{equation}
 
-The Fermi level plays an essential role for the equilibrium of a stystem, it is important to keep in mind the following observation.
+The Fermi level plays an essential role for the equilibrium of a system, it is important to keep in mind the following observation.
 
 \begin{Osservazione}
 When two systems in contact are in thermal equilibrium with no current flow between them, their Fermi levels must be equal: in other words for a continuous region (of metals or semiconductors in contact), the Fermi level at thermal equilibrium is spatially constant.
@@ -140,7 +140,7 @@ A p-type or an n-type is named as \textit{extrinsic} silicon.
 In terms of the energy-band diagram, donors add allowed electron states in the bandgap close to the conduction-band edge, while acceptors add allowed states just above the valence-band edge.
 
 The Fermi level in n-type silicon moves up towards the conduction band while in p-type silicon it moves down towards the valence band. This behaviour is presented in the band diagrams of \figref{fig: Band diagrams of extrinsic silicon}.
-The exact position of the Fermi level depends on both the ionization energy and the concentration of dopants. For the sake of simplicity we consider that at room temperature all impurties are ionized ($N_d = N_d^+$ and $N_a = N_a^-$).  For an n-type material with a donor impurity concentration, $N_d$, the charge neutrality condition requires that
+The position of the Fermi level depends on both the ionization energy and the concentration of dopants. For the sake of simplicity we consider that at room temperature all impurties are ionized ($N_d = N_d^+$ and $N_a = N_a^-$).  For an n-type material with a donor impurity concentration, $N_d$, the charge neutrality condition requires that
 \begin{equation}
 \label{eq: equilibrium charge in n-type}
 n = N_d^+ + p
@@ -287,7 +287,7 @@ Carrier transport or current flow is driven by two different mechanisms:
 \item the \textbf{diffusion}, which is caused by a spatial gradient of electron or hole concentration.
 \end{itemize}
 
-\subsubsection{Drif current - Ohm's law}
+\subsubsection{Drift current - Ohm's law}
 
 When an electric field is applied to a device, the free carriers are accelerated and acquire a drift velocity superimposed upon their random thermal motion.
 
@@ -302,7 +302,7 @@ During their motion throughout the lattice structure, carriers travel at an aver
 \vect{v}_d^e = - \dfrac{q\vect{E}\tau_e}{m_e^*} \, , \psp{20} 
 \vect{v}_d^h = + \dfrac{q\vect{E}\tau_h}{m_h^*}
 \end{equation}
-where $\vect{E}$ is the electric field, $\tau_e$, $\tau_h$ are the average times between two consecutive scattering events and $m_e^*$, $m_h^*$ are the effective masses of electron and hole respectively.
+where $\vect{E}$ is the electric field, $\tau_e$, $\tau_h$ the average times between two consecutive scattering events and $m_e^*$, $m_h^*$ the effective masses of electron and hole respectively.
 The coefficient $q\tau_e / m_e$ ($q\tau_p / m_p$) characterizes how quickly a carrier move through the lattice and is known as carrier mobility $[cm^2V^{-1}s^{-1}]$.
 In general, to include different scattering mechanisms \textit{Matthiessen's rule} is used to calculate the resulting mobility
 \begin{equation}
@@ -324,7 +324,7 @@ Relations \referenzaeq{eq: drift electron} and \referenzaeq{eq: drift hole} expr
 
 \subsubsection{Diffusion current - Fick's law}
 
-In semiconductor devices it is very common to have different profiles of dopant in order to allow specifically electrical behaviors. This implies a non uniform concentration of carriers which also diffuse as a result of a gradient concentration. This leads to an additional current contribution accordingly to the classical \textit{Fick's law}:
+In semiconductor devices it is very common to have different profiles of dopant in order to allow specific electrical behaviors. This implies a non uniform concentration of carriers which also diffuse as a result of a gradient concentration. This leads to an additional current contribution accordingly to the classical \textit{Fick's law}:
 \begin{align}
 \vect{J}_n = -D_n(-q\nabla n) \label{eq: diff electron}\\
 \vect{J}_p = -D_p(+q\nabla p) . \label{eq: diff hole}
@@ -340,7 +340,7 @@ D_n = \dfrac{k_BT}{q}\mu_n, \qquad D_p = \dfrac{k_BT}{q}\mu_p.
 \subsubsection{Drift-Diffusion transport equations}
 \label{subsub:driftdiffusion transport}
 
-By considering \referenzaeq{eq: drift electron}, \referenzaeq{eq: drift hole}, \referenzaeq{eq: diff electron} and \referenzaeq{eq: diff hole}, the electron and hole current densities become \cite{selberherr:SimSem}:
+By considering \referenzaeq{eq: drift electron}, \referenzaeq{eq: drift hole}, \referenzaeq{eq: diff electron} and \referenzaeq{eq: diff hole}, the electron and hole current densities become \cite{selberherr:SimSem} is:
 
 \begin{align}
 \vect{J}_n &= qn\mu_n\vect{E} + qD_n\nabla n  \label{eq: drift diff electron}\\ 
@@ -498,7 +498,7 @@ The stationary form can be easily deduced from \referenzaeq{eq: full problem} by
 \subsection{Generation and Recombination phenomenon}
 \label{subsection: RG}
 
-The modelling of $R(\vect{x},t)$ is fundamental for device simulation due to its important role in determining the current-voltage characteristic.
+The modelling of $R(\vect{x},t)$ is fundamental for device simulation due to its role in determining the current-voltage characteristic.
  
 It is important to keep in mind that electrons and holes are in continuos fluctuation due to their thermal energy, the macroscopic result is that the net recombination rate at equilibrium  is identically zero. Our interest is to analyze the deviations from this condition. 
 
@@ -593,7 +593,7 @@ with:
 \begin{equation}
 \gamma = \dfrac{\tanh\left(\dfrac{\hbar \omega_{op}}{2k_BT_0} \right) }{\tanh\left(\dfrac{\hbar \omega_{op}}{2k_BT} \right)}
 \end{equation}
-where $\hbar \omega_{op}$ is the phonon energy, $b$ is the critical electric field and $\gamma$ expresses the temperature dependence of the phonon gas against which carriers are accelerated. Two sets of coefficients $a$ and $b$ are used for high and low ranges of electric field. The values $a_{low}$, $b_{low}$ are used in the low field range up to $E_{0}$ and the values $a_{high}$, $b_{high}$ apply in the high field above $E_0$. $E_{ava}$ is the driving force that can be computed as:
+where $\hbar \omega_{op}$ is the phonon energy, $b$ the critical electric field and $\gamma$ the temperature dependence of the phonon gas against which carriers are accelerated. Two sets of coefficients $a$ and $b$ are used for high and low ranges of electric field. The values $a_{low}$, $b_{low}$ are used in the low field range up to $E_{0}$ and the values $a_{high}$, $b_{high}$ apply in the high field above $E_0$. $E_{ava}$ is the driving force that can be computed as:
 \begin{itemize}
 \item the component of the electrostatic field in the direction of current flow
 \begin{equation}
@@ -626,7 +626,7 @@ $\hbar\omega_{op}$ & eV & 0.063 & 0.063\\
 
 \subsection{Mobility models}
 
-In this section we illustrate the most common phenomenological models to describe carrier mobilities. The main physical phenomena underlying a mobility reduction are:
+In this section we illustrate the most common phenomenological models for carrier mobilities. The main physical phenomena underlying a mobility reduction with respect to the bulk are:
 
 \begin{itemize}
 \item interaction with the silicon atoms (due to thermal vibrations);
@@ -635,7 +635,7 @@ In this section we illustrate the most common phenomenological models to describ
 
 \subsubsection{Scattering with lattice}
 
-Carrier mobility is a decreasing function of temperature, as we expect collisions become more and more frequent as T gets higher (see \cite{Lombardi:MobConst}). This can be represented as
+Carrier mobility is a decreasing function of temperature, as we expect collisions become more and more frequent as T gets higher (see \cite{Lombardi:MobConst}). This can be represented by
 
 \begin{equation}
 \label{eq: mobility thermal}
@@ -660,7 +660,7 @@ $\beta$ & 1 & 2.5 & 2.2\\
 \subsubsection{Scattering from ionized impurities}
 \label{sec: Masetti model}
 
-Dopant ionized impurities represent local perturbations of the periodic silicon lattice, they strongly influence the carrier motion through electrostatic interaction, reducing the mobility. To take into account this physical effect the following model has been proposed in \cite{Masetti:MobDop}
+Dopant ionized impurities induce local perturbations of the periodic silicon lattice, they strongly influence the carrier motion through electrostatic interaction, reducing the mobility. To take into account this physical effect the following model has been proposed in \cite{Masetti:MobDop}
 
 
 \begin{equation}
@@ -694,7 +694,7 @@ $\beta$& 1 & 2.0 & 2.0 \\
 
 \subsubsection{Veclocity saturation at high electric field}
 
-Under the assumption of low electric field, mobilities are reasonably constant and the carrier drift velocity is proportional to the electric field. As the applied field strength increases, the above assumption predicts an unbounded carrier velocity as $|\vect{E}| \rightarrow \infty$. This outcome is physical incorrect, indeed at high fields carriers lose their energy by optical-phonon emission \cite{ModernVLSIdevices}. We can take this into account by considering that
+Under the assumption of low electric field, mobilities are reasonably constant and the carrier drift velocity is proportional to the electric field. As the applied field strength increases, the above assumption predicts an unbounded carrier velocity as $|\vect{E}| \rightarrow \infty$. This outcome is physical incorrect, indeed at high fields, carriers lose their energy by optical-phonon emission \cite{ModernVLSIdevices}. We can take this into account by considering that
 
 \begin{equation}
 \label{eq: velocity saturation}

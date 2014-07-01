@@ -1,38 +1,35 @@
-\chapter{Conclusions and future work}
+\chapter*{Conclusions and future work}
+\addcontentsline{toc}{chapter}{Conclusions and future work}
 
+In this MD Thesis, we have addressed the simulation of semiconductor devices in 3D framework. Gummel map algorithm \cite{GummelMap} is employed to solve the Drift-Diffusion model  \cite{Jackson:ElettroClassica}. The Non Linear Poisson has been discretized using the Galerkin finite element method \cite{quarteroni:NumApprox} following a displacement formulation and improving the convergence algorithm with the damping technique \cite{DefulhardDamp}. The Continuity equations have been treated using the EAFE scheme \cite{Zikatanov:EAFE1} reserving a particular attention to the Zikatanov condition (presented in \cite{Zikatanov:EAFE1}) in order to discuss the discrete maximum principle.
 
-In this MD Thesis, we have addressed the thecniques of numerical simulating semiconductor devices. 
-In order to accomplish our goal we used the Gummel map algorithm \cite{GummelMap} to solve the Drift-Diffusion model  \cite{Jackson:ElettroClassica}. The Non Linear Poisson problem has been discretized using the Galerkin finite element method \cite{quarteroni:NumApprox} following a displacement formulation while the Continuity equations have been treated using the EAFE scheme \cite{Zikatanov:EAFE1}. 
+This mathematical framework has been implemented through shared libraries using an object-oriented programming language (C++).
 
-Concerning the model part we introduced several mobility and R/G models that can be choose dynamically by the user at run time.
-
-The above issues have been implemented using an object-oriented programming language (C++) and are gathered in five libraries of the FEMOS project: \textit{DD\_semiconductor}, \textit{Semiconductor}, \textit{NLPsolver}, \textit{ModelsManage} and \textit{ImplementedModels}. Moreover new models can be added, updating the \textit{ImplementedModels} library.
-
-The code has been thoroughly tested on three semiconductor devices (p-n junction, p-n junction in oxide and n-channel/p-channel MOSFET), comparing with the solutions of SDEVICE. We obtained excellent results for several different operating conditions. Furthermore, we analyzed the performance of the code and shown some critical situations of the techniques used.
-
-The convergence rate of the Non Linear Poisson solving may be degraded with respect to the choice of the initial guess. To solve this difficulty we implemented the damping technique proposed in \cite{DefulhardDamp}.
-
-Concerning the relation between the EAFE system matrix and the Zikatanov condition addressed in  \cite{Zikatanov:EAFE1},  we shown some interesting cases where carrier solution presents locally negative concentration.
+The code has been thoroughly tested on different semiconductor devices (p-n junction, p-n junction in oxide and n-channel/p-channel MOSFET), comparing the results with a commercial tool as reference.
 
 \vspace{1cm}
 
-A great effort has been spent in order to compute the current both at contacts and inside the device. In the first case we extended to the 3D framework the \textit{residual method} \cite{ContactCurrentRM} with excellent results over all tests performed. 
+A great effort has been spent in order to compute the current both at contacts and inside the device. In the first case we extended the \textit{residual method} \cite{ContactCurrentRM} to the 3D framework with excellent results.
 
-Concerning the evaluation of the current density we proposed two novel schemes to post-processing the solutions extending the 1D Scharfetter-Gummel scheme to the 3D case:
+Concerning the evaluation of the current density we proposed two novel schemes to post-processing the solutions extending the Scharfetter-Gummel scheme to the 3D case:
 \begin{itemize}
 \item \textit{edge average technique}, based on a primal mixed formulation of the continuity equation, followed by the approximation of the harmonic average of the diffusion coefficient;
 \item \textit{alternative upwinding technique}, based on an accurate analysis of the 1D stabilization function associated to the Scharfetter-Gummel technique.   
 \end{itemize}
-The edge average technique has been successfully tested over several cases, while the alternative upwinding scheme presents unavoidable numerical instability as the structure of the device and the phenomenon involved become more complex.
 
 \vspace{1cm}
 
-To conclude, we wish to mention some possible directions for future activity and investigation:
+To conclude, we wish to mention some possible directions for future activities and investigations:
 \begin{itemize}
-\item the novel schemes presented in Chapter \ref{chap: postprocess} could be also used to discretized the continuity equation. Moreover, as regards to the edge average technique, some cares must be taken due to the highly non linear relation with respect to the quasi Fermi potential levels.
+\item the novel schemes presented in Chapter \ref{chap: postprocess} could be also used to discretized the continuity equation. Moreover, as regards to the edge average technique, some cares must be taken due to the highly non linear relation with respect to the quasi Fermi potential levels;
 
-\item in order to complete the integration with the other modules of FEMOS the development of the coupling with respect to the multiphysic environment could be an interesting challenge.
+\item in order to complete the integration with the other modules of FEMOS the coupling with the multiphysic environment must be develop;
 
-\item a more thorough analysis of the Zikatanov condition and the relation with the discrete maximum principle would be also an issue of great interest.
+\item enlarge the available mobility and R/G models (i.e. Philips unified model, Bologna model, Lombardi model);
 
+\item tretment of floating semiconductor regions;
+
+\item development of the mixed hybrid strategy in order to guarantee the conservation of the flux across nodes, edges or faces of the triangulation;
+
+\item implementation of the fully coupled Newton method.
 \end{itemize}

@@ -196,7 +196,7 @@ In order to analyze the response of the system at different bias an additional t
  
  Let us consider the case with a coarse mesh. In \figref{fig: tempi computazionali 2} it is clear how the average time spent to solve the NLP and the DD equations remains almost unchanged. On the contrary the number of GM iterations needed by the system to reach the solution, increases for voltages above $\approx 1.5[V]$.
 
-A possible explanation of this trend can be found comparing solution and initial guess for a bias below and above $1.5[V]$ (similar considerations can be done for carrier densities). When voltage is low, like in \figref{fig: different biast initial step 1} ($V_A = 0.1[V]$), the potential shape is well predicted by the initial guess, resulting in a better convergence for the Gummel map algorithm. On the contrary in \figref{fig: different biast initial step 2} ($V_A=1.6[V]$) the device operates as a resistence and the potential profile is close to a linear function: this implies that the solution is far from the initial guess as equilibrium condition and the algorithm needs more steps.
+A possible explanation of this trend can be found comparing solution and initial guess for a bias below and above $1.5[V]$ (similar considerations can be done for carrier densities). When voltage is low, like in \figref{fig: different biast initial step 1} ($V_A = 0.1[V]$), the potential shape is well predicted by the initial guess, resulting in a better convergence for the Gummel map algorithm. On the contrary in \figref{fig: different biast initial step 2} ($V_A=1.6[V]$) the device operates as a resistence and the potential profile is close to a linear function: this implies that the solution is far from the initial guess of equilibrium condition and the algorithm needs more steps.
 
 
  
@@ -230,7 +230,7 @@ In this test case a silicon p-n junction $0.3[\mu m]$ long is surrounded by an o
 \tabref{tab: diodeox 3d} reports settings, models and parameters used in the simulations.
 
 \figref{fig: plot 1D diodeox} shows the solutions and the quasi Fermi potential levels along a line parallel to the Z-axis and placed at the center of the device. The main features are similar to the previous test case, also for the boundary layers at contact for carriers and quasi Fermi potentials.
-\figsref{fig: potential diodeox}-\ref{fig: hdensity diodeox} show the 3D solutions for the test at $0.3[V]$, while \figref{fig: potential diodeox 1V}-\ref{fig: hdensity diodeox 1V} refer to the case at $1.0[V]$. Both the 1D cuts and 3D plots agreement with the commercial software is very good. 
+\figsref{fig: potential diodeox}-\ref{fig: hdensity diodeox} show the 3D solutions for the test at $0.3[V]$, while \figref{fig: potential diodeox 1V}-\ref{fig: hdensity diodeox 1V} refer to the case at $1.0[V]$. Both the 1D cuts and 3D plots agreement with the commercial software are very good. 
 
 \vspace{0.5cm}
 
@@ -393,9 +393,9 @@ $V_A=1.0$ & $\mu_n = 1417$, $\mu_p = 470.5$ & SRH, Auger & 11.6 & 3.9 \\\bottomr
 \subsubsection{3D effect on the electric field}
 
 
-\figref{fig: potential diodeox} shows how at low bias the electrostatic potential behaves in a different manner in the oxide with the respect to the silicon region.
+\figref{fig: potential diodeox} shows how, at low bias, the electrostatic potential behaves in a different manner in the oxide with the respect to the silicon region.
 Since we impose $\nabla \varphi \cdot \vect{n}=0$ on the oxide boundary no field lines of the electric field can cross that boundary and, as a consequence, field lines can start and end only at contact A or B.
-The electric field inside the device is due only to the displacement effect in the junction of the silicon which imposes the electric response also in the oxide material where the solution is no more linear. \figref{fig: electric field diode} reports the electric field lines in the case of $V_A=0.3[V]$ compared with the commercial software with very good agreement. The lower magnitude of the electric field in the oxide, results in a more diffused potential.
+The electric field inside the device is due only to the displacement effect in the junction of the silicon which imposes the electric response also in the oxide material where the solution is no more linear. \figref{fig: electric field diode} reports the electric field lines in the case of $V_A=0.3[V]$ compared with the commercial software: agreement is very good. The lower magnitude of the electric field in the oxide, results in a more diffused potential.
 
 At high bias (\figref{fig: potential diodeox 1V}) the influence of the contacts (A,B) becomes higher and the electrostatic potential is much more similiar in the two subdomains.
 
@@ -850,7 +850,7 @@ In order to compute \referenzaeq{eq: flux current formula}, let $\eta_{c}$ be th
 \end{equation}
 
 
-According with  \referenzaeq{eq: equalities integrals} we can reinterpret $(H_h,\psi_i)_{\Gamma_{D,Si}}$ as the contribution to the flux at node $i$ and therefore the current at contact $c$ is given by summing this quantity  over the vertices $\eta_{c}$.
+According with  \referenzaeq{eq: equalities integrals} we can interpret $(H_h,\psi_i)_{\Gamma_{D,Si}}$ as the contribution to the flux at node $i$ and therefore the current at contact $c$ is given by summing this quantity  over the vertices $\eta_{c}$.
 
 The residual method is thus defined as:
 given the system matrix $A$ of the Drift-Diffusion equation, the solution $n_h$ and the right hand side $\vect{b}$, the contribution to the total contact current $\forall c = 1,...,d$ is
@@ -927,7 +927,7 @@ The residual method is applied to the already analysed devices and compared with
 Considering the p-n junction of Section \ref{sec: PN} we ground the B contact and then A contact is ramped from $-7.5[V]$ to $2.0[V]$ in order to obtain the well known diode characteristic. 
 \tabref{tab: caratt diodo} reports the parameters used in the simulation.
 In  \figref{fig: caratteristica diode} we plot the electron and hole current at contact A.
-Diode breakdown voltage is appearing around $-7.0[V]$ and it is quite well aligned with the SDEVICE value.
+Diode breakdown voltage is appearing around $-7.0[V]$ and it is quite well aligned with SDEVICE.
 
 \vspace{0.5cm}
 

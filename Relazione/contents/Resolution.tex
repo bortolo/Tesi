@@ -54,7 +54,7 @@ Artificial boundaries ($\partial \Omega_a$) are needed in order to obtain a self
 where $\vect{n}$ is the outward unit normal vector defined over $\partial \Omega$. 
 As we noted before on $\partial \Omega_{ox} \cap \Gamma_N$ condition \referenzaeq{eq: neumann boundar condition} is reduced to the first equation.
 
-When oxide is present the silicon boundaries for continuity equations become
+When oxide is present, the silicon boundaries for continuity equations become
 
 \begin{equation}
 \begin{array}{c}
@@ -94,10 +94,10 @@ where $\varphi_f = - E_f / q$ is the unique quasi Fermi potential level defined 
 As a consequence, we can easily determine potential condition on $\Gamma_{D,Si}$ using \referenzaeq{eq: n density mb} and \referenzaeq{eq: p density mb}
 
 \begin{equation}
-\varphi_D = \varphi_f + V_{th}\ln\left( \dfrac{n_D}{n_i} \right) = \varphi_f - V_{th}\ln\left( \dfrac{p_D}{n_i} \right)
+\varphi_D = \varphi_f + V_{th}\ln\left( \dfrac{n_D}{n_i} \right) = \varphi_f - V_{th}\ln\left( \dfrac{p_D}{n_i} \right).
 \end{equation}
 
- When $\Omega_{ox} \neq \varnothing$ we set $\varphi_D$ equal to the external applyed voltage on $\Gamma_D / \Gamma_{D,Si}$.
+ When $\Omega_{ox} \neq \varnothing$ we set $\varphi_D$ equal to the external applied voltage on $\Gamma_D / \Gamma_{D,Si}$.
 
 
 The stationary form of \referenzaeq{eq: full problem} can be now written in closed form as:
@@ -122,7 +122,7 @@ p & = & p_D & on \, \Gamma_{D,Si} \\
 \end{array}
 \end{equation}
 
-The highly nonlinear coupled nature of system	\referenzaeq{eq: system closed} makes an analytical treatment very difficult, if not even impossible. For this reason, numerical schemes must be used to  compute an approximate solution. 
+The highly nonlinear coupled nature of system	\referenzaeq{eq: system closed} makes an analytical treatment very difficult, if even not impossible. For this reason, numerical schemes must be used to  compute an approximate solution. 
 
 
 \section{Iteration algorithms}
@@ -171,7 +171,7 @@ where $L^2(\Omega)$ is the space of square integrable functions on $\Omega$ defi
 L^2(\Omega) := \left\{ v : \int_{\Omega} |v|^2 d\,\Omega =||v||^2_{L^2(\Omega)}<+\infty \right\}.
 \end{equation}
 
-On these space, we shall use the semi-norm
+On these space, we use the semi-norm
 
 \begin{equation}
 \label{eq: semiorm sobolev}
@@ -185,7 +185,7 @@ and the norm
 ||v||_{m,\Omega}^2 = \sum_{k\leq m} |D^{\alpha}v|^2_{k,\Omega}.
 \end{equation}
 
-We shall also need to consider functions that vanish on either the entire or a part of the boundary:
+We also need to consider functions that vanish on either the entire or a part of the boundary:
 
 \begin{align}
 & H^1_0 :=  \left\{   v : v \in H^1(\Omega), v|_{\partial \Omega} = 0\right\} \label{space: h1 zero} \\
@@ -201,7 +201,7 @@ For $v \in H^1_0(\Omega),H^1_{0,\Gamma_D}(\Omega)$ we have the \textit{Poincar\'
 
 from which it follows that the seminorm $|\cdot |_{\,\Omega}$ is actually a norm in $H^1(\Omega)$, equivalent to $||\cdot ||_{1,\Omega}$.
 
-The above function spaces (for a more detailed description see \cite{Adams:SobolevSpaces}) are used widely in the remainder of this work, especially during the well-posedness analysis as reported in Chapter \ref{chap: finite element}.
+The above function spaces (for a more detailed description see \cite{Adams:SobolevSpaces}) are used widely in this work, especially during the well-posedness analysis as reported in Chapter \ref{chap: finite element}.
 
 
 \subsection{Newton's method}
@@ -497,7 +497,7 @@ f  = \dfrac{n_i^2}{F(p^{i-1},n^{i-1})}
 \end{array}
 \end{equation}
 
-we can rewrite systems \referenzaeq{eq: LEC system} and \referenzaeq{eq: LHC system} as:
+we can write systems \referenzaeq{eq: LEC system} and \referenzaeq{eq: LHC system} as:
 
 \begin{equation}
 \label{eq: LEC system new}

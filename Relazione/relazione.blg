@@ -6,45 +6,45 @@ Database file #1: contents/Bibliografia.bib
 Warning--to sort, need author, editor, or key in SdeviceManual
 Warning--empty year in Pierret:SemiFunda
 Warning--empty author and editor in SdeviceManual
-You've used 33 entries,
+You've used 35 entries,
             2543 wiz_defined-function locations,
-            772 strings with 9526 characters,
-and the built_in function-call counts, 12501 in all, are:
-= -- 1264
-> -- 541
+            784 strings with 9888 characters,
+and the built_in function-call counts, 13236 in all, are:
+= -- 1337
+> -- 579
 < -- 14
-+ -- 182
-- -- 173
-* -- 850
-:= -- 2065
-add.period$ -- 98
-call.type$ -- 33
-change.case$ -- 181
-chr.to.int$ -- 32
-cite$ -- 37
-duplicate$ -- 510
-empty$ -- 939
-format.name$ -- 215
-if$ -- 2533
++ -- 194
+- -- 185
+* -- 899
+:= -- 2190
+add.period$ -- 104
+call.type$ -- 35
+change.case$ -- 192
+chr.to.int$ -- 34
+cite$ -- 39
+duplicate$ -- 539
+empty$ -- 993
+format.name$ -- 229
+if$ -- 2681
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 44
-newline$ -- 167
-num.names$ -- 96
-pop$ -- 185
+missing$ -- 47
+newline$ -- 177
+num.names$ -- 102
+pop$ -- 197
 preamble$ -- 1
-purify$ -- 226
+purify$ -- 240
 quote$ -- 0
-skip$ -- 416
+skip$ -- 441
 stack$ -- 0
-substring$ -- 808
-swap$ -- 59
+substring$ -- 847
+swap$ -- 61
 text.length$ -- 14
 text.prefix$ -- 10
 top$ -- 0
-type$ -- 216
+type$ -- 228
 warning$ -- 3
-while$ -- 131
-width$ -- 39
-write$ -- 417
+while$ -- 139
+width$ -- 41
+write$ -- 442
 (There were 3 warnings)

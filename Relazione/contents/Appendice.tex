@@ -1,0 +1,266 @@
+\chapter{FEMOS inputfile}
+
+In this appendix we address the informations in order to personalize the input file (\texttt{input.txt}) of the FEMOS executable. The parsing of the input file is managed by the library \texttt{reading\_files.so}. The file is organized in sections indentified by a name and a scope; each voice of a section could be a vector of string (:), a vector of double (=) or a vector of pair of string and double (:=).
+
+Now we describe each section.
+The section \texttt{File} sets the input and output path.
+\vspace{0.5cm}
+\begin{lstlisting}[style = general]
+File {
+
+	Input				: ./input/MosMesh.tdr ;			
+	# sets mesh file path
+		
+	Output			: ./output/MosSimulation ;	
+	# sets output file path and name
+	
+	Output_type	: xmf ;
+	# sets output file (.vtk/.xmf) 
+	
+	Par					: ./input/MosParameter.par
+	# sets parameter file path
+
+}
+\end{lstlisting}
+
+\vspace{0.5cm}
+In the \texttt{Mesh} section is possible activate some checks on the mesh and the related prints (if one activated check fails simulation is aborted).
+\vspace{0.5cm}
+
+\begin{lstlisting}[style = general]
+Mesh {
+
+  RegularityClassic : no ; 
+	# activate the regularity check on the mesh and the associated print
+
+  RCtoll = 1000 ;
+  # sets the tolerance for the regularity check
+  
+  RegularityDelauny : no
+  # activates the Zikatanov condition check on the mesh and the associated print
+  
+}
+\end{lstlisting}
+
+\vspace{0.5cm}
+The \texttt{Equation} section sets which equations are solved in the general Gummel Map. At the stage of code development semiconductor physic is working by activating carriers type when silicon material is present in the mesh.
+\vspace{0.5cm}
+
+\begin{lstlisting}[style = general]
+Equation {
+
+  Poisson : no ;
+  # activates the Linear Poisson equation (not used for semiconductor material)
+  
+  Carriers_type : Electron , Hole ;
+  # defines carrier types
+  
+  Carriers :=  Electron -1 , Hole 1 ;
+  # defines carrier charges 
+
+  Thermal : no ;
+  # activates the Thermal equation
+  
+  Chemicals_type : no ;
+  # defines chemical species
+  
+  Chemicals := no 0;
+  # defines effective charge of chemical species
+
+  Mechanical : no
+  # activates the Mechanical equation
+}
+\end{lstlisting}
+
+\vspace{0.5cm}
+Contacts are defined in the section \texttt{Electrode}. The ramping procedure is managed by the variables listed in the section \texttt{Stationary}.
+\vspace{0.5cm}
+\begin{lstlisting}[style = general]
+Electrode {
+
+	# definition of contacts and their initial voltage [V]
+	Contact 			:=	Source 0.0 , Drain 0.1 ,
+									Bulk 0.0 , Gate 0.0 ;
+	
+	# definition of the workfunction of each electrode [eV]
+	Workfunction	:=	Source 4.65 , Drain 4.65 ,
+									Bulk 4.65 , Gate 4.65 
+}
+
+
+
+Stationary {
+	# definition of the final voltage for each contact [V]
+	GoalContact		:= Source 0.0 , Drain 0.1 ,
+									Bulk 0.0 , Gate 2.0 ;
+
+	# defines the number of steps between intial e final voltage
+	Steps 				= 20 ;
+	
+	# defines the minimum bias step (only for semiconductor) if the ramping procedure is active
+	MinStep 			= 0.01 ;
+
+	# actives the ramping procedure
+	Checkramp 		: yes
+}
+\end{lstlisting}
+
+\vspace{0.5cm}
+Each physical module of FEMOS has a default group of printable variables defined inside the library \texttt{libUtility.so}. The output can be personalized changing the \texttt{Plot} section of the input file.
+\vspace{0.5cm}
+
+\begin{lstlisting}[style = general]
+Plot {
+
+  # defines which variable print in the output file (variables for semiconductor)
+  eDensity : yes ;  							# [cm-3]
+  hDensity : yes ; 								# [cm-3]
+  DopantConc : yes ; 							# [cm-3]
+  DonorConc : yes ; 							# [cm-3]
+  AcceptorConc : yes ; 						# [cm-3]
+  ElectrostaticPotential : yes ; 	# [V]
+  ElectricField : yes ; 					# [V cm-1]
+  eQuasiFermiPotential : yes ; 		# [V]
+  hQuasiFermiPotential : yes ; 		# [V]
+  MiddleBandLevel : yes ; 				# [eV]
+  CondBand : yes ; 								# [eV]
+  ValBand : yes ;									# [eV]
+  eQuasiFermiBand : yes ; 				# [eV]
+  hQuasiFermiBand : yes ; 				# [eV]
+  SRH : yes ; 										# [cm-3 s-1]
+  Auger : yes ; 									# [cm-3 s-1]
+  ImpactIonization : yes ; 				# [cm-3 s-1]
+  Jn_vertex : yes ; 							# [A cm-2]
+  Jp_vertex : yes ; 							# [A cm-2]
+  Jn_element : yes ; 							# [A cm-2]
+  Jp_element : yes ; 							# [A cm-2]
+  
+}
+\end{lstlisting}
+
+\vspace{0.5cm}
+In the \texttt{Math} section it is possible to choose the kind of solver and the related tolerance for the different equations. In the case of semiconductor devices other informations are added in the \texttt{Semiconductor} section for the manage of the Drift-Diffusion Gummel map. Moreover in the same section it is possible to set mobility and R/G models, current density calculation methodologies and ASCII output files for convergence and contact current plots.
+\vspace{0.5cm}
+
+\begin{lstlisting}[style = general]
+Math {
+
+  Solver : BCG_NR; 
+  # defines the kind of solver use for the linear problems. The following solver are available:
+  # BCG_NR,					bigradient coniugate implemented with 											Numerical Recipes library
+  # BCG_E,					bigradient coniugate implemented with Eigen 								library
+  # GMRES_E,				generalized minimal residual method 												implemented with Eigen
+  # LU_NR,					LU factorization implemented with Numerical 								Recipes library
+  # PartialLU_E,		partial LU factorization implemented with 									Eigen
+  # FullLU_E,				full LU factorization implemented with Eigen
+  # QR_E,						QR factorization implemented with Eigen
+
+  Poisson_err = 1e-40 ; 
+  # sets the tolerance for the iteration solver for Poisson and Non Linear Poisson equation
+  
+  GM_err = 5e-3 ; 
+  # sets the tolerance for the general Gummel map
+
+  GM_max_iter = 5 ; 
+  # sets the maximum number of iteration for the general Gummel map 
+  
+  Carrier_err = 1e-40 ; 
+  # sets the tolerance for the Carrier equation
+  
+  Temperature_err = 1e-7 ; 
+  # sets the tolerance for the Thermal equation
+
+  Chemical_err = 1e-6 ;  
+  # sets the tolerance for the Chemical equations
+
+  GM_chem_err = 5e-3 ; 
+  # sets the tolerance for the inner Gummel map of the Chemical equations  
+  
+  GM_chem_max_iter = 4  
+ # sets the maximum number of iteration for the inner Gummel map of the Chamical equations
+  
+  Mechanical_err = 1e-10
+  # sets the tolerance for the Mechanical equation
+  
+}
+
+
+Semiconductor (type : model) {
+  model_lib : /home/LIBRERIE/libmodels_lib.so ; 
+  #  sets the path where find the model library
+  
+  J_bulk_method : DDcorretto ; 
+  # sets the method for current density calculation:
+  # SG,						3D edge average SG  ;
+  # DD,						standard DD ;
+  # DDmodified,		3D upwinding SG;
+  # QF,						quasi fermi.
+  
+  initguess = 2 ; 	
+  # sets the kind of initial guess performed for the Non Linear Poisson problem:
+  # 1,	guess computed take into account the ramping procedure,
+  # 2,	guess based on the thermal equilibrium hypothesis 
+ 
+  damp : yes ; 
+  # activates the damping procedure
+  
+  tollNLP = 1.0e-26 ;
+  # sets the tolerance for the Non Linear Poisson Newton algorithm
+   
+  maxitNLP = 100 ; 
+  # sets the maximum number of iteration for the Non Linear Poisson Newton algorithm
+
+  tollGM = 1.0e-24 ;   
+  # sets the tolerance for the Gummel map
+  
+  maxitGM = 40 ; 
+  # sets the maximum number of iteration for the Gummel map
+
+  showRAMP : yes ; 
+  # activates the semiconductor print section
+
+  TXTvi : yes ; 
+  # activates the print of .txt file for the contact current plots
+
+  TXTnlp : yes ;
+    # activates the print of .txt file for Non Linear Poisson convergence plots
+
+  TXTgm : no ;
+    # activates the print of .txt file for Gummel map convergence plots
+  
+   Mobility: Constant , Masetti ;
+   # sets the mobility models:
+   # Constant,
+   # Masetti, 
+   # Canali
+   
+  RG: SRH , II
+  # sets the R/G models:
+  # SRH
+  # Auger
+  # II
+  
+}
+\end{lstlisting}
+
+
+
+
+\chapter{FEMOS organization notes}
+
+FEMOS code is composed by 28 internal libraries plus the external HDF5-1.8.10 library, with a total number of $50000$ rows. The compile session is managed by \texttt{makefile}. The output files are visualized with Paraview. 
+
+The semiconductor part is integrated in the FEMOS project through five libraries with a total number of $5000$ rows. In the following we give a briefly description of the contents of each library:
+
+\begin{itemize}[leftmargin=3.7cm]
+\item[\textit{Semiconductor}] the main object of this library is the \texttt{Semiconductor} class, where the fundamental relations between the characterizing quantity of a semiconductor material are implemented.  
+
+\item[\textit{NLPoisson}] this library gathered the utility functions for the manage of the Newton method applied to the Poisson equation.
+
+\item[\textit{DD\_semiconductor}] this library includes both the functions assigned to the Continuity equation solving and the post-processing utilities for the evaluation of the current at contacts and inside the device.
+
+\item[\textit{ModelManage}] the main object of this library is the \texttt{ModelsManage} class which puts in contact the internal variables of the code with the models (mobility or R/G) loaded by the user.
+
+\item[\textit{Models}] this library stores all the mobility and R/G models. Moreover new models can be added easily without change other parts of the code.
+\end{itemize}
+

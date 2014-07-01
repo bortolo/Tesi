@@ -5,6 +5,12 @@ R.~A. Adams and J.~J.~F. Fournier.
 \newblock {\em Sobolev Spaces}.
 \newblock Academic Press, 2003.
 
+\bibitem[AS55]{Allen:SGformula}
+D.~N.~G. Allen and R.~V. Southwell.
+\newblock Relaxation methods applied to determine the motion, in two
+  dimensions, of a viscous fluid past a fixed cylinder.
+\newblock {\em Quart. J. Mech. Appl. Math.}, 8:129--145, 1955.
+
 \bibitem[BCC98a]{BankMmatrixEAFE}
 R.~E. Bank, W.~Coughran, and L.~C. Cowsar.
 \newblock The finite volume sharfetter-gummel method for steady convection
@@ -106,6 +112,11 @@ G.~Masetti and M.~Severi.
 \newblock Modeling of carrier mobility against carrier concentration in
   arsenic-, phosphorus-, and boron-doped silicon.
 \newblock {\em IEEE Transactions on Electron Devices}, 7:764--769, 1983.
+
+\bibitem[OR70]{Ortega:IterNonlinearEq}
+J.~M. Ortega and W.~C. Rheinboldt.
+\newblock {\em Iterative Solution of Nonlinear Equations in Several Variables}.
+\newblock Academic Press, 1970.
 
 \bibitem[PC98]{OSCputticorded}
 M.~Putti and C.~Cordes.
